@@ -1,3 +1,4 @@
+const next = require("next");
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
@@ -8,7 +9,7 @@ const errorController = require("./controllers/errorController");
 const alertRouter = require("./routers/alertRouter");
 const orderRouter = require("./routers/orderRouter");
 const courseRouter = require("./routers/courseRouter");
-const next = require("next");
+const sectionRouter = require("./routers/sectionRouter");
 
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
@@ -35,6 +36,7 @@ app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 app.use("/api/alerts", alertRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/courses", courseRouter);
+app.use("/api/sections", sectionRouter);
 
 // Route not found
 app.all("*", (req, res, next) => {
