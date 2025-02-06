@@ -19,6 +19,7 @@ async function scheduleUoftAlerts() {
     // 4. Send alert to user's email if
     // 4. Add fetched courses to a map to check in future
 
+    console.log("QUERYING UOFT API");
     const courses = await UoftAdapter.fetchCourses({
       query: "pcl",
       page: 2,

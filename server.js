@@ -20,7 +20,7 @@ dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
 dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
 mongoose
   .connect(dbUri, { autoIndex: true })
-  .then(() => console.log("[INFO] Database connection cuccessful"));
+  .then(() => console.log("[INFO] Database connection successful"));
 
 // Scheduler initialization
 // scheduleController();
