@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const enums = require("../data/enums.json");
+const enums = require("../data/enums");
 
 const courseSchema = new mongoose.Schema({
   school: {
@@ -25,7 +25,9 @@ const courseSchema = new mongoose.Schema({
     minLength: [3, "Campus must be atleast 3 characters long."],
     maxLength: [200, "Campus cannot exceed 50 characters."],
   },
-  sections: [],
+  sections: {
+    type: [mongoose.Schema.ObjectId],
+  },
 });
 
 // Cannot have duplicate course with same code and campus

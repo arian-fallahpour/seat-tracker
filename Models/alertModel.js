@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const enums = require("../data/enums.json");
+const enums = require("../data/enums");
 
 const alertSchema = new mongoose.Schema(
   {
