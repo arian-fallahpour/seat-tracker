@@ -3,6 +3,8 @@ const courseController = require("../controllers/courseController");
 
 const router = express.Router();
 
+router.get("/search/:school", courseController.searchForCourses);
+
 router
   .route("/")
   .get(courseController.getAllCourses)
@@ -12,5 +14,7 @@ router
   .get(courseController.getOneCourse)
   .patch(courseController.updateOneCourse)
   .delete(courseController.deleteOneCourse);
+
+router.route;
 
 module.exports = router;
