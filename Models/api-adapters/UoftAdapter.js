@@ -38,12 +38,23 @@ class UoftAdapter {
     return {
       type: sectionData.teachMethod === "TUT" ? "tutorial" : "lab",
       number: sectionData.sectionNumber,
-      campus: sectionData.campus,
+      campus: this.formatCampus(sectionData.campus),
       seatsTaken: sectionData.currentEnrolment,
       seatsAvailable: sectionData.maxEnrolment,
       hasWaitlist: sectionData.waitlistInd === "Y" ? true : false,
       waitlist: sectionData.currentWaitlist,
     };
+  }
+
+  // Formats campus to accepted campus enum values for uoft section schema
+  static formatCampus(campus) {
+    return (
+      {
+        Scarborough: "Scarborough",
+        "University of Toronto at Mississauga": "Mississauga",
+        "St. George": "St. George",
+      }[campus] || null
+    );
   }
 
   // Returns body associated with Uoft API request

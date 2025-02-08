@@ -25,7 +25,7 @@ dotenv.config({ path: "./config.env" });
 })();
 
 const importData = async () => {
-  const limit = 1;
+  const limit = -1;
   let page = 0;
   while (page !== limit) {
     console.log(`Requestion UofT API page ${++page}`);
@@ -80,13 +80,3 @@ const deleteData = async () => {
     console.error(`Deletion failed: ${err.message}`);
   }
 };
-
-function convertCampus(campus) {
-  return (
-    {
-      Scarborough: "Scarborough",
-      "University of Toronto at Mississauga": "Mississauga",
-      "St. George": "St. George",
-    }[campus] || null
-  );
-}
