@@ -1,6 +1,6 @@
 const cron = require("node-cron");
 const fs = require("fs/promises");
-const UoftAdapter = require("../Models/UoftAdapter");
+const UoftAdapter = require("../Models/api-adapters/UoftAdapter");
 
 module.exports = () => {
   // UOFT Seat Alerts

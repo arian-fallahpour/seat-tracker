@@ -1,5 +1,5 @@
 const crudController = require("./crudController");
-const Section = require("../Models/sectionModel");
+const Section = require("../Models/database/sectionModel");
 
 exports.getOneSection = crudController.getOne(Section);
 exports.getAllSections = crudController.getAll(Section);
