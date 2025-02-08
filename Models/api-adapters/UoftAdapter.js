@@ -3,6 +3,7 @@ const axios = require("axios");
 const getCoursesURL = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
 
 class UoftAdapter {
+  // Returns formatted course data from Uoft timetable API
   static async getCourses({ query = "", page = 1 }) {
     const { data } = await axios({
       url: getCoursesURL,
@@ -18,6 +19,7 @@ class UoftAdapter {
     return courses;
   }
 
+  // Formats course to database course schema
   static formatCourse(courseData) {
     const sections = courseData.sections.map((sectionData) =>
       this.formatSection({ ...sectionData, campus: courseData.campus })
@@ -31,6 +33,7 @@ class UoftAdapter {
     };
   }
 
+  // Formats subject to database uoft section schema
   static formatSection(sectionData) {
     return {
       type: sectionData.teachMethod === "TUT" ? "tutorial" : "lab",
@@ -43,6 +46,7 @@ class UoftAdapter {
     };
   }
 
+  // Returns body associated with Uoft API request
   static getBody({ query = "", page = 1 }) {
     return {
       courseCodeAndTitleProps: {

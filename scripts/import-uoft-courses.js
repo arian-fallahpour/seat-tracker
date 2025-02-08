@@ -34,37 +34,35 @@ const importData = async () => {
     const fetchedCourses = await UoftAdapter.getCourses({ page });
     if (fetchedCourses.length === 0) break;
 
-    const coursesData = [];
-    let sectionsData = [];
-    for (let i = 0; i < fetchedCourses.length; i++) {
-      const fetchedCourse = fetchedCourses[i];
-
-      // Check if campus is valid
-      const campus = convertCampus(fetchedCourse.campus);
-      if (campus === null) continue;
-
-      console.log(
-        `Importing course: ${fetchedCourse.code}, ${fetchedCourse.name}, ${campus}`
-      );
-
-      coursesData.push({ ...fetchedCourse, sections: [] });
-      sectionsData.push(fetchedCourse.sections);
-    }
+    // Separate course and section data into parallel arrays
+    const coursesData = fetchedCourses.map((course) => ({
+      ...course,
+      sections: [],
+    }));
+    const sectionsData = fetchedCourses.map((course) => course.sections);
 
     try {
-      const courses = await Course.insertMany(coursesData);
+      // Create new courses in parallel, skip import of courses that cause errors
+      const courses = await Course.insertMany(coursesData, { ordered: false });
 
       // Add id to sections and flatten them
-      sectionsData = sectionsData
-        .map((ss, i) => ss.map((s) => ({ ...s, course: courses[i]._id })))
+      const flattenedSectionsData = sectionsData
+        .map((sections, i) =>
+          sections.map((section) => ({
+            ...section,
+            course: courses[i]._id,
+            courseIndex: i,
+          }))
+        )
         .flat();
 
-      const sections = await UoftSection.insertMany(sectionsData);
+      // Create new sections in parallel
+      const sections = await UoftSection.insertMany(flattenedSectionsData);
 
-      // Add section ids to sections of courses
-      sections.forEach((section) => {
-        const i = courses.findIndex((c) => c._id === section.course);
-        courses[i].sections.push(section._id);
+      // Add section ids to sections of courses, and save in parallel
+      sections.forEach((section, i) => {
+        const index = flattenedSectionsData[i].courseIndex;
+        courses[index].sections.push(section._id);
       });
       await Course.bulkSave(courses);
     } catch (err) {
