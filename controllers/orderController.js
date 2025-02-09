@@ -1,5 +1,5 @@
 const crudController = require("./crudController");
-const Order = require("../Models/database/orderModel");
+const Order = require("../models/database/orderModel");
 
 exports.getOneOrder = crudController.getOne(Order);
 exports.getAllOrders = crudController.getAll(Order);

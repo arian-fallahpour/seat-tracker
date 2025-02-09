@@ -12,9 +12,7 @@ class UoftAdapter {
     });
 
     const coursesData = data.payload.pageableCourse.courses;
-    const courses = coursesData.map((courseData) =>
-      this.formatCourse(courseData)
-    );
+    const courses = coursesData.map((courseData) => this.formatCourse(courseData));
 
     return courses;
   }
@@ -75,21 +73,12 @@ class UoftAdapter {
       deliveryModes: [],
       dayPreferences: [],
       timePreferences: [],
-      divisions: [
-        "APSC",
-        "ARTSC",
-        "FIS",
-        "FPEH",
-        "MUSIC",
-        "ARCLA",
-        "ERIN",
-        "SCAR",
-      ],
+      divisions: ["APSC", "ARTSC", "FIS", "FPEH", "MUSIC", "ARCLA", "ERIN", "SCAR"],
       creditWeights: [],
       availableSpace: false,
       waitListable: false,
       page,
-      pageSize: 20,
+      pageSize: 100,
       direction: "asc",
     };
   }

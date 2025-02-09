@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-const Section = require("../Models/database/sectionModel");
-const Course = require("../Models/database/courseModel");
-const UoftAdapter = require("../Models/api-adapters/UoftAdapter");
-const UoftSection = require("../Models/database/uoftSectionModel");
+const Section = require("../models/database/sectionModel");
+const Course = require("../models/database/courseModel");
+const UoftAdapter = require("../models/api-adapters/UoftAdapter");
+const UoftSection = require("../models/database/uoftSectionModel");
 
 dotenv.config({ path: "./config.env" });
 

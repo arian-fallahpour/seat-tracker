@@ -1,6 +1,4 @@
 const dotenv = require("dotenv");
-
-const scheduleController = require("./controllers/scheduleController");
 const mongoose = require("mongoose");
 
 process.on("uncaughtException", (err) => {
@@ -21,9 +19,6 @@ dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
 mongoose
   .connect(dbUri, { autoIndex: true })
   .then(() => console.log("[INFO] Database connection successful"));
-
-// Scheduler initialization
-// scheduleController();
 
 // Server initialization
 const port = process.env.PORT || 3000;

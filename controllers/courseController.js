@@ -1,32 +1,23 @@
 const crudController = require("./crudController");
-const Course = require("../Models/database/courseModel");
+const Course = require("../models/database/courseModel");
 const catchAsync = require("../utils/catchAsync");
 const enums = require("../data/enums");
 const AppError = require("../utils/AppError");
+const { default: APIQuery } = require("../utils/APIQuery");
 
 exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { school } = req.params;
   const { search } = req.query;
 
-  console.log(school, search);
-
-  function escapeRegex(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-  }
-
   // Check if school if valid
   if (!enums.schools.includes(school)) {
-    return next(
-      new AppError("Please provide a valid school to search from.", 400)
-    );
+    return next(new AppError("Please provide a valid school to search from.", 400));
   }
 
-  // TODO: May not be correct syntax
   // Find courses based on search input
   const regex = new RegExp(`^${search}`, "gi");
-  const courses = await Course.find({
-    $or: [{ code: regex }, { name: regex }],
-  }).limit(5);
+  const query = Course.find({ $or: [{ code: regex }, { name: regex }] });
+  const courses = await new APIQuery(query, { limit: 5 }).paginate().execute();
 
   res.status(200).json({
     status: "success",
