@@ -2,42 +2,50 @@ const UoftAdapter = require("../../models/api-adapters/UoftAdapter");
 const { processUoftAlert } = require("../../controllers/processorController");
 
 jest.mock("../../models/api-adapters/UoftAdapter");
-console.log = jest.fn();
 
 describe("processUoftAlert", () => {
-  it("should log a message for sections with reopened seats", async () => {
+  it("should send a notification for sections with reopened seats", async () => {
+    const sendNotification = jest.fn();
+
     const alert = {
       course: {
         code: "CSC108",
         populate: jest.fn().mockImplementation(async ({ path, match }) => {
           alert.course.sections = [
-            { type: "LEC", number: "0101", haveSeatsReopened: jest.fn(() => true) }, // Reopened section
-            { type: "LEC", number: "0201", haveSeatsReopened: jest.fn(() => false) }, // Not reopened
+            {
+              type: "tutorial",
+              number: "0101",
+              seatsTaken: 100,
+              seatsAvailable: 100,
+              haveSeatsReopened: jest.fn(() => true),
+            },
+            {
+              type: "tutorial",
+              number: "0201",
+              seatsTaken: 50,
+              seatsAvailable: 100,
+              haveSeatsReopened: jest.fn(() => false),
+            },
           ];
         }),
       },
       sections: ["sectionId1", "sectionId2"], // Mock section IDs
     };
+    const updatedCoursesMap = new Map();
 
-    const fetchedCoursesMap = new Map();
-    const fetchedCourse = {
+    const updatedCourse = {
       code: "CSC108",
       sections: [
-        { type: "LEC", number: "0101", seatsTaken: 100, seatsAvailable: 10 },
-        { type: "LEC", number: "0201", seatsTaken: 50, seatsAvailable: 0 },
+        { type: "tutorial", number: "0101", seatsTaken: 99, seatsAvailable: 100 },
+        { type: "tutorial", number: "0201", seatsTaken: 50, seatsAvailable: 100 },
       ],
     };
 
-    UoftAdapter.getCourses.mockResolvedValueOnce([fetchedCourse]);
+    UoftAdapter.getCourses.mockResolvedValueOnce([updatedCourse]);
 
-    await processUoftAlert(alert, fetchedCoursesMap);
+    await processUoftAlert(alert, updatedCoursesMap);
 
     // Assertions
-    expect(alert.course.populate).toHaveBeenCalledWith({
-      path: "sections",
-      match: { _id: { $in: alert.sections } },
-    });
-    expect(console.log).toHaveBeenCalledTimes(1);
-    expect(console.log).toHaveBeenCalledWith("[ALERT]: Section LEC 0101 in CSC108 is now open!");
+    expect(sendNotification).toHaveBeenCalledTimes(1);
   });
 });

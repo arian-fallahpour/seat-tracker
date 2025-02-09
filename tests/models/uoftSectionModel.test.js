@@ -1,53 +1,55 @@
 const UoftSection = require("../../models/database/uoftSectionModel");
 
-it("should return true if new spot is available", () => {
-  const section = {
-    seatsEmpty: 0,
-    haveSeatsReopened: UoftSection.functions.haveSeatsReopened,
-  };
+describe("isFreed", () => {
+  it("should return true if new spot is available", () => {
+    const section = {
+      seatsEmpty: 0,
+      isFreed: UoftSection.functions.isFreed,
+    };
 
-  const newSeatsTaken = 99;
-  const newSeatsAvailable = 100;
-  const result = section.haveSeatsReopened(newSeatsTaken, newSeatsAvailable);
+    const seatsTaken = 99;
+    const seatsAvailable = 100;
+    const result = section.isFreed({ seatsTaken, seatsAvailable });
 
-  expect(result).toBe(true);
-});
+    expect(result).toBe(true);
+  });
 
-it("should return false if new spot is available, but there already was a spot available", () => {
-  const section = {
-    seatsEmpty: 1,
-    haveSeatsReopened: UoftSection.functions.haveSeatsReopened,
-  };
+  it("should return false if new spot is available, but there already was a spot available", () => {
+    const section = {
+      seatsEmpty: 1,
+      isFreed: UoftSection.functions.isFreed,
+    };
 
-  const newSeatsTaken = 99;
-  const newSeatsAvailable = 100;
-  const result = section.haveSeatsReopened(newSeatsTaken, newSeatsAvailable);
+    const seatsTaken = 99;
+    const seatsAvailable = 100;
+    const result = section.isFreed({ seatsTaken, seatsAvailable });
 
-  expect(result).toBe(false);
-});
+    expect(result).toBe(false);
+  });
 
-it("should return false if a spot is still not available", () => {
-  const section = {
-    seatsEmpty: 0,
-    haveSeatsReopened: UoftSection.functions.haveSeatsReopened,
-  };
+  it("should return false if a spot is still not available", () => {
+    const section = {
+      seatsEmpty: 0,
+      isFreed: UoftSection.functions.isFreed,
+    };
 
-  const newSeatsTaken = 100;
-  const newSeatsAvailable = 100;
-  const result = section.haveSeatsReopened(newSeatsTaken, newSeatsAvailable);
+    const seatsTaken = 100;
+    const seatsAvailable = 100;
+    const result = section.isFreed({ seatsTaken, seatsAvailable });
 
-  expect(result).toBe(false);
-});
+    expect(result).toBe(false);
+  });
 
-it("should return false if a spot is no longer available", () => {
-  const section = {
-    seatsEmpty: 1,
-    haveSeatsReopened: UoftSection.functions.haveSeatsReopened,
-  };
+  it("should return false if a spot is no longer available", () => {
+    const section = {
+      seatsEmpty: 1,
+      isFreed: UoftSection.functions.isFreed,
+    };
 
-  const newSeatsTaken = 100;
-  const newSeatsAvailable = 100;
-  const result = section.haveSeatsReopened(newSeatsTaken, newSeatsAvailable);
+    const seatsTaken = 100;
+    const seatsAvailable = 100;
+    const result = section.isFreed({ seatsTaken, seatsAvailable });
 
-  expect(result).toBe(false);
+    expect(result).toBe(false);
+  });
 });
