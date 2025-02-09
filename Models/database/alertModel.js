@@ -53,6 +53,18 @@ function validateSectionsLength(sections) {
   return sections.length > 0;
 }
 
+alertSchema.index({ email: 1, course: 1 }, { unique: true });
+
+alertSchema.statics.findActiveAlerts = async function (school) {
+  const alerts = await Alert.find({
+    school,
+    isActive: true,
+    // lastAlertedAt: { $lt: Date.now() - 1000 * 60 * 60 },
+  }).populate({ path: "course" });
+  alerts.sort((a, b) => String(b.course.code).localeCompare(a.course.code));
+  return alerts;
+};
+
 alertSchema.methods.sendAlert = async function () {};
 
 const Alert = mongoose.model("Alert", alertSchema);
