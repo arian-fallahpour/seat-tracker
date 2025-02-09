@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const enums = require("../../data/enums");
+const UoftAdapter = require("../api-adapters/UoftAdapter");
 
 const courseSchema = new mongoose.Schema({
   school: {
@@ -33,6 +34,37 @@ const courseSchema = new mongoose.Schema({
 });
 
 courseSchema.index({ code: 1 });
+
+courseSchema.statics.updateCourses = async function (updatedCourses) {
+  updatedCourses.forEach(async (updatedCourse) => {
+    console.log(`Updating ${updatedCourse.code}`);
+  });
+};
+
+// TODO: Hardcoded with Uoft API at the moment, may need to create subschemas
+courseSchema.methods.getUpdatedCourse = async function (courseCache) {
+  const alreadyCachedUpdatedCourse = courseCache instanceof Map && courseCache.has(this.code);
+  if (alreadyCachedUpdatedCourse) {
+    return courseCache.get(this.code);
+  }
+
+  const adapterOptions = { query: this.code };
+  const fetchedCourses = await UoftAdapter.getCourses(adapterOptions);
+
+  let updatedCourse = null;
+  fetchedCourses.forEach((fetchedCourse) => {
+    if (fetchedCourse.code === this.code) {
+      updatedCourse = fetchedCourse;
+    }
+
+    const notAlreadyFetchedCourse = courseCache instanceof Map && !courseCache.has(fetchedCourse.code);
+    if (notAlreadyFetchedCourse) {
+      courseCache.set(fetchedCourse.code, fetchedCourse);
+    }
+  });
+
+  return updatedCourse;
+};
 
 const Course = mongoose.model("Course", courseSchema);
 

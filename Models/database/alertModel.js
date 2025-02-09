@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const { Stack } = require("datastructures-js");
+
 const enums = require("../../data/enums");
+const throttledQueue = require("throttled-queue");
+
+const activeAlertDelay = 1000 * 60 * 60;
 
 const alertSchema = new mongoose.Schema({
   email: {
@@ -41,7 +46,10 @@ const alertSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  lastAlertedAt: Date,
+  lastAlertedAt: {
+    type: Date,
+    default: new Date(Date.now() - activeAlertDelay),
+  },
 });
 
 // TODO
@@ -59,10 +67,51 @@ alertSchema.statics.findActiveAlerts = async function (school) {
   const alerts = await Alert.find({
     school,
     isActive: true,
-    // lastAlertedAt: { $lt: Date.now() - 1000 * 60 * 60 },
+    lastAlertedAt: {
+      $lt: new Date(Date.now() - activeAlertDelay),
+    },
   }).populate({ path: "course" });
-  alerts.sort((a, b) => String(b.course.code).localeCompare(a.course.code));
   return alerts;
+};
+
+alertSchema.statics.sortAlerts = function (alerts) {
+  alerts.sort((a, b) => String(b.course.code).localeCompare(a.course.code));
+};
+
+alertSchema.statics.processAlerts = async function (alerts, { processor, throttleDelay }) {
+  Alert.sortAlerts(alerts);
+  const stack = new Stack(alerts);
+  const courseCache = new Map();
+
+  const throttle = throttledQueue(1, Number(throttleDelay));
+  while (!stack.isEmpty()) {
+    await throttle(() => processor(stack.pop(), courseCache));
+  }
+
+  return courseCache;
+};
+
+alertSchema.methods.getSections = async function () {
+  if (!this.populated("sections")) {
+    await this.populate("sections");
+  }
+
+  return this.sections;
+};
+
+alertSchema.methods.getFreedSections = async function (updatedSections) {
+  const alertableSections = await this.getSections();
+
+  const reopenedSections = alertableSections.filter((alertableSection) => {
+    const updatedSection = findUpdatedSection(updatedSections, alertableSection);
+    return alertableSection.isFreed(updatedSection);
+  });
+
+  return reopenedSections;
+
+  function findUpdatedSection(sections, alertableSection) {
+    return sections.find((s) => s.type === alertableSection.type && s.number === alertableSection.number);
+  }
 };
 
 alertSchema.methods.sendAlert = async function () {};

@@ -43,13 +43,11 @@ uoftSectionSchema.virtual("seatsEmpty").get(function () {
 });
 
 // Checks if seats have been re-opened if all have previously been taken
-function haveSeatsReopened(updatedAlert) {
-  const updatedSeatsEmpty = updatedAlert.newSeatsAvailable - updatedAlert.newSeatsTaken;
+uoftSectionSchema.methods.isFreed = function (updatedAlert) {
+  const updatedSeatsEmpty = updatedAlert.seatsAvailable - updatedAlert.seatsTaken;
   return this.seatsEmpty === 0 && updatedSeatsEmpty !== 0;
-}
-uoftSectionSchema.methods.haveSeatsReopened = haveSeatsReopened;
+};
 
 const UoftSection = Section.discriminator("UoftSection", uoftSectionSchema);
 
-UoftSection.functions = { haveSeatsReopened };
 module.exports = UoftSection;
