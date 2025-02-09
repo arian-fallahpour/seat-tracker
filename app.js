@@ -10,6 +10,7 @@ const alertRouter = require("./routers/alertRouter");
 const orderRouter = require("./routers/orderRouter");
 const courseRouter = require("./routers/courseRouter");
 const sectionRouter = require("./routers/sectionRouter");
+const scheduleController = require("./controllers/scheduleController");
 
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
@@ -31,6 +32,9 @@ if (process.env.NODE_ENV === "development") {
 const bodySizeLimit = "10kb";
 app.use(express.json({ limit: bodySizeLimit }));
 app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
+
+// Schedule controller
+scheduleController.scheduleUoftAlerts();
 
 // API routes
 app.use("/api/alerts", alertRouter);
