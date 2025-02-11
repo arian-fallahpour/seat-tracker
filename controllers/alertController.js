@@ -1,5 +1,5 @@
 const crudController = require("./crudController");
-const Alert = require("../models/database/alertModel");
+const Alert = require("../models/database/Alert");
 const catchAsync = require("../utils/catchAsync");
 
 exports.createCourseAlert = catchAsync(async (req, res, next) => {});

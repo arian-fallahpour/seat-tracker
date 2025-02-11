@@ -4,11 +4,11 @@ const getCoursesURL = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
 
 class UoftAdapter {
   // Returns formatted course data from Uoft timetable API
-  static async getCourses({ query = "", page = 1 }) {
+  static async getCourses({ search = "", page = 1 }) {
     const { data } = await axios({
       url: getCoursesURL,
       method: "POST",
-      data: this.getBody({ query, page }),
+      data: this.getBody({ search, page }),
     });
 
     const coursesData = data.payload.pageableCourse.courses;
@@ -56,11 +56,11 @@ class UoftAdapter {
   }
 
   // Returns body associated with Uoft API request
-  static getBody({ query = "", page = 1 }) {
+  static getBody({ search = "", page = 1 }) {
     return {
       courseCodeAndTitleProps: {
         courseCode: "",
-        courseTitle: query,
+        courseTitle: search,
         courseSectionCode: "",
         searchCourseDescription: true, // Turn on for search
       },

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const { Stack } = require("datastructures-js");
+const UoftSection = require("./Section/UoftSection"); // Required for instance methods
 
 const enums = require("../../data/enums");
 const throttledQueue = require("throttled-queue");
@@ -61,7 +62,15 @@ function validateSectionsLength(sections) {
   return sections.length > 0;
 }
 
+/**
+ * INDEXES
+ */
+
 alertSchema.index({ email: 1, course: 1 }, { unique: true });
+
+/**
+ * STATICS
+ */
 
 alertSchema.statics.findActiveAlerts = async function (school) {
   const alerts = await Alert.find({
@@ -71,6 +80,7 @@ alertSchema.statics.findActiveAlerts = async function (school) {
       $lt: new Date(Date.now() - activeAlertDelay),
     },
   }).populate({ path: "course" });
+
   return alerts;
 };
 
@@ -91,26 +101,25 @@ alertSchema.statics.processAlerts = async function (alerts, { processor, throttl
   return courseCache;
 };
 
-alertSchema.methods.getSections = async function () {
-  if (!this.populated("sections")) {
-    await this.populate("sections");
-  }
-
-  return this.sections;
-};
+/**
+ * METHODS
+ */
 
 alertSchema.methods.getFreedSections = async function (updatedSections) {
-  const alertableSections = await this.getSections();
+  await this.populate("sections");
+  const alertableSections = this.sections;
 
-  const reopenedSections = alertableSections.filter((alertableSection) => {
+  const freedSections = alertableSections.filter((alertableSection) => {
     const updatedSection = findUpdatedSection(updatedSections, alertableSection);
     return alertableSection.isFreed(updatedSection);
   });
 
-  return reopenedSections;
+  return freedSections;
 
-  function findUpdatedSection(sections, alertableSection) {
-    return sections.find((s) => s.type === alertableSection.type && s.number === alertableSection.number);
+  function findUpdatedSection(updatedSections, alertableSection) {
+    return updatedSections.find(
+      (s) => s.type === alertableSection.type && s.number === alertableSection.number
+    );
   }
 };
 

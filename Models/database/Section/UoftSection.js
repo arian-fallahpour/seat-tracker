@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
-const { validateSeatsTaken } = require("../../utils/validators");
-const Section = require("./sectionModel");
+const {
+  validateSeatsTaken,
+  calculateEmptySeats,
+  haveSeatsFreed,
+} = require("../../../utils/schema-utils");
+const Section = require("./Section");
 
 const uoftSectionSchema = new mongoose.Schema(
   {
@@ -30,6 +34,12 @@ const uoftSectionSchema = new mongoose.Schema(
       required: [true, "Waitlist count is required."],
       default: 0,
       min: [0, "Waitlist count cannot be a negative number."],
+      validator: {
+        validate: function (waitlist) {
+          return this.hasWaitlist || waitlist === 0;
+        },
+        message: "Cannot add to waitlist if section does not have a waitlist.",
+      },
     },
   },
   {
@@ -38,15 +48,35 @@ const uoftSectionSchema = new mongoose.Schema(
   }
 );
 
-uoftSectionSchema.virtual("seatsEmpty").get(function () {
-  return this.seatsAvailable - this.seatsTaken;
-});
+uoftSectionSchema.virtual("seatsEmpty").get(calculateEmptySeats);
 
-// Checks if seats have been re-opened if all have previously been taken
-uoftSectionSchema.methods.isFreed = function (updatedAlert) {
-  const updatedSeatsEmpty = updatedAlert.seatsAvailable - updatedAlert.seatsTaken;
-  return this.seatsEmpty === 0 && updatedSeatsEmpty !== 0;
+/**
+ * STATICS
+ */
+
+// TODO: Optimize this and updateCoursesBulk
+uoftSectionSchema.statics.updateSectionsBulk = async function (updatedSections) {
+  const queries = [];
+  for (const updatedSection of updatedSections) {
+    const query = UoftSection.findOneAndUpdate(
+      {
+        type: updatedSection.type,
+        number: updatedSection.number,
+        campus: updatedSection.campus,
+      },
+      updatedSection,
+      { runValidators: true }
+    );
+    queries.push(query);
+  }
+  await Promise.all(queries);
 };
+
+/**
+ * METHODS
+ */
+
+uoftSectionSchema.methods.isFreed = haveSeatsFreed;
 
 const UoftSection = Section.discriminator("UoftSection", uoftSectionSchema);
 

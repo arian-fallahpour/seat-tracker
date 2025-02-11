@@ -6,9 +6,7 @@ exports.getOne = (Model) =>
     const document = await Model.findById(req.params.id);
 
     if (!document) {
-      return next(
-        new AppError(`No ${Model.modelName} found with that id.`, 404)
-      );
+      return next(new AppError(`No ${Model.modelName} found with that id.`, 404));
     }
 
     res.status(200).json({
@@ -58,9 +56,7 @@ exports.updateOne = (Model) =>
     });
 
     if (!document) {
-      return next(
-        new AppError(`No ${Model.modelName} found with that ID`, 404)
-      );
+      return next(new AppError(`No ${Model.modelName} found with that ID`, 404));
     }
 
     res.status(200).json({
@@ -76,9 +72,7 @@ exports.deleteOne = (Model) =>
     const document = await Model.findByIdAndDelete(req.params.id);
 
     if (!document) {
-      return next(
-        new AppError(`No ${Model.modelName} found with that id.`, 404)
-      );
+      return next(new AppError(`No ${Model.modelName} found with that id.`, 404));
     }
 
     res.status(204).json({

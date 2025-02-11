@@ -1,5 +1,5 @@
 const crudController = require("./crudController");
-const Course = require("../models/database/courseModel");
+const Course = require("../models/database/Course/Course");
 const catchAsync = require("../utils/catchAsync");
 const enums = require("../data/enums");
 const AppError = require("../utils/AppError");
