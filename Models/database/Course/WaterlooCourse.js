@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 const Course = require("./Course");
 
 const waterlooCourseSchema = new mongoose.Schema({
@@ -19,11 +19,12 @@ const waterlooCourseSchema = new mongoose.Schema({
   },
 });
 
+waterlooCourseSchema.index({ subject: 1, number: 1, term: 1 }, { unique: true });
+
 /**
  * METHODS
  */
 
-waterlooCourseSchema.methods.updateCourse = async function () {};
 waterlooCourseSchema.methods.getSearchKey = function () {};
 
 const WaterlooCourse = Course.discriminator("WaterlooCourse", waterlooCourseSchema);

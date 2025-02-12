@@ -1,5 +1,6 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 const Course = require("./Course");
+const UoftAdapter = require("../../api-adapters/UoftAdapter");
 
 const uoftCourseSchema = new mongoose.Schema({
   code: {
@@ -10,16 +11,47 @@ const uoftCourseSchema = new mongoose.Schema({
   },
   term: {
     type: String,
-    requirec: [true, "Please provide the term for this course."],
+    required: [true, "Please provide the term for this course."],
   },
 });
+
+uoftCourseSchema.index({ code: 1 }, { unique: true });
+
+/**
+ * STATICS
+ */
 
 /**
  * METHODS
  */
 
-uoftCourseSchema.methods.updateCourse = async function () {};
-uoftCourseSchema.methods.getSearchKey = function () {};
+uoftCourseSchema.methods.getUpdatedCourse = async function (courseCache) {
+  // If already cached, return cached course
+  const alreadyCachedUpdatedCourse = courseCache instanceof Map && courseCache.has(this.code);
+  if (alreadyCachedUpdatedCourse) {
+    return courseCache.get(this.code);
+  }
+
+  // Fetch updated version of course (as well as other similar results)
+  const adapterOptions = { search: this.code };
+  const fetchedCourses = await UoftAdapter.getCourses(adapterOptions);
+
+  // Find updated course from fetchedCourses, and add courses to cache
+  let updatedCourse = null;
+  fetchedCourses.forEach((fetchedCourse) => {
+    if (fetchedCourse.code === this.code) {
+      updatedCourse = fetchedCourse;
+    }
+
+    const notAlreadyFetchedCourse =
+      courseCache instanceof Map && !courseCache.has(fetchedCourse.code);
+    if (notAlreadyFetchedCourse) {
+      courseCache.set(fetchedCourse.code, fetchedCourse);
+    }
+  });
+
+  return updatedCourse;
+};
 
 const UoftCourse = Course.discriminator("UoftCourse", uoftCourseSchema);
 

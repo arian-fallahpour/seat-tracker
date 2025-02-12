@@ -54,24 +54,6 @@ uoftSectionSchema.virtual("seatsEmpty").get(calculateEmptySeats);
  * STATICS
  */
 
-// TODO: Optimize this and updateCoursesBulk
-uoftSectionSchema.statics.updateSectionsBulk = async function (updatedSections) {
-  const queries = [];
-  for (const updatedSection of updatedSections) {
-    const query = UoftSection.findOneAndUpdate(
-      {
-        type: updatedSection.type,
-        number: updatedSection.number,
-        campus: updatedSection.campus,
-      },
-      updatedSection,
-      { runValidators: true }
-    );
-    queries.push(query);
-  }
-  await Promise.all(queries);
-};
-
 /**
  * METHODS
  */
@@ -79,5 +61,9 @@ uoftSectionSchema.statics.updateSectionsBulk = async function (updatedSections) 
 uoftSectionSchema.methods.isFreed = haveSeatsFreed;
 
 const UoftSection = Section.discriminator("UoftSection", uoftSectionSchema);
+
+/**
+ * STATICS
+ */
 
 module.exports = UoftSection;
