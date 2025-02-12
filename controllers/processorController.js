@@ -17,25 +17,6 @@ exports.processUoftAlert = async (alert, courseCache) => {
   }
 };
 
-exports.processWaterlooAlert = async (alert, courseCache) => {
-  try {
-    // Get updated version of the course associated with alert, and cache all fetched results
-    const updatedCourse = await alert.course.getUpdatedCourse(courseCache);
-    if (updatedCourse === null) {
-      return console.log(`[ERROR] (Alert: ${alert._id}): Course ${alert.course.code} not found.`);
-    }
-  } catch (err) {
-    console.error(`[ERROR] Waterloo alert processing error: ${err.message}`);
-  }
-};
-
-exports.processWesternAlert = async (alert, courseCache) => {
-  try {
-  } catch (err) {
-    console.error(`[ERROR] Western alert processing error: ${err.message}`);
-  }
-};
-
 function sendNotification(alert, reopenedSections) {
   reopenedSections.forEach((reopenedSection) =>
     console.log(
