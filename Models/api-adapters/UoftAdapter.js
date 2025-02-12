@@ -24,9 +24,9 @@ class UoftAdapter {
     );
 
     return {
-      school: "uoft",
       name: courseData.name,
       code: `${courseData.code} ${courseData.sectionCode}`,
+      term: courseData.sessions[courseData.sessions.length - 1],
       sections,
     };
   }
