@@ -81,15 +81,12 @@ alertSchema.statics.findActiveAlerts = async function (school) {
     },
   }).populate({ path: "course" });
 
-  return alerts;
-};
-
-alertSchema.statics.sortAlerts = function (alerts) {
-  alerts.sort((a, b) => String(b.course.code).localeCompare(a.course.code));
+  return alerts.filter((alert) => alert.course !== null);
 };
 
 alertSchema.statics.processAlerts = async function (alerts, { processor, throttleDelay }) {
-  Alert.sortAlerts(alerts);
+  alerts.sort((a, b) => String(b.course.code).localeCompare(a.course.code));
+
   const stack = new Stack(alerts);
   const courseCache = new Map();
 

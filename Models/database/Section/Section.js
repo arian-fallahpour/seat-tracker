@@ -31,14 +31,6 @@ const sectionSchema = new mongoose.Schema({
       message: "Provided campus does not belong to school.",
     },
   },
-  deliveryMode: {
-    type: String,
-    require: [true, "Please provide a delivery mode."],
-    enum: {
-      values: enums.section.deliveryMode,
-      message: "Please provide a valid delivery mode.",
-    },
-  },
   lastUpdatedAt: {
     type: Date,
     default: new Date(Date.now()),
@@ -48,6 +40,8 @@ const sectionSchema = new mongoose.Schema({
 function campusValidator(value) {
   return !this.__t || enums.section.campus[this.__t].includes(value);
 }
+
+sectionSchema.index({ course: 1, type: 1, number: 1 }, { unique: true });
 
 /**
  * STATICS
