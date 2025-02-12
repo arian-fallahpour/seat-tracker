@@ -1,5 +1,4 @@
 const crudController = require("./crudController");
-const schemaController = require("./schemaController");
 const Course = require("../models/database/Course/Course");
 const UoftCourse = require("../models/database/Course/UoftCourse");
 const UoftSection = require("../models/database/Section/UoftSection");
@@ -31,12 +30,6 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
     },
   });
 });
-
-exports.upsertUoftCourses = schemaController.upsertCourses(UoftCourse);
-exports.upsertUoftCoursesAndSections = schemaController.upsertCoursesAndSections(
-  UoftCourse,
-  UoftSection
-);
 
 exports.getOneCourse = crudController.getOne(Course);
 exports.getAllCourses = crudController.getAll(Course);

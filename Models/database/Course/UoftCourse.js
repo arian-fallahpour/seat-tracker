@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Course = require("./Course");
+const UoftSection = require("../Section/UoftSection");
 const UoftAdapter = require("../../api-adapters/UoftAdapter");
+const { upsertCoursesAndSections, upsertCourses } = require("../../../utils/schema-utils");
 
 const uoftCourseSchema = new mongoose.Schema({
   code: {
@@ -20,6 +22,14 @@ uoftCourseSchema.index({ code: 1 }, { unique: true });
 /**
  * STATICS
  */
+
+uoftCourseSchema.statics.upsertCoursesAndSections = async function (coursesData) {
+  return await upsertCoursesAndSections(this, UoftSection)(coursesData);
+};
+
+uoftCourseSchema.statics.upsertCourses = async function (coursesData) {
+  return await upsertCourses(this)(coursesData);
+};
 
 /**
  * METHODS

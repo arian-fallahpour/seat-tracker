@@ -3,6 +3,7 @@ const {
   validateSeatsTaken,
   calculateEmptySeats,
   haveSeatsFreed,
+  upsertSections,
 } = require("../../../utils/schema-utils");
 const Section = require("./Section");
 
@@ -53,6 +54,10 @@ uoftSectionSchema.virtual("seatsEmpty").get(calculateEmptySeats);
 /**
  * STATICS
  */
+
+uoftSectionSchema.statics.upsertSections = async function (sectionsData) {
+  return await upsertSections(this)(sectionsData);
+};
 
 /**
  * METHODS

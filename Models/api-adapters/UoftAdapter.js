@@ -60,7 +60,7 @@ class UoftAdapter {
     return {
       courseCodeAndTitleProps: {
         courseCode: "",
-        courseTitle: search,
+        courseTitle: "",
         courseSectionCode: "",
         searchCourseDescription: true, // Turn on for search
       },
@@ -78,7 +78,7 @@ class UoftAdapter {
       availableSpace: false,
       waitListable: false,
       page,
-      pageSize: 100,
+      pageSize: 40,
       direction: "asc",
     };
   }

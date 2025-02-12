@@ -73,7 +73,7 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  */
 
 alertSchema.statics.findActiveAlerts = async function (school) {
-  const alerts = await Alert.find({
+  const alerts = await this.find({
     school,
     isActive: true,
     lastAlertedAt: {
