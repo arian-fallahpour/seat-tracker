@@ -1,9 +1,13 @@
 const crudController = require("./crudController");
+const schemaController = require("./schemaController");
 const Course = require("../models/database/Course/Course");
+const UoftCourse = require("../models/database/Course/UoftCourse");
+const UoftSection = require("../models/database/Section/UoftSection");
+
 const catchAsync = require("../utils/catchAsync");
-const enums = require("../data/enums");
 const AppError = require("../utils/AppError");
-const { default: APIQuery } = require("../utils/APIQuery");
+const APIQuery = require("../utils/APIQuery");
+const enums = require("../data/enums");
 
 exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { school } = req.params;
@@ -27,6 +31,12 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.upsertUoftCourses = schemaController.upsertCourses(UoftCourse);
+exports.upsertUoftCoursesAndSections = schemaController.upsertCoursesAndSections(
+  UoftCourse,
+  UoftSection
+);
 
 exports.getOneCourse = crudController.getOne(Course);
 exports.getAllCourses = crudController.getAll(Course);
