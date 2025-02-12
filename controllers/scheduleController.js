@@ -1,6 +1,6 @@
 const { processUoftAlert } = require("./processorController");
 const Alert = require("../models/database/Alert");
-// const courseController = require("../controllers/courseController");
+
 const UoftCourse = require("../models/database/Course/UoftCourse");
 
 exports.scheduleUoftAlerts = async () => {
@@ -17,7 +17,7 @@ exports.scheduleUoftAlerts = async () => {
 
     // Update course data from new fetched course data
     const updatedCourses = Array.from(courseCache.values());
-    UoftCourse.upsertCoursesAndSections(updatedCourses);
+    await UoftCourse.upsertCoursesAndSections(updatedCourses);
   } catch (err) {
     console.error(`[ERROR] Uoft Schedule Error: ${err.message}`);
   }

@@ -1,7 +1,5 @@
 const crudController = require("./crudController");
 const Course = require("../models/database/Course/Course");
-const UoftCourse = require("../models/database/Course/UoftCourse");
-const UoftSection = require("../models/database/Section/UoftSection");
 
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
