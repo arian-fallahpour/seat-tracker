@@ -4,13 +4,12 @@ const morgan = require("morgan");
 const path = require("path");
 
 const AppError = require("./utils/AppError");
-const errorController = require("./controllers/errorController");
+const errorHandler = require("./controllers/errorHandler");
 
 const alertRouter = require("./routers/alertRouter");
 const orderRouter = require("./routers/orderRouter");
 const courseRouter = require("./routers/courseRouter");
 const sectionRouter = require("./routers/sectionRouter");
-const scheduleController = require("./controllers/scheduleController");
 
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
@@ -34,7 +33,6 @@ app.use(express.json({ limit: bodySizeLimit }));
 app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 
 // Schedule controller
-scheduleController.scheduleUoftAlerts();
 
 // API routes
 app.use("/api/alerts", alertRouter);
@@ -44,12 +42,10 @@ app.use("/api/sections", sectionRouter);
 
 // Route not found
 app.all("*", (req, res, next) => {
-  return next(
-    new AppError(`Can't find ${req.originalUrl} on this server!`, 404)
-  );
+  return next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 // Global error handler
-app.use(errorController);
+app.use(errorHandler);
 
 module.exports = app;
