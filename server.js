@@ -26,7 +26,7 @@ const server = app.listen(port, async () => {
   console.log("[INFO] Database connection successful");
 
   // Scheduler initialization
-  scheduler.init();
+  await scheduler.init();
 });
 
 process.on("unhandledRejection", (err) => {
