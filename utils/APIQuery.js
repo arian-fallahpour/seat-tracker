@@ -1,11 +1,4 @@
-const excludedFields = [
-  "page",
-  "sort",
-  "limit",
-  "select",
-  "search",
-  "populate",
-];
+const excludedFields = ["page", "sort", "limit", "select", "search", "populate"];
 
 const defaultPageLength = 10;
 const maxPageLength = 50;
@@ -29,10 +22,7 @@ class APIQuery {
 
     // Add $gt, $gte, $lt, $lte operators
     let queryString = JSON.stringify(filteredQueryObject);
-    queryString = queryString.replace(
-      /\b(gte|gt|lte|lt)\b/g,
-      (match) => `$${match}`
-    );
+    queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
     // Update mongoose query
     this.query = this.query.find(JSON.parse(queryString));
@@ -90,10 +80,7 @@ class APIQuery {
    */
   paginate() {
     const page = this.queryObject.page * 1 || 1;
-    const limit = Math.min(
-      this.queryObject.limit * 1 || defaultPageLength,
-      maxPageLength
-    );
+    const limit = Math.min(this.queryObject.limit * 1 || defaultPageLength, maxPageLength);
     const skip = (page - 1) * limit;
 
     this.query = this.query.skip(skip).limit(limit);
@@ -111,4 +98,4 @@ class APIQuery {
   }
 }
 
-export default APIQuery;
+module.exports = APIQuery;
