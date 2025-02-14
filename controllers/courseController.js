@@ -4,20 +4,15 @@ const Course = require("../models/database/Course/Course");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 const APIQuery = require("../utils/APIQuery");
-const enums = require("../data/enums");
+const UoftCourse = require("../models/database/Course/UoftCourse");
 
+// TODO: Add for other courses too
 exports.searchForCourses = catchAsync(async (req, res, next) => {
-  const { school } = req.params;
   const { search } = req.query;
 
-  // Check if school if valid
-  if (!enums.schools.includes(school)) {
-    return next(new AppError("Please provide a valid school to search from.", 400));
-  }
-
   // Find courses based on search input
-  const regex = new RegExp(`^${search}`, "gi");
-  const query = Course.find({ $or: [{ code: regex }, { name: regex }] });
+  const searchTerm = new RegExp(`^${search}`, "gi");
+  const query = UoftCourse.find({ $or: [{ code: searchTerm }, { name: searchTerm }] });
   const courses = await new APIQuery(query, { limit: 5 }).paginate().execute();
 
   res.status(200).json({

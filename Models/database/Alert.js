@@ -20,7 +20,7 @@ const alertSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a school for this alert."],
     enum: {
-      values: enums.schools,
+      values: enums.alert.school,
       message: "Please provide a valid school.",
     },
   },
