@@ -3,13 +3,14 @@ const Alert = require("../models/database/Alert");
 const UoftCourse = require("../models/database/Course/UoftCourse");
 const { processUoftAlert } = require("./processorController");
 
-exports.init = () => {
-  const uoftAlertsJob = CronJob.from({
-    cronTime: `* */${process.env.UOFT_ALERTS_PERIOD_MINS} * * * *`,
-    onTick: scheduleUoftAlerts,
-    waitForCompletion: true,
-    start: true,
-  });
+exports.init = async () => {
+  // await scheduleUoftAlerts();
+  // const uoftAlertsJob = CronJob.from({
+  //   cronTime: `* */${process.env.UOFT_ALERTS_PERIOD_MINS} * * * *`,
+  //   onTick: scheduleUoftAlerts,
+  //   waitForCompletion: true,
+  //   start: true,
+  // });
 };
 
 async function scheduleUoftAlerts() {

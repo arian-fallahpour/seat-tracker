@@ -11,16 +11,8 @@ exports.processUoftAlert = async (alert, courseCache) => {
     if (freedSections.length === 0) return;
 
     // Send notifications to all sections that are freed up
-    sendNotification(alert, freedSections, alert.course);
+    await alert.sendAlert(freedSections);
   } catch (err) {
     console.error(`[ERROR] Uoft alert processing error: ${err.message}`);
   }
 };
-
-function sendNotification(alert, reopenedSections) {
-  reopenedSections.forEach((reopenedSection) =>
-    console.log(
-      `[ALERT] (email: ${alert.email}): Section ${reopenedSection.type} ${reopenedSection.number} in ${alert.course.code} is now open!`
-    )
-  );
-}

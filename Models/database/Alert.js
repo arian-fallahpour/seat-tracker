@@ -3,6 +3,9 @@ const validator = require("validator");
 const { Stack } = require("datastructures-js");
 const UoftSection = require("./Section/UoftSection"); // Required for instance methods
 
+const formData = require("form-data");
+const Mailgun = require("mailgun.js");
+
 const enums = require("../../data/enums");
 const throttledQueue = require("throttled-queue");
 
@@ -73,11 +76,16 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  */
 
 alertSchema.statics.findActiveAlerts = async function (school) {
+  const lastAlertedAtBefore =
+    process.env.NODE_ENV === "production"
+      ? new Date(Date.now() - activeAlertDelay)
+      : new Date(Date.now() + 1000);
+
   const alerts = await this.find({
     school,
     isActive: true,
     lastAlertedAt: {
-      $lt: new Date(Date.now() - activeAlertDelay),
+      $lt: lastAlertedAtBefore,
     },
   }).populate({ path: "course" });
 
@@ -120,7 +128,38 @@ alertSchema.methods.getFreedSections = async function (updatedSections) {
   }
 };
 
-alertSchema.methods.sendAlert = async function () {};
+alertSchema.methods.sendAlert = async function (freedSections) {
+  let message = "";
+  freedSections.forEach((section) => {
+    console.log(
+      `[ALERT] (email: ${this.email}): Section ${section.type} ${section.number} in ${this.course.code} is now open!`
+    );
+    message += `Section ${section.type} ${section.number} in ${this.course.code} is now open!\n`;
+  });
+
+  const mailgun = new Mailgun(formData);
+  const mg = mailgun.client({
+    username: "api",
+    key: process.env.MAILGUN_API_KEY,
+  });
+
+  // Send email message
+  try {
+    await mg.messages.create(process.env.MAILGUN_DOMAIN, {
+      from: `Seat Tracker <alerts@${process.env.MAILGUN_DOMAIN}>`,
+      to: [this.email],
+      subject: `New seats open for ${this.course.code}`,
+      text: `${message}`,
+      html: `<strong>${message}</strong>`,
+    });
+    console.log(`[INFO] Email sent to ${this.email}`);
+  } catch (err) {
+    console.dir(err, { depth: null });
+  }
+
+  this.lastAlertedAt = new Date(Date.now());
+  await this.save();
+};
 
 const Alert = mongoose.model("Alert", alertSchema);
 
