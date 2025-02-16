@@ -14,7 +14,7 @@ dotenv.config({ path: "./config.env" });
 const app = require("./app");
 
 // Server initialization
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const server = app.listen(port, async () => {
   console.log(`[INFO] App running on port ${port}`);
 

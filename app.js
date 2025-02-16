@@ -2,29 +2,31 @@ const next = require("next");
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
+const { parse } = require("url");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const AppError = require("./utils/AppError");
 const errorHandler = require("./controllers/errorHandler");
-
-const alertRouter = require("./routers/alertRouter");
-const orderRouter = require("./routers/orderRouter");
-const courseRouter = require("./routers/courseRouter");
-const sectionRouter = require("./routers/sectionRouter");
-
-const dev = process.env.NODE_ENV !== "production";
-const nextApp = next({ dev });
-
-nextApp.prepare();
-console.log("[INFO] Next app prepared");
+const apiRouter = require("./routers/apiRouter");
 
 const app = express();
+
+// Next app initialization
+// const dev = process.env.NODE_ENV !== "production";
+// const nextApp = next({ dev });
+// const handle = nextApp.getRequestHandler();
+
+// nextApp.prepare().then(() => {
+// console.log("[INFO] Next app prepared");
 
 // Serving static files
 app.use(express.static(path.join(__dirname, "public")));
 
 // Development Logging
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+  const morganOptions = {
+    skip: (req) => req.url.startsWith("/_next") || req.url.startsWith("/__next"),
+  };
+  app.use(morgan("dev", morganOptions));
 }
 
 // Request body parsing
@@ -32,20 +34,16 @@ const bodySizeLimit = "10kb";
 app.use(express.json({ limit: bodySizeLimit }));
 app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 
-// Schedule controller
-
 // API routes
-app.use("/api/alerts", alertRouter);
-app.use("/api/orders", orderRouter);
-app.use("/api/courses", courseRouter);
-app.use("/api/sections", sectionRouter);
+app.use("/api", apiRouter);
 
-// Route not found
-app.all("*", (req, res, next) => {
-  return next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-});
+// Next.js proxy
+const nextJsOptions = { target: "http://localhost:3000", changeOrigin: true };
+app.use("/_next", createProxyMiddleware(nextJsOptions));
+app.use("*", createProxyMiddleware(nextJsOptions));
 
 // Global error handler
 app.use(errorHandler);
+// });
 
 module.exports = app;
