@@ -1,0 +1,75 @@
+@import "@/sass/abstracts/mixins";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  font-family: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: calc(25% + 0.4vw);
+  background-image: var(--bg-main);
+  scroll-behavior: smooth;
+
+  @include respond(1200) {
+    font-size: 56.25%;
+  }
+
+  @include respond(900px) {
+    // 8px
+    font-size: 50%;
+  }
+
+  @include respond(400) {
+    // 8px
+    font-size: 45%;
+  }
+
+  @include respond(1920) {
+    // 12px
+    font-size: 65%;
+    font-size: calc(15% + 0.55vw);
+  }
+}
+
+body {
+}
+
+.main {
+}
+
+button {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+input,
+textarea {
+  margin: 0;
+  min-width: 0;
+}
+
+*:focus-visible {
+  outline: 0.2rem solid var(--c-orange);
+  outline-offset: 0.5rem;
+}
+
+*::selection {
+  background-color: var(--c-orange);
+  color: var(--txt-title);
+}
