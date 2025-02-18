@@ -1,0 +1,84 @@
+.Search {
+  $select-width: 10rem;
+  $padding: 0.3rem;
+  $input-border-radius: calc(
+    var(--padding-button-vertical) + var(--font-size-regular) / 2 + 0.375rem
+  );
+
+  background-color: var(--color-card-background);
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: calc(#{$input-border-radius} + var(--border-width) + #{$padding});
+  padding: $padding;
+
+  &Main {
+    display: flex;
+    gap: var(--width-small);
+    position: relative;
+  }
+
+  &Select {
+    position: absolute;
+    left: 0;
+  }
+
+  &Input {
+    padding: var(--padding-button-vertical);
+    padding-left: var(--padding-button-horizontal);
+    padding-right: calc(var(--padding-button-horizontal) + 2.25rem);
+    font-size: var(--font-size-regular);
+    background-color: var(--color-card-background);
+    border: 0;
+    border-radius: $input-border-radius;
+
+    width: 60rem;
+
+    &::placeholder {
+      color: var(--color-card-text);
+    }
+  }
+
+  &Icon {
+    position: absolute;
+    right: calc(var(--padding-button-horizontal) - 1rem);
+    top: 50%;
+    translate: 0 -42.5%;
+    color: var(--color-card-text);
+  }
+
+  .Results {
+    display: grid;
+    padding-top: var(--width-tiny);
+  }
+
+  .Result {
+    padding: var(--width-tiny);
+    border-radius: $input-border-radius;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-card-hover);
+    }
+
+    &:active {
+      background-color: var(--color-card-active);
+    }
+
+    &Header {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: var(--width-tiny);
+    }
+
+    &Labs,
+    &Tutorials {
+      font-size: var(--font-size-small);
+    }
+
+    &Code {
+    }
+
+    &Name {
+    }
+  }
+}

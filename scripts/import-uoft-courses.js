@@ -5,7 +5,7 @@ const args = require("args-parser")(process.argv);
 const Section = require("../models/database/Section/Section");
 const Course = require("../models/database/Course/Course");
 const UoftAdapter = require("../models/api-adapters/UoftAdapter");
-const courseController = require("../controllers/courseController");
+const UoftCourse = require("../models/database/Course/UoftCourse");
 
 dotenv.config({ path: "./config.env" });
 
@@ -41,7 +41,7 @@ const importData = async () => {
   }
 
   // Upsert courses and sections
-  await courseController.upsertUoftCoursesAndSections(updatedCourses);
+  await UoftCourse.upsertCoursesAndSections(updatedCourses);
 };
 
 const deleteData = async () => {

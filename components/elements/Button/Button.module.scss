@@ -1,0 +1,23 @@
+.Button {
+  background-color: var(--color-primary);
+  font-size: var(--font-size-regular);
+  border-radius: 222rem;
+  border: 0;
+  padding: var(--padding-button-vertical) var(--padding-button-horizontal);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: var(--width-tiny);
+
+  &.icon {
+    padding: var(--padding-button-vertical);
+    aspect-ratio: 1;
+    justify-items: center;
+
+    & > * {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+}

@@ -12,7 +12,10 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
 
   // Find courses based on search input
   const searchTerm = new RegExp(`^${search}`, "gi");
-  const query = UoftCourse.find({ $or: [{ code: searchTerm }, { name: searchTerm }] });
+  const query = UoftCourse.find({ $or: [{ code: searchTerm }, { name: searchTerm }] }).populate({
+    path: "sections",
+    select: "type",
+  });
   const courses = await new APIQuery(query, { limit: 5 }).paginate().execute();
 
   res.status(200).json({

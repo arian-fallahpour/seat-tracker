@@ -27,7 +27,7 @@ class UoftAdapter {
     return {
       name: courseData.name,
       code: `${courseData.code} ${courseData.sectionCode}`,
-      term: courseData.sessions[courseData.sessions.length - 1],
+      term: this.formatTerm(courseData.sessions[courseData.sessions.length - 1]),
       sections,
     };
   }
@@ -54,6 +54,19 @@ class UoftAdapter {
         "St. George": "St. George",
       }[campus] || null
     );
+  }
+
+  static formatTerm(term) {
+    const seasons = {
+      1: "winter",
+      5: "summer",
+      9: "fall",
+    };
+    if (term)
+      return {
+        year: Number(term.slice(0, 4)),
+        season: seasons[term[4]],
+      };
   }
 
   // Returns body associated with Uoft API request

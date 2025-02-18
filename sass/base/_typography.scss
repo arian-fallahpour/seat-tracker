@@ -1,80 +1,55 @@
 body,
 input,
+input::placeholder,
 label,
 button,
 textarea,
 select {
   line-height: 1.5;
-  font-size: 1.5rem;
-  color: var(--txt-text);
-  font-weight: var(--font-weight-normal-bold);
+  font-size: var(--font-size-regular);
+  color: var(--color-text);
+}
+
+*,
+* * {
+  font-family: ui-sans-serif, -apple-system, system-ui, Segoe UI, Helvetica, Apple Color Emoji,
+    Arial, sans-serif, Segoe UI Emoji, Segoe UI Symbol;
 }
 
 .header {
   text-transform: capitalize;
   line-height: 1.2;
-  color: var(--txt-title);
+  color: var(--color-title);
 }
 
-// Header Title
 .header-title {
   font-size: 5rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
 }
 
-// Section Title
 .header-section {
   font-size: 2.75rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-
-  @include respond(600) {
-    font-size: 3.75rem;
-  }
 }
 
-// Sub-Section Title
 .header-subsection {
   font-size: 2.25rem;
-  font-weight: var(--font-weight-bold);
 }
 
-// Card Title
 .header-card {
-  text-transform: lowercase;
   font-size: 1.75rem;
-  font-weight: var(--font-weight-bold);
 }
 
-// Text Title
 .header-text {
   font-size: 1.5rem;
-  font-weight: var(--font-weight-bold);
-}
-
-.subtitle {
-  font-size: 2rem;
-  font-weight: var(--font-weight-normal-bold);
-  line-height: 1.2;
-}
-
-.caption {
-  text-transform: uppercase;
 }
 
 .paragraph,
 .ul,
 .li,
 .caption {
-  font-size: var(--font-size-normal);
-  color: var(--txt-text);
-  font-weight: var(--font-weight-normal-bold);
+  font-size: var(--font-size-regular);
+  color: var(--color-text);
 }
 
 .ul {
   padding-inline-start: 2rem;
-}
-
-.paragraph {
 }

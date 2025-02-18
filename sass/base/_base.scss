@@ -13,34 +13,32 @@
 html {
   box-sizing: border-box;
   font-size: calc(25% + 0.4vw);
-  background-image: var(--bg-main);
   scroll-behavior: smooth;
 
-  @include respond(1200) {
+  @include respond(1200px) {
     font-size: 56.25%;
   }
 
+  // 8px
   @include respond(900px) {
-    // 8px
     font-size: 50%;
   }
 
-  @include respond(400) {
-    // 8px
-    font-size: 45%;
-  }
-
-  @include respond(1920) {
-    // 12px
-    font-size: 65%;
+  @include respond(1920px, false) {
     font-size: calc(15% + 0.55vw);
   }
 }
 
 body {
+  background-color: var(--color-background);
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
+  flex: 1;
 }
 
 button {
@@ -65,11 +63,12 @@ textarea {
 }
 
 *:focus-visible {
-  outline: 0.2rem solid var(--c-orange);
-  outline-offset: 0.5rem;
+  outline: none;
+  // outline: 0.2rem solid rgba(255, 255, 255, 0.5);
+  // outline-offset: 0.5rem;
 }
 
 *::selection {
-  background-color: var(--c-orange);
-  color: var(--txt-title);
+  // background-color: var(--c-orange);
+  // color: var(--txt-title);
 }

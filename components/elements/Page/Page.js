@@ -6,11 +6,11 @@ import { join } from "@/utils/helper";
 const Page = ({ className, children, ...otherProps }) => {
   return (
     <Fragment>
-      <Nav />
+      {/* <Nav /> */}
       <main className={join("main", className)} {...otherProps}>
         {children}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 };

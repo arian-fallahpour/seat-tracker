@@ -1,14 +1,17 @@
-const next = require("next");
+// const next = require("next");
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
-const { parse } = require("url");
+// const { parse } = require("url");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 
 // Next app initialization
 // const dev = process.env.NODE_ENV !== "production";

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const UoftSection = require("../Section/UoftSection");
+const termSchema = require("./termSchema");
 
 const courseSchema = new mongoose.Schema({
   name: {
@@ -13,6 +13,11 @@ const courseSchema = new mongoose.Schema({
     default: [],
     ref: "Section",
   },
+  term: {
+    type: termSchema,
+    required: [true, "Please provide the term for this course."],
+  },
+  slug: String,
   lastUpdatedAt: {
     type: Date,
     default: new Date(Date.now()),

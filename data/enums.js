@@ -10,4 +10,7 @@ module.exports = {
       WaterlooSection: [],
     },
   },
+  term: {
+    season: ["fall", "winter", "summer"],
+  },
 };

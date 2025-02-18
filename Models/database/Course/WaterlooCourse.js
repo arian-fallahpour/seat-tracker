@@ -13,10 +13,6 @@ const waterlooCourseSchema = new mongoose.Schema({
     required: [true, "Please provide a subject nnumber."],
     maxLength: [100, "Subject number cannot be longer than 100 characters."],
   },
-  term: {
-    type: String,
-    requirec: [true, "Please provide the term for this course."],
-  },
 });
 
 waterlooCourseSchema.index({ subject: 1, number: 1, term: 1 }, { unique: true });

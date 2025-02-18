@@ -3,6 +3,7 @@ const Course = require("./Course");
 const UoftSection = require("../Section/UoftSection");
 const UoftAdapter = require("../../api-adapters/UoftAdapter");
 const { upsertCoursesAndSections, upsertCourses } = require("../../../utils/schema-utils");
+const slugify = require("slugify");
 
 const uoftCourseSchema = new mongoose.Schema({
   code: {
@@ -11,13 +12,16 @@ const uoftCourseSchema = new mongoose.Schema({
     minLength: [3, "Section code must be at least 3 characters long."],
     maxLength: [100, "Section code cannot be longer than 100 characters."],
   },
-  term: {
-    type: String,
-    required: [true, "Please provide the term for this course."],
-  },
 });
 
 uoftCourseSchema.index({ code: 1 }, { unique: true });
+
+uoftCourseSchema.pre("save", function (next) {
+  if (!this.slug || this.isNew || this.isModified("code")) {
+    this.slug = slugify(this.code, { lower: true });
+  }
+  next();
+});
 
 /**
  * STATICS
