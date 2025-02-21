@@ -6,6 +6,7 @@ class UoftAdapter {
   // Returns formatted course data from Uoft timetable API
   static async getCourses({ search = "", page = 1 }) {
     console.log("[INFO] Making request to UOFT API");
+
     const { data } = await axios({
       url: getCoursesURL,
       method: "POST",

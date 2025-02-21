@@ -19,7 +19,7 @@ const SearchResult = ({ code, name, term, slug, sections }) => {
   }, [code]);
 
   return (
-    <Link className={classes.Result} href={`/courses/uoft/${slug}`} tabIndex={0}>
+    <Link className={classes.Result} href={`/courses/uoft/${slug}`}>
       <div className={classes.ResultHeader}>
         <h2 className={join("header", "header-card", classes.ResultCode)}>{code}</h2>
         {labs > 0 && (

@@ -35,6 +35,11 @@ uoftCourseSchema.statics.upsertCourses = async function (coursesData) {
   return await upsertCourses(this)(coursesData);
 };
 
+uoftCourseSchema.statics.search = function (query) {
+  const regex = new RegExp(`^${query}`, "gi");
+  return this.find({ $or: [{ code: regex }, { name: regex }] });
+};
+
 /**
  * METHODS
  */

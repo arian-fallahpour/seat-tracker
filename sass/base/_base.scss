@@ -38,11 +38,14 @@ body {
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
 
 button {
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 a {
@@ -62,7 +65,7 @@ textarea {
   min-width: 0;
 }
 
-*:focus-visible {
+*:focus-within {
   outline: none;
   // outline: 0.2rem solid rgba(255, 255, 255, 0.5);
   // outline-offset: 0.5rem;

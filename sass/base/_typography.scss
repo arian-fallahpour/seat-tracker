@@ -20,14 +20,17 @@ select {
   text-transform: capitalize;
   line-height: 1.2;
   color: var(--color-title);
+  font-weight: var(--font-weight-semibold);
 }
 
 .header-title {
   font-size: 5rem;
+  font-weight: var(--font-weight-bold);
 }
 
 .header-section {
   font-size: 2.75rem;
+  font-weight: var(--font-weight-bold);
 }
 
 .header-subsection {
@@ -39,7 +42,13 @@ select {
 }
 
 .header-text {
-  font-size: 1.5rem;
+  font-size: var(--font-size-regular);
+}
+
+.subtitle {
+  font-size: 2.25rem;
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
 }
 
 .paragraph,

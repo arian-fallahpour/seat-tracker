@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const path = require("path");
 // const { parse } = require("url");
 const { createProxyMiddleware } = require("http-proxy-middleware");
+// const next = require("next");
 
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
@@ -39,6 +40,8 @@ app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 
 // API routes
 app.use("/api", apiRouter);
+
+// app.use((req, res, next) => handle(req, res, parse(req.url, true)));
 
 // Next.js proxy
 const nextJsOptions = { target: "http://localhost:3000", changeOrigin: true };

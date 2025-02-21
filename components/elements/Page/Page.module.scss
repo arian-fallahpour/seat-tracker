@@ -1,0 +1,10 @@
+.Header {
+  display: flex;
+  justify-content: flex-start;
+  padding: var(--width-small) var(--width-large);
+}
+
+.Back {
+  justify-self: flex-start;
+  text-transform: lowercase;
+}

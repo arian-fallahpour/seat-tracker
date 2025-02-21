@@ -2,14 +2,18 @@
   --color-background: rgb(19, 20, 31);
   --color-background-rgb: 19, 20, 31;
 
-  --color-card-background: rgba(255, 255, 255, 0.025);
-  --color-card-border: rgba(255, 255, 255, 0.05);
-  --color-card-text: rgba(255, 255, 255, 0.2);
-  --color-card-hover: rgba(255, 255, 255, 0.01);
-  --color-card-active: rgba(255, 255, 255, 0.02);
+  --color-card-rgb: 255, 255, 255;
+  --color-card-background-opacity: 0.025;
+  --color-card-border-opacity: 0.05;
+  --color-card-background: rgba(var(--color-card-rgb), var(--color-card-background-opacity));
+  --color-card-background-hover: rgba(var(--color-card-rgb), 0.04);
+  --color-card-border: rgba(var(--color-card-rgb), var(--color-card-border-opacity));
+  --color-card-text: rgba(var(--color-card-rgb), 0.2);
+  --color-card-hover: rgba(var(--color-card-rgb), 0.01);
+  --color-card-active: rgba(var(--color-card-rgb), 0.02);
 
-  // --color-primary: #161e7a;
-  // --color-primary-rgb: 0, 8, 255;
+  --color-primary: rgb(142, 41, 193);
+  --color-primary-rgb: 142, 41, 193;
 
   --color-title: #ffffff;
   --color-text: #f5f5f5;
@@ -32,4 +36,5 @@
   --width-small: 1.5rem;
   --width-regular: 3rem;
   --width-large: 4.5rem;
+  --width-huge: 6rem;
 }

@@ -51,11 +51,11 @@
   }
 
   .Result {
-    padding: var(--width-tiny);
+    padding: var(--width-tiny) var(--width-small);
     border-radius: $input-border-radius;
 
     &:hover,
-    &:focus-visible {
+    &:focus-within {
       background-color: var(--color-card-hover);
     }
 
@@ -65,7 +65,7 @@
 
     &Header {
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
       gap: var(--width-tiny);
     }

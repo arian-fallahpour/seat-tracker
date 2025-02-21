@@ -9,28 +9,29 @@ import debounce from "lodash.debounce";
 import SearchResults from "./SearchResults";
 import { SearchIcon } from "@/components/elements/icons/SearchIcon";
 import { config } from "@/utils/config";
+import { createURL } from "@/utils/helper";
 
 // TODO: Potentially optimize search query using revalidation
 // TODO: Implement accessibility
 
 const Search = () => {
-  const [value, setValue] = useState();
+  const school = "uoft";
+
+  const [value, setValue] = useState("");
   const [courses, setCourses] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
 
   // Run search query
   useEffect(() => {
     const fetchCourses = debounce(async () => {
-      const { data } = await axios({
-        url: `${config.hostname}/${config.apiPath}/courses/search/uoft?search=${value}`,
-        method: "GET",
-      });
+      const url = await createURL(`/${config.apiPath}/courses/search/${school}?query=${value}`);
+      const { data } = await axios({ url, method: "GET" });
       const { courses } = data.data;
 
       setCourses(courses);
     }, 500);
 
-    if (value === "") {
+    if (!value || value === "") {
       setCourses([]);
     } else {
       fetchCourses();

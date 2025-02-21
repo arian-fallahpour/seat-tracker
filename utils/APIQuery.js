@@ -6,9 +6,9 @@ const maxPageLength = 50;
 // NOTE: Parameter pollution protection may cause weird bugs when using arrays in query
 
 class APIQuery {
-  constructor(query, queryObject) {
+  constructor(query, options) {
     this.query = query;
-    this.queryObject = queryObject;
+    this.options = options;
   }
 
   /**
@@ -17,7 +17,7 @@ class APIQuery {
    * @returns this
    */
   filter() {
-    const filteredQueryObject = { ...this.queryObject };
+    const filteredQueryObject = { ...this.options };
     excludedFields.forEach((el) => delete filteredQueryObject[el]);
 
     // Add $gt, $gte, $lt, $lte operators
@@ -37,8 +37,8 @@ class APIQuery {
    */
   sort() {
     // Sort by the query
-    if (!!this.queryObject.sort) {
-      let sortString = this.queryObject.sort.split(",");
+    if (!!this.options.sort) {
+      let sortString = this.options.sort.split(",");
       sortString = sortString.map((str) => str.trim()); // Remove extra spaces
       sortString = sortString.join(" ");
 
@@ -60,8 +60,8 @@ class APIQuery {
    */
   select() {
     // Limit by query
-    if (!!this.queryObject.select) {
-      const fields = this.queryObject.select.split(",").join(" ");
+    if (!!this.options.select) {
+      const fields = this.options.select.split(",").join(" ");
       this.query = this.query.select(fields);
     }
 
@@ -79,8 +79,8 @@ class APIQuery {
    * @returns this
    */
   paginate() {
-    const page = this.queryObject.page * 1 || 1;
-    const limit = Math.min(this.queryObject.limit * 1 || defaultPageLength, maxPageLength);
+    const page = this.options.page * 1 || 1;
+    const limit = Math.min(this.options.limit * 1 || defaultPageLength, maxPageLength);
     const skip = (page - 1) * limit;
 
     this.query = this.query.skip(skip).limit(limit);

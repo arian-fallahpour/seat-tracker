@@ -24,6 +24,8 @@ const courseSchema = new mongoose.Schema({
   },
 });
 
+courseSchema.index({ slug: 1 });
+
 /**
  * STATICS
  */
