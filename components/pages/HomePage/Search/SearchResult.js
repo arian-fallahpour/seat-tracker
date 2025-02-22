@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import classes from "./Search.module.scss";
 import Link from "next/link";
-import { join } from "@/utils/helper";
+import { join } from "@/utils/helper-client";
 
 const SearchResult = ({ code, name, term, slug, sections }) => {
   const [labs, tutorials] = useMemo(() => {

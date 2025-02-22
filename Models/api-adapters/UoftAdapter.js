@@ -1,17 +1,14 @@
 const axios = require("axios");
 
-const getCoursesURL = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
-
 class UoftAdapter {
+  static getCoursesURL = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
+
   // Returns formatted course data from Uoft timetable API
   static async getCourses({ search = "", page = 1 }) {
     console.log("[INFO] Making request to UOFT API");
 
-    const { data } = await axios({
-      url: getCoursesURL,
-      method: "POST",
-      data: this.getBody({ search, page }),
-    });
+    const axiosOptions = this.getAxiosOptions({ search, page });
+    const { data } = await axios(axiosOptions);
 
     const coursesData = data.payload.pageableCourse.courses;
     const courses = coursesData.map((courseData) => this.formatCourse(courseData));
@@ -75,7 +72,7 @@ class UoftAdapter {
     return {
       courseCodeAndTitleProps: {
         courseCode: "",
-        courseTitle: "",
+        courseTitle: search,
         courseSectionCode: "",
         searchCourseDescription: true, // Turn on for search
       },
@@ -95,6 +92,25 @@ class UoftAdapter {
       page,
       pageSize: 40,
       direction: "asc",
+    };
+  }
+
+  static getAxiosOptions(bodyOptions) {
+    return {
+      url: this.getCoursesURL,
+      method: "POST",
+      data: this.getBody(bodyOptions),
+    };
+  }
+
+  static getFetchOptions(bodyOptions) {
+    return {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json, text/plain, */*",
+      },
+      body: JSON.stringify(this.getBody(bodyOptions)),
     };
   }
 }

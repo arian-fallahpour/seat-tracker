@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 
 import { BackIcon } from "../icons/backIcon";
 
-import { join } from "@/utils/helper";
+import { join } from "@/utils/helper-client";
 import { useRouter } from "next/navigation";
 
 const Page = ({ className, children, includeBackButton = false, ...otherProps }) => {

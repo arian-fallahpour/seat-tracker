@@ -1,5 +1,5 @@
 import React from "react";
-import { join } from "@/utils/helper";
+import { join } from "@/utils/helper-client";
 import classes from "./Button.module.scss";
 import Link from "next/link";
 

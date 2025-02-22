@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Section.module.scss";
-import { join } from "@/utils/helper";
+import { join } from "@/utils/helper-client";
 
 const Section = ({ children, className, ...otherProps }) => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./CoursePage.module.scss";
-import { join } from "@/utils/helper";
+import { join } from "@/utils/helper-client";
 
 const CourseSection = ({ id, type, number, campus, lastUpdatedAt, isSelected, onClickHandler }) => {
   const lastUpdatedDate = new Date(lastUpdatedAt);

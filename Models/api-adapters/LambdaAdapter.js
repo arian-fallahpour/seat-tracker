@@ -1,4 +1,4 @@
-const { fileToZipBuffer } = require("../../utils/helper");
+const { fileToZipBuffer } = require("../../utils/helper-server");
 const {
   LambdaClient,
   InvokeCommand,
@@ -30,14 +30,24 @@ class LambdaAdapter {
     });
 
     const response = await client.send(invokeCommand);
+
     return this.parseResponse(response);
   }
 
   static parseResponse(response) {
     const json = new TextDecoder("utf-8").decode(response.Payload);
-    const body = JSON.parse(json).body;
-    const data = JSON.parse(body);
+    const parsed = JSON.parse(json);
+    if (!!parsed.errorType) {
+      return new Error(parsed.errorMessage);
+    }
+
+    const data = JSON.parse(parsed.body);
     return data;
+  }
+
+  static async updateAndInvokeFunction(functionName, functionPath, payload) {
+    await updateLambdaFunction(functionName, functionPath);
+    return await invokeLambdaFunction();
   }
 }
 

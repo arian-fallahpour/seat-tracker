@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 
 import "@/sass/globals.scss";
-import { join } from "@/utils/helper";
+import { join } from "@/utils/helper-client";
 
 export const metadata = {
   title: "Create Next App",

@@ -9,7 +9,7 @@ import debounce from "lodash.debounce";
 import SearchResults from "./SearchResults";
 import { SearchIcon } from "@/components/elements/icons/SearchIcon";
 import { config } from "@/utils/config";
-import { createURL } from "@/utils/helper";
+import { createURL } from "@/utils/helper-client";
 
 // TODO: Potentially optimize search query using revalidation
 // TODO: Implement accessibility
@@ -24,7 +24,8 @@ const Search = () => {
   // Run search query
   useEffect(() => {
     const fetchCourses = debounce(async () => {
-      const url = await createURL(`/${config.apiPath}/courses/search/${school}?query=${value}`);
+      // const url = await createURL(`/${config.apiPath}/courses/search/${school}?query=${value}`);
+      const url = `/${config.apiPath}/courses/search/${school}?query=${value}`;
       const { data } = await axios({ url, method: "GET" });
       const { courses } = data.data;
 

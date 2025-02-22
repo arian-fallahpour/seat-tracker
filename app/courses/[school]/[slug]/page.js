@@ -2,9 +2,13 @@ import React from "react";
 
 import CoursePage from "@/components/pages/CoursePage/CoursePage";
 import { config } from "@/utils/config";
-import { createURL } from "@/utils/helper";
+import { createURL } from "@/utils/helper-client";
+import { headers } from "next/headers";
 
 const getData = async (school, slug) => {
+  const header = await headers();
+  console.log(header.get("host"));
+
   const url = await createURL(`/${config.apiPath}/courses/info/${school}/${slug}`);
   const response = await fetch({ url, method: "GET" });
 

@@ -5,7 +5,7 @@ import Page from "@/components/elements/Page/Page";
 import CourseSection from "./CourseSection";
 import Section from "@/components/elements/Section/Section";
 import Button from "@/components/elements/Button/Button";
-import { join } from "@/utils/helper";
+import { join } from "@/utils/helper-client";
 import classes from "./CoursePage.module.scss";
 
 const CoursePage = ({ course }) => {
