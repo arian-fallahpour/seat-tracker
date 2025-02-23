@@ -11,6 +11,8 @@ exports.init = async () => {
   //   waitForCompletion: true,
   //   start: true,
   // });
+  // ALERT SCHEDULE: every 15/30 mins
+  // UPDATE COURSE SCHEDULE: one of every 2-7 days
 };
 
 async function scheduleUoftAlerts() {

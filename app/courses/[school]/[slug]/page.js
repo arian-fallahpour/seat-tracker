@@ -1,27 +1,23 @@
 import React from "react";
 
 import CoursePage from "@/components/pages/CoursePage/CoursePage";
-import { config } from "@/utils/config";
-import { createURL } from "@/utils/helper-client";
-import { headers } from "next/headers";
+import config from "@/utils/config";
+import { createServerURL } from "../../../../utils/helper-server";
 
 const getData = async (school, slug) => {
-  const header = await headers();
-  console.log(header.get("host"));
-
-  const url = await createURL(`/${config.apiPath}/courses/info/${school}/${slug}`);
+  const url = await createServerURL(`${config.API_PATH}/courses/info/${school}/${slug}`);
   const response = await fetch({ url, method: "GET" });
 
   if (!response.ok) {
-    return;
+    throw new Error("Could not get course data.");
   }
 
-  const data = await response.json();
-  const { course } = data.data;
+  const body = await response.json();
+  const { course } = body.data;
   return course;
 };
 
-async function Page({ query, params }) {
+async function Page({ params }) {
   const { school, slug } = await params;
   const course = await getData(school, slug);
 

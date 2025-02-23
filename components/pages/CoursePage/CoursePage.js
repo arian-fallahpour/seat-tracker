@@ -7,18 +7,47 @@ import Section from "@/components/elements/Section/Section";
 import Button from "@/components/elements/Button/Button";
 import { join } from "@/utils/helper-client";
 import classes from "./CoursePage.module.scss";
+import config from "@/utils/config";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const CoursePage = ({ course }) => {
+  const router = useRouter();
+
   const [selected, setSelected] = useState([]);
+  const [email, setEmail] = useState("");
 
   const labs = course.sections.filter((section) => section.type === "lab");
   const tutorials = course.sections.filter((section) => section.type === "tutorial");
 
-  const onClickHandler = (id) => {
+  const onSelectHandler = (id) => {
     if (selected.includes(id)) {
       setSelected((prev) => prev.filter((s) => s !== id));
     } else {
       setSelected((prev) => [...prev, id]);
+    }
+  };
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const url = `/${config.API_PATH}/orders/create-checkout-session`;
+      const response = await axios({
+        url,
+        method: "POST",
+        data: {
+          email,
+          course: course._id,
+          sections: selected,
+          school: "uoft",
+        },
+      });
+      const { stripeSessionUrl } = response.data.data;
+
+      router.push(stripeSessionUrl);
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -40,17 +69,18 @@ const CoursePage = ({ course }) => {
                 <p className="paragraph">Select the labs you want to be alerted for</p>
               </div>
               <ul className={classes.SectionsList}>
-                {labs.map((section, i) => (
+                {labs.map((section) => (
                   <CourseSection
                     key={section.type + section.number}
                     {...section}
                     isSelected={selected.includes(section.id)}
-                    onClickHandler={onClickHandler}
+                    onSelectHandler={onSelectHandler}
                   />
                 ))}
               </ul>
             </div>
           )}
+
           {tutorials.length > 0 && (
             <div className={classes.Sections}>
               <div className={classes.SectionsHeader}>
@@ -63,16 +93,18 @@ const CoursePage = ({ course }) => {
                     key={section.type + section.number}
                     {...section}
                     isSelected={selected.includes(section.id)}
-                    onClickHandler={onClickHandler}
+                    onSelectHandler={onSelectHandler}
                   />
                 ))}
               </ul>
             </div>
           )}
         </div>
-        <div className={classes.CourseFooter}>
+        <form className={classes.CourseForm} onSubmit={onSubmitHandler}>
+          {/* <Input label="Enter Email" placeholder="email@example.com" /> */}
+          <input label="email" onChange={(e) => setEmail(e.target.value)} />
           <Button>Create Alert</Button>
-        </div>
+        </form>
       </Section>
     </Page>
   );

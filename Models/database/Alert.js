@@ -46,14 +46,19 @@ const alertSchema = new mongoose.Schema({
       },
     ],
   },
-  isActive: {
-    type: Boolean,
-    default: true,
+  status: {
+    type: String,
+    enum: {
+      values: enums.alert.status,
+      message: "Please provide a valid alert status.",
+    },
+    default: enums.alert.status[0],
   },
-  lastAlertedAt: {
+  createdAt: {
     type: Date,
     default: new Date(Date.now() - activeAlertDelay),
   },
+  lastAlertedAt: Date,
 });
 
 // TODO
@@ -76,16 +81,14 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  */
 
 alertSchema.statics.findActiveAlerts = async function (school) {
-  const lastAlertedAtBefore =
-    process.env.NODE_ENV === "production"
-      ? new Date(Date.now() - activeAlertDelay)
-      : new Date(Date.now() + 1000);
+  const lastAlertedAtBefore = new Date(Date.now() - activeAlertDelay);
 
+  // TODO: Test (with null, and less than time)
   const alerts = await this.find({
     school,
-    isActive: true,
+    status: "active",
     lastAlertedAt: {
-      $lt: lastAlertedAtBefore,
+      $or: [{ $eq: null }, { $lt: lastAlertedAtBefore }],
     },
   }).populate({ path: "course" });
 
@@ -109,6 +112,11 @@ alertSchema.statics.processAlerts = async function (alerts, { processor, throttl
 /**
  * METHODS
  */
+
+alertSchema.methods.activateAlert = async function () {
+  this.status = "active";
+  await this.save();
+};
 
 alertSchema.methods.getFreedSections = async function (updatedSections) {
   await this.populate("sections");
