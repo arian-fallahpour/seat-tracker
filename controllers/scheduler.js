@@ -18,7 +18,6 @@ exports.init = async () => {
 };
 
 // TODO: Testing (What if UoftAPI does not find the course? + more)
-
 async function scheduleUoftAlerts() {
   try {
     // Find all active alerts for uoft

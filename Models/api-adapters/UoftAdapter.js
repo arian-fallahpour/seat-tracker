@@ -1,8 +1,14 @@
 const axios = require("axios");
 const LambdaAdapter = require("./LambdaAdapter");
+const path = require("path");
+const { sleep } = require("../../utils/helper-client");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
+
+  static lambdaRequestsCount = 0;
+  static lambdaMaxRequestPerIp = process.env.UOFT_MAX_REQUESTS_PER_LAMBDA_IP;
+  static lambdaFunctionName = "axios-request";
 
   /**
    * FETCH METHODS
@@ -36,12 +42,14 @@ class UoftAdapter {
 
   // TODO: Call using lambda function, and update code in lambda every 50 or so requests
 
-  // Gets updated version of courses in the courseCodes array
+  /**
+   * Gets updated version of courses in the courseCodes array
+   */
   static async fetchUpdatedCourses(courseCodes) {
     const updatedCoursesMap = new Map();
 
     for (const courseCode of courseCodes) {
-      const updatedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: false });
+      const updatedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: true });
 
       for (const updatedCourse of updatedCourses) {
         if (!updatedCoursesMap.has(updatedCourse.code)) {
@@ -53,24 +61,48 @@ class UoftAdapter {
     return updatedCoursesMap;
   }
 
+  /**
+   * Fetches Uoft API data using axios from current ip
+   */
   static async fetchAxios(fetchOptions) {
-    console.log("[INFO] Making axios request to UOFT API");
+    console.log("[INFO] Making AXIOS request to UOFT API");
 
     return await axios(fetchOptions);
   }
 
+  /**
+   * Fetches Uoft API data using lambda for ip rotation
+   *
+   * NOTE: May throw error when updating code when executed concurrently
+   */
   static async fetchLambda(fetchOptions) {
-    console.log("[INFO] Making lambda request to UOFT API");
+    console.log("[INFO] Making LAMBDA request to UOFT API");
 
+    if (this.lambdaRequestsCount >= this.lambdaMaxRequestPerIp) {
+      console.log("[INFO] Updating lambda function code to rotate ip (wait 5 seconds)");
+
+      const filePath = `../../aws/lambdas/${this.lambdaFunctionName}/index.js`;
+      const functionFilePath = path.resolve(__dirname, filePath);
+      await LambdaAdapter.updateLambdaFunction(this.lambdaFunctionName, functionFilePath);
+
+      // Wait for function to be updated on AWS
+      await sleep(5000);
+
+      this.lambdaRequestsCount = 0;
+    }
+
+    // Make request to lambda function and increase request count
     const payload = { options: fetchOptions };
-    return await LambdaAdapter.invokeLambdaFunction("axios-request", payload);
+    const response = await LambdaAdapter.invokeLambdaFunction(this.lambdaFunctionName, payload);
+    this.lambdaRequestsCount++;
+
+    return response;
   }
 
   /**
    * FORMAT METHODS
    */
 
-  // Formats course to database course schema
   static formatCourse(courseData) {
     const sections = courseData.sections.map((sectionData) =>
       this.formatSection({ ...sectionData, campus: courseData.campus })
@@ -84,7 +116,6 @@ class UoftAdapter {
     };
   }
 
-  // Formats subject to database uoft section schema
   static formatSection(sectionData) {
     return {
       type: sectionData.teachMethod === "TUT" ? "tutorial" : "lab",
@@ -97,7 +128,6 @@ class UoftAdapter {
     };
   }
 
-  // Formats campus to accepted campus enum values for uoft section schema
   static formatCampus(campus) {
     return (
       {
@@ -125,7 +155,6 @@ class UoftAdapter {
    * GET METHODS
    */
 
-  // Returns body associated with Uoft API request
   static getBody(options = {}) {
     options = {
       query: options.query || "",
