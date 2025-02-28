@@ -1,12 +1,11 @@
 import classes from "./Input.module.scss";
 import { join } from "@/utils/helper-client";
 
-const Input = ({ label, placeholder, type, value, id, name, error, className, ...otherProps }) => {
+const Input = ({ className, label, type, id, name, placeholder, ...otherProps }) => {
   return (
-    <div className={join(classes.Input, className)} {...otherProps}>
+    <div className={join(classes.Input, className)}>
       <label htmlFor={name}>{label}</label>
-      <input type={type} id={id} name={name} value={value} placeholder={placeholder} />
-      {error && <div className={classes.InputError}>{error}</div>}
+      <input type={type} id={id} name={name} placeholder={placeholder} {...otherProps} />
     </div>
   );
 };

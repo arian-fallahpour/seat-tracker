@@ -1,0 +1,27 @@
+.Input {
+  display: grid;
+  gap: 0.5rem;
+
+  & > label {
+    color: var(--color-text);
+    margin-left: var(--padding-input-horizontal);
+  }
+
+  & > input {
+    padding: var(--padding-input-vertical) var(--padding-input-horizontal);
+    border-radius: 22rem;
+    background-color: var(--color-card-background);
+    border: var(--border-width) solid var(--color-card-border);
+    color: var(--color-card-text);
+
+    transition: background 0.2s ease;
+
+    &:focus-within {
+      background-color: var(--color-card-background-hover);
+    }
+
+    &::placeholder {
+      color: var(--color-card-text-placeholder);
+    }
+  }
+}

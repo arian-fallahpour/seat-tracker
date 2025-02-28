@@ -1,0 +1,14 @@
+.Form {
+  display: grid;
+  justify-content: stretch;
+  gap: var(--width-regular);
+
+  &Row {
+    display: flex;
+    gap: var(--width-regular);
+
+    & > * {
+      flex: 1;
+    }
+  }
+}

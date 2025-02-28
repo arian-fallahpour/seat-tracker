@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: var(--width-regular);
   flex: 1;
+
   &Header {
     display: grid;
   }
@@ -11,7 +12,7 @@
     text-transform: capitalize;
   }
 
-  &Content {
+  &Sections {
     flex: 1;
     display: grid;
     align-content: start;
@@ -27,17 +28,13 @@
   gap: var(--width-small);
 
   &Header {
-    & > * {
-      margin-bottom: 0.5em;
-    }
   }
 
   &List {
     list-style: none;
     display: grid;
     gap: var(--width-small);
-    grid-template-columns: repeat(auto-fit, minmax(auto, 35rem));
-    max-width: calc(120rem);
+    grid-template-columns: repeat(auto-fit, minmax(auto, 32rem));
   }
 }
 
@@ -100,5 +97,16 @@
   }
 
   &Date {
+  }
+}
+
+.Form {
+  justify-items: start;
+
+  &Input {
+    width: 35rem;
+  }
+
+  &Submit {
   }
 }

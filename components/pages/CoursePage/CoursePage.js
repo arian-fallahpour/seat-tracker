@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Page from "@/components/elements/Page/Page";
-import CourseSection from "./CourseSection";
 import Section from "@/components/elements/Section/Section";
 import Button from "@/components/elements/Button/Button";
 import { join } from "@/utils/helper-client";
@@ -10,6 +9,9 @@ import classes from "./CoursePage.module.scss";
 import config from "@/utils/config";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Form, { FormRow } from "@/components/elements/Form/Form";
+import CourseSections from "./CourseSections";
+import Input from "@/components/elements/Input/Input";
 
 const CoursePage = ({ course }) => {
   const router = useRouter();
@@ -61,50 +63,42 @@ const CoursePage = ({ course }) => {
           <h1 className={join("header", "header-title")}>{course.code}</h1>
           <h2 className="subtitle">{course.name}</h2>
         </div>
-        <div className={classes.CourseContent}>
-          {labs.length > 0 && (
-            <div className={classes.Sections}>
-              <div className={classes.SectionsHeader}>
-                <h3 className="header header-subsection">Labs</h3>
-                <p className="paragraph">Select the labs you want to be alerted for</p>
-              </div>
-              <ul className={classes.SectionsList}>
-                {labs.map((section) => (
-                  <CourseSection
-                    key={section.type + section.number}
-                    {...section}
-                    isSelected={selected.includes(section.id)}
-                    onSelectHandler={onSelectHandler}
-                  />
-                ))}
-              </ul>
-            </div>
-          )}
 
+        <div className={classes.CourseSections}>
+          {labs.length > 0 && (
+            <CourseSections
+              name="labs"
+              sections={labs}
+              selected={selected}
+              onSelectHandler={onSelectHandler}
+            />
+          )}
           {tutorials.length > 0 && (
-            <div className={classes.Sections}>
-              <div className={classes.SectionsHeader}>
-                <h3 className="header header-subsection">Tutorials</h3>
-                <p className="paragraph">Select the sections you want to be alerted for</p>
-              </div>
-              <ul className={classes.SectionsList}>
-                {tutorials.map((section, i) => (
-                  <CourseSection
-                    key={section.type + section.number}
-                    {...section}
-                    isSelected={selected.includes(section.id)}
-                    onSelectHandler={onSelectHandler}
-                  />
-                ))}
-              </ul>
-            </div>
+            <CourseSections
+              name="tutorials"
+              sections={tutorials}
+              selected={selected}
+              onSelectHandler={onSelectHandler}
+            />
           )}
         </div>
-        <form className={classes.CourseForm} onSubmit={onSubmitHandler}>
-          {/* <Input label="Enter Email" placeholder="email@example.com" /> */}
-          <input label="email" onChange={(e) => setEmail(e.target.value)} />
-          <Button>Create Alert</Button>
-        </form>
+
+        <div className={classes.CourseForm}>
+          <h3 className="header header-section margin-bottom-auto">Create Alert</h3>
+          <Form className={classes.Form} onSubmit={onSubmitHandler}>
+            <FormRow>
+              <Input
+                className={classes.FormInput}
+                label="Email"
+                placeholder="JohnPork@example.com"
+                name="email"
+                id="input-email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormRow>
+            <Button className={classes.FormSubmit}>Checkout</Button>
+          </Form>
+        </div>
       </Section>
     </Page>
   );
