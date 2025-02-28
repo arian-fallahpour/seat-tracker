@@ -1,15 +1,11 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const { Stack } = require("datastructures-js");
 const UoftSection = require("./Section/UoftSection"); // Required for instance methods
 
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 
 const enums = require("../../data/enums");
-const throttledQueue = require("throttled-queue");
-
-const activeAlertDelay = 1000 * 60 * 60;
 
 const alertSchema = new mongoose.Schema({
   email: {
@@ -56,7 +52,7 @@ const alertSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date(Date.now() - activeAlertDelay),
+    default: new Date(Date.now()),
   },
   lastAlertedAt: Date,
 });
@@ -81,32 +77,41 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  */
 
 alertSchema.statics.findActiveAlerts = async function (school) {
-  const lastAlertedAtBefore = new Date(Date.now() - activeAlertDelay);
-
   // TODO: Test (with null, and less than time)
   const alerts = await this.find({
     school,
     status: "active",
-    lastAlertedAt: {
-      $or: [{ $eq: null }, { $lt: lastAlertedAtBefore }],
-    },
   }).populate({ path: "course" });
 
   return alerts.filter((alert) => alert.course !== null);
 };
 
-alertSchema.statics.processAlerts = async function (alerts, { processor, throttleDelay }) {
-  alerts.sort((a, b) => String(b.course.code).localeCompare(a.course.code));
+alertSchema.statics.groupAlertsByCode = function (alerts) {
+  const groupedAlertsMap = new Map();
 
-  const stack = new Stack(alerts);
-  const courseCache = new Map();
+  for (const alert of alerts) {
+    if (!groupedAlertsMap.has(alert.course.code)) {
+      groupedAlertsMap.set(alert.course.code, []);
+    }
 
-  const throttle = throttledQueue(1, Number(throttleDelay));
-  while (!stack.isEmpty()) {
-    await throttle(() => processor(stack.pop(), courseCache));
+    const group = groupedAlertsMap.get(alert.course.code);
+    group.push(alert);
   }
 
-  return courseCache;
+  return groupedAlertsMap;
+};
+
+alertSchema.statics.processAlerts = async function (alerts, updatedCoursesMap) {
+  for (const alert of alerts) {
+    const updatedCourse = updatedCoursesMap.get(alert.course.code);
+
+    // Check if any of the alert's sections are freed up
+    const freedSections = await alert.getFreedSections(updatedCourse.sections);
+    if (freedSections.length === 0) continue;
+
+    // send notification
+    await alert.sendAlert(freedSections);
+  }
 };
 
 /**
@@ -120,8 +125,8 @@ alertSchema.methods.activateAlert = async function () {
 
 alertSchema.methods.getFreedSections = async function (updatedSections) {
   await this.populate("sections");
-  const alertableSections = this.sections;
 
+  const alertableSections = this.sections;
   const freedSections = alertableSections.filter((alertableSection) => {
     const updatedSection = findUpdatedSection(updatedSections, alertableSection);
     return alertableSection.isFreed(updatedSection);

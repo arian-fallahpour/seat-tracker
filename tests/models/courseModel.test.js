@@ -29,7 +29,7 @@ describe("getUpdatedCourse", () => {
       { code: "CSC108", name: "Introduction to Computer Science" },
       { code: "CSC148", name: "Introduction to Computer Programming" },
     ];
-    UoftAdapter.getCourses.mockResolvedValue(fetchedCourses);
+    UoftAdapter.fetchCourses.mockResolvedValue(fetchedCourses);
 
     const result = await courseInstance.getUpdatedCourse(courseCache);
 
@@ -45,7 +45,7 @@ describe("getUpdatedCourse", () => {
       { code: "CSC148", name: "Introduction to Computer Programming" },
       { code: "CSC165", name: "Mathematical Expression and Reasoning for CS" },
     ];
-    UoftAdapter.getCourses.mockResolvedValue(fetchedCourses);
+    UoftAdapter.fetchCourses.mockResolvedValue(fetchedCourses);
 
     const result = await courseInstance.getUpdatedCourse(courseCache);
 

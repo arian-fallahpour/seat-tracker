@@ -9,6 +9,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   const { email, course, sections, school } = req.body;
+  if (!email) return next(new AppError("Please provide an email for this alert.", 400));
+  if (!course) return next(new AppError("Please provide a course for this alert.", 400));
 
   let alert = await Alert.findOne({ email, course });
 

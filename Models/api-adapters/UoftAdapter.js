@@ -1,20 +1,74 @@
 const axios = require("axios");
+const LambdaAdapter = require("./LambdaAdapter");
 
 class UoftAdapter {
-  static getCoursesURL = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
+  static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
 
-  // Returns formatted course data from Uoft timetable API
-  static async getCourses({ search = "", page = 1 }) {
-    console.log("[INFO] Making request to UOFT API");
+  /**
+   * FETCH METHODS
+   */
 
-    const axiosOptions = this.getAxiosOptions({ search, page });
-    const { data } = await axios(axiosOptions);
+  static async fetchCourses(options = {}) {
+    options = {
+      query: options.query || "",
+      page: options.page || 1,
+      useLambdaFetch: options.useLambdaFetch || false,
+    };
 
+    const fetchOptions = this.getFetchOptions({
+      query: options.query,
+      page: options.page,
+    });
+
+    let response;
+    if (!options.useLambdaFetch) {
+      response = await this.fetchAxios(fetchOptions);
+    } else {
+      response = await this.fetchLambda(fetchOptions);
+    }
+
+    const { data } = response;
     const coursesData = data.payload.pageableCourse.courses;
     const courses = coursesData.map((courseData) => this.formatCourse(courseData));
 
     return courses;
   }
+
+  // TODO: Call using lambda function, and update code in lambda every 50 or so requests
+
+  // Gets updated version of courses in the courseCodes array
+  static async fetchUpdatedCourses(courseCodes) {
+    const updatedCoursesMap = new Map();
+
+    for (const courseCode of courseCodes) {
+      const updatedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: false });
+
+      for (const updatedCourse of updatedCourses) {
+        if (!updatedCoursesMap.has(updatedCourse.code)) {
+          updatedCoursesMap.set(updatedCourse.code, updatedCourse);
+        }
+      }
+    }
+
+    return updatedCoursesMap;
+  }
+
+  static async fetchAxios(fetchOptions) {
+    console.log("[INFO] Making axios request to UOFT API");
+
+    return await axios(fetchOptions);
+  }
+
+  static async fetchLambda(fetchOptions) {
+    console.log("[INFO] Making lambda request to UOFT API");
+
+    const payload = { options: fetchOptions };
+    return await LambdaAdapter.invokeLambdaFunction("axios-request", payload);
+  }
+
+  /**
+   * FORMAT METHODS
+   */
 
   // Formats course to database course schema
   static formatCourse(courseData) {
@@ -67,12 +121,21 @@ class UoftAdapter {
       };
   }
 
+  /**
+   * GET METHODS
+   */
+
   // Returns body associated with Uoft API request
-  static getBody({ search = "", page = 1 }) {
+  static getBody(options = {}) {
+    options = {
+      query: options.query || "",
+      page: options.page || 1,
+    };
+
     return {
       courseCodeAndTitleProps: {
         courseCode: "",
-        courseTitle: search,
+        courseTitle: options.query,
         courseSectionCode: "",
         searchCourseDescription: true, // Turn on for search
       },
@@ -89,28 +152,22 @@ class UoftAdapter {
       creditWeights: [],
       availableSpace: false,
       waitListable: false,
-      page,
-      pageSize: 40,
+      page: options.page,
+      pageSize: 20,
       direction: "asc",
     };
   }
 
-  static getAxiosOptions(bodyOptions) {
-    return {
-      url: this.getCoursesURL,
-      method: "POST",
-      data: this.getBody(bodyOptions),
+  static getFetchOptions(options = {}) {
+    options = {
+      query: options.query || "",
+      page: options.page || 1,
     };
-  }
 
-  static getFetchOptions(bodyOptions) {
     return {
+      url: this.URL_GET_COURSES,
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json, text/plain, */*",
-      },
-      body: JSON.stringify(this.getBody(bodyOptions)),
+      data: this.getBody(options),
     };
   }
 }

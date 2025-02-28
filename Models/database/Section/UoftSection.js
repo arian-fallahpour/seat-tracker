@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+const Section = require("./Section");
+
 const {
   validateSeatsTaken,
   calculateEmptySeats,
   haveSeatsFreed,
   upsertSections,
 } = require("../../../utils/schema-utils");
-const Section = require("./Section");
 
 const uoftSectionSchema = new mongoose.Schema(
   {

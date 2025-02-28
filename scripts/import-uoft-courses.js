@@ -34,7 +34,7 @@ const importData = async () => {
     console.log(`[INFO] Requesting UofT API (page: ${++page})`);
 
     // Fetch courses from school API
-    const fetchedCourses = await UoftAdapter.getCourses({ page });
+    const fetchedCourses = await UoftAdapter.fetchCourses({ page });
     if (fetchedCourses.length === 0) break;
 
     updatedCourses.push(...fetchedCourses);
