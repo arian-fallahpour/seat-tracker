@@ -25,19 +25,19 @@ async function scheduleUoftAlerts() {
     if (alerts.length === 0) return;
 
     // Group alerts by course code in a map
-    const groupedAlertsMap = Alert.groupAlertsByCode(alerts);
+    const groupedAlerts = Alert.groupAlertsByCode(alerts);
 
     // Get updated course data for each course from API
-    const courseCodes = Array.from(groupedAlertsMap.keys());
-    const updatedCoursesMap = await UoftAdapter.fetchUpdatedCourses(courseCodes);
+    const courseCodes = Object.keys(groupedAlerts);
+    const updatedCourses = await UoftAdapter.fetchUpdatedCourses(courseCodes);
 
     // Process alerts
-    await Alert.processAlerts(alerts, updatedCoursesMap);
+    await Alert.processAlerts(alerts, updatedCourses);
 
     // Update courses in database with updated data
-    const updatedCourses = Array.from(updatedCoursesMap.values());
-    await UoftCourse.upsertCoursesAndSections(updatedCourses);
-  } catch (err) {
-    console.error(`[ERROR] Uoft Schedule Error: ${err.message}`);
+    const updatedCoursesData = Object.values(updatedCourses);
+    await UoftCourse.upsertCoursesAndSections(updatedCoursesData);
+  } catch (error) {
+    console.error(`[ERROR] Uoft Schedule Error: ${error.message}`);
   }
 }

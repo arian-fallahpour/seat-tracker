@@ -77,40 +77,47 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  */
 
 alertSchema.statics.findActiveAlerts = async function (school) {
-  // TODO: Test (with null, and less than time)
-  const alerts = await this.find({
-    school,
-    status: "active",
-  }).populate({ path: "course" });
+  try {
+    const alerts = await this.find({
+      school,
+      status: "active",
+    }).populate({ path: "course" });
 
-  return alerts.filter((alert) => alert.course !== null);
-};
-
-alertSchema.statics.groupAlertsByCode = function (alerts) {
-  const groupedAlertsMap = new Map();
-
-  for (const alert of alerts) {
-    if (!groupedAlertsMap.has(alert.course.code)) {
-      groupedAlertsMap.set(alert.course.code, []);
-    }
-
-    const group = groupedAlertsMap.get(alert.course.code);
-    group.push(alert);
+    return alerts.filter((alert) => alert.course !== null);
+  } catch (error) {
+    console.error(`[ERROR] Could not find active alerts: ${error.message}`);
   }
 
-  return groupedAlertsMap;
+  return [];
 };
 
-alertSchema.statics.processAlerts = async function (alerts, updatedCoursesMap) {
+/**
+ * Returns an object of alerts grouped by their course code
+ */
+alertSchema.statics.groupAlertsByCode = function (alerts) {
+  const groupedAlerts = {};
+
   for (const alert of alerts) {
-    const updatedCourse = updatedCoursesMap.get(alert.course.code);
+    if (typeof groupedAlerts[alert.course.code] === "undefined") {
+      groupedAlerts[alert.course.code] = [];
+    }
+
+    groupedAlerts[alert.course.code].push(alert);
+  }
+
+  return groupedAlerts;
+};
+
+alertSchema.statics.processAlerts = async function (alerts, updatedCourses) {
+  for (const alert of alerts) {
+    const updatedCourse = updatedCourses[alert.course.code];
 
     // Check if any of the alert's sections are freed up
-    const freedSections = await alert.getFreedSections(updatedCourse.sections);
+    const freedSections = await alert.getFreedSections(updatedCourse);
     if (freedSections.length === 0) continue;
 
-    // send notification
-    await alert.sendAlert(freedSections);
+    // Send notification
+    await alert.notify(freedSections);
   }
 };
 
@@ -123,32 +130,35 @@ alertSchema.methods.activateAlert = async function () {
   await this.save();
 };
 
-alertSchema.methods.getFreedSections = async function (updatedSections) {
-  await this.populate("sections");
+alertSchema.methods.getFreedSections = async function (updatedCourse) {
+  const sectionsEntries = updatedCourse.sections.map((s) => [s.type + s.number, s]);
+  const updatedSections = Object.fromEntries(sectionsEntries);
 
+  // Populate sections that should be alerted
+  await this.populate("sections");
   const alertableSections = this.sections;
-  const freedSections = alertableSections.filter((alertableSection) => {
-    const updatedSection = findUpdatedSection(updatedSections, alertableSection);
-    return alertableSection.isFreed(updatedSection);
-  });
+
+  // Filter sections that have freed up
+  const freedSections = [];
+  for (const alertableSection of alertableSections) {
+    const updatedSection = updatedSections[alertableSection.type + alertableSection.number];
+
+    if (alertableSection.isFreed(updatedSection)) {
+      freedSections.push(alertableSection);
+    }
+  }
 
   return freedSections;
-
-  function findUpdatedSection(updatedSections, alertableSection) {
-    return updatedSections.find(
-      (s) => s.type === alertableSection.type && s.number === alertableSection.number
-    );
-  }
 };
 
-alertSchema.methods.sendAlert = async function (freedSections) {
+alertSchema.methods.notify = async function (freedSections) {
   let message = "";
-  freedSections.forEach((section) => {
-    console.log(
-      `[ALERT] (email: ${this.email}): Section ${section.type} ${section.number} in ${this.course.code} is now open!`
-    );
-    message += `Section ${section.type} ${section.number} in ${this.course.code} is now open!\n`;
-  });
+  for (const freedSection of freedSections) {
+    const alertMessage = `Section ${freedSection.type} ${freedSection.number} in ${this.course.code} is now open!`;
+
+    console.log(`[ALERT] (email: ${this.email}): ${alertMessage}`);
+    message += `${alertMessage}\n`;
+  }
 
   const mailgun = new Mailgun(formData);
   const mg = mailgun.client({
@@ -166,8 +176,8 @@ alertSchema.methods.sendAlert = async function (freedSections) {
       html: `<strong>${message}</strong>`,
     });
     console.log(`[INFO] Email sent to ${this.email}`);
-  } catch (err) {
-    console.dir(err, { depth: null });
+  } catch (error) {
+    console.error(error);
   }
 
   this.lastAlertedAt = new Date(Date.now());

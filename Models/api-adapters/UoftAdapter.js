@@ -21,18 +21,26 @@ class UoftAdapter {
       useLambdaFetch: options.useLambdaFetch || false,
     };
 
+    // Build fetch options object
     const fetchOptions = this.getFetchOptions({
       query: options.query,
       page: options.page,
     });
 
+    // Make fetch request
     let response;
-    if (!options.useLambdaFetch) {
-      response = await this.fetchAxios(fetchOptions);
-    } else {
-      response = await this.fetchLambda(fetchOptions);
+    try {
+      if (!options.useLambdaFetch) {
+        response = await this.fetchAxios(fetchOptions);
+      } else {
+        response = await this.fetchLambda(fetchOptions);
+      }
+    } catch (error) {
+      console.error(`[ERROR] Could not fetch updated courses: ${error.message}`);
+      return [];
     }
 
+    // Format fetched data
     const { data } = response;
     const coursesData = data.payload.pageableCourse.courses;
     const courses = coursesData.map((courseData) => this.formatCourse(courseData));
@@ -40,25 +48,24 @@ class UoftAdapter {
     return courses;
   }
 
-  // TODO: Call using lambda function, and update code in lambda every 50 or so requests
-
   /**
-   * Gets updated version of courses in the courseCodes array
+   * Gets updated version of courses in the courseCodes array and returns a map
    */
   static async fetchUpdatedCourses(courseCodes) {
-    const updatedCoursesMap = new Map();
+    const updatedCourses = {};
 
     for (const courseCode of courseCodes) {
-      const updatedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: true });
-
-      for (const updatedCourse of updatedCourses) {
-        if (!updatedCoursesMap.has(updatedCourse.code)) {
-          updatedCoursesMap.set(updatedCourse.code, updatedCourse);
+      try {
+        const fetchedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: true });
+        for (const fetchedCourse of fetchedCourses) {
+          updatedCourses[fetchedCourse.code] = fetchedCourse;
         }
+      } catch (error) {
+        console.error(`[ERROR]: Could not fetch updated courses: ${error.message}`);
       }
     }
 
-    return updatedCoursesMap;
+    return updatedCourses;
   }
 
   /**
