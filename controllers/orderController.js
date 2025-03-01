@@ -1,7 +1,7 @@
 const crudController = require("./crudController");
 const Order = require("../models/database/Order");
 const catchAsync = require("../utils/catchAsync");
-const business = require("../data/business");
+const businessData = require("../data/business-data");
 const Alert = require("../models/database/Alert");
 const AppError = require("../utils/AppError");
 
@@ -36,7 +36,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        price: business.stripe.alertPriceID,
+        price: businessData.stripe.alertPriceID,
         quantity: 1,
       },
     ],

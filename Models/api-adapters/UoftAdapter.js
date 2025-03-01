@@ -2,12 +2,13 @@ const axios = require("axios");
 const LambdaAdapter = require("./LambdaAdapter");
 const path = require("path");
 const { sleep } = require("../../utils/helper-client");
+const alertsData = require("../../data/alerts-data");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
 
   static lambdaRequestsCount = 0;
-  static lambdaMaxRequestPerIp = process.env.UOFT_MAX_REQUESTS_PER_LAMBDA_IP;
+  static lambdaMaxRequestPerIp = alertsData.uoft.maxRequestsPerIp;
   static lambdaFunctionName = "axios-request";
 
   /**
