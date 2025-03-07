@@ -1,6 +1,6 @@
 module.exports = {
   uoft: {
-    alertsPeriodMinutes: 1,
+    alertsPeriodMinutes: 15,
     maxRequestsPerIp: 50,
   },
 };

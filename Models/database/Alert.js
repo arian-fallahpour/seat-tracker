@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const UoftSection = require("./Section/UoftSection"); // Required for instance methods
 
-const formData = require("form-data");
-const Mailgun = require("mailgun.js");
-
 const enums = require("../../data/enums");
+const Email = require("../../utils/Email");
+const logger = require("../../utils/Logger");
 
 const alertSchema = new mongoose.Schema({
   email: {
@@ -31,13 +30,13 @@ const alertSchema = new mongoose.Schema({
   sections: {
     type: [mongoose.Schema.ObjectId],
     ref: "Section",
-    validator: [
+    validate: [
       {
-        validate: validateSectionsCourse,
+        validator: validateSectionsCourse,
         message: "Section must belong to provided course.",
       },
       {
-        validate: validateSectionsLength,
+        validator: validateSectionsLength,
         message: "Please provide at least one section.",
       },
     ],
@@ -76,19 +75,21 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  * STATICS
  */
 
+/**
+ * Returns currently active alerts and associated course for specified school
+ */
 alertSchema.statics.findActiveAlerts = async function (school) {
-  try {
-    const alerts = await this.find({
-      school,
-      status: "active",
-    }).populate({ path: "course" });
-
-    return alerts.filter((alert) => alert.course !== null);
-  } catch (error) {
-    console.error(`[ERROR] Could not find active alerts: ${error.message}`);
+  if (!enums.alert.school.includes(school)) {
+    throw new Error("Please provide a valid school");
   }
 
-  return [];
+  const alerts = await this.find({
+    school,
+    status: "active",
+  }).populate({ path: "course" });
+
+  const filtered = alerts.filter((alert) => alert.course !== null);
+  return filtered;
 };
 
 /**
@@ -125,11 +126,6 @@ alertSchema.statics.processAlerts = async function (alerts, updatedCourses) {
  * METHODS
  */
 
-alertSchema.methods.activateAlert = async function () {
-  this.status = "active";
-  await this.save();
-};
-
 alertSchema.methods.getFreedSections = async function (updatedCourse) {
   const sectionsEntries = updatedCourse.sections.map((s) => [s.type + s.number, s]);
   const updatedSections = Object.fromEntries(sectionsEntries);
@@ -151,37 +147,81 @@ alertSchema.methods.getFreedSections = async function (updatedCourse) {
   return freedSections;
 };
 
-alertSchema.methods.notify = async function (freedSections) {
-  let message = "";
-  for (const freedSection of freedSections) {
-    const alertMessage = `Section ${freedSection.type} ${freedSection.number} in ${this.course.code} is now open!`;
+/**
+ * Sends activation email to email address associated with alert
+ *
+ * Logs error, but does not throw if unsuccessful
+ */
+alertSchema.methods.activate = async function () {
+  await this.populate("course");
 
-    console.log(`[ALERT] (email: ${this.email}): ${alertMessage}`);
-    message += `${alertMessage}\n`;
-  }
+  // Construct message
+  let message = `You are now going to be alerted for ${this.course.code} when the following sections are open: \n`;
+  message += this.sections.join("\n");
 
-  const mailgun = new Mailgun(formData);
-  const mg = mailgun.client({
-    username: "api",
-    key: process.env.MAILGUN_API_KEY,
-  });
-
-  // Send email message
   try {
-    await mg.messages.create(process.env.MAILGUN_DOMAIN, {
-      from: `Seat Tracker <alerts@${process.env.MAILGUN_DOMAIN}>`,
-      to: [this.email],
-      subject: `New seats open for ${this.course.code}`,
-      text: `${message}`,
-      html: `<strong>${message}</strong>`,
-    });
-    console.log(`[INFO] Email sent to ${this.email}`);
-  } catch (error) {
-    console.error(error);
-  }
+    // Construct email
+    const email = new Email()
+      .toEmail(this.email)
+      .withSubject(`Alerts activated for ${this.course.code}`)
+      .withTemplate("alert-activate", {
+        text: message,
+        html: `<strong>${message}</strong>`,
+      });
 
-  this.lastAlertedAt = new Date(Date.now());
-  await this.save();
+    // Send the activation email
+    await email.send();
+    logger.info(`Activation email sent to ${this.email}`);
+
+    // Set status to active
+    this.status = "active";
+    await this.save();
+  } catch (error) {
+    logger.alert(`Alert activation email not sent to ${this.email}`, {
+      email: this.email,
+      alert: this.id,
+    });
+  }
+};
+
+/**
+ * Sends notification email to email address associated with alert
+ *
+ * Logs error, but does not throw if unsuccessful
+ */
+alertSchema.methods.notify = async function (freedSections) {
+  let message = [];
+  for (const freedSection of freedSections) {
+    message.push(
+      `Section ${freedSection.type} ${freedSection.number} in ${this.course.code} is now open!`
+    );
+  }
+  message = message.join("\n");
+
+  try {
+    // Construct email
+    const email = new Email()
+      .toEmail(this.email)
+      .withSubject(`New seats open for ${this.course.code}`)
+      .withTemplate("alert-notify", {
+        text: `${message}`,
+        html: `<strong>${message}</strong>`,
+      });
+
+    // Send notification email
+    await email.send();
+    logger.info(`Alert notification email sent to ${this.email}`);
+
+    // Update last alerted at
+    this.lastAlertedAt = new Date(Date.now());
+    await this.save();
+  } catch (error) {
+    logger.alert(`Alert notification email not sent to ${this.email}`, {
+      email: this.email,
+      alert: this.id,
+      error: error.message,
+    });
+  }
 };
 
 const Alert = mongoose.model("Alert", alertSchema);

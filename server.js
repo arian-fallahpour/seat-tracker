@@ -16,20 +16,21 @@ const app = require("./app");
 // Server initialization
 const port = process.env.PORT || 8080;
 const server = app.listen(port, async () => {
-  console.log(`[INFO] App running on port ${port}`);
+  logger.announce(`App running on port ${port}`);
 
   // Database initialization
   let dbUri = process.env.DATABASE_CONNECTION;
   dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
   dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
   await mongoose.connect(dbUri, { autoIndex: true });
-  console.log("[INFO] Database connection successful");
+  logger.announce(`Database connection successful`);
 
   // Scheduler initialization
   await scheduler.init();
 });
 
 process.on("unhandledRejection", (err) => {
-  console.log(`[ERROR] (Unhandled Rejection) ${err.stack}`);
+  console.error(`[ERROR] (Unhandled Rejection)`);
+  console.error(err);
   server.close(() => process.exit(1));
 });

@@ -11,7 +11,6 @@ const CourseModels = new Map();
 CourseModels.set("uoft", UoftCourse);
 CourseModels.set("waterloo", WaterlooCourse);
 
-// TODO: Add for other courses too
 exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { school } = req.params;
   const { query } = req.query;

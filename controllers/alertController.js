@@ -1,6 +1,5 @@
 const crudController = require("./crudController");
 const Alert = require("../models/database/Alert");
-const catchAsync = require("../utils/catchAsync");
 
 exports.getOneAlert = crudController.getOne(Alert);
 exports.getAllAlerts = crudController.getAll(Alert);

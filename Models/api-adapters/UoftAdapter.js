@@ -3,6 +3,7 @@ const LambdaAdapter = require("./LambdaAdapter");
 const path = require("path");
 const { sleep } = require("../../utils/helper-client");
 const alertsData = require("../../data/alerts-data");
+const logger = require("../../utils/Logger");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
@@ -15,6 +16,11 @@ class UoftAdapter {
    * FETCH METHODS
    */
 
+  /**
+   * Returns updated courses based on query and page
+   *
+   * Logs a warning, does not throw an error
+   */
   static async fetchCourses(options = {}) {
     options = {
       query: options.query || "",
@@ -37,7 +43,7 @@ class UoftAdapter {
         response = await this.fetchLambda(fetchOptions);
       }
     } catch (error) {
-      console.error(`[ERROR] Could not fetch updated courses: ${error.message}`);
+      logger.warn(`Could not fetch updated UofT courses`, { error: error.message });
       return [];
     }
 
@@ -50,19 +56,15 @@ class UoftAdapter {
   }
 
   /**
-   * Gets updated version of courses in the courseCodes array and returns a map
+   * Gets updated version of courses in the courseCodes array and returns them in an object based on course codes
    */
   static async fetchUpdatedCourses(courseCodes) {
     const updatedCourses = {};
 
     for (const courseCode of courseCodes) {
-      try {
-        const fetchedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: true });
-        for (const fetchedCourse of fetchedCourses) {
-          updatedCourses[fetchedCourse.code] = fetchedCourse;
-        }
-      } catch (error) {
-        console.error(`[ERROR]: Could not fetch updated courses: ${error.message}`);
+      const fetchedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: true });
+      for (const fetchedCourse of fetchedCourses) {
+        updatedCourses[fetchedCourse.code] = fetchedCourse;
       }
     }
 
@@ -73,8 +75,7 @@ class UoftAdapter {
    * Fetches Uoft API data using axios from current ip
    */
   static async fetchAxios(fetchOptions) {
-    console.log("[INFO] Making AXIOS request to UOFT API");
-
+    logger.info("Making AXIOS request to UOFT API");
     return await axios(fetchOptions);
   }
 
@@ -84,10 +85,10 @@ class UoftAdapter {
    * NOTE: May throw error when updating code when executed concurrently
    */
   static async fetchLambda(fetchOptions) {
-    console.log("[INFO] Making LAMBDA request to UOFT API");
+    logger.info("Making LAMBDA request to UOFT API");
 
     if (this.lambdaRequestsCount >= this.lambdaMaxRequestPerIp) {
-      console.log("[INFO] Updating lambda function code to rotate ip (wait 5 seconds)");
+      logger.info("Updating lambda function code to rotate ip (wait 5 seconds)");
 
       const filePath = `../../aws/lambdas/${this.lambdaFunctionName}/index.js`;
       const functionFilePath = path.resolve(__dirname, filePath);

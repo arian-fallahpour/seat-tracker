@@ -1,4 +1,3 @@
-const { CronJob } = require("cron");
 const Alert = require("../models/database/Alert");
 const UoftCourse = require("../models/database/Course/UoftCourse");
 const UoftAdapter = require("../models/api-adapters/UoftAdapter");
@@ -6,34 +5,15 @@ const Schedule = require("../models/database/Schedule");
 const alertsData = require("../data/alerts-data");
 
 exports.init = async () => {
-  let schedule = await Schedule.findOne({ name: "uoft-alerts" });
-  if (!schedule) {
-    schedule = await Schedule.create({
-      name: "uoft-alerts",
-    });
-  }
-
-  // Determine when the cron job should be initialized and executed
-  let shouldRunInMS = 0;
-  const earliestCalledAt = new Date(Date.now() - 1000 * 60 * alertsData.uoft.alertsPeriodMinutes);
-  if (schedule.lastCalledAt && schedule.lastCalledAt > earliestCalledAt) {
-    shouldRunInMS = schedule.lastCalledAt - earliestCalledAt;
-  }
-
-  const options = {
-    cronTime: `* */${alertsData.uoft.alertsPeriodMinutes} * * *`,
+  // await scheduleUoftAlerts();
+  await Schedule.initRecurringSchedule("uoft-alerts", {
+    periodMinutes: alertsData.uoft.alertsPeriodMinutes,
     onTick: scheduleUoftAlerts,
-    waitForCompletion: true,
-    start: true,
-    runOnInit: true,
-  };
-  setTimeout(() => CronJob.from(options), shouldRunInMS);
+  });
 };
 
 // TODO: Testing (What if UoftAPI does not find the course? + more)
 async function scheduleUoftAlerts() {
-  await Schedule.findOneAndUpdate({ name: "uoft-alerts" }, { lastCalledAt: Date.now() });
-
   try {
     // Find all active alerts for uoft
     const alerts = await Alert.findActiveAlerts("uoft");

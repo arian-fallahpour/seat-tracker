@@ -15,8 +15,8 @@ const uoftSectionSchema = new mongoose.Schema(
       required: [true, "Seats taken is required."],
       default: 0,
       min: [0, "Seats taken cannot be a negative number."],
-      validator: {
-        validate: validateSeatsTaken,
+      validate: {
+        validator: validateSeatsTaken,
         message: "Seats taken must be less than or equal to seats available.",
       },
     },
@@ -36,8 +36,8 @@ const uoftSectionSchema = new mongoose.Schema(
       required: [true, "Waitlist count is required."],
       default: 0,
       min: [0, "Waitlist count cannot be a negative number."],
-      validator: {
-        validate: function (waitlist) {
+      validate: {
+        validator: function (waitlist) {
           return this.hasWaitlist || waitlist === 0;
         },
         message: "Cannot add to waitlist if section does not have a waitlist.",
