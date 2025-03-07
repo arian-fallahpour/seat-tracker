@@ -1,4 +1,6 @@
+const Order = require("../models/database/Order");
 const Alert = require("../models/database/Alert");
+const logger = require("../utils/Logger");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -17,41 +19,55 @@ exports.handleWebhooks = async (req, res) => {
     event.type === "checkout.session.completed" ||
     event.type === "checkout.session.async_payment_succeeded"
   ) {
-    fulfillCheckout(event.data.object.id);
+    return fulfillCheckout(res, event.data.object);
   }
 
-  res.status(200).end();
+  // res.status(200).end();
 };
 
-async function fulfillCheckout(sessionId) {
-  // TODO: Make this function safe to run multiple times,
-  // even concurrently, with the same session ID
+// TODO: Is returning res.status 400 correct?
+// TODO: Make this function safe to run multiple times,
+// even concurrently, with the same session ID
 
-  // TODO: Make sure fulfillment hasn't already been
-  // peformed for this Checkout Session
-
-  // Retrieve the Checkout Session from the API with line_items expanded
+async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
   const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId, {
     expand: ["line_items"],
   });
-  console.log("CheckoutSession: ", checkoutSession);
-
   const { metadata } = checkoutSession;
 
-  // Check the Checkout Session's payment_status property
-  // to determine if fulfillment should be peformed
-  if (checkoutSession.payment_status !== "unpaid") {
-    const alertId = checkoutSession.metadata.alert;
-
-    const alert = await Alert.findById(alertId);
-    if (alert.status === "active") return;
-
-    // TODO: Send confirmation email
-    await alert.activateAlert();
-
-    // TODO: Record/save fulfillment status for this
-    // Checkout Session
+  // Check if order exists, or order has been fulfilled already
+  const order = await Order.findById(metadata.order);
+  if (!order) {
+    const loggerMessage = "Order not found";
+    const loggerData = { stripeSessionId: sessionId, stripePaymentId: payment_intent };
+    logger.warning(loggerMessage, loggerData);
+    return res.status(400).send(loggerMessage);
   }
+  if (order.isFulfilled) return res.status(400).send("Order already fulfilled");
+
+  // If payment status is unpaid
+  if (checkoutSession.payment_status === "unpaid") {
+    const loggerMessage = "Checkout session payment status is unpaid";
+    logger.warning(loggerMessage, {
+      order: order.id,
+      stripeSessionId: sessionId,
+      stripePaymentId: payment_intent,
+    });
+    return res.status(400).send(loggerMessage);
+  }
+
+  // Find alert associated with payment
+  const alert = await Alert.findById(metadata.alert);
+  if (alert.status === "active") return res.status(400).send("Alert is already active");
+
+  // Activate alert and send notification
+  await alert.activate();
+
+  // Fulfill order
+  await order.fulfill(payment_intent);
+
+  return res.status(200).end();
 }
 
 // TODO: review docs to make sure doing best practices
+// https://docs.stripe.com/checkout/fulfillment

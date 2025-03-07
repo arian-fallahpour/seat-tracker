@@ -7,6 +7,7 @@ const AppError = require("../utils/AppError");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+// TODO: Test entire checkout process (including fulfillment)
 exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   const { email, course, sections, school } = req.body;
   if (!email) return next(new AppError("Please provide an email for this alert.", 400));
@@ -14,15 +15,20 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 
   let alert = await Alert.findOne({ email, course });
 
+  // Check if alert was already made for the same email and course
   const alreadyHasActiveAlert = alert && alert.status === "active";
   if (alreadyHasActiveAlert) {
     return next(new AppError("You already have an alert set up for this course.", 400));
   }
 
+  // Create new alert if none found, or the status is not active nor processing
   const noAlertOrNotProcessingStatus = !alert || alert.status !== "processing";
   if (noAlertOrNotProcessingStatus) {
     alert = await Alert.create({ email, course, sections, school });
   }
+
+  // Create order document
+  const order = await Order.create({ alert: alert.id });
 
   // Generate success and cancel urls
   const protocol = req.protocol;
@@ -34,17 +40,16 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 
   // Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price: businessData.stripe.alertPriceID,
-        quantity: 1,
-      },
-    ],
-    metadata: { alert: alert.id },
+    line_items: [{ price: businessData.stripe.alertPriceID, quantity: 1 }],
+    metadata: { alert: alert.id, order: order.id },
     mode: "payment",
     success_url: url,
     cancel_url: url,
   });
+
+  // Update order details
+  order.stripeSessionId = session.id;
+  await order.save();
 
   // Return checkout page url
   return res.status(200).json({
