@@ -1,0 +1,53 @@
+.Checkbox {
+  $width-checkbox: 2.5rem;
+  $border-radius-checkbox: 0.5rem;
+  $padding-checkbox: 0.5rem;
+
+  &--checkbox {
+  }
+
+  &--radio &Box,
+  &--radio &Check {
+    border-radius: 100%;
+  }
+
+  &Input {
+    display: none;
+  }
+
+  &Input:checked ~ &Main > &Box > &Check {
+    background-color: var(--color-primary);
+  }
+
+  &Main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--width-small);
+  }
+
+  &Box {
+    width: $width-checkbox;
+    height: $width-checkbox;
+    aspect-ratio: 1;
+    padding: $padding-checkbox;
+    background-color: var(--color-card-background);
+    border: var(--border-width) solid var(--color-card-border);
+    border-radius: $border-radius-checkbox;
+  }
+
+  &Check {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 0.25rem;
+
+    transition: background 0.2s ease;
+  }
+
+  &Label {
+    cursor: pointer;
+    color: var(--color-card-text);
+  }
+}

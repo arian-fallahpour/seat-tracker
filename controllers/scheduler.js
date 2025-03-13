@@ -6,10 +6,10 @@ const alertsData = require("../data/alerts-data");
 
 exports.init = async () => {
   // await scheduleUoftAlerts();
-  await Schedule.initRecurringSchedule("uoft-alerts", {
-    periodMinutes: alertsData.uoft.alertsPeriodMinutes,
-    onTick: scheduleUoftAlerts,
-  });
+  // await Schedule.initRecurringSchedule("uoft-alerts", {
+  //   periodMinutes: alertsData.uoft.alertsPeriodMinutes,
+  //   onTick: scheduleUoftAlerts,
+  // });
 };
 
 // TODO: Testing (What if UoftAPI does not find the course? + more)

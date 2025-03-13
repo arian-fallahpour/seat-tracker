@@ -56,7 +56,7 @@ const alertSchema = new mongoose.Schema({
   lastAlertedAt: Date,
 });
 
-// TODO
+// TODO (Should this even be a thing?)
 function validateSectionsCourse(sections) {
   return true;
 }
@@ -90,6 +90,16 @@ alertSchema.statics.findActiveAlerts = async function (school) {
 
   const filtered = alerts.filter((alert) => alert.course !== null);
   return filtered;
+};
+
+alertSchema.statics.getAlertInfo = async function (id) {
+  return await Alert.findById(id).populate({
+    path: "course",
+    populate: {
+      path: "sections",
+      select: "type number campus lastUpdatedAt",
+    },
+  });
 };
 
 /**

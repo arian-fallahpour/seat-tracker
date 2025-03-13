@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const scheduler = require("./controllers/scheduler");
+const logger = require("./utils/Logger");
 
 process.on("uncaughtException", (err) => {
   console.error(`[ERROR] (Uncaught Exception) ${err.stack}`);

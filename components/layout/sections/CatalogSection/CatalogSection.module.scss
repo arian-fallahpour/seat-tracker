@@ -1,29 +1,26 @@
-.Course {
+.CatalogSection {
   display: flex;
   flex-direction: column;
   gap: var(--width-regular);
   flex: 1;
+}
 
-  &Header {
-    display: grid;
-  }
+.Header {
+  display: grid;
 
   &Term {
     text-transform: capitalize;
   }
-
-  &Sections {
-    flex: 1;
-    display: grid;
-    align-content: start;
-    gap: inherit;
-  }
-
-  &Form {
-  }
 }
 
-.Sections {
+.Main {
+  flex: 1;
+  display: grid;
+  align-content: start;
+  gap: inherit;
+}
+
+.Sessions {
   display: grid;
   gap: var(--width-small);
 
@@ -38,8 +35,10 @@
   }
 }
 
-.Section {
-  &.selected &Check {
+.Session {
+  &.selected &Check::before {
+    // background-color: rgba(var(--color-primary-rgb), 0.5);
+    // background-color: var(--color-card-background-hover);
     background-color: var(--color-primary);
   }
 
@@ -63,10 +62,14 @@
   }
 
   &Check {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background);
     width: 1.75rem;
     height: auto;
     aspect-ratio: 1;
-    background-color: var(--color-background);
     border-radius: 100%;
     border: var(--border-width) solid
       rgba(
@@ -74,7 +77,16 @@
         calc(var(--color-card-border-opacity) + var(--color-card-background-opacity))
       );
 
-    transition: background ease 0.2s;
+    &::before {
+      content: "";
+      display: block;
+
+      height: calc(100% - 2px);
+      width: auto;
+      aspect-ratio: 1;
+      border-radius: 100%;
+      transition: background ease 0.2s;
+    }
   }
 
   &Content {
@@ -97,16 +109,5 @@
   }
 
   &Date {
-  }
-}
-
-.Form {
-  justify-items: start;
-
-  &Input {
-    width: 35rem;
-  }
-
-  &Submit {
   }
 }

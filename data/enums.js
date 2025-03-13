@@ -1,7 +1,7 @@
 module.exports = {
   alert: {
     school: ["uoft", "waterloo"],
-    status: ["processing", "active", "inactive"],
+    status: ["processing", "active", "paused", "inactive"],
   },
   section: {
     type: ["tutorial", "lab"],

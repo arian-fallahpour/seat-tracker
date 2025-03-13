@@ -7,6 +7,7 @@ const logger = require("../../utils/Logger");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
+  static URL_SMART_PROXY = "https://scraper-api.smartproxy.com/v2/scrape";
 
   static lambdaRequestsCount = 0;
   static lambdaMaxRequestPerIp = alertsData.uoft.maxRequestsPerIp;
@@ -72,10 +73,33 @@ class UoftAdapter {
   }
 
   /**
+   * Fetches Uoft API data using fetch from current ip
+   */
+  static async fetchRegular(fetchOptions) {
+    logger.info("Making REGULAR request to UOFT API");
+
+    const response = await fetch(fetchOptions.url, {
+      method: fetchOptions.method,
+      body: JSON.stringify(fetchOptions.body),
+      headers: fetchOptions.headers,
+    });
+    response.data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(response.data.message);
+    }
+
+    return response;
+  }
+
+  /**
    * Fetches Uoft API data using axios from current ip
    */
   static async fetchAxios(fetchOptions) {
     logger.info("Making AXIOS request to UOFT API");
+
+    fetchOptions.data = fetchOptions.body;
+    fetchOptions.body = undefined;
     return await axios(fetchOptions);
   }
 
@@ -101,9 +125,42 @@ class UoftAdapter {
     }
 
     // Make request to lambda function and increase request count
-    const payload = { options: fetchOptions };
+    const payload = {
+      options: {
+        url: fetchOptions.url,
+        method: fetchOptions.method,
+        data: fetchOptions.body,
+      },
+    };
     const response = await LambdaAdapter.invokeLambdaFunction(this.lambdaFunctionName, payload);
     this.lambdaRequestsCount++;
+
+    return response;
+  }
+
+  static async fetchSmartProxy(fetchOptions) {
+    const payloadBase64 = Buffer.from(JSON.stringify(fetchOptions.body)).toString("base64");
+
+    const response = await fetch(this.URL_SMART_PROXY, {
+      method: fetchOptions.method,
+      body: JSON.stringify({
+        target: "universal",
+        url: "https://api.easi.utoronto.ca/ttb/getPageableCourses",
+        http_method: fetchOptions.method,
+        payload: payloadBase64,
+        headers: fetchOptions.headers,
+        force_headers: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "",
+      },
+    });
+    response.data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(response.data.message);
+    }
 
     return response;
   }
@@ -205,7 +262,11 @@ class UoftAdapter {
     return {
       url: this.URL_GET_COURSES,
       method: "POST",
-      data: this.getBody(options),
+      body: this.getBody(options),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
     };
   }
 }

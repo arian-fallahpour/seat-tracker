@@ -5,6 +5,7 @@
   & > label {
     color: var(--color-text);
     margin-left: var(--padding-input-horizontal);
+    text-transform: capitalize;
   }
 
   & > input {

@@ -1,0 +1,19 @@
+section.EditAlertSection {
+}
+
+.Main {
+  max-width: 50rem;
+}
+
+.Form {
+  justify-items: start;
+  display: grid;
+  margin-top: 1rem;
+
+  &Input {
+    width: 35rem;
+  }
+
+  &Submit {
+  }
+}

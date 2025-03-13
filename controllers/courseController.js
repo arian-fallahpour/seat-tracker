@@ -17,12 +17,12 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
 
   // Check if valid school was provided
   if (!CourseModels.has(school)) {
-    return new AppError("Please provide a valid school to search courses from.", 500);
+    return next(new AppError("Please provide a valid school to search courses from.", 500));
   }
 
   // Check if valid query was provided
   if (!query || query === "") {
-    return new AppError("Please provide a valid query to search from.", 500);
+    return next(new AppError("Please provide a valid query to search from.", 500));
   }
 
   // Find courses based on search input
@@ -44,12 +44,12 @@ exports.getCourseInfo = catchAsync(async (req, res, next) => {
 
   // Check if valid school was provided
   if (!CourseModels.has(school)) {
-    return new AppError("Please provide a valid school to search courses from.", 500);
+    return next(new AppError("Please provide a valid school to search courses from.", 500));
   }
 
   // Check if valid code was provided
   if (!slug || slug === "") {
-    return new AppError("Please provide a valid slug to find the course.", 500);
+    return next(new AppError("Please provide a valid slug to find the course.", 500));
   }
 
   // Find course using slug
@@ -59,7 +59,7 @@ exports.getCourseInfo = catchAsync(async (req, res, next) => {
     select: "type number campus lastUpdatedAt",
   });
   if (!course) {
-    return new AppError("Could not find course with provided slug.", 404);
+    return next(new AppError("Could not find course with provided slug.", 404));
   }
 
   res.status(200).json({
