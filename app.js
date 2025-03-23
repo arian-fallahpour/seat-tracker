@@ -4,6 +4,13 @@ const path = require("path");
 const cors = require("cors");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
+/**
+ * TODO LIST
+ * - Implement Waterloo scraping and alerts
+ * - Determine how to handle failed operations when processing alerts
+ * - Determine how to keep course data updated efficiently when no alert is set on it
+ */
+
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
 const webhookController = require("./controllers/webhookController");

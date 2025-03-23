@@ -1,6 +1,8 @@
+const { render } = require("@react-email/render");
 const businessData = require("../data/business-data");
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
+// const AlertNotify = require("../emails/alert-notify.jsx");
 
 // TODO: Setup for production
 class Email {
@@ -29,27 +31,31 @@ class Email {
     return this;
   }
 
-  withTemplate(template, data) {
+  async withTemplate(template, data) {
     if (template === "alert-notify") {
-      this.withTemplateAlertNotify(data);
+      await this.withTemplateAlertNotify(data);
     } else if (template === "alert-activate") {
-      this.withTemplateAlertActivate(data);
+      await this.withTemplateAlertActivate(data);
     }
 
     return this;
   }
 
   // TODO: Fix this
-  withTemplateAlertNotify(data) {
-    this.text = data.text;
-    this.html = data.html;
+  async withTemplateAlertNotify(data) {
+    // THROWS "<" ERROR
+    // const emailElement = React.createElement(AlertNotify, { ...data }, null);
+    // this.html = await render(emailElement, { pretty: true });
+    // this.text = await render(emailElement, { plainText: true });
+    this.html = "test";
+    this.text = "test";
     return this;
   }
 
   // TODO: Fix this
-  withTemplateAlertActivate(data) {
-    this.text = data.text;
+  async withTemplateAlertActivate(data) {
     this.html = data.html;
+    this.text = data.text;
     return this;
   }
 

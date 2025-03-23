@@ -17,7 +17,7 @@ const app = require("./app");
 // Server initialization
 const port = process.env.PORT || 8080;
 const server = app.listen(port, async () => {
-  logger.announce(`App running on port ${port}`);
+  logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
   // Database initialization
   let dbUri = process.env.DATABASE_CONNECTION;

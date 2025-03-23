@@ -15,18 +15,15 @@ exports.init = async () => {
 // TODO: Testing (What if UoftAPI does not find the course? + more)
 async function scheduleUoftAlerts() {
   try {
-    // Find all active alerts for uoft
     const alerts = await Alert.findActiveAlerts("uoft");
     if (alerts.length === 0) return;
 
-    // Group alerts by course code in a map
     const groupedAlerts = Alert.groupAlertsByCode(alerts);
 
     // Get updated course data for each course from API
     const courseCodes = Object.keys(groupedAlerts);
     const updatedCourses = await UoftAdapter.fetchUpdatedCourses(courseCodes);
 
-    // Process alerts
     await Alert.processAlerts(alerts, updatedCourses);
 
     // Update courses in database with updated data

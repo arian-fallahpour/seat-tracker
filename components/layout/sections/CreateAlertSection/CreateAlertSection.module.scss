@@ -1,3 +1,15 @@
+section.EditAlertSection {
+}
+
+.Main {
+  display: grid;
+  gap: var(--width-regular);
+  max-width: 50rem;
+}
+
+.Header {
+}
+
 .Form {
   justify-items: start;
 

@@ -32,10 +32,6 @@ const alertSchema = new mongoose.Schema({
     ref: "Section",
     validate: [
       {
-        validator: validateSectionsCourse,
-        message: "Section must belong to provided course.",
-      },
-      {
         validator: validateSectionsLength,
         message: "Please provide at least one section.",
       },
@@ -55,11 +51,6 @@ const alertSchema = new mongoose.Schema({
   },
   lastAlertedAt: Date,
 });
-
-// TODO (Should this even be a thing?)
-function validateSectionsCourse(sections) {
-  return true;
-}
 
 function validateSectionsLength(sections) {
   return sections.length > 0;
@@ -127,6 +118,8 @@ alertSchema.statics.processAlerts = async function (alerts, updatedCourses) {
     const freedSections = await alert.getFreedSections(updatedCourse);
     if (freedSections.length === 0) continue;
 
+    console.log("FREED:", freedSections);
+
     // Send notification
     await alert.notify(freedSections);
   }
@@ -170,17 +163,12 @@ alertSchema.methods.activate = async function () {
   message += this.sections.join("\n");
 
   try {
-    // Construct email
-    const email = new Email()
+    // Construct and send the activation email
+    await new Email()
       .toEmail(this.email)
       .withSubject(`Alerts activated for ${this.course.code}`)
-      .withTemplate("alert-activate", {
-        text: message,
-        html: `<strong>${message}</strong>`,
-      });
-
-    // Send the activation email
-    await email.send();
+      .withTemplate("alert-activate", { alert: this })
+      .send();
     logger.info(`Activation email sent to ${this.email}`);
 
     // Set status to active
@@ -199,7 +187,7 @@ alertSchema.methods.activate = async function () {
  *
  * Logs error, but does not throw if unsuccessful
  */
-alertSchema.methods.notify = async function (freedSections) {
+alertSchema.methods.notify = async function (freedSections = []) {
   let message = [];
   for (const freedSection of freedSections) {
     message.push(
@@ -209,17 +197,12 @@ alertSchema.methods.notify = async function (freedSections) {
   message = message.join("\n");
 
   try {
-    // Construct email
-    const email = new Email()
+    // Construct and send notification email
+    await new Email()
       .toEmail(this.email)
       .withSubject(`New seats open for ${this.course.code}`)
-      .withTemplate("alert-notify", {
-        text: `${message}`,
-        html: `<strong>${message}</strong>`,
-      });
-
-    // Send notification email
-    await email.send();
+      .withTemplate("alert-notify", { alert: this })
+      .send();
     logger.info(`Alert notification email sent to ${this.email}`);
 
     // Update last alerted at

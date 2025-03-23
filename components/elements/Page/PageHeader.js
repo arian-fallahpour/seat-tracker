@@ -5,8 +5,6 @@ import classes from "./Page.module.scss";
 import Section from "../Section/Section";
 
 const PageHeader = ({ includeBackButton, includeHomeButton }) => {
-  console.log(includeHomeButton);
-
   const router = useRouter();
 
   let button;

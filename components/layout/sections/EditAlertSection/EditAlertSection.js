@@ -37,17 +37,19 @@ const EditAlertSection = ({ alert, selectedSessions }) => {
   return (
     <Section className={classes.EditAlertSection}>
       <div className={classes.Main}>
-        <h3 className="header header-section margin-bottom-auto">Update Alert</h3>
-        <p className="paragraph margin-bottom-auto">
-          If you lose access to your old/new email, simply use any link previously sent to you for
-          this alert!
-        </p>
+        <div className={classes.Header}>
+          <h3 className="header header-section margin-bottom-auto">Update Alert</h3>
+          <p className="paragraph margin-bottom-auto">
+            If you lose access to your old/new email, simply use any link previously sent to you for
+            this alert.
+          </p>
+        </div>
         <Form className={classes.Form} onSubmit={onSubmitHandler}>
           <FormRow>
             <Input
               className={classes.FormInput}
               value={email}
-              label="Change email"
+              label="email"
               placeholder="JohnPork@example.com"
               name="email"
               id="input-email"
