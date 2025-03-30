@@ -1,5 +1,6 @@
-import businessData from "@/data/business-data";
-import { Row, Section, Text } from "@react-email/components";
+import React from "react";
+import businessData from "../../data/business-data";
+import { Section, Text } from "@react-email/components";
 
 const Header = () => {
   return (

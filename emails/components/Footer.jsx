@@ -1,6 +1,5 @@
-import businessData from "@/data/business-data";
-import { Button, Column, Row, Section, Text } from "@react-email/components";
 import React from "react";
+import { Button, Row, Section } from "@react-email/components";
 
 const Footer = () => {
   return (

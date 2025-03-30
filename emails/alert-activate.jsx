@@ -1,3 +1,4 @@
+import React from "react";
 import { Html, Text, Button } from "@react-email/components";
 
 export default function Email({ alert, course }) {

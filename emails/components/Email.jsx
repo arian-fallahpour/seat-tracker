@@ -1,5 +1,5 @@
-import { Html, Section } from "@react-email/components";
 import React from "react";
+import { Html, Section } from "@react-email/components";
 import Header from "./Header";
 import Footer from "./Footer";
 

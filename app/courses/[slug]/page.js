@@ -2,10 +2,10 @@ import React from "react";
 
 import CoursePage from "@/components/pages/CoursePage/CoursePage";
 import config from "@/utils/config";
-import { createServerURL } from "../../../../utils/helper-server";
+import { createServerURL } from "@/utils/helper-server";
 
-const getData = async (school, slug) => {
-  const url = await createServerURL(`${config.API_PATH}/courses/info/${school}/${slug}`);
+const getData = async (slug) => {
+  const url = await createServerURL(`${config.API_PATH}/courses/info/${slug}`);
   const response = await fetch({ url, method: "GET" });
 
   if (!response.ok) {
@@ -18,8 +18,8 @@ const getData = async (school, slug) => {
 };
 
 async function Page({ params }) {
-  const { school, slug } = await params;
-  const course = await getData(school, slug);
+  const { slug } = await params;
+  const course = await getData(slug);
 
   return <CoursePage course={course} />;
 }
