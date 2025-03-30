@@ -1,8 +1,10 @@
 "use client";
 
-import React, { Fragment } from "react";
+import React from "react";
 import { join } from "@/utils/helper-client";
 import PageHeader from "./PageHeader";
+import Providers from "../Providers";
+import GlobalErrors from "../GlobalError/GlobalErrors";
 
 const Page = ({
   className,
@@ -12,12 +14,13 @@ const Page = ({
   ...otherProps
 }) => {
   return (
-    <Fragment>
+    <Providers>
+      <GlobalErrors />
       <main className={join("main", className)} {...otherProps}>
         <PageHeader includeBackButton={includeBackButton} includeHomeButton={includeHomeButton} />
         {children}
       </main>
-    </Fragment>
+    </Providers>
   );
 };
 

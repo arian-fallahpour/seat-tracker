@@ -1,0 +1,48 @@
+.GlobalErrors {
+  position: fixed;
+  top: 1rem;
+
+  display: grid;
+  justify-content: center;
+  left: 50%;
+  translate: -50% 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.GlobalError {
+  background-color: var(--color-error);
+  padding: var(--width-tiny);
+  border: solid 1px var(--color-error-border);
+  border-radius: 20rem;
+
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  animation: slideIn 0.2s ease;
+
+  &Icon,
+  &Message,
+  &Close {
+    color: var(--color-error-text);
+  }
+
+  &Close {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    translate: 0 -100%;
+  }
+
+  100% {
+    translate: 0 0;
+  }
+}

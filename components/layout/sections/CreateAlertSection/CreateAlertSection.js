@@ -2,16 +2,18 @@ import classes from "./CreateAlertSection.module.scss";
 import config from "@/utils/config";
 import axios from "axios";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Section from "@/components/elements/Section/Section";
 import Button from "@/components/elements/Button/Button";
 import Form, { FormRow } from "@/components/elements/Form/Form";
 import Input from "@/components/elements/Input/Input";
+import { GlobalErrorContext } from "@/store/global-error-context";
 
 const CreateAlertSection = ({ course, selectedSessions }) => {
   const router = useRouter();
+  const { setGlobalError } = useContext(GlobalErrorContext);
 
   const [email, setEmail] = useState("");
 
@@ -19,6 +21,7 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
     e.preventDefault();
 
     try {
+      throw new Error("Test error");
       const url = `/${config.API_PATH}/orders/create-checkout-session`;
       const response = await axios({
         url,
@@ -27,14 +30,14 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
           email,
           course: course._id,
           sections: selectedSessions,
-          school: "uoft",
         },
       });
+
       const { stripeSessionUrl } = response.data.data;
 
       router.push(stripeSessionUrl);
     } catch (err) {
-      console.error(err);
+      setGlobalError(err);
     }
   };
 

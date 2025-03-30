@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "./Search.module.scss";
 
 import axios from "axios";
@@ -8,33 +8,41 @@ import debounce from "lodash.debounce";
 
 import SearchResults from "./SearchResults";
 import { SearchIcon } from "@/components/elements/icons/SearchIcon";
+import { GlobalErrorContext } from "@/store/global-error-context";
 import config from "@/utils/config";
 
 // TODO: Potentially optimize search query using revalidation
 // TODO: Implement accessibility
 
 const Search = () => {
-  const school = "uoft";
-
+  const { setGlobalError } = useContext(GlobalErrorContext);
   const [value, setValue] = useState("");
   const [courses, setCourses] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
 
-  // Run search query
-  useEffect(() => {
-    const fetchCourses = debounce(async () => {
-      const url = `/${config.API_PATH}/courses/search/${school}?query=${value}`;
+  // Fetch courses in a debounced manner
+  const fetchCourses = debounce(async () => {
+    try {
+      const url = `/${config.API_PATH}/courses/search?query=${value}`;
       const { data } = await axios({ url, method: "GET" });
       const { courses } = data.data;
 
       setCourses(courses);
-    }, 500);
+    } catch (axiosError) {
+      const { message } = axiosError.response.data;
+      const error = new Error(message);
 
-    if (!value || value === "") {
-      setCourses([]);
-    } else {
-      fetchCourses();
+      setGlobalError(error);
     }
+  }, 500);
+
+  // Run search query when value of input changes
+  useEffect(() => {
+    if (!value || value === "") {
+      return setCourses([]);
+    }
+
+    fetchCourses();
   }, [value]);
 
   return (
