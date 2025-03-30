@@ -1,30 +1,31 @@
-const Alert = require("../models/database/Alert");
-const UoftCourse = require("../models/database/Course/UoftCourse");
-const UoftAdapter = require("../models/api-adapters/UoftAdapter");
-const Schedule = require("../models/database/Schedule");
-const alertsData = require("../data/alerts-data");
+import Alert from "../models/database/Alert.js";
+import UoftCourse from "../models/database/Course/UoftCourse.js";
+import UoftAdapter from "../models/api-adapters/UoftAdapter.js";
+import Schedule from "../models/database/Schedule.js";
+import alertsData from "../data/alerts-data.js";
 
-exports.init = async () => {
-  // await scheduleUoftAlerts();
-  // await Schedule.initRecurringSchedule("uoft-alerts", {
-  //   periodMinutes: alertsData.uoft.alertsPeriodMinutes,
-  //   onTick: scheduleUoftAlerts,
+const scheduler = async () => {
+  await scheduleAlerts();
+  // await Schedule.initRecurringSchedule("alerts", {
+  //   periodMinutes: alertsData.alertsPeriodMinutes,
+  //   onTick: scheduleAlerts,
   // });
 };
+export default scheduler;
 
 // TODO: Testing (What if UoftAPI does not find the course? + more)
-async function scheduleUoftAlerts() {
+async function scheduleAlerts() {
   try {
-    const alerts = await Alert.findActiveAlerts("uoft");
+    const alerts = await Alert.findActive();
     if (alerts.length === 0) return;
 
-    const groupedAlerts = Alert.groupAlertsByCode(alerts);
+    const groupedAlerts = Alert.groupByCode(alerts);
 
     // Get updated course data for each course from API
     const courseCodes = Object.keys(groupedAlerts);
     const updatedCourses = await UoftAdapter.fetchUpdatedCourses(courseCodes);
 
-    await Alert.processAlerts(alerts, updatedCourses);
+    await Alert.process(alerts, updatedCourses);
 
     // Update courses in database with updated data
     const updatedCoursesData = Object.values(updatedCourses);

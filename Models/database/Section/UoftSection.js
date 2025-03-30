@@ -1,12 +1,13 @@
-const mongoose = require("mongoose");
-const Section = require("./Section");
+import mongoose from "mongoose";
 
-const {
+import Section from "./Section.js";
+
+import {
   validateSeatsTaken,
   calculateEmptySeats,
   haveSeatsFreed,
   upsertSections,
-} = require("../../../utils/schema-utils");
+} from "../../../utils/schema-utils.js";
 
 const uoftSectionSchema = new mongoose.Schema(
   {
@@ -72,4 +73,4 @@ const UoftSection = Section.discriminator("UoftSection", uoftSectionSchema);
  * STATICS
  */
 
-module.exports = UoftSection;
+export default UoftSection;

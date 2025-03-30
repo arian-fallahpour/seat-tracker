@@ -1,10 +1,6 @@
-const { fileToZipBuffer } = require("../../utils/helper-server");
-const {
-  LambdaClient,
-  InvokeCommand,
-  UpdateFunctionCodeCommand,
-} = require("@aws-sdk/client-lambda");
-const { fromEnv } = require("@aws-sdk/credential-providers");
+import { fileToZipBuffer } from "../../utils/helper-server.js";
+import { LambdaClient, InvokeCommand, UpdateFunctionCodeCommand } from "@aws-sdk/client-lambda";
+import { fromEnv } from "@aws-sdk/credential-providers";
 
 const client = new LambdaClient({
   region: process.env.AWS_REGION,
@@ -51,4 +47,4 @@ class LambdaAdapter {
   }
 }
 
-module.exports = LambdaAdapter;
+export default LambdaAdapter;

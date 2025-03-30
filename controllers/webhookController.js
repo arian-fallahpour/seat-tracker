@@ -1,10 +1,12 @@
-const Order = require("../models/database/Order");
-const Alert = require("../models/database/Alert");
-const logger = require("../utils/Logger");
+import Stripe from "stripe";
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import Order from "../models/database/Order.js";
+import Alert from "../models/database/Alert.js";
+import logger from "../utils/Logger.js";
 
-exports.handleWebhooks = async (req, res) => {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export const handleWebhooks = async (req, res) => {
   const payload = req.body;
   const sig = req.headers["stripe-signature"];
 

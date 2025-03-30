@@ -1,5 +1,6 @@
-const enums = require("../../data/enums");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
+import enums from "../../data/enums.js";
 
 const logSchema = new mongoose.Schema({
   type: {
@@ -22,4 +23,4 @@ const logSchema = new mongoose.Schema({
 });
 
 const Log = mongoose.model("Log", logSchema);
-module.exports = Log;
+export default Log;

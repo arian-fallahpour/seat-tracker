@@ -14,14 +14,6 @@ const alertSchema = new mongoose.Schema({
     maxLength: [500, "Email address cannot exceed 500 characters."],
     validate: [validator.isEmail, "Please provide a valid email address."],
   },
-  school: {
-    type: String,
-    required: [true, "Please provide a school for this alert."],
-    enum: {
-      values: enums.alert.school,
-      message: "Please provide a valid school.",
-    },
-  },
   course: {
     type: mongoose.Schema.ObjectId,
     ref: "Course",

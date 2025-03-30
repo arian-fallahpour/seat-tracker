@@ -1,5 +1,5 @@
-const enums = require("../../../data/enums");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import enums from "../../../data/enums.js";
 
 const termSchema = new mongoose.Schema({
   year: {
@@ -17,4 +17,4 @@ const termSchema = new mongoose.Schema({
   },
 });
 
-module.exports = termSchema;
+export default termSchema;

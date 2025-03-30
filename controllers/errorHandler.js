@@ -1,8 +1,8 @@
-const AppError = require("../utils/AppError");
+import AppError from "../utils/AppError.js";
 
-module.exports = (error, req, res, next) => {
+const errorHandler = (error, req, res, next) => {
   error.statusCode = error.statusCode || 500;
-  error.status = error.status || "error";
+  error.status = error.status || "error.js";
 
   // Send development error
   if (process.env.NODE_ENV === "development") {
@@ -12,6 +12,7 @@ module.exports = (error, req, res, next) => {
   // Send production error
   return handleProdError(error, res);
 };
+export default errorHandler;
 
 function handleDevError(error, res) {
   console.error(error);

@@ -1,17 +1,25 @@
-const axios = require("axios");
-const LambdaAdapter = require("./LambdaAdapter");
-const path = require("path");
-const { sleep } = require("../../utils/helper-client");
-const alertsData = require("../../data/alerts-data");
-const logger = require("../../utils/Logger");
+import axios from "axios";
+import path from "path";
+
+import LambdaAdapter from "./LambdaAdapter.js";
+import { sleep } from "../../utils/helper-client.js";
+import alertsData from "../../data/alerts-data.js";
+import logger from "../../utils/Logger.js";
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
   static URL_SMART_PROXY = "https://scraper-api.smartproxy.com/v2/scrape";
 
   static lambdaRequestsCount = 0;
-  static lambdaMaxRequestPerIp = alertsData.uoft.maxRequestsPerIp;
+  static lambdaMaxRequestPerIp = alertsData.maxRequestsPerIp;
   static lambdaFunctionName = "axios-request";
+
+  static seasons = { 1: "winter", 5: "summer", 9: "fall" };
+  static campuses = {
+    Scarborough: "Scarborough",
+    "University of Toronto at Mississauga": "Mississauga",
+    "St. George": "St. George",
+  };
 
   /**
    * FETCH METHODS
@@ -176,10 +184,14 @@ class UoftAdapter {
 
     return {
       name: courseData.name,
-      code: `${courseData.code} ${courseData.sectionCode}`,
+      code: this.formatCourseCode(courseData),
       term: this.formatTerm(courseData.sessions[courseData.sessions.length - 1]),
       sections,
     };
+  }
+
+  static formatCourseCode(courseData) {
+    return `${courseData.code} ${courseData.sectionCode}`;
   }
 
   static formatSection(sectionData) {
@@ -194,27 +206,17 @@ class UoftAdapter {
     };
   }
 
-  static formatCampus(campus) {
-    return (
-      {
-        Scarborough: "Scarborough",
-        "University of Toronto at Mississauga": "Mississauga",
-        "St. George": "St. George",
-      }[campus] || null
-    );
+  static formatCampus(providedCampus) {
+    return this.campuses[providedCampus] || null;
   }
 
-  static formatTerm(term) {
-    const seasons = {
-      1: "winter",
-      5: "summer",
-      9: "fall",
-    };
-    if (term)
+  static formatTerm(termData) {
+    if (termData) {
       return {
-        year: Number(term.slice(0, 4)),
-        season: seasons[term[4]],
+        year: Number(termData.slice(0, 4)),
+        season: this.seasons[termData[4]],
       };
+    }
   }
 
   /**
@@ -271,4 +273,4 @@ class UoftAdapter {
   }
 }
 
-module.exports = UoftAdapter;
+export default UoftAdapter;

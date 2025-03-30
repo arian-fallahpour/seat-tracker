@@ -1,19 +1,16 @@
-module.exports = {
+const enums = {
   alert: {
-    school: ["uoft", "waterloo"],
     status: ["processing", "active", "paused", "inactive"],
   },
   section: {
     type: ["tutorial", "lab"],
     deliveryMode: ["in person", "hybrid", "online"],
-    campus: {
-      UoftSection: ["Scarborough", "Mississauga", "St. George"],
-      WaterlooSection: [],
-    },
+    // campus: {
+    //   UoftSection: ["Scarborough", "Mississauga", "St. George"],
+    //   WaterlooSection: ["University of Waterloo", "Online"],
+    // },
   },
-  term: {
-    season: ["fall", "winter", "summer"],
-  },
+  term: { season: ["fall", "winter", "summer"] },
   log: {
     type: [
       "info", // General operational messages, no issue
@@ -23,3 +20,4 @@ module.exports = {
     ],
   },
 };
+export default enums;

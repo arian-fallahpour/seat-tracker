@@ -1,5 +1,5 @@
-const { CronJob } = require("cron");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import { CronJob } from "cron";
 
 const scheduleSchema = new mongoose.Schema({
   name: {
@@ -61,5 +61,4 @@ scheduleSchema.methods.justCalled = async function () {
 };
 
 const Schedule = mongoose.model("Schedule", scheduleSchema);
-
-module.exports = Schedule;
+export default Schedule;

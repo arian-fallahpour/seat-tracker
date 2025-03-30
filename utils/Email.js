@@ -1,10 +1,12 @@
-const { render } = require("@react-email/render");
-const businessData = require("../data/business-data");
-const formData = require("form-data");
 const Mailgun = require("mailgun.js");
-// const AlertNotify = require("../emails/alert-notify.jsx");
+// const React = require("react");
+// const { render } = require("@react-email/render");
 
-// TODO: Setup for production
+const businessData = require("../data/business-data.js");
+const formData = require("form-data");
+// const AlertNotify = require("../emails/alert-notify.jsx").default;
+
+// TODO: Implement full functionality with react-email, and add useful information to each email
 class Email {
   constructor() {
     this.from = `${businessData.name} <alerts@${process.env.MAILGUN_DOMAIN}>`;
@@ -31,19 +33,19 @@ class Email {
     return this;
   }
 
-  async withTemplate(template, data) {
+  withTemplate(template, data) {
     if (template === "alert-notify") {
-      await this.withTemplateAlertNotify(data);
+      this.withTemplateAlertNotify(data);
     } else if (template === "alert-activate") {
-      await this.withTemplateAlertActivate(data);
+      this.withTemplateAlertActivate(data);
     }
 
     return this;
   }
 
   // TODO: Fix this
-  async withTemplateAlertNotify(data) {
-    // THROWS "<" ERROR
+  withTemplateAlertNotify(data) {
+    // console.log(AlertNotify.default);
     // const emailElement = React.createElement(AlertNotify, { ...data }, null);
     // this.html = await render(emailElement, { pretty: true });
     // this.text = await render(emailElement, { plainText: true });
@@ -53,7 +55,7 @@ class Email {
   }
 
   // TODO: Fix this
-  async withTemplateAlertActivate(data) {
+  withTemplateAlertActivate(data) {
     this.html = data.html;
     this.text = data.text;
     return this;

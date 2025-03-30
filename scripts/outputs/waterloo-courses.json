@@ -1,0 +1,296 @@
+[
+  {
+    "subject": "AMATH",
+    "number": 231,
+    "name": "Calculus 4",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TUT",
+        "number": "101",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TST",
+        "number": "201",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 250,
+    "name": "Intro Differential Equations",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 120,
+        "seatsTaken": 0
+      },
+      {
+        "type": "LEC",
+        "number": "002",
+        "campus": "UW U",
+        "seatsAvailable": 120,
+        "seatsTaken": 0
+      },
+      {
+        "type": "LEC",
+        "number": "081",
+        "campus": "ONLN ONLINE",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TUT",
+        "number": "101",
+        "campus": "UW U",
+        "seatsAvailable": 120,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TUT",
+        "number": "102",
+        "campus": "UW U",
+        "seatsAvailable": 120,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TST",
+        "number": "201",
+        "campus": "UW U",
+        "seatsAvailable": 240,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 251,
+    "name": "Intro Diff Equations (Adv)",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TUT",
+        "number": "101",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 271,
+    "name": "Intro Theoretical Mechanics",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 50,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 331,
+    "name": "Applied Real Analysis",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 80,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 333,
+    "name": "Calc on Mani Appl Math & Phys",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 50,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 342,
+    "name": "Comp Methods: Diff Eq",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 350,
+    "name": "Diff Eq (Bus & Econ)",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 140,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TST",
+        "number": "101",
+        "campus": "UW U",
+        "seatsAvailable": 140,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 351,
+    "name": "Ordinary Diff Equations",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 65,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 442,
+    "name": "Comp Methods: Partial Diff Eq",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 30,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 445,
+    "name": "Scientific Machine Learning",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TUT",
+        "number": "101",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 456,
+    "name": "Calculus of Variations",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 60,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 463,
+    "name": "Fluid Mechanics",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 22,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TUT",
+        "number": "101",
+        "campus": "UW U",
+        "seatsAvailable": 22,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 473,
+    "name": "Quantum Theory 2",
+    "sections": [
+      {
+        "type": "LEC",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 25,
+        "seatsTaken": 0
+      },
+      {
+        "type": "TUT",
+        "number": "101",
+        "campus": "UW U",
+        "seatsAvailable": 25,
+        "seatsTaken": 0
+      }
+    ]
+  },
+  {
+    "subject": "AMATH",
+    "number": 499,
+    "name": "Research Project",
+    "sections": [
+      {
+        "type": "PRJ",
+        "number": "001",
+        "campus": "UW U",
+        "seatsAvailable": 1,
+        "seatsTaken": 0
+      }
+    ]
+  }
+]

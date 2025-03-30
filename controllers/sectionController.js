@@ -1,9 +1,8 @@
-const crudController = require("./crudController");
+import * as crudController from "./crudController.js";
+import Section from "../models/database/Section/Section.js";
 
-const Section = require("../models/database/Section/Section");
-
-exports.getOneSection = crudController.getOne(Section);
-exports.getAllSections = crudController.getAll(Section);
-exports.createOneSection = crudController.createOne(Section);
-exports.updateOneSection = crudController.updateOne(Section);
-exports.deleteOneSection = crudController.deleteOne(Section);
+export const getOneSection = crudController.getOne(Section);
+export const getAllSections = crudController.getAll(Section);
+export const createOneSection = crudController.createOne(Section);
+export const updateOneSection = crudController.updateOne(Section);
+export const deleteOneSection = crudController.deleteOne(Section);

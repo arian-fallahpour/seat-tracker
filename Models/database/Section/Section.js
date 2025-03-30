@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const enums = require("../../../data/enums");
+import enums from "../../../data/enums.js";
 
 const sectionSchema = new mongoose.Schema({
   course: {
@@ -26,20 +26,12 @@ const sectionSchema = new mongoose.Schema({
     required: [true, "Please provide a campus."],
     minLength: [3, "Campus must be atleast 3 characters long."],
     maxLength: [200, "Campus cannot exceed 50 characters."],
-    validate: {
-      validator: campusValidator,
-      message: "Provided campus does not belong to school.",
-    },
   },
   lastUpdatedAt: {
     type: Date,
     default: new Date(Date.now()),
   },
 });
-
-function campusValidator(value) {
-  return !this.__t || enums.section.campus[this.__t].includes(value);
-}
 
 sectionSchema.index({ course: 1, type: 1, number: 1 }, { unique: true });
 
@@ -49,4 +41,4 @@ sectionSchema.index({ course: 1, type: 1, number: 1 }, { unique: true });
 
 const Section = mongoose.model("Section", sectionSchema);
 
-module.exports = Section;
+export default Section;

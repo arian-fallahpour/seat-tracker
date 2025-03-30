@@ -1,24 +1,12 @@
-const crudController = require("./crudController");
-const Course = require("../models/database/Course/Course");
+import * as crudController from "./crudController.js";
+import Course from "../models/database/Course/Course.js";
+import UoftCourse from "../models/database/Course/UoftCourse.js";
+import catchAsync from "../utils/catchAsync.js";
+import AppError from "../utils/AppError.js";
+import APIQuery from "../utils/APIQuery.js";
 
-const catchAsync = require("../utils/catchAsync");
-const AppError = require("../utils/AppError");
-const APIQuery = require("../utils/APIQuery");
-const UoftCourse = require("../models/database/Course/UoftCourse");
-const WaterlooCourse = require("../models/database/Course/WaterlooCourse");
-
-const CourseModels = new Map();
-CourseModels.set("uoft", UoftCourse);
-CourseModels.set("waterloo", WaterlooCourse);
-
-exports.searchForCourses = catchAsync(async (req, res, next) => {
-  const { school } = req.params;
+export const searchForCourses = catchAsync(async (req, res, next) => {
   const { query } = req.query;
-
-  // Check if valid school was provided
-  if (!CourseModels.has(school)) {
-    return next(new AppError("Please provide a valid school to search courses from.", 500));
-  }
 
   // Check if valid query was provided
   if (!query || query === "") {
@@ -26,8 +14,7 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
   }
 
   // Find courses based on search input
-  const CourseModel = CourseModels.get(school);
-  const searchQuery = CourseModel.search(query).populate({ path: "sections", select: "type" });
+  const searchQuery = UoftCourse.search(query).populate({ path: "sections", select: "type" });
   const courses = await new APIQuery(searchQuery, { limit: 5 }).paginate().execute();
 
   res.status(200).json({
@@ -39,13 +26,8 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getCourseInfo = catchAsync(async (req, res, next) => {
-  const { school, slug } = req.params;
-
-  // Check if valid school was provided
-  if (!CourseModels.has(school)) {
-    return next(new AppError("Please provide a valid school to search courses from.", 500));
-  }
+export const getCourseInfo = catchAsync(async (req, res, next) => {
+  const { slug } = req.params;
 
   // Check if valid code was provided
   if (!slug || slug === "") {
@@ -53,8 +35,7 @@ exports.getCourseInfo = catchAsync(async (req, res, next) => {
   }
 
   // Find course using slug
-  const CourseModel = CourseModels.get(school);
-  const course = await CourseModel.findOne({ slug }).populate({
+  const course = await UoftCourse.findOne({ slug }).populate({
     path: "sections",
     select: "type number campus lastUpdatedAt",
   });
@@ -70,8 +51,8 @@ exports.getCourseInfo = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getOneCourse = crudController.getOne(Course);
-exports.getAllCourses = crudController.getAll(Course);
-exports.createOneCourse = crudController.createOne(Course);
-exports.updateOneCourse = crudController.updateOne(Course);
-exports.deleteOneCourse = crudController.deleteOne(Course);
+export const getOneCourse = crudController.getOne(Course);
+export const getAllCourses = crudController.getAll(Course);
+export const createOneCourse = crudController.createOne(Course);
+export const updateOneCourse = crudController.updateOne(Course);
+export const deleteOneCourse = crudController.deleteOne(Course);

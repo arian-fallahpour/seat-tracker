@@ -1,7 +1,7 @@
-const catchAsync = require("../utils/catchAsync");
-const AppError = require("../utils/AppError");
+import catchAsync from "../utils/catchAsync.js";
+import AppError from "../utils/AppError.js";
 
-exports.getOne = (Model) =>
+export const getOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const document = await Model.findById(req.params.id);
 
@@ -17,7 +17,7 @@ exports.getOne = (Model) =>
     });
   });
 
-exports.getAll = (Model) =>
+export const getAll = (Model) =>
   catchAsync(async (req, res, next) => {
     const documents = await Model.find();
 
@@ -36,7 +36,7 @@ exports.getAll = (Model) =>
     });
   });
 
-exports.createOne = (Model) =>
+export const createOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const document = await Model.create(req.body);
 
@@ -48,7 +48,7 @@ exports.createOne = (Model) =>
     });
   });
 
-exports.updateOne = (Model) =>
+export const updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const document = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -67,7 +67,7 @@ exports.updateOne = (Model) =>
     });
   });
 
-exports.deleteOne = (Model) =>
+export const deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const document = await Model.findByIdAndDelete(req.params.id);
 

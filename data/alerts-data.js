@@ -1,6 +1,5 @@
-module.exports = {
-  uoft: {
-    alertsPeriodMinutes: 30,
-    maxRequestsPerIp: 50,
-  },
+const alertsData = {
+  alertsPeriodMinutes: 30,
+  maxRequestsPerIp: 50,
 };
+export default alertsData;

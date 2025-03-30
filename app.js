@@ -1,19 +1,19 @@
-const express = require("express");
-const morgan = require("morgan");
-const path = require("path");
-const cors = require("cors");
-const { createProxyMiddleware } = require("http-proxy-middleware");
+import express from "express";
+import morgan from "morgan";
+import path from "path";
+import cors from "cors";
+import { createProxyMiddleware } from "http-proxy-middleware";
+
+import errorHandler from "./controllers/errorHandler.js";
+import apiRouter from "./routers/apiRouter.js";
+import * as webhookController from "./controllers/webhookController.js";
+import { __dirname } from "./utils/helper-server.js";
 
 /**
  * TODO LIST
- * - Implement Waterloo scraping and alerts
  * - Determine how to handle failed operations when processing alerts
  * - Determine how to keep course data updated efficiently when no alert is set on it
  */
-
-const errorHandler = require("./controllers/errorHandler");
-const apiRouter = require("./routers/apiRouter");
-const webhookController = require("./controllers/webhookController");
 
 const app = express();
 
@@ -52,4 +52,4 @@ app.use("*", createProxyMiddleware(nextJsOptions));
 // Global error handler
 app.use(errorHandler);
 
-module.exports = app;
+export default app;

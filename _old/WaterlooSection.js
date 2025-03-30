@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-const {
+import mongoose from "mongoose";
+import {
   validateSeatsTaken,
   calculateEmptySeats,
   haveSeatsFreed,
-} = require("../../../utils/schema-utils");
-const Section = require("./Section");
+} from "../../../utils/schema-utils.js";
+import Section from "./Section.js";
 
 const waterlooSectionSchema = new mongoose.Schema(
   {
@@ -24,24 +24,6 @@ const waterlooSectionSchema = new mongoose.Schema(
       required: [true, "Seats available is required."],
       default: 0,
     },
-    waitlistCapacity: {
-      type: Number,
-      required: [true, "Waitlist count is required."],
-      default: 0,
-      min: [0, "Waitlist count cannot be a negative number."],
-    },
-    waitlist: {
-      type: Number,
-      required: [true, "Waitlist count is required."],
-      default: 0,
-      min: [0, "Waitlist count cannot be a negative number."],
-      validate: {
-        validator: function (waitlist) {
-          return waitlist <= this.waitlistCapacity;
-        },
-        message: "Waitlist must be less than waitlist capacity.",
-      },
-    },
   },
   {
     toJSON: { virtuals: true },
@@ -59,4 +41,4 @@ waterlooSectionSchema.methods.isFreed = haveSeatsFreed;
 
 const WaterlooSection = Section.discriminator("WaterlooSection", waterlooSectionSchema);
 
-module.exports = WaterlooSection;
+export default WaterlooSection;
