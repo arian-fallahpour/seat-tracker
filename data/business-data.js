@@ -4,4 +4,4 @@ const businessData = {
     alertPriceID: "price_1QvAO6GLcRGY5lHyxO59Lvkv",
   },
 };
-export default businessData;
+module.exports = businessData;

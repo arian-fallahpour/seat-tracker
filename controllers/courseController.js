@@ -1,11 +1,11 @@
-import * as crudController from "./crudController.js";
-import Course from "../models/database/Course/Course.js";
-import UoftCourse from "../models/database/Course/UoftCourse.js";
-import catchAsync from "../utils/catchAsync.js";
-import AppError from "../utils/AppError.js";
-import APIQuery from "../utils/APIQuery.js";
+const crudController = require("./crudController");
+const Course = require("../models/database/Course/Course");
+const UoftCourse = require("../models/database/Course/UoftCourse");
+const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/AppError");
+const APIQuery = require("../utils/APIQuery");
 
-export const searchForCourses = catchAsync(async (req, res, next) => {
+exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { query } = req.query;
 
   // Check if valid query was provided
@@ -26,7 +26,7 @@ export const searchForCourses = catchAsync(async (req, res, next) => {
   });
 });
 
-export const getCourseInfo = catchAsync(async (req, res, next) => {
+exports.getCourseInfo = catchAsync(async (req, res, next) => {
   const { slug } = req.params;
 
   // Check if valid code was provided
@@ -51,8 +51,8 @@ export const getCourseInfo = catchAsync(async (req, res, next) => {
   });
 });
 
-export const getOneCourse = crudController.getOne(Course);
-export const getAllCourses = crudController.getAll(Course);
-export const createOneCourse = crudController.createOne(Course);
-export const updateOneCourse = crudController.updateOne(Course);
-export const deleteOneCourse = crudController.deleteOne(Course);
+exports.getOneCourse = crudController.getOne(Course);
+exports.getAllCourses = crudController.getAll(Course);
+exports.createOneCourse = crudController.createOne(Course);
+exports.updateOneCourse = crudController.updateOne(Course);
+exports.deleteOneCourse = crudController.deleteOne(Course);

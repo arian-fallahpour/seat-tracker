@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+const puppeteer = require("puppeteer");
 
 class WaterlooAdapter {
   static URL_HOME = "https://classes.uwaterloo.ca/under.html";
@@ -117,4 +117,4 @@ class WaterlooAdapter {
   static async fetchSubjects() {}
 }
 
-export default WaterlooAdapter;
+module.exports = WaterlooAdapter;

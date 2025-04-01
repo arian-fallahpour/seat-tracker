@@ -34,5 +34,4 @@ class Logger {
   }
 }
 
-const logger = Logger;
-module.exports = logger;
+module.exports = Logger;

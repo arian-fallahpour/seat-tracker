@@ -1,17 +1,15 @@
-import Alert from "../models/database/Alert.js";
-import UoftCourse from "../models/database/Course/UoftCourse.js";
-import UoftAdapter from "../models/api-adapters/UoftAdapter.js";
-import Schedule from "../models/database/Schedule.js";
-import alertsData from "../data/alerts-data.js";
+const Alert = require("../models/database/Alert");
+const UoftCourse = require("../models/database/Course/UoftCourse");
+const UoftAdapter = require("../models/api-adapters/UoftAdapter");
+const Schedule = require("../models/database/Schedule");
+const alertsData = require("../data/alerts-data");
 
-const scheduler = async () => {
-  await scheduleAlerts();
+exports.init = async () => {
   // await Schedule.initRecurringSchedule("alerts", {
   //   periodMinutes: alertsData.alertsPeriodMinutes,
   //   onTick: scheduleAlerts,
   // });
 };
-export default scheduler;
 
 // TODO: Testing (What if UoftAPI does not find the course? + more)
 async function scheduleAlerts() {

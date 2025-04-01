@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
-import convert from "xml-js";
-import path from "path";
-import fs from "fs";
+const dotenv = require("dotenv");
+const convert = require("xml-js");
+const path = require("path");
+const fs = require("fs");
 
-import UoftAdapter from "../models/api-adapters/UoftAdapter.js";
+const UoftAdapter = require("../models/api-adapters/UoftAdapter");
 
 dotenv.config({ path: "./config.env" });
 

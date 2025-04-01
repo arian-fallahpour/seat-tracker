@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
-import slugify from "slugify";
+const mongoose = require("mongoose");
+const slugify = require("slugify");
 
-import Course from "./Course.js";
-import UoftSection from "../Section/UoftSection.js";
-import { upsertCoursesAndSections, upsertCourses } from "../../../utils/schema-utils.js";
+const Course = require("./Course");
+const UoftSection = require("../Section/UoftSection");
+const { upsertCoursesAndSections, upsertCourses } = require("../../../utils/schema-utils");
 
 const uoftCourseSchema = new mongoose.Schema({
   code: {
@@ -45,4 +45,4 @@ uoftCourseSchema.statics.search = function (query) {
  */
 
 const UoftCourse = Course.discriminator("UoftCourse", uoftCourseSchema);
-export default UoftCourse;
+module.exports = UoftCourse;

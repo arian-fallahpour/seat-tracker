@@ -4,7 +4,7 @@ import classes from "./HomePage.module.scss";
 import Search from "./Search/Search";
 import Header from "@/components/elements/Header/Header";
 
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <Page>
       <div className={classes.Content}>

@@ -1,12 +1,10 @@
-import Stripe from "stripe";
+const Order = require("../models/database/Order");
+const Alert = require("../models/database/Alert");
+const Logger = require("../utils/Logger");
 
-import Order from "../models/database/Order.js";
-import Alert from "../models/database/Alert.js";
-import logger from "../utils/Logger.js";
+const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-export const handleWebhooks = async (req, res) => {
+exports.handleWebhooks = async (req, res) => {
   const payload = req.body;
   const sig = req.headers["stripe-signature"];
 
@@ -42,7 +40,7 @@ async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
   if (!order) {
     const loggerMessage = "Order not found";
     const loggerData = { stripeSessionId: sessionId, stripePaymentId: payment_intent };
-    logger.warning(loggerMessage, loggerData);
+    Logger.warning(loggerMessage, loggerData);
     return res.status(400).send(loggerMessage);
   }
   if (order.isFulfilled) return res.status(400).send("Order already fulfilled");
@@ -50,7 +48,7 @@ async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
   // If payment status is unpaid
   if (checkoutSession.payment_status === "unpaid") {
     const loggerMessage = "Checkout session payment status is unpaid";
-    logger.warning(loggerMessage, {
+    Logger.warning(loggerMessage, {
       order: order.id,
       stripeSessionId: sessionId,
       stripePaymentId: payment_intent,

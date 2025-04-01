@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-import enums from "../../../data/enums.js";
+const enums = require("../../../data/enums");
 
 const sectionSchema = new mongoose.Schema({
   course: {
@@ -41,4 +41,4 @@ sectionSchema.index({ course: 1, type: 1, number: 1 }, { unique: true });
 
 const Section = mongoose.model("Section", sectionSchema);
 
-export default Section;
+module.exports = Section;

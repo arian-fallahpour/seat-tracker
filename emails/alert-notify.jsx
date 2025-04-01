@@ -8,11 +8,11 @@ export default function AlertNotify({ alert }) {
       <Row>
         <Text>Here are the sections you will get alerted for:</Text>
       </Row>
-      {alert?.sections?.map((section) => (
-        <Row>
+      {/* {alert?.sections?.map((section, i) => (
+        <Row key={i}>
           <Text>{section}</Text>
         </Row>
-      )) || <Text>No sections!</Text>}
+      )) || <Text>No sections!</Text>} */}
     </Email>
   );
 }

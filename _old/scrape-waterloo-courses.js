@@ -1,7 +1,7 @@
-import puppeteer from "puppeteer";
-import fs from "fs";
-import path from "path";
-import WaterlooAdapter from "./WaterlooAdapter.js";
+const puppeteer = require("puppeteer");
+const fs = require("fs");
+const path = require("path");
+const WaterlooAdapter = require("./WaterlooAdapter");
 
 (async () => {
   const browser = await puppeteer.launch({

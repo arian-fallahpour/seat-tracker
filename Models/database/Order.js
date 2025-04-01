@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
   alert: {
@@ -26,4 +26,4 @@ orderSchema.methods.fulfill = async function (stripePaymentId) {
 };
 
 const Order = mongoose.model("Order", orderSchema);
-export default Order;
+module.exports = Order;

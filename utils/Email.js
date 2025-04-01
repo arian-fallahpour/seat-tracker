@@ -1,12 +1,15 @@
-const Mailgun = require("mailgun.js");
-// const React = require("react");
-// const { render } = require("@react-email/render");
+// require("@babel/register");
 
-const businessData = require("../data/business-data.js");
+// const { render, renderAsync } = require("@react-email/render");
 const formData = require("form-data");
+const Mailgun = require("mailgun.js");
+
+const businessData = require("../data/business-data");
+const { jsxToHtml, jsxToText } = require("./helper-server.js");
 // const AlertNotify = require("../emails/alert-notify.jsx").default;
 
 // TODO: Implement full functionality with react-email, and add useful information to each email
+// Also fix the problem with the jsx with .map
 class Email {
   constructor() {
     this.from = `${businessData.name} <alerts@${process.env.MAILGUN_DOMAIN}>`;
@@ -45,12 +48,10 @@ class Email {
 
   // TODO: Fix this
   withTemplateAlertNotify(data) {
-    // console.log(AlertNotify.default);
-    // const emailElement = React.createElement(AlertNotify, { ...data }, null);
-    // this.html = await render(emailElement, { pretty: true });
-    // this.text = await render(emailElement, { plainText: true });
     this.html = "test";
     this.text = "test";
+    // this.html = jsxToHtml(AlertNotify, data);
+    // this.text = jsxToText(AlertNotify, data);
     return this;
   }
 

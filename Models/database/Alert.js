@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const UoftSection = require("./Section/UoftSection"); // Required for instance methods
 
 const enums = require("../../data/enums");
 const Email = require("../../utils/Email");
-const logger = require("../../utils/Logger");
+const Logger = require("../../utils/Logger");
+const UoftSection = require("./Section/UoftSection"); // Required for instance methods
 
 const alertSchema = new mongoose.Schema({
   email: {
@@ -59,15 +59,10 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  */
 
 /**
- * Returns currently active alerts and associated course for specified school
+ * Returns currently active alerts and associated course
  */
-alertSchema.statics.findActiveAlerts = async function (school) {
-  if (!enums.alert.school.includes(school)) {
-    throw new Error("Please provide a valid school");
-  }
-
+alertSchema.statics.findActive = async function () {
   const alerts = await this.find({
-    school,
     status: "active",
   }).populate({ path: "course" });
 
@@ -88,7 +83,7 @@ alertSchema.statics.getAlertInfo = async function (id) {
 /**
  * Returns an object of alerts grouped by their course code
  */
-alertSchema.statics.groupAlertsByCode = function (alerts) {
+alertSchema.statics.groupByCode = function (alerts) {
   const groupedAlerts = {};
 
   for (const alert of alerts) {
@@ -102,15 +97,13 @@ alertSchema.statics.groupAlertsByCode = function (alerts) {
   return groupedAlerts;
 };
 
-alertSchema.statics.processAlerts = async function (alerts, updatedCourses) {
+alertSchema.statics.process = async function (alerts, updatedCourses) {
   for (const alert of alerts) {
     const updatedCourse = updatedCourses[alert.course.code];
 
     // Check if any of the alert's sections are freed up
     const freedSections = await alert.getFreedSections(updatedCourse);
     if (freedSections.length === 0) continue;
-
-    console.log("FREED:", freedSections);
 
     // Send notification
     await alert.notify(freedSections);
@@ -161,13 +154,13 @@ alertSchema.methods.activate = async function () {
       .withSubject(`Alerts activated for ${this.course.code}`)
       .withTemplate("alert-activate", { alert: this })
       .send();
-    logger.info(`Activation email sent to ${this.email}`);
+    Logger.info(`Activation email sent to ${this.email}`);
 
     // Set status to active
     this.status = "active";
     await this.save();
   } catch (error) {
-    logger.alert(`Alert activation email not sent to ${this.email}`, {
+    Logger.alert(`Alert activation email not sent to ${this.email}`, {
       email: this.email,
       alert: this.id,
     });
@@ -195,13 +188,13 @@ alertSchema.methods.notify = async function (freedSections = []) {
       .withSubject(`New seats open for ${this.course.code}`)
       .withTemplate("alert-notify", { alert: this })
       .send();
-    logger.info(`Alert notification email sent to ${this.email}`);
+    Logger.info(`Alert notification email sent to ${this.email}`);
 
     // Update last alerted at
     this.lastAlertedAt = new Date(Date.now());
     await this.save();
   } catch (error) {
-    logger.alert(`Alert notification email not sent to ${this.email}`, {
+    Logger.alert(`Alert notification email not sent to ${this.email}`, {
       email: this.email,
       alert: this.id,
       error: error.message,

@@ -1,7 +1,10 @@
+require("@babel/register");
+
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+
+const Logger = require("./utils/Logger");
 const scheduler = require("./controllers/scheduler");
-const logger = require("./utils/Logger");
 
 process.on("uncaughtException", (err) => {
   console.error(`[ERROR] (Uncaught Exception) ${err.stack}`);
@@ -17,14 +20,14 @@ const app = require("./app");
 // Server initialization
 const port = process.env.PORT || 8080;
 const server = app.listen(port, async () => {
-  logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+  Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
   // Database initialization
   let dbUri = process.env.DATABASE_CONNECTION;
   dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
   dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
   await mongoose.connect(dbUri, { autoIndex: true });
-  logger.announce(`Database connection successful`);
+  Logger.announce(`Database connection successful`);
 
   // Scheduler initialization
   await scheduler.init();

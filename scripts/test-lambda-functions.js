@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
-import path from "path";
+const dotenv = require("dotenv");
+const path = require("path");
 
-import LambdaAdapter from "../models/api-adapters/LambdaAdapter.js";
-import UoftAdapter from "../models/api-adapters/UoftAdapter.js";
+const LambdaAdapter = require("../models/api-adapters/LambdaAdapter");
+const UoftAdapter = require("../models/api-adapters/UoftAdapter");
 
 dotenv.config({ path: "./config.env" });
 

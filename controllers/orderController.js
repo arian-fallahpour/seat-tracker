@@ -1,16 +1,14 @@
-import Stripe from "stripe";
+const crudController = require("./crudController");
+const Order = require("../models/database/Order");
+const Alert = require("../models/database/Alert");
+const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/AppError");
+const businessData = require("../data/business-data");
 
-import * as crudController from "./crudController.js";
-import Order from "../models/database/Order.js";
-import Alert from "../models/database/Alert.js";
-import catchAsync from "../utils/catchAsync.js";
-import AppError from "../utils/AppError.js";
-import businessData from "../data/business-data.js";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // TODO: Test entire checkout process (including fulfillment) (Create a LONG checklist of potential ways it can go)
-export const createCheckoutSession = catchAsync(async (req, res, next) => {
+exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   const { email, course, sections } = req.body;
   if (!email) return next(new AppError("Please provide an email for this alert.", 400));
   if (!course) return next(new AppError("Please provide a course for this alert.", 400));
@@ -62,8 +60,8 @@ export const createCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-export const getOneOrder = crudController.getOne(Order);
-export const getAllOrders = crudController.getAll(Order);
-export const createOneOrder = crudController.createOne(Order);
-export const updateOneOrder = crudController.updateOne(Order);
-export const deleteOneOrder = crudController.deleteOne(Order);
+exports.getOneOrder = crudController.getOne(Order);
+exports.getAllOrders = crudController.getAll(Order);
+exports.createOneOrder = crudController.createOne(Order);
+exports.updateOneOrder = crudController.updateOne(Order);
+exports.deleteOneOrder = crudController.deleteOne(Order);

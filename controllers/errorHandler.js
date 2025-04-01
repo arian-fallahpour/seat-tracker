@@ -1,4 +1,4 @@
-import AppError from "../utils/AppError.js";
+const AppError = require("../utils/AppError");
 
 const errorHandler = (error, req, res, next) => {
   error.statusCode = error.statusCode || 500;
@@ -12,7 +12,7 @@ const errorHandler = (error, req, res, next) => {
   // Send production error
   return handleProdError(error, res);
 };
-export default errorHandler;
+module.exports = errorHandler;
 
 function handleDevError(error, res) {
   console.error(error);

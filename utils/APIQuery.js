@@ -98,4 +98,4 @@ class APIQuery {
   }
 }
 
-export default APIQuery;
+module.exports = APIQuery;

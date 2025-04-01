@@ -1,13 +1,11 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const args = require("args-parser")(process.argv);
 
-import args from "args-parser";
-args(process.argv);
-
-import Section from "../models/database/Section/Section.js";
-import Course from "../models/database/Course/Course.js";
-import UoftAdapter from "../models/api-adapters/UoftAdapter.js";
-import UoftCourse from "../models/database/Course/UoftCourse.js";
+const Section = require("../models/database/Section/Section");
+const Course = require("../models/database/Course/Course");
+const UoftAdapter = require("../models/api-adapters/UoftAdapter");
+const UoftCourse = require("../models/database/Course/UoftCourse");
 
 dotenv.config({ path: "./config.env" });
 

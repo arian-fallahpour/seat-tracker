@@ -1,4 +1,7 @@
-export default {
+module.exports = {
+  // experimental: {
+  //   forceSwcTransforms: true, // Fixes error when using babel register with nextjs
+  // },
   async rewrites() {
     return [
       {

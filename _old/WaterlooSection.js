@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
-import {
+const mongoose = require("mongoose");
+const {
   validateSeatsTaken,
   calculateEmptySeats,
   haveSeatsFreed,
-} from "../../../utils/schema-utils.js";
-import Section from "./Section.js";
+} = require("../../../utils/schema-utils");
+const Section = require("./Section");
 
 const waterlooSectionSchema = new mongoose.Schema(
   {
@@ -41,4 +41,4 @@ waterlooSectionSchema.methods.isFreed = haveSeatsFreed;
 
 const WaterlooSection = Section.discriminator("WaterlooSection", waterlooSectionSchema);
 
-export default WaterlooSection;
+module.exports = WaterlooSection;

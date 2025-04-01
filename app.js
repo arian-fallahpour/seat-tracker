@@ -1,13 +1,12 @@
-import express from "express";
-import morgan from "morgan";
-import path from "path";
-import cors from "cors";
-import { createProxyMiddleware } from "http-proxy-middleware";
+const express = require("express");
+const morgan = require("morgan");
+const path = require("path");
+const cors = require("cors");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-import errorHandler from "./controllers/errorHandler.js";
-import apiRouter from "./routers/apiRouter.js";
-import * as webhookController from "./controllers/webhookController.js";
-import { __dirname } from "./utils/helper-server.js";
+const errorHandler = require("./controllers/errorHandler");
+const apiRouter = require("./routers/apiRouter");
+const webhookController = require("./controllers/webhookController");
 
 /**
  * TODO LIST
@@ -52,4 +51,4 @@ app.use("*", createProxyMiddleware(nextJsOptions));
 // Global error handler
 app.use(errorHandler);
 
-export default app;
+module.exports = app;

@@ -1,9 +1,9 @@
-import * as crudController from "./crudController.js";
-import Alert from "../models/database/Alert.js";
-import catchAsync from "../utils/catchAsync.js";
-import AppError from "../utils/AppError.js";
+const crudController = require("./crudController");
+const Alert = require("../models/database/Alert");
+const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/AppError");
 
-export const getAlertInfo = catchAsync(async (req, res, next) => {
+exports.getAlertInfo = catchAsync(async (req, res, next) => {
   const alert = await Alert.getAlertInfo(req.params.id);
   if (!alert) {
     return next(new AppError("Could not find alert with provided id.", 404));
@@ -17,7 +17,7 @@ export const getAlertInfo = catchAsync(async (req, res, next) => {
   });
 });
 
-export const editAlertInfo = catchAsync(async (req, res, next) => {
+exports.editAlertInfo = catchAsync(async (req, res, next) => {
   const { email, status, sections } = req.body;
 
   // Find alert
@@ -43,8 +43,8 @@ export const editAlertInfo = catchAsync(async (req, res, next) => {
   });
 });
 
-export const getOneAlert = crudController.getOne(Alert);
-export const getAllAlerts = crudController.getAll(Alert);
-export const createOneAlert = crudController.createOne(Alert);
-export const updateOneAlert = crudController.updateOne(Alert);
-export const deleteOneAlert = crudController.deleteOne(Alert);
+exports.getOneAlert = crudController.getOne(Alert);
+exports.getAllAlerts = crudController.getAll(Alert);
+exports.createOneAlert = crudController.createOne(Alert);
+exports.updateOneAlert = crudController.updateOne(Alert);
+exports.deleteOneAlert = crudController.deleteOne(Alert);

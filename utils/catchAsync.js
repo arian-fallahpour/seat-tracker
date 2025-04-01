@@ -3,4 +3,4 @@ const catchAsync = (fn) => {
     fn(req, res, next).catch((err) => next(err));
   };
 };
-export default catchAsync;
+module.exports = catchAsync;

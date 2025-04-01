@@ -1,6 +1,6 @@
-import axios from "axios";
-import { HttpsProxyAgent } from "https-proxy-agent";
-import request from "request-promise";
+const axios = require("axios");
+const { HttpsProxyAgent } = require("https-proxy-agent");
+const request = require("request-promise");
 
 (async () => {
   const proxyHost = "brd.superproxy.io";

@@ -1,10 +1,10 @@
-import axios from "axios";
-import path from "path";
+const axios = require("axios");
+const path = require("path");
 
-import LambdaAdapter from "./LambdaAdapter.js";
-import { sleep } from "../../utils/helper-client.js";
-import alertsData from "../../data/alerts-data.js";
-import logger from "../../utils/Logger.js";
+const LambdaAdapter = require("./LambdaAdapter");
+const { sleep } = require("../../utils/helper-client");
+const alertsData = require("../../data/alerts-data");
+const Logger = require("../../utils/Logger");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
@@ -52,7 +52,7 @@ class UoftAdapter {
         response = await this.fetchLambda(fetchOptions);
       }
     } catch (error) {
-      logger.warn(`Could not fetch updated UofT courses`, { error: error.message });
+      Logger.warn(`Could not fetch updated UofT courses`, { error: error.message });
       return [];
     }
 
@@ -84,7 +84,7 @@ class UoftAdapter {
    * Fetches Uoft API data using fetch from current ip
    */
   static async fetchRegular(fetchOptions) {
-    logger.info("Making REGULAR request to UOFT API");
+    Logger.info("Making REGULAR request to UOFT API");
 
     const response = await fetch(fetchOptions.url, {
       method: fetchOptions.method,
@@ -104,7 +104,7 @@ class UoftAdapter {
    * Fetches Uoft API data using axios from current ip
    */
   static async fetchAxios(fetchOptions) {
-    logger.info("Making AXIOS request to UOFT API");
+    Logger.info("Making AXIOS request to UOFT API");
 
     fetchOptions.data = fetchOptions.body;
     fetchOptions.body = undefined;
@@ -117,10 +117,10 @@ class UoftAdapter {
    * NOTE: May throw error when updating code when executed concurrently
    */
   static async fetchLambda(fetchOptions) {
-    logger.info("Making LAMBDA request to UOFT API");
+    Logger.info("Making LAMBDA request to UOFT API");
 
     if (this.lambdaRequestsCount >= this.lambdaMaxRequestPerIp) {
-      logger.info("Updating lambda function code to rotate ip (wait 5 seconds)");
+      Logger.info("Updating lambda function code to rotate ip (wait 5 seconds)");
 
       const filePath = `../../aws/lambdas/${this.lambdaFunctionName}/index.js`;
       const functionFilePath = path.resolve(__dirname, filePath);
@@ -273,4 +273,4 @@ class UoftAdapter {
   }
 }
 
-export default UoftAdapter;
+module.exports = UoftAdapter;
