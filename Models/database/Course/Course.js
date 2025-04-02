@@ -34,5 +34,5 @@ courseSchema.index({ slug: 1 });
  * METHODS
  */
 
-const Course = mongoose.model("Course", courseSchema);
+const Course = mongoose.models?.Course || mongoose.model("Course", courseSchema);
 module.exports = Course;

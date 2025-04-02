@@ -60,5 +60,5 @@ scheduleSchema.methods.justCalled = async function () {
   await this.save();
 };
 
-const Schedule = mongoose.model("Schedule", scheduleSchema);
+const Schedule = mongoose.models?.Schedule || mongoose.model("Schedule", scheduleSchema);
 module.exports = Schedule;

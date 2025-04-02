@@ -2,16 +2,21 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const cors = require("cors");
-const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
 const webhookController = require("./controllers/webhookController");
 
+// TODO
 /**
  * TODO LIST
  * - Determine how to handle failed operations when processing alerts
+ * - Determine how to run course requests in parallel
  * - Determine how to keep course data updated efficiently when no alert is set on it
+ * - Enable/disable creation of alerts based on enrollment timing
+ * - Add responsive styling
+ * - Authentication
+ * - Coupons
  */
 
 const app = express();
@@ -39,14 +44,6 @@ app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 
 // API routes
 app.use("/api", apiRouter);
-
-// Next.js proxy
-const nextJsOptions = {
-  target: `http://localhost:${process.env.NEXT_PUBLIC_PORT}`,
-  changeOrigin: true,
-};
-app.use("/_next", createProxyMiddleware(nextJsOptions));
-app.use("*", createProxyMiddleware(nextJsOptions));
 
 // Global error handler
 app.use(errorHandler);

@@ -1,36 +1,48 @@
-require("@babel/register");
+require("@babel/register"); // Required for importing of react components in nodejs
 
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-
-const Logger = require("./utils/Logger");
-const scheduler = require("./controllers/scheduler");
+const next = require("next");
 
 process.on("uncaughtException", (err) => {
   console.error(`[ERROR] (Uncaught Exception) ${err.stack}`);
   process.exit(1);
 });
 
-// Config initialization
+// Env file initialization
 dotenv.config({ path: "./config.env" });
 
-// App initialization
-const app = require("./app");
+const port = process.env.PORT || 3000;
+const nextApp = next({ dev: process.env.NODE_ENV !== "production" });
+const nextRequestHandler = nextApp.getRequestHandler();
 
-// Server initialization
-const port = process.env.PORT || 8080;
-const server = app.listen(port, async () => {
-  Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+let server;
+nextApp.prepare().then(() => {
+  const Logger = require("./utils/Logger");
+  const scheduler = require("./controllers/scheduler");
+  const { connectToDB } = require("./utils/helper-server");
 
-  // Database initialization
-  let dbUri = process.env.DATABASE_CONNECTION;
-  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-  await mongoose.connect(dbUri, { autoIndex: true });
-  Logger.announce(`Database connection successful`);
+  const app = require("./app");
 
-  // Scheduler initialization
-  await scheduler.init();
+  // Custom route
+  app.get("/custom", (req, res) => {
+    return res.send("This is a custom route");
+  });
+
+  server = app.listen(port, async (err) => {
+    if (err) throw err;
+    Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+
+    // Database initialization
+    await connectToDB();
+
+    // Scheduler initialization
+    await scheduler.init();
+  });
+
+  // Next.js routes
+  app.get("*", (req, res) => {
+    return nextRequestHandler(req, res);
+  });
 });
 
 process.on("unhandledRejection", (err) => {

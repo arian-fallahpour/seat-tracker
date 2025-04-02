@@ -194,6 +194,7 @@ alertSchema.methods.notify = async function (freedSections = []) {
     this.lastAlertedAt = new Date(Date.now());
     await this.save();
   } catch (error) {
+    console.error(error);
     Logger.alert(`Alert notification email not sent to ${this.email}`, {
       email: this.email,
       alert: this.id,
@@ -202,6 +203,6 @@ alertSchema.methods.notify = async function (freedSections = []) {
   }
 };
 
-const Alert = mongoose.model("Alert", alertSchema);
+const Alert = mongoose.models?.Alert || mongoose.model("Alert", alertSchema);
 
 module.exports = Alert;

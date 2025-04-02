@@ -5,6 +5,7 @@ const Schedule = require("../models/database/Schedule");
 const alertsData = require("../data/alerts-data");
 
 exports.init = async () => {
+  // await scheduleAlerts();
   // await Schedule.initRecurringSchedule("alerts", {
   //   periodMinutes: alertsData.alertsPeriodMinutes,
   //   onTick: scheduleAlerts,

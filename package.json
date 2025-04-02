@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:server": "nodemon server.js",
-    "dev:next": "next dev",
-    "dev:email": "email dev",
+    "dev": "nodemon server.js",
+    "email": "email dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js && next start",
     "lint": "next lint",

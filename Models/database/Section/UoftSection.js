@@ -66,7 +66,8 @@ uoftSectionSchema.statics.upsertSections = async function (sectionsData) {
 
 uoftSectionSchema.methods.isFreed = haveSeatsFreed;
 
-const UoftSection = Section.discriminator("UoftSection", uoftSectionSchema);
+const UoftSection =
+  mongoose.models?.UoftSection || Section.discriminator("UoftSection", uoftSectionSchema);
 
 /**
  * STATICS

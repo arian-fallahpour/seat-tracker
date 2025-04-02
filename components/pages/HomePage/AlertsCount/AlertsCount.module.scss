@@ -1,0 +1,58 @@
+.AlertsCount {
+  display: flex;
+  gap: var(--width-small);
+  align-items: center;
+
+  position: absolute;
+  right: var(--width-small);
+  bottom: var(--width-small);
+
+  padding: var(--width-tiny) var(--width-regular);
+  border-radius: 20rem;
+  background: var(--color-card-background);
+  color: var(--color-card-text);
+}
+
+.Indicator {
+  display: block;
+  height: 1.25rem;
+  width: 1.25rem;
+  position: relative;
+
+  &Inner,
+  &Outer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 100%;
+    position: absolute;
+    background-color: var(--color-success);
+  }
+
+  &Inner {
+  }
+
+  &Outer {
+    animation: indicator infinite 2s;
+  }
+}
+
+.Count {
+}
+
+@keyframes indicator {
+  0% {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+  }
+
+  100% {
+    width: calc(100% + 1.5rem);
+    height: calc(100% + 1.5rem);
+    opacity: 0;
+  }
+}

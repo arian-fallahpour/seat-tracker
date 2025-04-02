@@ -3,6 +3,8 @@ const alertController = require("../controllers/alertController");
 
 const router = express.Router();
 
+router.get("/count", alertController.getAlertsCount);
+
 router.route("/info/:id").get(alertController.getAlertInfo).post(alertController.editAlertInfo);
 
 router.route("/").get(alertController.getAllAlerts).post(alertController.createOneAlert);

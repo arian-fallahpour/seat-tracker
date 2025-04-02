@@ -43,6 +43,20 @@ exports.editAlertInfo = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getAlertsCount = async (req, res, next) => {
+  const alerts = await Alert.aggregate([
+    {
+      $match: { status: "active" },
+    },
+    { $count: "count" },
+  ]);
+
+  return res.status(200).json({
+    status: 200,
+    data: { count: alerts[0].count },
+  });
+};
+
 exports.getOneAlert = crudController.getOne(Alert);
 exports.getAllAlerts = crudController.getAll(Alert);
 exports.createOneAlert = crudController.createOne(Alert);

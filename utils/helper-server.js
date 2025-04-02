@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
+const fs = require("fs");
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
-const reactToText = require("react-to-text");
 const archiver = require("archiver");
 const { headers } = require("next/headers");
-const fs = require("fs");
+const { default: reactToText } = require("react-to-text");
+
+const Logger = require("./Logger");
 
 exports.createServerURL = async (relativeURL) => {
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
@@ -40,9 +42,17 @@ exports.jsxToText = function (Component, props) {
   return reactToText(element);
 };
 
+let connectedToDB = false;
 exports.connectToDB = async function () {
-  let dbUri = process.env.DATABASE_CONNECTION;
-  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-  await mongoose.connect(dbUri, { autoIndex: true });
+  if (connectedToDB) return;
+
+  try {
+    let dbUri = process.env.DATABASE_CONNECTION;
+    dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
+    dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
+    await mongoose.connect(dbUri, { autoIndex: true });
+    Logger.announce(`Database connection successful`);
+
+    connectedToDB = true;
+  } catch (error) {}
 };

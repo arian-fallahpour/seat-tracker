@@ -39,6 +39,6 @@ sectionSchema.index({ course: 1, type: 1, number: 1 }, { unique: true });
  * STATICS
  */
 
-const Section = mongoose.model("Section", sectionSchema);
+const Section = mongoose.models?.Section || mongoose.model("Section", sectionSchema);
 
 module.exports = Section;

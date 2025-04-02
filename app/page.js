@@ -1,25 +1,22 @@
 import HomePage from "@/components/pages/HomePage/HomePage";
-import { connectToDB } from "../utils/helper-server";
-import Alert from "../models/database/Alert";
-import Section from "../models/database/Section/Section";
-import Log from "../models/database/Log";
+import config from "@/utils/config";
+import { createServerURL } from "@/utils/helper-server";
 
 const getData = async () => {
-  console.log(process.env);
-  // let dbUri = process.env.DATABASE_CONNECTION;
-  // dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  // dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-  // await mongoose.connect(dbUri, { autoIndex: true });
+  const url = await createServerURL(`${config.API_PATH}/alerts/count`);
+  const response = await fetch({ url, method: "GET" }, { next: { revalidate: 1 } });
 
-  // const alerts = await Alert.aggregate([{ $count: "count" }]);
-  return {
-    alertsCount: 1,
-  };
+  if (!response.ok) {
+    throw new Error("Could not get course data.");
+  }
+
+  const body = await response.json();
+  const { count } = body.data;
+  return { alertsCount: count };
 };
 
 export default async function Page() {
   const { alertsCount } = await getData();
-  console.log(alertsCount);
 
   return <HomePage alertsCount={alertsCount} />;
 }

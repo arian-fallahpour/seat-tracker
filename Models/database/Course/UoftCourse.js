@@ -44,5 +44,6 @@ uoftCourseSchema.statics.search = function (query) {
  * METHODS
  */
 
-const UoftCourse = Course.discriminator("UoftCourse", uoftCourseSchema);
+const UoftCourse =
+  mongoose.models?.UoftCourse || Course.discriminator("UoftCourse", uoftCourseSchema);
 module.exports = UoftCourse;
