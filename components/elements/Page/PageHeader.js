@@ -7,6 +7,10 @@ import Section from "../Section/Section";
 const PageHeader = ({ includeBackButton, includeHomeButton }) => {
   const router = useRouter();
 
+  if (!includeBackButton && !includeHomeButton) {
+    return null;
+  }
+
   let button;
   if (includeBackButton) {
     button = (

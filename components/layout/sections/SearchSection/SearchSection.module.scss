@@ -1,0 +1,17 @@
+.SearchSection {
+  display: grid;
+  gap: var(--width-small);
+  align-content: start;
+  justify-items: center;
+}
+
+.Header {
+  height: 30vh;
+  max-width: 50rem;
+  width: 100%;
+
+  display: grid;
+  align-content: end;
+
+  text-align: center;
+}

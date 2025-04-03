@@ -1,3 +1,9 @@
+@import "@/sass/abstracts/mixins";
+
 .Section {
   padding: var(--width-small) var(--width-large);
+
+  @include respond(500px) {
+    padding: var(--width-small);
+  }
 }

@@ -8,6 +8,8 @@ const APIQuery = require("../utils/APIQuery");
 exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { query } = req.query;
 
+  // return next(new AppError("test", 400));
+
   // Check if valid query was provided
   if (!query || query === "") {
     return next(new AppError("Please provide a valid query to search from.", 500));

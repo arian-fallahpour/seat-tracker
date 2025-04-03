@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import classes from "./Search.module.scss";
 
 import axios from "axios";
@@ -16,34 +16,41 @@ import config from "@/utils/config";
 
 const Search = () => {
   const { setGlobalError } = useContext(GlobalErrorContext);
-  const [value, setValue] = useState("");
+
+  const [query, setQuery] = useState("");
   const [courses, setCourses] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
 
   // Fetch courses in a debounced manner
-  const fetchCourses = debounce(async () => {
-    try {
-      const url = `/${config.API_PATH}/courses/search?query=${value}`;
-      const { data } = await axios({ url, method: "GET" });
-      const { courses } = data.data;
+  const searchCourses = useCallback(
+    debounce(async (query) => {
+      try {
+        const { data } = await axios({
+          url: `/${config.API_PATH}/courses/search?query=${query}`,
+          method: "GET",
+        });
 
-      setCourses(courses);
-    } catch (axiosError) {
-      const { message } = axiosError.response.data;
-      const error = new Error(message);
+        const { courses } = data.data;
 
-      setGlobalError(error);
-    }
-  }, 500);
+        setCourses(courses);
+      } catch (axiosError) {
+        const { message } = axiosError.response.data;
+        const error = new Error(message);
+
+        setGlobalError(error);
+      }
+    }, 500),
+    []
+  );
 
   // Run search query when value of input changes
   useEffect(() => {
-    if (!value || value === "") {
+    if (!query || query === "") {
       return setCourses([]);
     }
 
-    fetchCourses();
-  }, [value]);
+    searchCourses(query);
+  }, [query]);
 
   return (
     <div
@@ -54,8 +61,8 @@ const Search = () => {
       <div className={classes.SearchMain}>
         <input
           className={classes.SearchInput}
-          placeholder="course code, name..."
-          onChange={(e) => setValue(e.target.value)}
+          placeholder="e.g. MIE245H1 S"
+          onChange={(e) => setQuery(e.target.value)}
         />
 
         <div className={classes.SearchIcon}>
