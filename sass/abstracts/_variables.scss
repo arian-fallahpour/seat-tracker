@@ -4,15 +4,13 @@
 
   --color-card-rgb: 255, 255, 255;
   --color-card-background-opacity: 0.025;
-  --color-card-border-opacity: 0.05;
-
   --color-card-background: rgba(var(--color-card-rgb), var(--color-card-background-opacity));
   --color-card-background-hover: rgba(var(--color-card-rgb), 0.04);
+  --color-card-background-active: rgba(var(--color-card-rgb), 0.02);
+  --color-card-border-opacity: 0.05;
   --color-card-border: rgba(var(--color-card-rgb), var(--color-card-border-opacity));
-  --color-card-text-placeholder: rgba(var(--color-card-rgb), 0.2);
   --color-card-text: rgba(var(--color-card-rgb), 0.7);
-  --color-card-hover: rgba(var(--color-card-rgb), 0.01);
-  --color-card-active: rgba(var(--color-card-rgb), 0.02);
+  --color-card-placeholder: rgba(var(--color-card-rgb), 0.2);
 
   --color-success: #00be36;
 

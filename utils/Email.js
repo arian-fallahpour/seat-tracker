@@ -1,14 +1,12 @@
 const AlertNotify = require("../emails/alert-notify.jsx").default;
+const AlertActivate = require("../emails/alert-activate.jsx").default;
 
-// const { render, renderAsync } = require("@react-email/render");
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 
 const businessData = require("../data/business-data");
 const { jsxToHtml, jsxToText } = require("./helper-server.js");
 
-// TODO: Implement full functionality with react-email, and add useful information to each email
-// Also fix the problem with the jsx with .map
 class Email {
   constructor() {
     this.from = `${businessData.name} <alerts@${process.env.MAILGUN_DOMAIN}>`;
@@ -46,15 +44,16 @@ class Email {
   }
 
   withTemplateAlertNotify(data) {
-    this.html = jsxToHtml(AlertNotify, data);
-    this.text = jsxToText(AlertNotify, data);
+    const props = this.getProps(data);
+    this.html = jsxToHtml(AlertNotify, props);
+    this.text = jsxToText(AlertNotify, props);
     return this;
   }
 
-  // TODO: Fix this
   withTemplateAlertActivate(data) {
-    this.html = data.html;
-    this.text = data.text;
+    const props = this.getProps(data);
+    this.html = jsxToHtml(AlertActivate, props);
+    this.text = jsxToText(AlertActivate, props);
     return this;
   }
 
@@ -68,6 +67,20 @@ class Email {
     });
 
     return this;
+  }
+
+  getProps(data) {
+    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+
+    return {
+      data,
+      context: {
+        host: process.env.HOST,
+        port: process.env.PORT,
+        protocol: protocol,
+        baseURL: `${protocol}://${process.env.HOST}:${process.env.PORT}`,
+      },
+    };
   }
 }
 

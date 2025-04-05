@@ -16,6 +16,10 @@
   max-width: 60rem;
   width: 100%;
 
+  &.disabled {
+    opacity: 0.5;
+  }
+
   &Main {
     display: flex;
     gap: var(--width-small);
@@ -47,6 +51,20 @@
     top: 50%;
     translate: 0 -42.5%;
     color: var(--color-card-text);
+
+    opacity: 0;
+    scale: 0.75;
+    filter: blur(100px);
+    transition:
+      opacity 0.5s ease,
+      scale 0.5s ease,
+      blur 2s ease;
+
+    &.visible {
+      filter: blur(0px);
+      opacity: 1;
+      scale: 1;
+    }
   }
 
   &Results {
@@ -77,11 +95,11 @@
 
     &:hover,
     &:focus-within {
-      background-color: var(--color-card-hover);
+      background-color: var(--color-card-background-hover);
     }
 
     &:active {
-      background-color: var(--color-card-active);
+      background-color: var(--color-card-background-active);
     }
 
     &Header {

@@ -16,15 +16,21 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   let alert = await Alert.findOne({ email, course });
 
   // Check if alert was already made for the same email and course
-  const alreadyHasActiveAlert = alert && alert.status === "active.js";
+  const alreadyHasActiveAlert = alert && alert.status === "active";
   if (alreadyHasActiveAlert) {
     return next(new AppError("You already have an alert set up for this course.", 400));
   }
 
   // Create new alert if none found, or the status is not active nor processing
-  const noAlertOrNotProcessingStatus = !alert || alert.status !== "processing.js";
+  const noAlertOrNotProcessingStatus = !alert || alert.status !== "processing";
   if (noAlertOrNotProcessingStatus) {
     alert = await Alert.create({ email, course, sections });
+  }
+
+  // Update alert's sections if alert is processing
+  if (alert && alert.status === "processing") {
+    alert.sections = sections;
+    await alert.save();
   }
 
   // Create order document
@@ -32,15 +38,14 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 
   // Generate success and cancel urls
   const protocol = req.protocol;
-  const domain =
-    process.env.NODE_ENV === "development"
-      ? `localhost:${process.env.NEXT_PUBLIC_PORT}`
-      : req.headers.host;
-  const url = `${protocol}://${domain}`;
+  const host =
+    process.env.NODE_ENV === "development" ? `localhost:${process.env.PORT}` : req.headers.host;
+  const url = `${protocol}://${host}`;
 
   // Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
     line_items: [{ price: businessData.stripe.alertPriceID, quantity: 1 }],
+    allow_promotion_codes: true,
     metadata: { alert: alert.id, order: order.id },
     mode: "payment",
     success_url: url,

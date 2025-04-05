@@ -2,7 +2,7 @@ const Order = require("../models/database/Order");
 const Alert = require("../models/database/Alert");
 const Logger = require("../utils/Logger");
 
-const Stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.handleWebhooks = async (req, res) => {
   const payload = req.body;
@@ -71,3 +71,4 @@ async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
 
 // TODO: review docs to make sure doing best practices
 // https://docs.stripe.com/checkout/fulfillment
+// stripe listen --forward-to localhost:3000/webhooks

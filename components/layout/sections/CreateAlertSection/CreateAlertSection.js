@@ -21,9 +21,8 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
     e.preventDefault();
 
     try {
-      throw new Error("Test error");
       const url = `/${config.API_PATH}/orders/create-checkout-session`;
-      const response = await axios({
+      const { data: body } = await axios({
         url,
         method: "POST",
         data: {
@@ -33,11 +32,12 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
         },
       });
 
-      const { stripeSessionUrl } = response.data.data;
+      const { stripeSessionUrl } = body.data;
 
       router.push(stripeSessionUrl);
-    } catch (err) {
-      setGlobalError(err);
+    } catch (axiosError) {
+      const error = new Error(axiosError.response.data.message);
+      setGlobalError(error);
     }
   };
 

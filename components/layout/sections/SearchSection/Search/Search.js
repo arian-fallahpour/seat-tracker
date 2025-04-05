@@ -7,19 +7,21 @@ import axios from "axios";
 import debounce from "lodash.debounce";
 
 import SearchResults from "./SearchResults";
+import Loader from "@/components/elements/Loader/Loader";
 import { SearchIcon } from "@/components/elements/icons/SearchIcon";
 import { GlobalErrorContext } from "@/store/global-error-context";
 import config from "@/utils/config";
+import { join } from "@/utils/helper-client";
 
-// TODO: Potentially optimize search query using revalidation
 // TODO: Implement accessibility
 
-const Search = () => {
+const Search = ({ isDisabled }) => {
   const { setGlobalError } = useContext(GlobalErrorContext);
 
   const [query, setQuery] = useState("");
   const [courses, setCourses] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Fetch courses in a debounced manner
   const searchCourses = useCallback(
@@ -39,6 +41,8 @@ const Search = () => {
 
         setGlobalError(error);
       }
+
+      setIsLoading(false);
     }, 500),
     []
   );
@@ -49,12 +53,16 @@ const Search = () => {
       return setCourses([]);
     }
 
+    console.log(query);
+
+    setIsLoading(true);
+
     searchCourses(query);
   }, [query]);
 
   return (
     <div
-      className={classes.Search}
+      className={join(classes.Search, isDisabled ? classes.disabled : null)}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
@@ -62,11 +70,15 @@ const Search = () => {
         <input
           className={classes.SearchInput}
           placeholder="e.g. MIE245H1 S"
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => setQuery(e.target.value.trim())}
+          disabled={isDisabled}
         />
 
-        <div className={classes.SearchIcon}>
+        <div className={join(classes.SearchIcon, !isLoading ? classes.visible : null)}>
           <SearchIcon />
+        </div>
+        <div className={join(classes.SearchIcon, isLoading ? classes.visible : null)}>
+          <Loader />
         </div>
       </div>
 

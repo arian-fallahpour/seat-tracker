@@ -16,6 +16,7 @@ const AlertPage = ({ alert }) => {
         selectedSessions={selectedSessions}
         toggleSession={toggleSession}
       />
+
       <EditAlertSection alert={alert} selectedSessions={selectedSessions} />
     </Page>
   );

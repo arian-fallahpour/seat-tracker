@@ -15,3 +15,18 @@
 
   text-align: center;
 }
+
+.Message {
+  max-width: 40rem;
+  color: var(--color-card-text);
+  display: flex;
+  gap: var(--width-tiny);
+
+  &Icon {
+    width: 3rem;
+  }
+
+  & > p {
+    color: inherit;
+  }
+}

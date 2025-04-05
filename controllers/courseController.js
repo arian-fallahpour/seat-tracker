@@ -4,11 +4,20 @@ const UoftCourse = require("../models/database/Course/UoftCourse");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
 const APIQuery = require("../utils/APIQuery");
+const alertsData = require("../data/alerts-data");
+
+exports.restrictEnrol = catchAsync(async (req, res, next) => {
+  if (!alertsData.allowedToEnrol) {
+    return next(
+      new AppError("Enrollment is not current open! Please come back when enrollment is open", 400)
+    );
+  }
+
+  next();
+});
 
 exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { query } = req.query;
-
-  // return next(new AppError("test", 400));
 
   // Check if valid query was provided
   if (!query || query === "") {

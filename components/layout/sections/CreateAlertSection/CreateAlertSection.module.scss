@@ -1,3 +1,5 @@
+@use "@/sass/abstracts/mixins" as *;
+
 section.EditAlertSection {
 }
 
@@ -8,15 +10,25 @@ section.EditAlertSection {
 }
 
 .Header {
+  display: grid;
 }
 
 .Form {
   justify-items: start;
 
   &Input {
-    width: 35rem;
+    max-width: 35rem;
+    // width: 100%;
+
+    @include respond(500px) {
+      max-width: unset;
+      width: 100%;
+    }
   }
 
   &Submit {
+    @include respond(500px) {
+      width: 100%;
+    }
   }
 }

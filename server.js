@@ -2,6 +2,7 @@ require("@babel/register"); // Required for importing of react components in nod
 
 const dotenv = require("dotenv");
 const next = require("next");
+const mongoose = require("mongoose");
 
 process.on("uncaughtException", (err) => {
   console.error(`[ERROR] (Uncaught Exception) ${err.stack}`);
@@ -12,31 +13,30 @@ process.on("uncaughtException", (err) => {
 dotenv.config({ path: "./config.env" });
 
 const port = process.env.PORT || 3000;
+const host = process.env.HOST;
 const nextApp = next({ dev: process.env.NODE_ENV !== "production" });
 const nextRequestHandler = nextApp.getRequestHandler();
 
 let server;
 nextApp.prepare().then(() => {
   const Logger = require("./utils/Logger");
-  const scheduler = require("./controllers/scheduler");
-  const { connectToDB } = require("./utils/helper-server");
 
   const app = require("./app");
 
-  // Custom route
-  app.get("/custom", (req, res) => {
-    return res.send("This is a custom route");
-  });
+  // Database initialization
+  let dbUri = process.env.DATABASE_CONNECTION;
+  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
+  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
+  mongoose
+    .connect(dbUri, { autoIndex: true })
+    .then(() => Logger.announce(`Database connection successful`));
 
-  server = app.listen(port, async (err) => {
-    if (err) throw err;
+  server = app.listen(port, async () => {
+    const scheduleController = require("./controllers/scheduleController");
+
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-    // Database initialization
-    await connectToDB();
-
-    // Scheduler initialization
-    await scheduler.init();
+    await scheduleController.initialize();
   });
 
   // Next.js routes

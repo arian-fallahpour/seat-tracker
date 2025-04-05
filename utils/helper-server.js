@@ -41,18 +41,3 @@ exports.jsxToText = function (Component, props) {
   const element = React.createElement(Component, props, null);
   return reactToText(element);
 };
-
-let connectedToDB = false;
-exports.connectToDB = async function () {
-  if (connectedToDB) return;
-
-  try {
-    let dbUri = process.env.DATABASE_CONNECTION;
-    dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-    dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-    await mongoose.connect(dbUri, { autoIndex: true });
-    Logger.announce(`Database connection successful`);
-
-    connectedToDB = true;
-  } catch (error) {}
-};

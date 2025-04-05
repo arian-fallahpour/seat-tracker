@@ -1,9 +1,10 @@
 const express = require("express");
 const alertController = require("../controllers/alertController");
+const courseController = require("../controllers/courseController");
 
 const router = express.Router();
 
-router.get("/count", alertController.getAlertsCount);
+router.get("/count", courseController.restrictEnrol, alertController.getAlertsCount);
 
 router.route("/info/:id").get(alertController.getAlertInfo).post(alertController.editAlertInfo);
 

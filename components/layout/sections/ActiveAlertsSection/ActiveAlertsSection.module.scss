@@ -1,8 +1,16 @@
 @import "@/sass/abstracts/mixins";
 
-.ActiveAlertsSection {
-  display: grid;
-  justify-content: flex-end;
+section.ActiveAlertsSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: var(--width-tiny);
+  padding-bottom: var(--width-tiny);
+}
+
+.Copyright {
+  color: var(--color-card-text);
 }
 
 .ActiveAlerts {

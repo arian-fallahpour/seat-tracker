@@ -10,7 +10,9 @@ const Session = ({ id, type, number, campus, lastUpdatedAt, isSelected, toggleSe
       onClick={() => toggleSession(id)}
     >
       <button className={classes.SessionMain} aria-selected={isSelected}>
-        <span className={classes.SessionCheck} />
+        <span className={classes.SessionCheck}>
+          <span className={classes.SessionCheckInner} />
+        </span>
         <div className={classes.SessionContent}>
           <div className={classes.SessionCampus}>{campus}</div>
           <div className={join("header", "header-card", classes.SessionHeader)}>

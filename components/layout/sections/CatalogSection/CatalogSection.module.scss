@@ -1,3 +1,5 @@
+@use "@/sass/abstracts/mixins" as *;
+
 .CatalogSection {
   display: flex;
   flex-direction: column;
@@ -31,14 +33,15 @@
     list-style: none;
     display: grid;
     gap: var(--width-small);
-    grid-template-columns: repeat(auto-fit, minmax(auto, 32rem));
+    grid-template-columns: repeat(auto-fill, minmax(32.5rem, 1fr));
+    max-height: 50rem;
+    max-width: 120rem;
+    overflow: auto;
   }
 }
 
 .Session {
-  &.selected &Check::before {
-    // background-color: rgba(var(--color-primary-rgb), 0.5);
-    // background-color: var(--color-card-background-hover);
+  &.selected &CheckInner {
     background-color: var(--color-primary);
   }
 
@@ -77,10 +80,8 @@
         calc(var(--color-card-border-opacity) + var(--color-card-background-opacity))
       );
 
-    &::before {
-      content: "";
+    &Inner {
       display: block;
-
       height: calc(100% - 2px);
       width: auto;
       aspect-ratio: 1;
@@ -109,5 +110,7 @@
   }
 
   &Date {
+    font-size: var(--font-size-small);
+    width: max-content;
   }
 }

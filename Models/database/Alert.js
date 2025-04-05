@@ -114,6 +114,7 @@ alertSchema.statics.process = async function (alerts, updatedCourses) {
  * METHODS
  */
 
+// TODO: fix bc process is complicated
 alertSchema.methods.getFreedSections = async function (updatedCourse) {
   const sectionsEntries = updatedCourse.sections.map((s) => [s.type + s.number, s]);
   const updatedSections = Object.fromEntries(sectionsEntries);
@@ -128,6 +129,9 @@ alertSchema.methods.getFreedSections = async function (updatedCourse) {
     const updatedSection = updatedSections[alertableSection.type + alertableSection.number];
 
     if (alertableSection.isFreed(updatedSection)) {
+      alertableSection.seatsTaken = updatedSection.seatsTaken; // Here is an issue
+      alertableSection.seatsAvailable = updatedSection.seatsAvailable; // Here is an issue
+      alertableSection.seatsEmpty = updatedSection.seatsAvailable - updatedSection.seatsTaken; // Here is an issue
       freedSections.push(alertableSection);
     }
   }
@@ -142,17 +146,22 @@ alertSchema.methods.getFreedSections = async function (updatedCourse) {
  */
 alertSchema.methods.activate = async function () {
   await this.populate("course");
+  await this.populate("sections");
 
   // Construct message
   let message = `You are now going to be alerted for ${this.course.code} when the following sections are open: \n`;
   message += this.sections.join("\n");
 
   try {
+    const emailData = { course: this.course, alert: this };
+
+    console.log(emailData);
+
     // Construct and send the activation email
     await new Email()
       .toEmail(this.email)
       .withSubject(`Alerts activated for ${this.course.code}`)
-      .withTemplate("alert-activate", { alert: this })
+      .withTemplate("alert-activate", emailData)
       .send();
     Logger.info(`Activation email sent to ${this.email}`);
 
@@ -160,6 +169,7 @@ alertSchema.methods.activate = async function () {
     this.status = "active";
     await this.save();
   } catch (error) {
+    console.error(error);
     Logger.alert(`Alert activation email not sent to ${this.email}`, {
       email: this.email,
       alert: this.id,
@@ -173,20 +183,18 @@ alertSchema.methods.activate = async function () {
  * Logs error, but does not throw if unsuccessful
  */
 alertSchema.methods.notify = async function (freedSections = []) {
-  let message = [];
-  for (const freedSection of freedSections) {
-    message.push(
-      `Section ${freedSection.type} ${freedSection.number} in ${this.course.code} is now open!`
-    );
-  }
-  message = message.join("\n");
-
   try {
+    const emailData = {
+      course: this.course,
+      alert: this,
+      freedSections: freedSections,
+    };
+
     // Construct and send notification email
     await new Email()
       .toEmail(this.email)
       .withSubject(`New seats open for ${this.course.code}`)
-      .withTemplate("alert-notify", { alert: this })
+      .withTemplate("alert-notify", emailData)
       .send();
     Logger.info(`Alert notification email sent to ${this.email}`);
 
