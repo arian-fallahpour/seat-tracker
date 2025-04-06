@@ -34,6 +34,7 @@ const EditAlertSection = ({ alert, selectedSessions }) => {
     }
   };
 
+  // TODO: Responsive styles
   return (
     <Section className={classes.EditAlertSection}>
       <div className={classes.Main}>

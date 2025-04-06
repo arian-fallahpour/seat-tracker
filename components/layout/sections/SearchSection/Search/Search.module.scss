@@ -16,6 +16,12 @@
   max-width: 60rem;
   width: 100%;
 
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-card-background-hover);
+  }
+
   &.disabled {
     opacity: 0.5;
   }
@@ -51,19 +57,22 @@
     top: 50%;
     translate: 0 -42.5%;
     color: var(--color-card-text);
+    visibility: hidden;
 
     opacity: 0;
     scale: 0.75;
-    filter: blur(100px);
+    filter: blur(5px);
     transition:
       opacity 0.5s ease,
       scale 0.5s ease,
-      blur 2s ease;
+      filter 0.2s ease,
+      visibility 0.2s ease;
 
     &.visible {
       filter: blur(0px);
       opacity: 1;
       scale: 1;
+      visibility: visible;
     }
   }
 
@@ -95,7 +104,7 @@
 
     &:hover,
     &:focus-within {
-      background-color: var(--color-card-background-hover);
+      background-color: var(--color-card-background);
     }
 
     &:active {

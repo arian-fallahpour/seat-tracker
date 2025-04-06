@@ -3,10 +3,7 @@
 section.ActiveAlertsSection {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
-  padding-top: var(--width-tiny);
-  padding-bottom: var(--width-tiny);
+  align-items: flex-end;
 }
 
 .Copyright {

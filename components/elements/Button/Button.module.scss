@@ -1,23 +1,61 @@
 .Button {
   background-color: var(--color-primary);
+  padding: var(--padding-button-vertical) var(--padding-button-horizontal);
   font-size: var(--font-size-regular);
   color: var(--color-text);
+  text-transform: capitalize;
   border-radius: 222rem;
   border: 0;
-  text-transform: capitalize;
-  padding: var(--padding-button-vertical) var(--padding-button-horizontal);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--width-tiny);
+  position: relative;
+
+  &Loader,
+  &Children {
+    visibility: hidden;
+    opacity: 0;
+    scale: 0.8;
+    filter: blur(5px);
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease,
+      blur 0.2s ease,
+      filter 0.2s ease;
+
+    &.visible {
+      filter: blur(0px);
+      opacity: 1;
+      scale: 1;
+      visibility: visible;
+    }
+  }
+
+  &Loader {
+    display: block;
+    position: absolute;
+    top: calc(50% - 0.7rem);
+    left: 50%;
+    translate: -50% -50%;
+    height: 1em;
+    width: auto;
+    aspect-ratio: 1;
+  }
+
+  &Children {
+    transition: opacity 0.2s 0.2s ease visibility 0.2s 0.2s ease;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--width-tiny);
+  }
 
   &--icon {
     padding: var(--padding-button-vertical);
     aspect-ratio: 1;
     justify-items: center;
 
-    & > * {
+    .ButtonChildren > * {
       width: 2.25rem;
       height: 2.25rem;
     }
@@ -33,7 +71,7 @@
       gap ease 0.2s,
       opacity ease 0.2s;
 
-    & > * {
+    .ButtonChildren > * {
       width: var(--font-size-regular);
       height: var(--font-size-regular);
     }

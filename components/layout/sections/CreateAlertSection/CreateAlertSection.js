@@ -10,15 +10,18 @@ import Button from "@/components/elements/Button/Button";
 import Form, { FormRow } from "@/components/elements/Form/Form";
 import Input from "@/components/elements/Input/Input";
 import { GlobalErrorContext } from "@/store/global-error-context";
+import { sleep } from "@/utils/helper-client";
 
 const CreateAlertSection = ({ course, selectedSessions }) => {
   const router = useRouter();
   const { setGlobalError } = useContext(GlobalErrorContext);
 
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const url = `/${config.API_PATH}/orders/create-checkout-session`;
@@ -39,6 +42,10 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
       const error = new Error(axiosError.response.data.message);
       setGlobalError(error);
     }
+
+    await sleep(1000);
+
+    setIsLoading(false);
   };
 
   return (
@@ -59,7 +66,9 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormRow>
-          <Button className={classes.FormSubmit}>Checkout</Button>
+          <Button className={classes.FormSubmit} isLoading={isLoading}>
+            Checkout
+          </Button>
         </Form>
       </div>
     </Section>

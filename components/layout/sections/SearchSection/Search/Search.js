@@ -53,8 +53,6 @@ const Search = ({ isDisabled }) => {
       return setCourses([]);
     }
 
-    console.log(query);
-
     setIsLoading(true);
 
     searchCourses(query);
@@ -62,7 +60,11 @@ const Search = ({ isDisabled }) => {
 
   return (
     <div
-      className={join(classes.Search, isDisabled ? classes.disabled : null)}
+      className={join(
+        classes.Search,
+        isFocused ? classes.focused : null,
+        isDisabled ? classes.disabled : null
+      )}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
