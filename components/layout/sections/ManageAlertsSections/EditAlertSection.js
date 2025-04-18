@@ -1,14 +1,14 @@
 "use client";
 
-import classes from "./EditAlertSection.module.scss";
+import { useState } from "react";
 import config from "@/utils/config";
 import axios from "axios";
 
+import classes from "./ManageAlertSection.module.scss";
 import Section from "@/components/elements/Section/Section";
 import Button from "@/components/elements/Button/Button";
 import Form, { FormRow } from "@/components/elements/Form/Form";
 import Input from "@/components/elements/Input/Input";
-import { useState } from "react";
 import Checkbox from "@/components/elements/Checkbox/Checkbox";
 
 const EditAlertSection = ({ alert, selectedSessions }) => {
@@ -36,7 +36,7 @@ const EditAlertSection = ({ alert, selectedSessions }) => {
 
   // TODO: Responsive styles
   return (
-    <Section className={classes.EditAlertSection}>
+    <Section className={classes.ManageAlertSection}>
       <div className={classes.Main}>
         <div className={classes.Header}>
           <h3 className="header header-section margin-bottom-auto">Update Alert</h3>

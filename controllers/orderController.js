@@ -1,40 +1,48 @@
 const crudController = require("./crudController");
-const Order = require("../models/database/Order");
-const Alert = require("../models/database/Alert");
-const catchAsync = require("../utils/catchAsync");
-const AppError = require("../utils/AppError");
+const OrderModel = require("../models/OrderModel");
+const AlertModel = require("../models/AlertModel");
+const catchAsync = require("../utils/app/catchAsync");
+const AppError = require("../utils/app/AppError");
 const businessData = require("../data/business-data");
+const CourseModel = require("../models/Course/CourseModel");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// TODO: Test entire checkout process (including fulfillment) (Create a LONG checklist of potential ways it can go)
 exports.createCheckoutSession = catchAsync(async (req, res, next) => {
-  const { email, course, sections } = req.body;
+  const { email, course: courseId, sections } = req.body;
+
+  // Validate required input
   if (!email) return next(new AppError("Please provide an email for this alert.", 400));
-  if (!course) return next(new AppError("Please provide a course for this alert.", 400));
+  if (!courseId) return next(new AppError("Please provide a course for this alert.", 400));
 
-  let alert = await Alert.findOne({ email, course });
-
-  // Check if alert was already made for the same email and course
-  const alreadyHasActiveAlert = alert && alert.status === "active";
-  if (alreadyHasActiveAlert) {
-    return next(new AppError("You already have an alert set up for this course.", 400));
+  const course = await CourseModel.findById(courseId);
+  if (!course) {
+    return next(new AppError("Could not find specified course.", 404));
   }
 
-  // Create new alert if none found, or the status is not active nor processing
-  const noAlertOrNotProcessingStatus = !alert || alert.status !== "processing";
-  if (noAlertOrNotProcessingStatus) {
-    alert = await Alert.create({ email, course, sections });
-  }
+  // TODO: Make sure students are allowed to enroll in course
+  console.log(course);
 
-  // Update alert's sections if alert is processing
-  if (alert && alert.status === "processing") {
+  // Handle alert creation or update
+  const allowedStatus = ["processing", "active", "paused"];
+  let alert = await AlertModel.findOne({ email, course: courseId, status: allowedStatus });
+  if (!alert) {
+    alert = await AlertModel.create({ email, course: courseId, sections });
+  } else if (alert.status === "processing") {
     alert.sections = sections;
     await alert.save();
+  } else {
+    const message = `You already have an alert that is ${alert.status} for this course.`;
+    return next(new AppError(message, 400));
   }
 
-  // Create order document
-  const order = await Order.create({ alert: alert.id });
+  // Find or created order for this alert
+  let order = await OrderModel.findOne({ alert: alert.id });
+  if (!order) {
+    order = await OrderModel.create({ alert: alert.id });
+  } else if (order.isFulfilled) {
+    return next(new AppError("Order has already been fulfill.", 400));
+  }
 
   // Generate success and cancel urls
   const protocol = req.protocol;
@@ -52,7 +60,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     cancel_url: url,
   });
 
-  // Update order details
+  // Save stripe session id to order
   order.stripeSessionId = session.id;
   await order.save();
 
@@ -65,8 +73,8 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getOneOrder = crudController.getOne(Order);
-exports.getAllOrders = crudController.getAll(Order);
-exports.createOneOrder = crudController.createOne(Order);
-exports.updateOneOrder = crudController.updateOne(Order);
-exports.deleteOneOrder = crudController.deleteOne(Order);
+exports.getOneOrder = crudController.getOne(OrderModel);
+exports.getAllOrders = crudController.getAll(OrderModel);
+exports.createOneOrder = crudController.createOne(OrderModel);
+exports.updateOneOrder = crudController.updateOne(OrderModel);
+exports.deleteOneOrder = crudController.deleteOne(OrderModel);

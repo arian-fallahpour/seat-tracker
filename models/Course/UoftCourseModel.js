@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
 
-const Course = require("./Course");
-const UoftSection = require("../Section/UoftSection");
-const { upsertCoursesAndSections, upsertCourses } = require("../../../utils/schema-utils");
+const CourseModel = require("./CourseModel");
+const UoftSection = require("../Section/UoftSectionModel");
+const { upsertCoursesAndSections, upsertCourses } = require("../../utils/app/schema-utils");
 
 const uoftCourseSchema = new mongoose.Schema({
   code: {
@@ -44,6 +44,6 @@ uoftCourseSchema.statics.search = function (query) {
  * METHODS
  */
 
-const UoftCourse =
-  mongoose.models?.UoftCourse || Course.discriminator("UoftCourse", uoftCourseSchema);
-module.exports = UoftCourse;
+const UoftCourseModel =
+  mongoose.models?.UoftCourse || CourseModel.discriminator("UoftCourse", uoftCourseSchema);
+module.exports = UoftCourseModel;

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const termSchema = require("./termSchema");
+const TermModel = require("./TermModel");
 
 const courseSchema = new mongoose.Schema({
   name: {
@@ -14,7 +14,7 @@ const courseSchema = new mongoose.Schema({
     ref: "Section",
   },
   term: {
-    type: termSchema,
+    type: TermModel.schema,
     required: [true, "Please provide the term for this course."],
   },
   slug: String,
@@ -34,5 +34,5 @@ courseSchema.index({ slug: 1 });
  * METHODS
  */
 
-const Course = mongoose.models?.Course || mongoose.model("Course", courseSchema);
-module.exports = Course;
+const CourseModel = mongoose.models?.Course || mongoose.model("Course", courseSchema);
+module.exports = CourseModel;

@@ -1,4 +1,4 @@
-@import "@/sass/abstracts/mixins";
+@use "@/sass/abstracts/mixins" as *;
 
 .Section {
   padding: var(--width-small) var(--width-large);

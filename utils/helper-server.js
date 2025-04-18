@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const fs = require("fs");
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
@@ -6,10 +5,8 @@ const archiver = require("archiver");
 const { headers } = require("next/headers");
 const { default: reactToText } = require("react-to-text");
 
-const Logger = require("./Logger");
-
 exports.createServerURL = async (relativeURL) => {
-  const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
 
   const header = await headers();
   const host =
@@ -41,3 +38,5 @@ exports.jsxToText = function (Component, props) {
   const element = React.createElement(Component, props, null);
   return reactToText(element);
 };
+
+exports.get404Message = (originalUrl) => `The route ${req.originalUrl} does not exist.`;

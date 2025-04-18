@@ -1,16 +1,21 @@
 @use "@/sass/abstracts/mixins" as *;
 
-section.EditAlertSection {
+section.ManageAlertSection {
 }
 
 .Main {
   display: grid;
   gap: var(--width-regular);
-  max-width: 50rem;
+  max-width: 60rem;
 }
 
 .Header {
-  display: grid;
+  max-width: 40rem;
+
+  @include respond(500px) {
+    text-align: center;
+    justify-self: center;
+  }
 }
 
 .Form {
@@ -18,7 +23,6 @@ section.EditAlertSection {
 
   &Input {
     max-width: 35rem;
-    // width: 100%;
 
     @include respond(500px) {
       max-width: unset;

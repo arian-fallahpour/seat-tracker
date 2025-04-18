@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const enums = require("../../../data/enums");
+const enums = require("../../data/enums");
 
 const sectionSchema = new mongoose.Schema({
   course: {
@@ -39,6 +39,6 @@ sectionSchema.index({ course: 1, type: 1, number: 1 }, { unique: true });
  * STATICS
  */
 
-const Section = mongoose.models?.Section || mongoose.model("Section", sectionSchema);
+const SectionModel = mongoose.models?.Section || mongoose.model("Section", sectionSchema);
 
-module.exports = Section;
+module.exports = SectionModel;

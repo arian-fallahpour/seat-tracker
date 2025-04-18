@@ -1,9 +1,5 @@
 const mongoose = require("mongoose");
-const {
-  validateSeatsTaken,
-  calculateEmptySeats,
-  haveSeatsFreed,
-} = require("../../../utils/schema-utils");
+const { validateSeatsTaken, calculateEmptySeats } = require("../../../utils/schema-utils");
 const Section = require("./Section");
 
 const waterlooSectionSchema = new mongoose.Schema(
@@ -36,8 +32,6 @@ waterlooSectionSchema.virtual("seatsEmpty").get(calculateEmptySeats);
 /**
  * METHODS
  */
-
-waterlooSectionSchema.methods.isFreed = haveSeatsFreed;
 
 const WaterlooSection = Section.discriminator("WaterlooSection", waterlooSectionSchema);
 

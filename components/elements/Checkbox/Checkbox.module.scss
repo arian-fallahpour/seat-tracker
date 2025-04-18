@@ -49,5 +49,8 @@
   &Label {
     cursor: pointer;
     color: var(--color-card-text);
+    &::selection {
+      background-color: transparent;
+    }
   }
 }

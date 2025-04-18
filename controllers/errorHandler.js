@@ -1,4 +1,4 @@
-const AppError = require("../utils/AppError");
+const AppError = require("../utils/app/AppError");
 
 const errorHandler = (error, req, res, next) => {
   error.statusCode = error.statusCode || 500;
@@ -15,7 +15,9 @@ const errorHandler = (error, req, res, next) => {
 module.exports = errorHandler;
 
 function handleDevError(error, res) {
-  console.error(error);
+  if (!error.isOperational) {
+    console.error(error);
+  }
 
   return res.status(error.statusCode).json({
     status: error.status,

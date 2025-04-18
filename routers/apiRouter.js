@@ -5,7 +5,8 @@ const orderRouter = require("./orderRouter");
 const courseRouter = require("./courseRouter");
 const sectionRouter = require("./sectionRouter");
 
-const AppError = require("../utils/AppError");
+const AppError = require("../utils/app/AppError");
+const { get404Message } = require("../utils/helper-server");
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.use("/v1/sections", sectionRouter);
 
 // Route not found
 router.all("*", (req, res, next) => {
-  return next(new AppError(`The route ${req.originalUrl} does not exist.`, 404));
+  return next(new AppError(get404Message(req.originalUrl), 404));
 });
 
 module.exports = router;

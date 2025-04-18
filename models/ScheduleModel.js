@@ -14,7 +14,7 @@ const scheduleSchema = new mongoose.Schema({
  * STATICS
  */
 
-scheduleSchema.statics.initRecurringSchedule = async function (scheduleName, options) {
+scheduleSchema.statics.intializeRecurring = async function (scheduleName, options) {
   if (typeof options.onTick !== "function") throw new Error("Please provide an onTick function");
   options = {
     periodMinutes: options.periodMinutes || 15,
@@ -42,7 +42,7 @@ scheduleSchema.statics.initRecurringSchedule = async function (scheduleName, opt
 
   // Initialize CronJob
   const cronOptions = {
-    cronTime: `* */${options.periodMinutes} * * *`,
+    cronTime: `0 */${options.periodMinutes} * * * *`,
     onTick,
     waitForCompletion: true,
     start: true,

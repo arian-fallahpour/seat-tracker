@@ -1,9 +1,9 @@
 const crudController = require("./crudController");
-const Course = require("../models/database/Course/Course");
-const UoftCourse = require("../models/database/Course/UoftCourse");
-const catchAsync = require("../utils/catchAsync");
-const AppError = require("../utils/AppError");
-const APIQuery = require("../utils/APIQuery");
+const CourseModel = require("../models/Course/CourseModel");
+const UoftCourseModel = require("../models/Course/UoftCourseModel");
+const catchAsync = require("../utils/app/catchAsync");
+const AppError = require("../utils/app/AppError");
+const APIQuery = require("../utils/app/APIQuery");
 const alertsData = require("../data/alerts-data");
 
 exports.restrictEnrol = catchAsync(async (req, res, next) => {
@@ -25,7 +25,7 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
   }
 
   // Find courses based on search input
-  const searchQuery = UoftCourse.search(query).populate({ path: "sections", select: "type" });
+  const searchQuery = UoftCourseModel.search(query).populate({ path: "sections", select: "type" });
   const courses = await new APIQuery(searchQuery, { limit: 5 }).paginate().execute();
 
   res.status(200).json({
@@ -46,7 +46,7 @@ exports.getCourseInfo = catchAsync(async (req, res, next) => {
   }
 
   // Find course using slug
-  const course = await UoftCourse.findOne({ slug }).populate({
+  const course = await UoftCourseModel.findOne({ slug }).populate({
     path: "sections",
     select: "type number campus lastUpdatedAt",
   });
@@ -62,8 +62,8 @@ exports.getCourseInfo = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getOneCourse = crudController.getOne(Course);
-exports.getAllCourses = crudController.getAll(Course);
-exports.createOneCourse = crudController.createOne(Course);
-exports.updateOneCourse = crudController.updateOne(Course);
-exports.deleteOneCourse = crudController.deleteOne(Course);
+exports.getOneCourse = crudController.getOne(CourseModel);
+exports.getAllCourses = crudController.getAll(CourseModel);
+exports.createOneCourse = crudController.createOne(CourseModel);
+exports.updateOneCourse = crudController.updateOne(CourseModel);
+exports.deleteOneCourse = crudController.deleteOne(CourseModel);

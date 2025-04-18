@@ -1,39 +1,22 @@
 const axios = require("axios");
-const path = require("path");
 
-const LambdaAdapter = require("./LambdaAdapter");
-const { sleep } = require("../../utils/helper-client");
-const alertsData = require("../../data/alerts-data");
-const Logger = require("../../utils/Logger");
+const LambdaAdapter = require("../services/LambdaAdapter");
+const Logger = require("../Logger");
+const UoftFormatter = require("./UoftFormatter");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
   static URL_SMART_PROXY = "https://scraper-api.smartproxy.com/v2/scrape";
 
-  static lambdaRequestsCount = 0;
-  static lambdaMaxRequestPerIp = alertsData.maxRequestsPerIp;
-  static lambdaFunctionName = "axios-request";
-
-  static seasons = { 1: "winter", 5: "summer", 9: "fall" };
-  static campuses = {
-    Scarborough: "Scarborough",
-    "University of Toronto at Mississauga": "Mississauga",
-    "St. George": "St. George",
-  };
-
   /**
-   * FETCH METHODS
-   */
-
-  /**
-   * Returns updated courses based on query and page
-   *
-   * Logs a warning, does not throw an error
+   * Returns updated courses based on query and page.
+   * Logs a warning in the case of error or failure
    */
   static async fetchCourses(options = {}) {
     options = {
       query: options.query || "",
       page: options.page || 1,
+      fetchMethod: options.fetchMethod || "lambda",
       useLambdaFetch: options.useLambdaFetch || false,
     };
 
@@ -46,10 +29,12 @@ class UoftAdapter {
     // Make fetch request
     let response;
     try {
-      if (!options.useLambdaFetch) {
+      if (options.fetchMethod === "lambda") {
+        response = await this.fetchLambda(fetchOptions);
+      } else if (options.fetchMethod === "axios") {
         response = await this.fetchAxios(fetchOptions);
       } else {
-        response = await this.fetchLambda(fetchOptions);
+        response = await this.fetchRegular(fetchOptions);
       }
     } catch (error) {
       Logger.warn(`Could not fetch updated UofT courses`, { error: error.message });
@@ -59,25 +44,9 @@ class UoftAdapter {
     // Format fetched data
     const { data } = response;
     const coursesData = data.payload.pageableCourse.courses;
-    const courses = coursesData.map((courseData) => this.formatCourse(courseData));
+    const courses = coursesData.map((courseData) => UoftFormatter.formatCourse(courseData));
 
     return courses;
-  }
-
-  /**
-   * Gets updated version of courses in the courseCodes array and returns them in an object based on course codes
-   */
-  static async fetchUpdatedCourses(courseCodes) {
-    const updatedCourses = {};
-
-    for (const courseCode of courseCodes) {
-      const fetchedCourses = await this.fetchCourses({ query: courseCode, useLambdaFetch: true });
-      for (const fetchedCourse of fetchedCourses) {
-        updatedCourses[fetchedCourse.code] = fetchedCourse;
-      }
-    }
-
-    return updatedCourses;
   }
 
   /**
@@ -113,24 +82,9 @@ class UoftAdapter {
 
   /**
    * Fetches Uoft API data using lambda for ip rotation
-   *
-   * NOTE: May throw error when updating code when executed concurrently
    */
   static async fetchLambda(fetchOptions) {
     Logger.info("Making LAMBDA request to UOFT API");
-
-    if (this.lambdaRequestsCount >= this.lambdaMaxRequestPerIp) {
-      Logger.info("Updating lambda function code to rotate ip (wait 5 seconds)");
-
-      const filePath = `../../aws/lambdas/${this.lambdaFunctionName}/index.js`;
-      const functionFilePath = path.resolve(__dirname, filePath);
-      await LambdaAdapter.updateLambdaFunction(this.lambdaFunctionName, functionFilePath);
-
-      // Wait for function to be updated on AWS
-      await sleep(5000);
-
-      this.lambdaRequestsCount = 0;
-    }
 
     // Make request to lambda function and increase request count
     const payload = {
@@ -140,8 +94,7 @@ class UoftAdapter {
         data: fetchOptions.body,
       },
     };
-    const response = await LambdaAdapter.invokeLambdaFunction(this.lambdaFunctionName, payload);
-    this.lambdaRequestsCount++;
+    const response = await LambdaAdapter.invokeAxiosRequest(payload);
 
     return response;
   }
@@ -172,56 +125,6 @@ class UoftAdapter {
 
     return response;
   }
-
-  /**
-   * FORMAT METHODS
-   */
-
-  static formatCourse(courseData) {
-    const sections = courseData.sections.map((sectionData) =>
-      this.formatSection({ ...sectionData, campus: courseData.campus })
-    );
-
-    return {
-      name: courseData.name,
-      code: this.formatCourseCode(courseData),
-      term: this.formatTerm(courseData.sessions[courseData.sessions.length - 1]),
-      sections,
-    };
-  }
-
-  static formatCourseCode(courseData) {
-    return `${courseData.code} ${courseData.sectionCode}`;
-  }
-
-  static formatSection(sectionData) {
-    return {
-      type: sectionData.teachMethod === "TUT" ? "tutorial" : "lab",
-      number: sectionData.sectionNumber,
-      campus: this.formatCampus(sectionData.campus),
-      seatsTaken: sectionData.currentEnrolment,
-      seatsAvailable: sectionData.maxEnrolment,
-      hasWaitlist: sectionData.waitlistInd === "Y" ? true : false,
-      waitlist: sectionData.currentWaitlist,
-    };
-  }
-
-  static formatCampus(providedCampus) {
-    return this.campuses[providedCampus] || null;
-  }
-
-  static formatTerm(termData) {
-    if (termData) {
-      return {
-        year: Number(termData.slice(0, 4)),
-        season: this.seasons[termData[4]],
-      };
-    }
-  }
-
-  /**
-   * GET METHODS
-   */
 
   static getBody(options = {}) {
     options = {

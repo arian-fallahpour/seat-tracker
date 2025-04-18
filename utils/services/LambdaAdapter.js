@@ -1,10 +1,13 @@
-const { fileToZipBuffer } = require("../../utils/helper-server");
+const path = require("path");
 const {
   LambdaClient,
   InvokeCommand,
   UpdateFunctionCodeCommand,
 } = require("@aws-sdk/client-lambda");
 const { fromEnv } = require("@aws-sdk/credential-providers");
+const Logger = require("../Logger");
+const { sleep } = require("../helper-client");
+const { fileToZipBuffer } = require("../helper-server");
 
 const client = new LambdaClient({
   region: process.env.AWS_REGION,
@@ -12,6 +15,33 @@ const client = new LambdaClient({
 });
 
 class LambdaAdapter {
+  static axiosRequestName = "axios-request";
+
+  static async invokeParallelAxiosRequests() {}
+
+  /**
+   * Invokes the axios-request lambda function
+   */
+  static async invokeAxiosRequest(payload) {
+    return await this.invokeLambdaFunction(this.axiosRequestName, payload);
+  }
+
+  /**
+   * Updates the axios-request lambda function to rotate its IP address
+   */
+  static async rotateAxiosRequest() {
+    Logger.info("Updating lambda function code to rotate ip (wait 5 seconds)");
+
+    const filePath = `../../aws/lambdas/${this.axiosRequestName}/index.js`;
+    const functionFilePath = path.resolve(__dirname, filePath);
+
+    await this.updateLambdaFunction(this.axiosRequestName, functionFilePath);
+    await sleep(5000);
+  }
+
+  /**
+   * Updates the lambda function with the name specified in functionName
+   */
   static async updateLambdaFunction(functionName, filePath) {
     const functionZip = await fileToZipBuffer(filePath);
 
@@ -23,6 +53,9 @@ class LambdaAdapter {
     await client.send(updateCommand);
   }
 
+  /**
+   * Invokes the lambda function with the name specified in functionName
+   */
   static async invokeLambdaFunction(functionName, payload) {
     const invokeCommand = new InvokeCommand({
       FunctionName: functionName,
@@ -43,11 +76,6 @@ class LambdaAdapter {
 
     const data = JSON.parse(parsed.body);
     return data;
-  }
-
-  static async updateAndInvokeFunction(functionName, functionPath, payload) {
-    await updateLambdaFunction(functionName, functionPath);
-    return await invokeLambdaFunction();
   }
 }
 

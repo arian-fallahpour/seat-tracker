@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const enums = require("../../../data/enums");
+const enums = require("../../data/enums");
 
 const termSchema = new mongoose.Schema({
   year: {
@@ -17,4 +17,11 @@ const termSchema = new mongoose.Schema({
   },
 });
 
-module.exports = termSchema;
+/**
+ * July 1, YEAR A - Sept 15, YEAR A (WINTER, FALL)
+ * Marc 3, YEAR A - July 8, YEAR A (SUMMER)
+ */
+termSchema.statics.canEnroll = function (term) {};
+
+const TermModel = mongoose.models?.Term || mongoose.model("Term", termSchema);
+module.exports = TermModel;

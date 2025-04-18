@@ -5,7 +5,7 @@ const args = require("args-parser")(process.argv);
 const Section = require("../models/database/Section/Section");
 const Course = require("../models/database/Course/Course");
 const UoftAdapter = require("../models/api-adapters/UoftAdapter");
-const UoftCourse = require("../models/database/Course/UoftCourse");
+const UoftCourseModel = require("../models/database/Course/UoftCourseModel");
 
 dotenv.config({ path: "./config.env" });
 
@@ -41,12 +41,12 @@ const importData = async () => {
   }
 
   // Upsert courses and sections
-  await UoftCourse.upsertCoursesAndSections(updatedCourses);
+  await UoftCourseModel.upsertCoursesAndSections(updatedCourses);
 };
 
 const deleteData = async () => {
   try {
-    await Course.deleteMany();
+    await CourseModel.deleteMany();
     await Section.deleteMany();
     console.log("Deleted all courses and sections");
   } catch (err) {

@@ -1,4 +1,4 @@
-const Log = require("../models/database/Log");
+const LogModel = require("../models/LogModel");
 
 class Logger {
   static async info(description, data) {
@@ -23,7 +23,7 @@ class Logger {
       console[method](`[${type.toUpperCase()}] ${description}`);
     }
 
-    await Log.create({ type, description, data });
+    await LogModel.create({ type, description, data });
   }
 
   /**

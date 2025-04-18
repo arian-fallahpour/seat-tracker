@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const enums = require("../../data/enums");
+const enums = require("../data/enums");
 
 const logSchema = new mongoose.Schema({
   type: {

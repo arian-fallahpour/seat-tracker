@@ -1,10 +1,10 @@
-import classes from "./CreateAlertSection.module.scss";
 import config from "@/utils/config";
 import axios from "axios";
 
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import classes from "./ManageAlertSection.module.scss";
 import Section from "@/components/elements/Section/Section";
 import Button from "@/components/elements/Button/Button";
 import Form, { FormRow } from "@/components/elements/Form/Form";
@@ -49,7 +49,7 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
   };
 
   return (
-    <Section className={classes.CreateAlertSection}>
+    <Section className={classes.ManageAlertSection}>
       <div className={classes.Main}>
         <div className={classes.Header}>
           <h3 className="header header-section margin-bottom-auto">Create Alert</h3>
@@ -66,6 +66,7 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormRow>
+          <p className="paragram">Disclaimer: We do not accept refunds at this time.</p>
           <Button className={classes.FormSubmit} isLoading={isLoading}>
             Checkout
           </Button>

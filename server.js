@@ -13,8 +13,7 @@ process.on("uncaughtException", (err) => {
 dotenv.config({ path: "./config.env" });
 
 const port = process.env.PORT || 3000;
-const host = process.env.HOST;
-const nextApp = next({ dev: process.env.NODE_ENV !== "production" });
+const nextApp = next({ dev: process.env.NODE_ENV === "development" });
 const nextRequestHandler = nextApp.getRequestHandler();
 
 let server;

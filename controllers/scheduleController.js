@@ -1,34 +1,44 @@
-const Alert = require("../models/database/Alert");
-const UoftCourse = require("../models/database/Course/UoftCourse");
-const UoftAdapter = require("../models/api-adapters/UoftAdapter");
-const Schedule = require("../models/database/Schedule");
+const AlertModel = require("../models/AlertModel");
+const UoftCourseModel = require("../models/Course/UoftCourseModel");
+const ScheduleModel = require("../models/ScheduleModel");
 const alertsData = require("../data/alerts-data");
+const Logger = require("../utils/Logger");
+const UoftParallel = require("../utils/Uoft/UoftParallel");
 
 exports.initialize = async () => {
-  await scheduleAlerts();
-  // await Schedule.initRecurringSchedule("alerts", {
-  //   periodMinutes: alertsData.alertsPeriodMinutes,
-  //   onTick: scheduleAlerts,
-  // });
+  await ScheduleModel.intializeRecurring("alerts", {
+    periodMinutes: alertsData.alertsPeriodMinutes,
+    onTick: scheduleAlerts,
+  });
 };
 
-// TODO: Testing (What if UoftAPI does not find the course? + more)
 async function scheduleAlerts() {
   try {
-    const alerts = await Alert.findActive();
+    Logger.info(`(0/5) Starting alert notification process at ${new Date(Date.now())}`);
+
+    // 1. Find all active alerts and group then in an object by their code
+    const alerts = await AlertModel.findActive();
     if (alerts.length === 0) return;
+    Logger.info("(1/5) Found all active alerts.");
 
-    const groupedAlerts = Alert.groupByCode(alerts);
+    // 2. Fetch updated course data for all the unique courses that have alerts
+    const groupedAlertsByCode = AlertModel.groupByCode(alerts);
+    const courseCodes = Object.keys(groupedAlertsByCode);
+    const updatedCoursesByCode = await UoftParallel.fetchAllLambda(courseCodes);
+    Logger.info("(2/5) Fetched updated courses.");
 
-    // Get updated course data for each course from API
-    const courseCodes = Object.keys(groupedAlerts);
-    const updatedCourses = await UoftAdapter.fetchUpdatedCourses(courseCodes);
+    // 3. Filter alerts by whether they have sections freed up and set updated section values (but don't save)
+    const filteredAlerts = await AlertModel.filterAllNotifiable(alerts, updatedCoursesByCode);
+    Logger.info("(3/5) Filtered alerts by number of freed sections.");
 
-    await Alert.process(alerts, updatedCourses);
+    // 4. Notify users of alerts that have sections freed up in parallel
+    await AlertModel.notifyAll(filteredAlerts);
+    Logger.info("(4/5) Sent notifications for filtered alerts.");
 
-    // Update courses in database with updated data
-    const updatedCoursesData = Object.values(updatedCourses);
-    await UoftCourse.upsertCoursesAndSections(updatedCoursesData);
+    // 5. Upsert courses and sections with updated data
+    const updatedCoursesData = Object.values(updatedCoursesByCode);
+    await UoftCourseModel.upsertCoursesAndSections(updatedCoursesData);
+    Logger.info("(5/5) Upserted updated course data.");
   } catch (error) {
     console.error(`[ERROR] Uoft Schedule Error: ${error.message}`);
   }

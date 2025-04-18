@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 
-const Section = require("./Section");
+const Section = require("./SectionModel");
 const {
   validateSeatsTaken,
   calculateEmptySeats,
-  haveSeatsFreed,
   upsertSections,
-} = require("../../../utils/schema-utils");
+} = require("../../utils/app/schema-utils");
 
 const uoftSectionSchema = new mongoose.Schema(
   {
@@ -64,7 +63,10 @@ uoftSectionSchema.statics.upsertSections = async function (sectionsData) {
  * METHODS
  */
 
-uoftSectionSchema.methods.isFreed = haveSeatsFreed;
+uoftSectionSchema.methods.isFreed = function (updatedSection) {
+  const seatsEmptyUpdated = updatedSection.seatsAvailable - updatedSection.seatsTaken;
+  return this.seatsEmpty === 0 && seatsEmptyUpdated !== 0;
+};
 
 const UoftSection =
   mongoose.models?.UoftSection || Section.discriminator("UoftSection", uoftSectionSchema);

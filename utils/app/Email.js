@@ -1,11 +1,12 @@
-const AlertNotify = require("../emails/alert-notify.jsx").default;
-const AlertActivate = require("../emails/alert-activate.jsx").default;
+const AlertNotify = require("../../emails/alert-notify.jsx").default;
+const AlertActivate = require("../../emails/alert-activate.jsx").default;
 
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
 
-const businessData = require("../data/business-data");
-const { jsxToHtml, jsxToText } = require("./helper-server.js");
+const businessData = require("../../data/business-data.js");
+const { jsxToHtml, jsxToText } = require("../helper-server.js");
+const Logger = require("../Logger.js");
 
 class Email {
   constructor() {
@@ -57,27 +58,37 @@ class Email {
     return this;
   }
 
+  /**
+   * Sends email using details in current email object
+   * Logs an alert in the cases of error or failure
+   */
   async send() {
-    await this.mailgun.messages.create(process.env.MAILGUN_DOMAIN, {
-      from: this.from,
-      to: this.to,
-      subject: this.subject,
-      text: this.text,
-      html: this.html,
-    });
+    try {
+      await this.mailgun.messages.create(process.env.MAILGUN_DOMAIN, {
+        from: this.from,
+        to: this.to,
+        subject: this.subject,
+        text: this.text,
+        html: this.html,
+      });
+      Logger.info(`The ${this.template} email was sent to ${this.to}`);
+    } catch (error) {
+      Logger.alert(`The ${this.template} email not sent to ${this.to}`, {
+        email: this.to,
+        alert: this.id,
+      });
+    }
 
     return this;
   }
 
   getProps(data) {
-    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-
     return {
       data,
       context: {
         host: process.env.HOST,
         port: process.env.PORT,
-        protocol: protocol,
+        protocol: process.env.NODE_ENV === "development" ? "http" : "https",
         baseURL: `${protocol}://${process.env.HOST}:${process.env.PORT}`,
       },
     };

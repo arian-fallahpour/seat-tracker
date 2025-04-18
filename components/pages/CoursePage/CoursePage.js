@@ -4,7 +4,7 @@ import { useCatalog } from "@/hooks/use-catalog";
 
 import Page from "@/components/elements/Page/Page";
 import CatalogSection from "@/components/layout/sections/CatalogSection/CatalogSection";
-import CreateAlertSection from "@/components/layout/sections/CreateAlertSection/CreateAlertSection";
+import CreateAlertSection from "@/components/layout/sections/ManageAlertsSections/CreateAlertSection";
 
 const CoursePage = ({ course }) => {
   const { selectedSessions, toggleSession } = useCatalog();

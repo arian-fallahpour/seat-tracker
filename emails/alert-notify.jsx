@@ -32,7 +32,6 @@ const dummyData = {
       seatsAvailable: 75,
       seatsTaken: 75,
       waitlist: 0,
-      seatsEmpty: 0,
       id: "67ac0ae08500d508d978ddaf",
     },
   ],
@@ -60,12 +59,15 @@ export default function AlertNotify({ data, context }) {
           The following section{freedSections.length > 1 ? "s" : ""} has been freed in {course.name}{" "}
           ({course.code}):
         </Text>
-        {freedSections.map((section, i) => (
-          <Text style={{ padding: 0, margin: 0 }} key={section.type + section.number}>
-            {section.type} {section.number} now has {section.seatsEmpty} empty seat
-            {section.seatsEmpty > 1 ? "s" : ""}
-          </Text>
-        ))}
+        {freedSections.map((section, i) => {
+          const seatsEmpty = section.seatsAvailable - section.seatsTaken;
+          return (
+            <Text style={{ padding: 0, margin: 0 }} key={section.type + section.number}>
+              {section.type} {section.number} now has {seatsEmpty} empty seat
+              {seatsEmpty > 1 ? "s" : ""}
+            </Text>
+          );
+        })}
       </Section>
       <Footer editAlertLink={editAlertLink} />
     </Email>

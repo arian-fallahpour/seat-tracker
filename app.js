@@ -7,17 +7,21 @@ const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
 const webhookController = require("./controllers/webhookController");
 
-// TODO
+// TODO: App
 /**
  * TODO LIST
- * - IMPORTANT: Refactor so that most operations are done in the scheduler controller (rn its too messy, and can't use req in Email)
  * - Determine how to handle failed operations when processing alerts
- * - Determine how to run course requests in parallel
- * - Determine how to keep course data updated efficiently when no alert is set on it (Maybe update the course right after a new alert is created if haven't already?, and query all courses before the term starts)
- * - Authentication? (Or can just use Compass and other tools)
+ * - Rehaul logging
+ * - Do not allow alerts for terms other than next/current
+ * - Test UoftAdapter
  *
  * DONE (double check at the end of development):
+ * - Review process.env.production and refactor for test server
+ * - Determine how to keep course data updated efficiently when no alert is set on it --> Update coursedata after activation
+ * - Authentication? no auth, just use compass
  * - Enable/disable creation of alerts based on enrollment timing
+ * - IMPORTANT: Refactor so that most operations are done in the scheduler controller (rn its too messy)
+ * - Determine how to run course requests in parallel
  */
 
 const app = express();

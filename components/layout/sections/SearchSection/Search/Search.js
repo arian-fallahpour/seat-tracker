@@ -13,8 +13,6 @@ import { GlobalErrorContext } from "@/store/global-error-context";
 import config from "@/utils/config";
 import { join } from "@/utils/helper-client";
 
-// TODO: Implement accessibility
-
 const Search = ({ isDisabled }) => {
   const { setGlobalError } = useContext(GlobalErrorContext);
 
