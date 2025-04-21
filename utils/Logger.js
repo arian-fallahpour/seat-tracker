@@ -1,36 +1,40 @@
 const LogModel = require("../models/LogModel");
 
 class Logger {
-  static async info(description, data) {
+  static documentableLogs = ["log", "warn", "error"];
+
+  static info(description, data) {
     this.emit("info", description, data);
   }
 
-  static async warning(description, data) {
-    this.emit("warning", description, data);
-  }
-  static async error(description, data) {
-    this.emit("error", description, data);
-  }
-  static async alert(description, data) {
-    this.emit("alert", description, data);
+  static log(description, data) {
+    this.emit("log", description, data);
   }
 
-  static async emit(type, description, data) {
+  static warn(description, data) {
+    this.emit("warn", description, data);
+  }
+
+  static error(description, data) {
+    this.emit("error", description, data);
+  }
+
+  static announce(message) {
+    this.emit("annouce", message);
+  }
+
+  static emit(type, description, data) {
     if (process.env.NODE_ENV !== "production") {
       let method = "error";
-      if (type === "info") method = "log";
-      if (type === "warning") method = "warn";
+      if (type === "info" || type === "log" || type === "announce" || type === "alert")
+        method = "log";
+      if (type === "warn") method = "warn";
       console[method](`[${type.toUpperCase()}] ${description}`);
     }
 
-    await LogModel.create({ type, description, data });
-  }
-
-  /**
-   * Logs message in all environments
-   */
-  static announce(message) {
-    console.log(`[LOG] ${message}`);
+    if (this.documentableLogs.includes(type)) {
+      LogModel.create({ type, description, data });
+    }
   }
 }
 

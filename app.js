@@ -10,12 +10,14 @@ const webhookController = require("./controllers/webhookController");
 // TODO: App
 /**
  * TODO LIST
- * - Determine how to handle failed operations when processing alerts
- * - Rehaul logging
- * - Do not allow alerts for terms other than next/current
- * - Test UoftAdapter
+ * - (Maybe) Automate course upserting at the start of the term?
+ * - complete testing of app
  *
  * DONE (double check at the end of development):
+ * - Determine how to handle failed operations when processing alerts (Rehaul logging)
+ * - Remove alert paused status (maybe) and create another field instead
+ * - Restrict alert creation only for enrollable terms (April 19, 2025 version) --> need to automatically de-activate alerts when enrollment ends
+ * - Create start-of-term schedules
  * - Review process.env.production and refactor for test server
  * - Determine how to keep course data updated efficiently when no alert is set on it --> Update coursedata after activation
  * - Authentication? no auth, just use compass

@@ -3,3 +3,11 @@ export const sleep = function (ms) {
 };
 
 export const join = (...classes) => classes.join(" ").trim();
+
+export const removeParam = (searchParams, router, key) => {
+  const params = new URLSearchParams(searchParams.toString());
+  params.delete(key);
+
+  const newUrl = params.toString() ? `?${params.toString()}` : "/";
+  router.replace(newUrl);
+};

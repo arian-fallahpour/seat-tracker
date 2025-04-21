@@ -4,7 +4,7 @@ const Logger = require("../utils/Logger");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// TODO: Webhooks
+// TODO: Review Webhooks one more time
 /**
  * - Make this function safe to run multiple times (May not be needed in this case)
  * - in future, add a checkout.session.async_payment_failed handler to notify for failed payment
@@ -33,6 +33,7 @@ exports.handleWebhooks = async (req, res) => {
   res.status(200).end();
 };
 
+exports.fulfillCheckout = fulfillCheckout;
 async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
   const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId, {
     expand: ["line_items"],
@@ -42,31 +43,40 @@ async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
   // Check if order exists, or order has been fulfilled already
   const order = await OrderModel.findById(metadata.order);
   if (!order) {
-    const loggerMessage = "Stripe Webhook Error: Order not found";
-    const loggerData = { stripeSessionId: sessionId, stripePaymentId: payment_intent };
-    Logger.warning(loggerMessage, loggerData);
-    return res.status(400).send(loggerMessage);
+    const message = "Stripe Webhook Error: Order not found";
+    Logger.error(message, {
+      stripeSessionId: sessionId,
+      stripePaymentId: payment_intent,
+      order: metadata.order,
+      alert: metadata.alert,
+    });
+    return res.status(400).send(message);
   } else if (order.isFulfilled) {
     return res.status(400).send("Stripe Webhook Error: Order already fulfilled");
   }
 
   // If payment status is unpaid
   if (checkoutSession.payment_status === "unpaid") {
-    const loggerMessage = "Stripe Webhook Error: Checkout session payment status is unpaid";
-    Logger.warning(loggerMessage, {
-      order: order.id,
+    const message = "Stripe Webhook Error: Checkout session payment status is unpaid";
+    Logger.warn(message, {
       stripeSessionId: sessionId,
       stripePaymentId: payment_intent,
+      order: order.id,
+      alert: metadata.alert,
     });
-    return res.status(400).send(loggerMessage);
+    return res.status(400).send(message);
   }
 
   // Find alert associated with payment
   const alert = await AlertModel.findById(metadata.alert);
   if (!alert) {
-    const loggerMessage = "Stripe Webhook Error: Alert not found";
-    const loggerData = { stripeSessionId: sessionId, stripePaymentId: payment_intent };
-    Logger.warning(loggerMessage, loggerData);
+    const message = "Stripe Webhook Error: Alert not found";
+    Logger.error(message, {
+      stripeSessionId: sessionId,
+      stripePaymentId: payment_intent,
+      order: order.id,
+      alert: metadata.alert,
+    });
     return res.status(400).send(loggerMessage);
   } else if (alert.status !== "processing") {
     return res.status(400).send("Stripe Webhook Error: Alert was already activated!");

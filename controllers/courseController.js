@@ -1,27 +1,23 @@
-const crudController = require("./crudController");
-const CourseModel = require("../models/Course/CourseModel");
-const UoftCourseModel = require("../models/Course/UoftCourseModel");
 const catchAsync = require("../utils/app/catchAsync");
 const AppError = require("../utils/app/AppError");
 const APIQuery = require("../utils/app/APIQuery");
-const alertsData = require("../data/alerts-data");
-
-exports.restrictEnrol = catchAsync(async (req, res, next) => {
-  if (!alertsData.allowedToEnrol) {
-    return next(
-      new AppError("Enrollment is not current open! Please come back when enrollment is open", 400)
-    );
-  }
-
-  next();
-});
+const crudController = require("./crudController");
+const CourseModel = require("../models/Course/CourseModel");
+const UoftCourseModel = require("../models/Course/UoftCourseModel");
+const TermModel = require("../models/Course/TermModel");
 
 exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { query } = req.query;
 
+  // Check if any enrollments are open
+  const enrollableSeasons = TermModel.getEnrollableSeasons();
+  if (enrollableSeasons.length === 0) {
+    return next(new AppError("Enrollment is not currently open, please try again later.", 400));
+  }
+
   // Check if valid query was provided
   if (!query || query === "") {
-    return next(new AppError("Please provide a valid query to search from.", 500));
+    return next(new AppError("Please provide a valid query to search from.", 400));
   }
 
   // Find courses based on search input

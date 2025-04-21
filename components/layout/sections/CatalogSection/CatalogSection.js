@@ -11,7 +11,7 @@ const CatalogSection = ({ course, selectedSessions, toggleSession }) => {
     <Section className={classes.CatalogSection}>
       <div className={classes.Header}>
         <div className={classes.HeaderTerm}>
-          {course.term.season} {course.term.year}
+          {course.term.name} {course.term.year}
         </div>
         <h1 className={join("header", "header-title")}>{course.code}</h1>
         <h2 className="subtitle">{course.name}</h2>

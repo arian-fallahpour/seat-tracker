@@ -1,27 +1,47 @@
 const mongoose = require("mongoose");
 const enums = require("../../data/enums");
+const { getEnrollableSeasons } = require("../../utils/app/schema-utils");
+const alertsData = require("../../data/alerts-data");
 
-const termSchema = new mongoose.Schema({
-  year: {
-    type: Number,
-    required: [true, "Please provide a year for the course term."],
-    min: [2000, "Course term year must be greater than 2000"],
-  },
-  season: {
-    type: String,
-    required: [true, "Please provide the season for the course term."],
-    enum: {
-      values: enums.term.season,
-      message: "Please provide a valid season for the course term.",
+const termSchema = new mongoose.Schema(
+  {
+    season: {
+      type: String,
+      required: [true, "Please provide the season for the course term."],
+      enum: {
+        values: enums.term.season,
+        message: "Please provide a valid season for the course term.",
+      },
     },
   },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+
+/**
+ * VIRTUALS
+ */
+
+termSchema.virtual("year").get(function () {
+  return alertsData.enrollmentDates[this.season][1].getFullYear();
+});
+
+termSchema.virtual("name").get(function () {
+  if (this.season === "fall-winter") return "fall/winter";
+  if (this.season.startsWith("summer")) {
+    const split = this.season.split("-");
+    return `${split[0]} (${split[1]})`;
+  }
+  return this.season;
 });
 
 /**
- * July 1, YEAR A - Sept 15, YEAR A (WINTER, FALL)
- * Marc 3, YEAR A - July 8, YEAR A (SUMMER)
+ * STATICS
  */
-termSchema.statics.canEnroll = function (term) {};
+
+termSchema.statics.getEnrollableSeasons = getEnrollableSeasons;
 
 const TermModel = mongoose.models?.Term || mongoose.model("Term", termSchema);
 module.exports = TermModel;

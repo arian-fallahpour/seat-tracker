@@ -7,14 +7,13 @@ class UoftFormatter {
   };
 
   static formatCourse(courseData) {
-    const sections = courseData.sections.map((sectionData) =>
-      this.formatSection({ ...sectionData, campus: courseData.campus })
-    );
+    const sections = courseData.sections.map((sectionData) => this.formatSection(sectionData));
 
     return {
       name: courseData.name,
       code: this.formatCourseCode(courseData),
-      term: this.formatTerm(courseData.sessions[courseData.sessions.length - 1]),
+      term: this.formatTerm(courseData.sessions),
+      campus: this.formatCampus(courseData.campus),
       sections,
     };
   }
@@ -39,13 +38,33 @@ class UoftFormatter {
     return this.campuses[providedCampus] || null;
   }
 
-  static formatTerm(termData) {
-    if (termData) {
+  // ["20249", "20251"] (fall-winter)
+  static formatTerm(sessions) {
+    // Fall and Winter term
+    if (sessions.length === 2) {
       return {
-        year: Number(termData.slice(0, 4)),
-        season: this.seasons[termData[4]],
+        year: Number(sessions[0].slice(0, 4)), // Starting year
+        season: "fall-winter",
       };
     }
+
+    const termData = sessions[0];
+    const season = this.seasons[termData[4]];
+    const year = Number(termData.slice(0, 4));
+
+    // Summer term
+    if (season === "summer") {
+      // Sub summer session
+      if (termData.length === 6) {
+        return { year, season: `summer-${termData[5] === "F" ? "first" : "second"}` };
+      }
+
+      // Full summer session
+      return { year, season: "summer-full" };
+    }
+
+    // Non-summer term
+    return { year, season };
   }
 }
 

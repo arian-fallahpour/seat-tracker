@@ -9,11 +9,7 @@ const router = express.Router();
 
 router.post("/webhooks", webhookController.handleWebhooks);
 
-router.post(
-  "/create-checkout-session",
-  courseController.restrictEnrol,
-  orderController.createCheckoutSession
-);
+router.post("/create-checkout-session", orderController.createCheckoutSession);
 
 // DEV ONLY ROUTES
 router.use(authController.restrictToDevOnly);

@@ -4,7 +4,7 @@ const AlertModel = require("../models/AlertModel");
 const catchAsync = require("../utils/app/catchAsync");
 const AppError = require("../utils/app/AppError");
 const businessData = require("../data/business-data");
-const CourseModel = require("../models/Course/CourseModel");
+const UoftCourseModel = require("../models/Course/UoftCourseModel");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -15,16 +15,16 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   if (!email) return next(new AppError("Please provide an email for this alert.", 400));
   if (!courseId) return next(new AppError("Please provide a course for this alert.", 400));
 
-  const course = await CourseModel.findById(courseId);
+  // Find course and make sure it is enrollable
+  const course = await UoftCourseModel.findById(courseId);
   if (!course) {
     return next(new AppError("Could not find specified course.", 404));
+  } else if (!course.isEnrollable()) {
+    return next(new AppError("This course is not enrollable at this time", 400));
   }
 
-  // TODO: Make sure students are allowed to enroll in course
-  console.log(course);
-
   // Handle alert creation or update
-  const allowedStatus = ["processing", "active", "paused"];
+  const allowedStatus = ["processing", "active"];
   let alert = await AlertModel.findOne({ email, course: courseId, status: allowedStatus });
   if (!alert) {
     alert = await AlertModel.create({ email, course: courseId, sections });

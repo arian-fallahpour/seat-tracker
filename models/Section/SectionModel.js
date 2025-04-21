@@ -21,12 +21,6 @@ const sectionSchema = new mongoose.Schema({
     required: [true, "Please provide a section number."],
     maxLength: [50, "Section number cannot exceed 50 characters."],
   },
-  campus: {
-    type: String,
-    required: [true, "Please provide a campus."],
-    minLength: [3, "Campus must be atleast 3 characters long."],
-    maxLength: [200, "Campus cannot exceed 50 characters."],
-  },
   lastUpdatedAt: {
     type: Date,
     default: new Date(Date.now()),

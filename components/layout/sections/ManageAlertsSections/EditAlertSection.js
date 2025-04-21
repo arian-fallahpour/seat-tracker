@@ -13,10 +13,12 @@ import Checkbox from "@/components/elements/Checkbox/Checkbox";
 
 const EditAlertSection = ({ alert, selectedSessions }) => {
   const [email, setEmail] = useState(alert.email);
-  const [paused, setPaused] = useState(alert.status === "paused");
+  const [paused, setPaused] = useState(alert.isPaused);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const url = `/${config.API_PATH}/alerts/info/${alert._id}`;
@@ -25,16 +27,17 @@ const EditAlertSection = ({ alert, selectedSessions }) => {
         method: "POST",
         data: {
           email: email,
-          status: paused ? "paused" : "active",
+          isPaused: paused,
           sections: selectedSessions,
         },
       });
     } catch (err) {
       console.error(err);
     }
+
+    setIsLoading(false);
   };
 
-  // TODO: Responsive styles
   return (
     <Section className={classes.ManageAlertSection}>
       <div className={classes.Main}>
@@ -68,7 +71,9 @@ const EditAlertSection = ({ alert, selectedSessions }) => {
               onChange={(e) => setPaused(e.target.checked)}
             />
           </FormRow>
-          <Button className={classes.FormSubmit}>Update alert</Button>
+          <Button className={classes.FormSubmit} isLoading={isLoading}>
+            Update alert
+          </Button>
         </Form>
       </div>
     </Section>

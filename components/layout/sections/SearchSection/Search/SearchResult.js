@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import classes from "./Search.module.scss";
 import Link from "next/link";
 import { join } from "@/utils/helper-client";
+import TermModel from "../../../../../models/Course/TermModel";
 
 const SearchResult = ({ code, name, term, slug, sections }) => {
   const [labs, tutorials] = useMemo(() => {
@@ -35,7 +36,7 @@ const SearchResult = ({ code, name, term, slug, sections }) => {
       </div>
       <div className={classes.ResultName}>{name}</div>
       <div className={classes.ResultTerm}>
-        {term.season} {term.year}
+        {term.name} {term.year}
       </div>
     </Link>
   );

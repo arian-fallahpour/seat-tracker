@@ -7,6 +7,8 @@ exports.getAlertInfo = catchAsync(async (req, res, next) => {
   const alert = await AlertModel.getInfo(req.params.id);
   if (!alert) {
     return next(new AppError("Could not find alert with provided id.", 404));
+  } else if (alert.status === "inactive") {
+    return next(new AppError("Alert is no longer active.", 400));
   }
 
   return res.status(200).json({
@@ -18,12 +20,14 @@ exports.getAlertInfo = catchAsync(async (req, res, next) => {
 });
 
 exports.editAlertInfo = catchAsync(async (req, res, next) => {
-  const { email, status, sections } = req.body;
+  const { email, isPaused, sections } = req.body;
 
-  // Find alert
+  // Find alert and do not allow editing if inactive
   const alert = await AlertModel.getInfo(req.params.id);
   if (!alert) {
     return next(new AppError("Could not find alert with provided id.", 404));
+  } else if (alert.status === "inactive") {
+    return next(new AppError("Alert is no longer active.", 400));
   }
 
   const courseSectionIds = alert.course.sections.map((s) => s.id);
@@ -32,7 +36,7 @@ exports.editAlertInfo = catchAsync(async (req, res, next) => {
   alert.email = email;
   if (Array.isArray(sections))
     alert.sections = sections.filter((s) => courseSectionIds.includes(s));
-  if (status && ["active", "paused"].includes(status)) alert.status = status;
+  if (typeof isPaused === "boolean") alert.isPaused = isPaused;
   await alert.save();
 
   return res.status(200).json({

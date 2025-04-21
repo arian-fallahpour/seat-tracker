@@ -4,7 +4,6 @@ import Section from "@/components/elements/Section/Section";
 import config from "@/utils/config";
 import classes from "./ActiveAlertsSection.module.scss";
 
-import { allowedToEnrol } from "@/data/alerts-data";
 import Button from "@/components/elements/Button/Button";
 import { join } from "@/utils/helper-client";
 
@@ -34,15 +33,13 @@ const ActiveAlertsSection = async () => {
         FAQ
       </Button>
 
-      {allowedToEnrol && (
-        <div className={classes.ActiveAlerts}>
-          <div className={classes.ActiveAlertsIndicator}>
-            <span className={classes.ActiveAlertsIndicatorInner} />
-            <span className={classes.ActiveAlertsIndicatorOuter} />
-          </div>
-          <span className={classes.ActiveAlertsCount}>Active Alerts: {activeAlerts}</span>
+      <div className={classes.ActiveAlerts}>
+        <div className={classes.ActiveAlertsIndicator}>
+          <span className={classes.ActiveAlertsIndicatorInner} />
+          <span className={classes.ActiveAlertsIndicatorOuter} />
         </div>
-      )}
+        <span className={classes.ActiveAlertsCount}>Active Alerts: {activeAlerts}</span>
+      </div>
     </Section>
   );
 };

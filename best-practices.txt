@@ -1,1 +1,1 @@
-Avoid throwing errors in non-api settings, since it may cause total failure. Log instead.
+Avoid throwing errors in non-api parts of program, since it may cause total failure. Log instead.

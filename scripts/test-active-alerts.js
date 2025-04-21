@@ -15,7 +15,7 @@ dotenv.config({ path: "./config.env" });
   dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
   await mongoose.connect(dbUri, { autoIndex: true });
 
-  const alerts = await Alert.findActive();
+  const alerts = await Alert.findAlertable();
 
   const groupedAlertsByCode = Alert.groupByCode(alerts);
   const courseCodes = Object.keys(groupedAlertsByCode);

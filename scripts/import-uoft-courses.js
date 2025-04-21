@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const args = require("args-parser")(process.argv);
 
-const Section = require("../models/database/Section/Section");
-const Course = require("../models/database/Course/Course");
-const UoftAdapter = require("../models/api-adapters/UoftAdapter");
-const UoftCourseModel = require("../models/database/Course/UoftCourseModel");
+const SectionModel = require("../models/Section/SectionModel");
+const CourseModel = require("../models/Course/CourseModel");
+const UoftAdapter = require("../utils/Uoft/UoftAdapter");
+const UoftCourseModel = require("../models/Course/UoftCourseModel");
 
 dotenv.config({ path: "./config.env" });
 
@@ -47,7 +47,7 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await CourseModel.deleteMany();
-    await Section.deleteMany();
+    await SectionModel.deleteMany();
     console.log("Deleted all courses and sections");
   } catch (err) {
     console.error(`Deletion failed: ${err.message}`);

@@ -5,8 +5,8 @@ const authController = require("../controllers/authcontroller");
 
 const router = express.Router();
 
-router.get("/search", courseController.restrictEnrol, courseController.searchForCourses);
-router.get("/info/:slug", courseController.restrictEnrol, courseController.getCourseInfo);
+router.get("/search", courseController.searchForCourses);
+router.get("/info/:slug", courseController.getCourseInfo);
 
 // DEV ONLY ROUTES
 router.use(authController.restrictToDevOnly);

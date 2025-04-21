@@ -1,16 +1,19 @@
 const enums = {
   alert: {
-    status: ["processing", "active", "paused", "inactive"],
+    status: ["processing", "active", "inactive"],
+  },
+  course: {
+    campus: {
+      UoftSection: ["Scarborough", "Mississauga", "St. George"],
+    },
   },
   section: {
     type: ["tutorial", "lab"],
     deliveryMode: ["in person", "hybrid", "online"],
-    // campus: {
-    //   UoftSection: ["Scarborough", "Mississauga", "St. George"],
-    //   WaterlooSection: ["University of Waterloo", "Online"],
-    // },
   },
-  term: { season: ["fall", "winter", "summer"] },
+  term: {
+    season: ["fall", "winter", "fall-winter", "summer-first", "summer-second", "summer-full"],
+  },
   log: {
     type: [
       "info", // General operational messages, no issue

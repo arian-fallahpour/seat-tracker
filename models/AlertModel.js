@@ -5,6 +5,7 @@ const enums = require("../data/enums");
 const Email = require("../utils/app/Email");
 const UoftCourseModel = require("./Course/UoftCourseModel");
 const UoftAdapter = require("../utils/Uoft/UoftAdapter");
+const Logger = require("../utils/Logger");
 require("./Section/UoftSectionModel"); // Required for instance methods
 
 const alertSchema = new mongoose.Schema({
@@ -26,7 +27,7 @@ const alertSchema = new mongoose.Schema({
     validate: [
       {
         validator: validateSectionsLength,
-        message: "Please provide at least one section.",
+        message: "Please select at least one section.",
       },
     ],
   },
@@ -37,6 +38,11 @@ const alertSchema = new mongoose.Schema({
       message: "Please provide a valid alert status.",
     },
     default: enums.alert.status[0],
+  },
+  isPaused: {
+    type: Boolean,
+    required: [true, "Please indicate if this alert has been paused or not."],
+    default: false,
   },
   createdAt: {
     type: Date,
@@ -76,10 +82,10 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
  */
 
 /**
- * Returns currently active alerts and associated course
+ * Returns alerts that are active and not paused, as well as associated course and sections
  */
-alertSchema.statics.findActive = async function () {
-  const alerts = await this.find({ status: "active" })
+alertSchema.statics.findAlertable = async function () {
+  const alerts = await this.find({ status: "active", isPaused: false })
     .populate({ path: "course" })
     .populate({ path: "sections" });
 
@@ -113,6 +119,21 @@ alertSchema.statics.groupByCode = function (alerts = []) {
   }
 
   return groupedAlerts;
+};
+
+alertSchema.statics.deactivateExpired = async function (alerts) {
+  const enrollableAlerts = [];
+
+  const deactivateAlert = async (alert) => {
+    if (!alert.course.isEnrollable()) await alert.deactivate();
+
+    enrollableAlerts.push(alert);
+  };
+
+  const promises = alerts.map((alert) => deactivateAlert(alert));
+  await Promise.allSettled(promises);
+
+  return enrollableAlerts;
 };
 
 alertSchema.statics.filterAllNotifiable = async function (alerts = [], updatedCoursesByCode = {}) {
@@ -197,10 +218,15 @@ alertSchema.methods.activate = async function () {
   await UoftCourseModel.upsertCoursesAndSections(updatedCourses);
 };
 
+alertSchema.methods.deactivate = async function () {
+  Logger.info(`Deactivating ${this.email}'s alert for ${this.course.code}.`);
+
+  this.status = "inactive";
+  await this.save();
+};
+
 /**
  * Sends notification email to email address associated with alert
- *
- * Logs error, but does not throw if unsuccessful
  */
 alertSchema.methods.notify = async function () {
   if (!this.freedSections || this.freedSections.length === 0) {

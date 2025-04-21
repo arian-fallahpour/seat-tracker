@@ -17,7 +17,6 @@ class UoftAdapter {
       query: options.query || "",
       page: options.page || 1,
       fetchMethod: options.fetchMethod || "lambda",
-      useLambdaFetch: options.useLambdaFetch || false,
     };
 
     // Build fetch options object
@@ -37,14 +36,18 @@ class UoftAdapter {
         response = await this.fetchRegular(fetchOptions);
       }
     } catch (error) {
-      Logger.warn(`Could not fetch updated UofT courses`, { error: error.message });
+      Logger.warn(`Could not fetch updated UofT courses`, {
+        options,
+        error: error.message,
+      });
       return [];
     }
 
     // Format fetched data
     const { data } = response;
     const coursesData = data.payload.pageableCourse.courses;
-    const courses = coursesData.map((courseData) => UoftFormatter.formatCourse(courseData));
+    let courses = coursesData.map((courseData) => UoftFormatter.formatCourse(courseData));
+    courses = courses.filter((c) => !!c.campus); // Filter courses without a campus
 
     return courses;
   }
@@ -141,7 +144,15 @@ class UoftAdapter {
       },
       departmentProps: [],
       campuses: [],
-      sessions: ["20249", "20251", "20249-20251"],
+      sessions: [
+        "20249",
+        "20251",
+        "20249-20251", // Fall Winter (2024-2025)
+
+        "20255F",
+        "20255S",
+        "20255", // Summer
+      ],
       requirementProps: [],
       instructor: "",
       courseLevels: [],

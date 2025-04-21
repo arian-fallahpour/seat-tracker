@@ -3,11 +3,12 @@ import classes from "./SearchSection.module.scss";
 import Section from "@/components/elements/Section/Section";
 import Search from "./Search/Search";
 import { join } from "@/utils/helper-client";
+import { getEnrollableSeasons } from "../../../../utils/app/schema-utils";
 import InfoIcon from "@/components/elements/icons/InfoIcon";
 
-import { allowedToEnrol } from "@/data/alerts-data";
-
 const SearchSection = ({ className }) => {
+  const isEnrollmentOpen = getEnrollableSeasons().length > 0;
+
   return (
     <Section className={join(className, classes.SearchSection)}>
       <header className={classes.Header}>
@@ -16,8 +17,8 @@ const SearchSection = ({ className }) => {
           Search for courses to send alerts from the University Of Toronto
         </p>
       </header>
-      <Search isDisabled={!allowedToEnrol} />
-      {!allowedToEnrol && (
+      <Search isDisabled={!isEnrollmentOpen} />
+      {!isEnrollmentOpen && (
         <div className={classes.Message}>
           <InfoIcon className={classes.MessageIcon} />
           <p className="paragraph">

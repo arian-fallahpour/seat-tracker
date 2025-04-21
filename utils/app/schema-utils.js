@@ -1,3 +1,5 @@
+const alertsData = require("../../data/alerts-data");
+
 exports.validateSeatsTaken = function (value) {
   return value <= this.seatsAvailable;
 };
@@ -98,6 +100,18 @@ function upsertSections(SectionModel) {
 
     return upsertedSections;
   };
+}
+
+exports.getEnrollableSeasons = getEnrollableSeasons;
+function getEnrollableSeasons() {
+  const { enrollmentDates } = alertsData;
+  const currentDate = new Date(Date.now());
+
+  const enrollableTerms = Object.keys(enrollmentDates).filter(
+    (term) => enrollmentDates[term][0] < currentDate && currentDate < enrollmentDates[term][1]
+  );
+
+  return enrollableTerms;
 }
 
 function generateSectionsMap(sections) {

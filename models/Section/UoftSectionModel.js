@@ -49,6 +49,10 @@ const uoftSectionSchema = new mongoose.Schema(
   }
 );
 
+/**
+ * VIRTUALS
+ */
+
 uoftSectionSchema.virtual("seatsEmpty").get(calculateEmptySeats);
 
 /**

@@ -11,20 +11,19 @@ const getData = async (alertId) => {
   const body = await response.json();
 
   if (!response.ok) {
-    return null;
+    return { error: new Error(body.message) };
   }
 
   const { alert } = body.data;
-  return alert;
+  return { alert };
 };
 
 async function Page({ params }) {
   const { id } = await params;
-  const alert = await getData(id);
+  const { alert, error } = await getData(id);
 
-  if (alert === null) {
-    redirect("/");
-    // TODO: Add error message that we could not find the alert
+  if (error) {
+    redirect(`/?error=${error.message}`);
   }
 
   return <AlertPage alert={alert} />;

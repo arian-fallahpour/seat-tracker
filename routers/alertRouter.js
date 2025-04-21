@@ -6,7 +6,7 @@ const authController = require("../controllers/authcontroller");
 
 const router = express.Router();
 
-router.get("/count", courseController.restrictEnrol, alertController.getAlertsCount);
+router.get("/count", alertController.getAlertsCount);
 router.route("/info/:id").get(alertController.getAlertInfo).post(alertController.editAlertInfo);
 
 // DEV ONLY ROUTES
