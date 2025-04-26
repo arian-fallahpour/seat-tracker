@@ -1,4 +1,5 @@
 jest.mock("../../../models/AlertModel");
+jest.mock("../../../models/Course/UoftCourseModel");
 jest.mock("../../../models/OrderModel");
 
 const sessionMock = { id: "stripe_session_id", url: "stripe_session_url" };
@@ -12,6 +13,7 @@ jest.mock("stripe", () => {
   }));
 });
 
+const UoftCourseModel = require("../../../models/Course/UoftCourseModel");
 const AppError = require("../../../utils/app/AppError");
 const AlertModel = require("../../../models/AlertModel");
 const OrderModel = require("../../../models/OrderModel");
@@ -58,8 +60,10 @@ test("should create alert if haven't found one", async () => {
   const res = {};
   const next = jest.fn();
 
+  const mockCourse = { isEnrollable: jest.fn(() => true) };
   const mockAlert = { id: "alert123", status: "processing" };
 
+  UoftCourseModel.findById.mockResolvedValue(mockCourse);
   AlertModel.findOne.mockResolvedValue(null); // no existing alert
   AlertModel.create.mockResolvedValue(mockAlert);
 
