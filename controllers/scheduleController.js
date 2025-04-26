@@ -4,6 +4,7 @@ const ScheduleModel = require("../models/ScheduleModel");
 const alertsData = require("../data/alerts-data");
 const Logger = require("../utils/Logger");
 const UoftParallel = require("../utils/Uoft/UoftParallel");
+const Email = require("../utils/app/Email");
 
 exports.initialize = async () => {
   await ScheduleModel.intializeRecurring("alerts", {

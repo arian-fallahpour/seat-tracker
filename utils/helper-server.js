@@ -3,7 +3,7 @@ const React = require("react");
 const ReactDOMServer = require("react-dom/server");
 const archiver = require("archiver");
 const { headers } = require("next/headers");
-const { default: reactToText } = require("react-to-text");
+const { convert } = require("html-to-text");
 
 exports.createServerURL = async (relativeURL) => {
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
@@ -36,7 +36,8 @@ exports.jsxToHtml = function (Component, props) {
 
 exports.jsxToText = function (Component, props) {
   const element = React.createElement(Component, props, null);
-  return reactToText(element);
+  const string = ReactDOMServer.renderToString(element);
+  return convert(string, { wordwrap: 130 });
 };
 
 exports.get404Message = (originalUrl) => `The route ${req.originalUrl} does not exist.`;
