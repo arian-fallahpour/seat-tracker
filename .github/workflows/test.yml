@@ -1,4 +1,4 @@
-name: Test Main Branch
+name: Test Project
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: 23.x   # ← define it here
@@ -20,5 +20,4 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
     - run: npm i
-    - run: npm run build
     - run: npm test
