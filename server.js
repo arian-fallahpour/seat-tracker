@@ -3,10 +3,10 @@ require("@babel/register"); // Required for importing of react components in nod
 const dotenv = require("dotenv");
 const next = require("next");
 const mongoose = require("mongoose");
-const { sleep } = require("./utils/helper-client");
+const Logger = require("./utils/Logger");
 
-process.on("uncaughtException", (err) => {
-  console.error(`[ERROR] (Uncaught Exception) ${err.stack}`);
+process.on("uncaughtException", (error) => {
+  Logger.error(`Uncaught Exception: ${error.message}`, { error });
   process.exit(1);
 });
 
@@ -45,8 +45,14 @@ nextApp.prepare().then(() => {
   });
 });
 
-process.on("unhandledRejection", (err) => {
-  console.error(`[ERROR] (Unhandled Rejection)`);
-  console.error(err);
+process.on("unhandledRejection", (error) => {
+  Logger.error(`Unhandled Rejection: ${error.message}`, { error });
   server.close(() => process.exit(1));
+});
+
+process.on("SIGTERM", () => {
+  Logger.log("SIGTERM Received. Shutting down gracefully");
+  server.close(() => {
+    console.log("Process terminated");
+  });
 });
