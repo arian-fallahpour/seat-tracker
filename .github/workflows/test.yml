@@ -1,4 +1,4 @@
-name: Test Main Branch
+name: Test Project
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main", "prod" ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: 23.x   # ← define it here
