@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      NODE_VERSION: 23.x   # ← define it here
+      NODE_VERSION: 22.x   # ← define it here
 
     steps:
     - uses: actions/checkout@v4
