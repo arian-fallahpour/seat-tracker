@@ -2,9 +2,9 @@ name: Build Project
 
 on:
   push:
-    branches: [ "heroku" ]
+    branches: ["heroku"]
   pull_request:
-    branches: [ "heroku" ]
+    branches: ["heroku"]
 
 jobs:
   test:
@@ -13,18 +13,19 @@ jobs:
       NODE_VERSION: 22.x
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+      - uses: actions/checkout@v4
 
-    - name: Install packages
-    - run: npm i
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
 
-    - name: Run tests
-    - run: npm test
+      - name: Install packages
+        run: npm ci
 
-    - name: Build project
-    - run: npm run build
+      - name: Run tests
+        run: npm test
+
+      - name: Build project
+        run: npm run build
