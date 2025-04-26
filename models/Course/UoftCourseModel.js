@@ -71,7 +71,6 @@ uoftCourseSchema.statics.search = function (query) {
  * METHODS
  */
 
-// TODO: test
 uoftCourseSchema.methods.isEnrollable = function () {
   return TermModel.getEnrollableSeasons().includes(this.term.season);
 };
