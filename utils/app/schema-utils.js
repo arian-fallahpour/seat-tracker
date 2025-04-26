@@ -15,7 +15,7 @@ function upsertCoursesAndSections(CourseModel, SectionModel) {
     coursesData.forEach((courseData) => coursesDataMap.set(courseData.code, courseData));
 
     // Upsert courses
-    const courses = await upsertCourses(CourseModel)(coursesData);
+    const courses = await upsertCourses(CourseModel, false)(coursesData);
 
     // Gather data of all sections in all courses
     const sectionsData = [];
@@ -26,7 +26,7 @@ function upsertCoursesAndSections(CourseModel, SectionModel) {
     }
 
     // Upsert sections
-    const sections = await upsertSections(SectionModel)(sectionsData);
+    const sections = await upsertSections(SectionModel, false)(sectionsData);
 
     // Create a map for the sections based on the course they belong to
     const sectionsMap = generateSectionsMap(sections);
@@ -40,13 +40,14 @@ function upsertCoursesAndSections(CourseModel, SectionModel) {
 
     // Save courses
     await CourseModel.bulkSave(courses);
+    await SectionModel.bulkSave(sections);
 
     return courses;
   };
 }
 
 exports.upsertCourses = upsertCourses;
-function upsertCourses(CourseModel) {
+function upsertCourses(CourseModel, shouldBulkSave = true) {
   return async function (coursesData) {
     const bulkOperations = [];
 
@@ -64,12 +65,16 @@ function upsertCourses(CourseModel) {
     // Return all courses
     const courseCodes = coursesData.map((courseData) => courseData.code);
     const upsertedCourses = await CourseModel.find({ code: { $in: courseCodes } });
+
+    // Bulk save if indicated
+    if (shouldBulkSave) await CourseModel.bulkSave(upsertedCourses);
+
     return upsertedCourses;
   };
 }
 
 exports.upsertSections = upsertSections;
-function upsertSections(SectionModel) {
+function upsertSections(SectionModel, shouldBulkSave = true) {
   return async function (sectionsData) {
     const bulkOperations = [];
     const filters = { course: [], type: [], number: [] };
@@ -98,6 +103,9 @@ function upsertSections(SectionModel) {
       number: { $in: filters.number },
     });
 
+    // Bulk save if indicated
+    if (shouldBulkSave) await SectionModel.bulkSave(upsertedSections);
+
     return upsertedSections;
   };
 }
@@ -113,6 +121,11 @@ function getEnrollableSeasons() {
 
   return enrollableTerms;
 }
+
+exports.setLastUpdatedAt = function (next) {
+  this.lastUpdatedAt = new Date(Date.now());
+  next();
+};
 
 function generateSectionsMap(sections) {
   const sectionsMap = new Map();

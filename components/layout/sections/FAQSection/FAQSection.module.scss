@@ -1,0 +1,16 @@
+section.FAQSection {
+  display: grid;
+  gap: var(--width-regular);
+}
+
+.Questions {
+  display: grid;
+  gap: inherit;
+  list-style: none;
+  max-width: 100rem;
+}
+
+.Question {
+  display: grid;
+  gap: var(--width-tiny);
+}

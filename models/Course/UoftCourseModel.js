@@ -3,9 +3,13 @@ const slugify = require("slugify");
 
 const CourseModel = require("./CourseModel");
 const UoftSection = require("../Section/UoftSectionModel");
-const { upsertCoursesAndSections, upsertCourses } = require("../../utils/app/schema-utils");
 const enums = require("../../data/enums");
 const TermModel = require("./TermModel");
+const {
+  upsertCoursesAndSections,
+  upsertCourses,
+  setLastUpdatedAt,
+} = require("../../utils/app/schema-utils");
 
 const uoftCourseSchema = new mongoose.Schema(
   {
@@ -38,6 +42,8 @@ uoftCourseSchema.pre("save", function (next) {
   }
   next();
 });
+
+uoftCourseSchema.pre("save", setLastUpdatedAt);
 
 /**
  * STATICS

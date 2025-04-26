@@ -14,6 +14,7 @@ const webhookController = require("./controllers/webhookController");
  * - complete testing of app
  *
  * DONE (double check at the end of development):
+ * - Add lectures and practicals (or other)
  * - Determine how to handle failed operations when processing alerts (Rehaul logging)
  * - Remove alert paused status (maybe) and create another field instead
  * - Restrict alert creation only for enrollable terms (April 19, 2025 version) --> need to automatically de-activate alerts when enrollment ends

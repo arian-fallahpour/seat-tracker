@@ -1,5 +1,7 @@
+import FAQPage from "../../components/pages/FAQPage/FAQPage";
+
 async function Page() {
-  return "test";
+  return <FAQPage />;
 }
 
 export default Page;

@@ -1,7 +1,7 @@
 const LogModel = require("../models/LogModel");
 
 class Logger {
-  static documentableLogs = ["log", "warn", "error"];
+  static documentableLogs = ["log", "warn", "error", "alert"];
 
   static info(description, data) {
     this.emit("info", description, data);

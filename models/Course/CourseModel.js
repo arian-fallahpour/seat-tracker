@@ -26,6 +26,11 @@ const courseSchema = new mongoose.Schema({
 
 courseSchema.index({ slug: 1 });
 
+courseSchema.pre("save", function (next) {
+  this.lastUpdatedAt = new Date(Date.now());
+  next();
+});
+
 /**
  * STATICS
  */

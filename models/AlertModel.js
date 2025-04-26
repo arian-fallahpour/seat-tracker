@@ -98,7 +98,7 @@ alertSchema.statics.getInfo = async function (id) {
     path: "course",
     populate: {
       path: "sections",
-      select: "type number campus lastUpdatedAt",
+      select: "type number campus lastAlertedAt",
     },
   });
 };
@@ -204,7 +204,7 @@ alertSchema.methods.activate = async function () {
   // Construct and send the activation email
   await new Email()
     .toEmail(this.email)
-    .withSubject(`Alerts activated for ${this.course.code}`)
+    .withSubject(`Alert activated for ${this.course.code}`)
     .withTemplate("alert-activate", { course: this.course, alert: this })
     .send();
 

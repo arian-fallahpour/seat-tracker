@@ -35,6 +35,8 @@ class Email {
   }
 
   withTemplate(template, data) {
+    this.template = template;
+
     if (template === "alert-notify") {
       this.withTemplateAlertNotify(data);
     } else if (template === "alert-activate") {
@@ -82,12 +84,14 @@ class Email {
   }
 
   getProps(data) {
+    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+
     return {
       data,
       context: {
         host: process.env.HOST,
         port: process.env.PORT,
-        protocol: process.env.NODE_ENV === "development" ? "http" : "https",
+        protocol: protocol,
         baseURL: `${protocol}://${process.env.HOST}:${process.env.PORT}`,
       },
     };

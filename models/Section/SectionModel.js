@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const enums = require("../../data/enums");
+const { setLastUpdatedAt } = require("../../utils/app/schema-utils");
 
 const sectionSchema = new mongoose.Schema({
   course: {
@@ -28,6 +29,8 @@ const sectionSchema = new mongoose.Schema({
 });
 
 sectionSchema.index({ course: 1, type: 1, number: 1 }, { unique: true });
+
+sectionSchema.pre("save", setLastUpdatedAt);
 
 /**
  * STATICS

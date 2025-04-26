@@ -5,6 +5,12 @@ class UoftFormatter {
     "University of Toronto at Mississauga": "Mississauga",
     "St. George": "St. George",
   };
+  static sectionTypes = {
+    LEC: "lecture",
+    TUT: "tutorial",
+    LAB: "lab",
+    PRA: "practical",
+  };
 
   static formatCourse(courseData) {
     const sections = courseData.sections.map((sectionData) => this.formatSection(sectionData));
@@ -24,7 +30,7 @@ class UoftFormatter {
 
   static formatSection(sectionData) {
     return {
-      type: sectionData.teachMethod === "TUT" ? "tutorial" : "lab",
+      type: this.sectionTypes[sectionData.teachMethod] || "other",
       number: sectionData.sectionNumber,
       campus: this.formatCampus(sectionData.campus),
       seatsTaken: sectionData.currentEnrolment,

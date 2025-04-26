@@ -2,12 +2,14 @@ const AlertModel = require("../../../models/AlertModel");
 
 test("Should populate if not populated", async () => {
   const updatedCourse = { code: "abc", sections: [{ type: "lab", number: "1" }] };
-  const alert = new AlertModel();
 
+  const alert = {};
   alert.populated = jest.fn(() => false);
-  alert.populate = jest.fn();
+  alert.populate = jest.fn().mockImplementation(async () => {
+    alert.sections = [];
+  });
 
-  await alert.getFreedSections(updatedCourse);
+  await AlertModel.schema.methods.getFreedSections.call(alert, updatedCourse);
 
   expect(alert.populated).toHaveBeenCalled();
   expect(alert.populate).toHaveBeenCalled();
@@ -15,15 +17,15 @@ test("Should populate if not populated", async () => {
 
 test("should populate if sections undefined/null", async () => {
   const updatedCourse = { code: "abc", sections: [{ type: "lab", number: "1" }] };
-  const alert = new AlertModel();
-  alert.sections = undefined;
 
+  const alert = {};
+  alert.sections = undefined;
   alert.populated = jest.fn(() => true);
   alert.populate = jest.fn().mockImplementation(async () => {
     alert.sections = [];
   });
 
-  await alert.getFreedSections(updatedCourse);
+  await AlertModel.schema.methods.getFreedSections.call(alert, updatedCourse);
 
   expect(alert.populated).toHaveBeenCalled();
   expect(alert.populate).toHaveBeenCalled();
@@ -31,12 +33,13 @@ test("should populate if sections undefined/null", async () => {
 
 test("shouldn't populate if already populated", async () => {
   const updatedCourse = { code: "abc", sections: [{ type: "lab", number: "1" }] };
-  const alert = new AlertModel();
 
+  const alert = {};
+  alert.sections = [];
   alert.populated = jest.fn(() => true);
   alert.populate = jest.fn();
 
-  await alert.getFreedSections(updatedCourse);
+  await AlertModel.schema.methods.getFreedSections.call(alert, updatedCourse);
 
   expect(alert.populated).toHaveBeenCalled();
   expect(alert.populate).not.toHaveBeenCalled();
@@ -44,12 +47,13 @@ test("shouldn't populate if already populated", async () => {
 
 test("should gracefully handle no updatedSection found", async () => {
   const isFreedMock = jest.fn();
-
   const updatedCourse = { code: "abc", sections: [] };
-  const alert = new AlertModel();
-  alert.sections = [{ type: "lab", number: "1", isFreed: isFreedMock }];
 
-  await alert.getFreedSections(updatedCourse);
+  const alert = {};
+  alert.sections = [{ type: "lab", number: "1", isFreed: isFreedMock }];
+  alert.populated = jest.fn(() => true);
+
+  await AlertModel.schema.methods.getFreedSections.call(alert, updatedCourse);
 
   expect(isFreedMock).not.toHaveBeenCalled();
 });
@@ -67,13 +71,11 @@ test("should filter sections that are not freed", async () => {
   const updatedSections = sections.map((s) => ({ type: s.type, number: s.number }));
   const updatedCourse = { code: "abc", sections: updatedSections };
 
-  const alert = new AlertModel();
-  alert.getFreedSections = AlertModel.schema.methods.getFreedSections.bind({
-    sections,
-    populated: jest.fn(() => true),
-  });
+  const alert = {};
+  alert.sections = sections;
+  alert.populated = jest.fn(() => true);
 
-  const freedSections = await alert.getFreedSections(updatedCourse);
+  const freedSections = await AlertModel.schema.methods.getFreedSections.call(alert, updatedCourse);
 
   expect(freedSections).toHaveLength(2);
   expect(freedSections[0]).toMatchObject(updatedSections[0]);

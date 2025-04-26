@@ -8,7 +8,7 @@ const enums = {
     },
   },
   section: {
-    type: ["tutorial", "lab"],
+    type: ["lecture", "tutorial", "lab", "practical", "other"],
     deliveryMode: ["in person", "hybrid", "online"],
   },
   term: {
@@ -17,7 +17,7 @@ const enums = {
   log: {
     type: [
       "info", // General operational messages, no issue
-      "warning", // A potential issue that doesn’t cause failure but may need attention
+      "warn", // A potential issue that doesn’t cause failure but may need attention
       "error", // A severe issue that affects the system’s operation
       "alert", // A critical issue that results in a notification being sent
     ],

@@ -13,5 +13,10 @@ const faqData = [
     question: `Is it safe to use my payment method on ${businessData.name}?`,
     answer: `Yes, we use the widely know Stripe payments infrastucture to process our payments. This means that we have no access to your payment details, since the payment is done on Stripe's checkout website. Well-known brands such as Shopify and Amazon use it too, so rest assured that your sensitive info is safe!`,
   },
+  {
+    question: "How long does my alert last?",
+    answer:
+      "Each alert lasts for only one term. So once the term is over, your alert will become inactive, and no longer send you alerts. If you need an alert for the same course again, you will need to create another alert.",
+  },
 ];
 module.exports = faqData;

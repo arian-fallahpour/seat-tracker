@@ -2,10 +2,22 @@ import classes from "./CatalogSection.module.scss";
 import { join } from "@/utils/helper-client";
 import Section from "@/components/elements/Section/Section";
 import Sessions from "./Sessions";
+import { useMemo } from "react";
 
 const CatalogSection = ({ course, selectedSessions, toggleSession }) => {
-  const labs = course.sections.filter((section) => section.type === "lab");
-  const tutorials = course.sections.filter((section) => section.type === "tutorial");
+  const sessions = useMemo(() => {
+    const sessions = {};
+
+    for (const section of course.sections) {
+      if (!sessions[section.type]) {
+        sessions[section.type] = [];
+      }
+
+      sessions[section.type].push(section);
+    }
+
+    return sessions;
+  }, [course]);
 
   return (
     <Section className={classes.CatalogSection}>
@@ -17,21 +29,17 @@ const CatalogSection = ({ course, selectedSessions, toggleSession }) => {
         <h2 className="subtitle">{course.name}</h2>
       </div>
       <div className={classes.Main}>
-        {labs.length > 0 && (
-          <Sessions
-            name="labs"
-            sessions={labs}
-            selectedSessions={selectedSessions}
-            toggleSession={toggleSession}
-          />
-        )}
-        {tutorials.length > 0 && (
-          <Sessions
-            name="tutorials"
-            sessions={tutorials}
-            selectedSessions={selectedSessions}
-            toggleSession={toggleSession}
-          />
+        {Object.keys(sessions).map(
+          (key) =>
+            sessions[key].length > 0 && (
+              <Sessions
+                key={key}
+                name={key + "s"}
+                sessions={sessions[key]}
+                selectedSessions={selectedSessions}
+                toggleSession={toggleSession}
+              />
+            )
         )}
       </div>
     </Section>

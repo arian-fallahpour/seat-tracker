@@ -145,9 +145,9 @@ class UoftAdapter {
       departmentProps: [],
       campuses: [],
       sessions: [
-        "20249",
-        "20251",
-        "20249-20251", // Fall Winter (2024-2025)
+        // "20249",
+        // "20251",
+        // "20249-20251", // Fall Winter (2024-2025)
 
         "20255F",
         "20255S",

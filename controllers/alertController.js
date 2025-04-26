@@ -49,15 +49,13 @@ exports.editAlertInfo = catchAsync(async (req, res, next) => {
 
 exports.getAlertsCount = async (req, res, next) => {
   const alerts = await AlertModel.aggregate([
-    {
-      $match: { status: "active" },
-    },
+    { $match: { status: "active" } },
     { $count: "count" },
   ]);
 
   return res.status(200).json({
     status: 200,
-    data: { count: alerts[0].count },
+    data: { count: (alerts.length > 0 && alerts[0].count) || 0 },
   });
 };
 

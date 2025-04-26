@@ -15,9 +15,8 @@ const GlobalErrors = () => {
     const errorMessage = searchParams.get("error");
     if (errorMessage) {
       setGlobalError(new Error(errorMessage));
+      removeParam(searchParams, router, "error");
     }
-
-    removeParam(searchParams, router, "error");
   }, []);
 
   return (
