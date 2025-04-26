@@ -1,8 +1,8 @@
-@import "./abstracts/functions";
-@import "./abstracts/mixins";
-@import "./abstracts/variables";
+@use "./abstracts/functions" as *;
+@use "./abstracts/mixins" as *;
+@use "./abstracts/variables" as *;
 
-@import "./base/animations";
-@import "./base/base";
-@import "./base/typography";
-@import "./base/utilities";
+@use "./base/animations" as *;
+@use "./base/base" as *;
+@use "./base/typography" as *;
+@use "./base/utilities" as *;

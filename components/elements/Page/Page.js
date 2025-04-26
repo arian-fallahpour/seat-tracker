@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { join } from "@/utils/helper-client";
 import PageHeader from "./PageHeader";
 import Providers from "../Providers";
@@ -15,7 +15,9 @@ const Page = ({
 }) => {
   return (
     <Providers>
-      <GlobalErrors />
+      <Suspense>
+        <GlobalErrors />
+      </Suspense>
       <main className={join("main", className)} {...otherProps}>
         <PageHeader includeBackButton={includeBackButton} includeHomeButton={includeHomeButton} />
         {children}
