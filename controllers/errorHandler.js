@@ -1,5 +1,6 @@
 const AppError = require("../utils/app/AppError");
 
+// TODO: Revert
 const errorHandler = (error, req, res, next) => {
   error.statusCode = error.statusCode || 500;
   error.status = error.status || "error.js";
@@ -10,7 +11,7 @@ const errorHandler = (error, req, res, next) => {
   }
 
   // Send production error
-  return handleProdError(error, res);
+  return handleDevError(error, res);
 };
 module.exports = errorHandler;
 
