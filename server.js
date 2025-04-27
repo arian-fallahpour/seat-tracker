@@ -14,30 +14,30 @@ process.on("uncaughtException", (error) => {
 dotenv.config({ path: "./config.env" });
 
 const port = Number(process.env.PORT) || 8080;
-const nextApp = next({ dev: process.env.NODE_ENV === "development" });
-const nextRequestHandler = nextApp.getRequestHandler();
+// const nextApp = next({ dev: process.env.NODE_ENV === "development" });
+// const nextRequestHandler = nextApp.getRequestHandler();
 
 let server;
-nextApp.prepare().then(() => {
-  const app = require("./app");
+// nextApp.prepare().then(() => {
+//   const app = require("./app");
 
-  // Database initialization
-  const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
-  mongoose
-    .connect(dbUri, { autoIndex: true })
-    .then(() => Logger.announce(`Database connection successful`));
+// Database initialization
+const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
+mongoose
+  .connect(dbUri, { autoIndex: true })
+  .then(() => Logger.announce(`Database connection successful`));
 
-  // Server initialization
-  server = app.listen(port, async () => {
-    Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+// Server initialization
+server = app.listen(port, async () => {
+  Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-    // const scheduleController = require("./controllers/scheduleController");
-    // await scheduleController.initialize();
-  });
-
-  // Next.js routes
-  app.get("*", (req, res) => nextRequestHandler(req, res));
+  // const scheduleController = require("./controllers/scheduleController");
+  // await scheduleController.initialize();
 });
+
+// Next.js routes
+//   app.get("*", (req, res) => nextRequestHandler(req, res));
+// });
 
 process.on("unhandledRejection", (error) => {
   Logger.error(`Unhandled Rejection: ${error.message}`, { error });
