@@ -12,7 +12,7 @@ exports.getOne = (Model) =>
     res.status(200).json({
       status: "success",
       data: {
-        [Model.modelName]: document,
+        [Model.modelName.toLowerCase()]: document,
       },
     });
   });
@@ -31,7 +31,7 @@ exports.getAll = (Model) =>
       status: "success",
       results: documents.length,
       data: {
-        [Model.modelName + "s"]: documents,
+        [Model.modelName.toLowerCase() + "s"]: documents,
       },
     });
   });
@@ -43,7 +43,7 @@ exports.createOne = (Model) =>
     res.status(201).json({
       status: "success",
       data: {
-        [Model.modelName]: document,
+        [Model.modelName.toLowerCase()]: document,
       },
     });
   });
@@ -62,7 +62,7 @@ exports.updateOne = (Model) =>
     res.status(200).json({
       status: "success",
       data: {
-        [Model.modelName]: document,
+        [Model.modelName.toLowerCase()]: document,
       },
     });
   });

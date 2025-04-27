@@ -73,7 +73,7 @@ class Email {
         text: this.text,
         html: this.html,
       });
-      Logger.info(`The ${this.template} email was sent to ${this.to}`);
+      Logger.announce(`The ${this.template} email was sent to ${this.to}`);
     } catch (error) {
       Logger.warn(`The ${this.template} email not sent to ${this.to}`, {
         email: this.to,
