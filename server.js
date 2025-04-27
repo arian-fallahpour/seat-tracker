@@ -27,6 +27,7 @@ nextApp.prepare().then(() => {
   let dbUri = process.env.DATABASE_CONNECTION;
   dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
   dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
+  console.log("DB URI: ", dbUri);
   mongoose
     .connect(dbUri, { autoIndex: true })
     .then(() => Logger.announce(`Database connection successful`));

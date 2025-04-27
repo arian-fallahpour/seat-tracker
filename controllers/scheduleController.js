@@ -4,7 +4,6 @@ const ScheduleModel = require("../models/ScheduleModel");
 const alertsData = require("../data/alerts-data");
 const Logger = require("../utils/Logger");
 const UoftParallel = require("../utils/Uoft/UoftParallel");
-const Email = require("../utils/app/Email");
 
 exports.initialize = async () => {
   await ScheduleModel.intializeRecurring("alerts", {
@@ -19,6 +18,7 @@ async function scheduleAlerts() {
 
     // 1. Find all active alerts and group then in an object by their code
     const alerts = await AlertModel.findAlertable();
+    console.log(alerts);
     if (alerts.length === 0) return;
     Logger.info("(1/6) Found all active alerts.");
 
@@ -45,6 +45,6 @@ async function scheduleAlerts() {
     await UoftCourseModel.upsertCoursesAndSections(updatedCoursesData);
     Logger.info("(6/6) Upserted updated course data.");
   } catch (error) {
-    console.error(`[ERROR] Uoft Schedule Error: ${error.message}`);
+    console.error(`Uoft Schedule Error: ${error.message}`);
   }
 }

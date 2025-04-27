@@ -22,9 +22,9 @@ scheduleSchema.statics.intializeRecurring = async function (scheduleName, option
   };
 
   // Find schedule, or create new one if it doesn't exist
-  let schedule = await Schedule.findOne({ name: scheduleName });
+  let schedule = await this.findOne({ name: scheduleName });
   if (!schedule) {
-    schedule = await Schedule.create({ name: scheduleName });
+    schedule = await this.create({ name: scheduleName });
   }
 
   // Determine when the cron job should be initialized and executed
