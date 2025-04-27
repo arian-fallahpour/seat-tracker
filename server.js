@@ -19,14 +19,13 @@ const nextRequestHandler = nextApp.getRequestHandler();
 
 let server;
 nextApp.prepare().then(() => {
-  const Logger = require("./utils/Logger");
-
   const app = require("./app");
 
   server = app.listen(port, async () => {
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
     const scheduleController = require("./controllers/scheduleController");
+    const Logger = require("./utils/Logger");
 
     // Database initialization
     let dbUri = process.env.DATABASE_CONNECTION;
