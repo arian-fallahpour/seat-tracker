@@ -1,7 +1,7 @@
 require("@babel/register"); // Required for importing of react components in nodejs
 
 const dotenv = require("dotenv");
-// const next = require("next");
+const next = require("next");
 const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
 
@@ -14,31 +14,30 @@ process.on("uncaughtException", (error) => {
 dotenv.config({ path: "./config.env" });
 
 const port = process.env.PORT || 8080;
-// const nextApp = next({ dev: process.env.NODE_ENV === "development" });
-// const nextRequestHandler = nextApp.getRequestHandler();
+const nextApp = next({ dev: process.env.NODE_ENV === "development" });
+const nextRequestHandler = nextApp.getRequestHandler();
 
 let server;
-// nextApp.prepare().then(() => {
-const app = require("./app");
+nextApp.prepare().then(() => {
+  const app = require("./app");
 
-// Database initialization
-const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
-mongoose
-  .connect(dbUri, { autoIndex: true })
-  .then(() => Logger.announce(`Database connection successful`));
+  // Database initialization
+  const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
+  mongoose
+    .connect(dbUri, { autoIndex: true })
+    .then(() => Logger.announce(`Database connection successful`));
 
-// Server initialization
-server = app.listen(port, () => {
-  Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+  // Server initialization
+  server = app.listen(port, async () => {
+    Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-  // const scheduleController = require("./controllers/scheduleController");
+    const scheduleController = require("./controllers/scheduleController");
+    await scheduleController.initialize();
+  });
 
-  // await scheduleController.initialize();
+  // Next.js routes
+  app.get("*", (req, res) => nextRequestHandler(req, res));
 });
-
-//   // Next.js routes
-//   app.get("*", (req, res) => nextRequestHandler(req, res));
-// });
 
 process.on("unhandledRejection", (error) => {
   Logger.error(`Unhandled Rejection: ${error.message}`, { error });
