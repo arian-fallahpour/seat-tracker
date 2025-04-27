@@ -23,10 +23,10 @@ nextApp.prepare().then(() => {
 
   const app = require("./app");
 
+  app.use("port", port);
+
   // Database initialization
-  let dbUri = process.env.DATABASE_CONNECTION;
-  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
+  const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
   mongoose
     .connect(dbUri, { autoIndex: true })
     .then(() => Logger.announce(`Database connection successful`));
