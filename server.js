@@ -22,7 +22,11 @@ let server;
 // nextApp.prepare().then(() => {
 const app = require("./app");
 
-app.get("/test", (req, res) => res.status(200).json("NICE"));
+app.get("/test", (req, res) => {
+  console.log("<<ABCD>> LOG <<ABCD>>");
+  console.error("<<ABCD>> ERROR <<ABCD>>");
+  res.status(200).json("NICE");
+});
 
 // Database initialization
 const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
