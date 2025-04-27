@@ -40,4 +40,4 @@ exports.jsxToText = function (Component, props) {
   return convert(string, { wordwrap: 130 });
 };
 
-exports.get404Message = (originalUrl) => `The route ${req.originalUrl} does not exist.`;
+exports.get404Message = (originalUrl) => `The route ${originalUrl} does not exist.`;
