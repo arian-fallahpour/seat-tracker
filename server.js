@@ -31,8 +31,8 @@ nextApp.prepare().then(() => {
   server = app.listen(port, async () => {
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-    const scheduleController = require("./controllers/scheduleController");
-    await scheduleController.initialize();
+    // const scheduleController = require("./controllers/scheduleController");
+    // await scheduleController.initialize();
   });
 
   // Next.js routes
