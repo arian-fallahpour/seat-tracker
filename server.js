@@ -52,7 +52,7 @@ process.on("unhandledRejection", (error) => {
 });
 
 process.on("SIGTERM", () => {
-  Logger.log("SIGTERM Received. Shutting down gracefully");
+  Logger.announce("SIGTERM Received. Shutting down gracefully");
   server.close(() => {
     console.log("Process terminated");
   });
