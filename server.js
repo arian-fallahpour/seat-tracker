@@ -21,24 +21,6 @@ let server;
 nextApp.prepare().then(() => {
   const app = require("./app");
 
-<<<<<<< HEAD
-  server = app.listen(port, async () => {
-    const Logger = require("./utils/Logger");
-    const scheduleController = require("./controllers/scheduleController");
-
-    Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
-
-    // Database initialization
-    let dbUri = process.env.DATABASE_CONNECTION;
-    dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-    dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-    await mongoose.connect(dbUri, { autoIndex: true });
-    Logger.announce(`Database connection successful`);
-    // .catch((error) => Logger.error(`Could not connect to database: ${error.message}`));
-
-    // Schedule controller intialization
-    await scheduleController.initialize();
-=======
   // Database initialization
   const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
   mongoose
@@ -51,7 +33,6 @@ nextApp.prepare().then(() => {
 
     // const scheduleController = require("./controllers/scheduleController");
     // await scheduleController.initialize();
->>>>>>> main
   });
 
   // Next.js routes
