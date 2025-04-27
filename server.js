@@ -20,8 +20,7 @@ const port = Number(process.env.PORT) || 8080;
 
 let server;
 // nextApp.prepare().then(() => {
-// const app = require("./app");
-const app = express();
+const app = require("./app");
 
 app.get("/test", (req, res) => res.status(200).json("NICE"));
 
