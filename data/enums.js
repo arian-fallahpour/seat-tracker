@@ -16,6 +16,7 @@ const enums = {
   },
   log: {
     type: [
+      "log",
       "info", // General operational messages, no issue
       "warn", // A potential issue that doesn’t cause failure but may need attention
       "error", // A severe issue that affects the system’s operation
