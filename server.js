@@ -23,19 +23,18 @@ nextApp.prepare().then(() => {
 
   const app = require("./app");
 
-  // Database initialization
-  let dbUri = process.env.DATABASE_CONNECTION;
-  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-  mongoose
-    .connect(dbUri, { autoIndex: true })
-    .then(() => Logger.announce(`Database connection successful`))
-    .catch((error) => Logger.error(`Could not connect to database: ${error.message}`));
-
   server = app.listen(port, async () => {
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
     const scheduleController = require("./controllers/scheduleController");
+
+    // Database initialization
+    let dbUri = process.env.DATABASE_CONNECTION;
+    dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
+    dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
+    await mongoose.connect(dbUri, { autoIndex: true });
+    Logger.announce(`Database connection successful`);
+    // .catch((error) => Logger.error(`Could not connect to database: ${error.message}`));
 
     // Schedule controller intialization
     await scheduleController.initialize();
