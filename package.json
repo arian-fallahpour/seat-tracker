@@ -39,6 +39,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.2",
     "sass": "^1.85.0",
+    "sharp": "^0.34.1",
     "slugify": "^1.6.6",
     "stripe": "^17.6.0",
     "validator": "^13.12.0",

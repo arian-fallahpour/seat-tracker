@@ -12,6 +12,7 @@ const webhookController = require("./controllers/webhookController");
  * TODO LIST
  * - (Maybe) Automate course upserting at the start of the term?
  * - complete testing of app
+ * - Add security packages like helmet, rate limiter, etc...
  *
  * DONE (double check at the end of development):
  * - Add lectures and practicals (or other)

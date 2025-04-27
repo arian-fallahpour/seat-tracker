@@ -1,6 +1,7 @@
 module.exports = {
   experimental: {
     forceSwcTransforms: true, // Fixes error when using babel register with nextjs
+    webpackMemoryOptimizations: true,
   },
   async rewrites() {
     return [
