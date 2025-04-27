@@ -13,7 +13,7 @@ process.on("uncaughtException", (error) => {
 // Env file initialization
 dotenv.config({ path: "./config.env" });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const nextApp = next({ dev: process.env.NODE_ENV === "development" });
 const nextRequestHandler = nextApp.getRequestHandler();
 
@@ -21,6 +21,7 @@ let server;
 nextApp.prepare().then(() => {
   const app = require("./app");
 
+<<<<<<< HEAD
   server = app.listen(port, async () => {
     const Logger = require("./utils/Logger");
     const scheduleController = require("./controllers/scheduleController");
@@ -37,12 +38,24 @@ nextApp.prepare().then(() => {
 
     // Schedule controller intialization
     await scheduleController.initialize();
+=======
+  // Database initialization
+  const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
+  mongoose
+    .connect(dbUri, { autoIndex: true })
+    .then(() => Logger.announce(`Database connection successful`));
+
+  // Server initialization
+  server = app.listen(port, async () => {
+    Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+
+    // const scheduleController = require("./controllers/scheduleController");
+    // await scheduleController.initialize();
+>>>>>>> main
   });
 
   // Next.js routes
-  app.get("*", (req, res) => {
-    return nextRequestHandler(req, res);
-  });
+  app.get("*", (req, res) => nextRequestHandler(req, res));
 });
 
 process.on("unhandledRejection", (error) => {
