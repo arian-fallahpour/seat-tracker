@@ -1,7 +1,8 @@
 require("@babel/register"); // Required for importing of react components in nodejs
 
 const dotenv = require("dotenv");
-const next = require("next");
+// const next = require("next");
+const express = require("express");
 const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
 
@@ -19,7 +20,10 @@ const port = Number(process.env.PORT) || 8080;
 
 let server;
 // nextApp.prepare().then(() => {
-//   const app = require("./app");
+// const app = require("./app");
+const app = express();
+
+app.get("/test", (req, res) => res.status(200).json("NICE"));
 
 // Database initialization
 const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
