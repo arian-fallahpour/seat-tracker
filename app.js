@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
-const cors = require("cors");
+// const cors = require("cors");
 
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
@@ -12,6 +12,7 @@ const webhookController = require("./controllers/webhookController");
  * TODO LIST
  * - (Maybe) Automate course upserting at the start of the term?
  * - complete testing of app
+ * - Add security packages like helmet, rate limiter, etc...
  *
  * DONE (double check at the end of development):
  * - Add lectures and practicals (or other)
@@ -29,7 +30,7 @@ const webhookController = require("./controllers/webhookController");
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, "public")));
