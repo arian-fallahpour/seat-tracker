@@ -1,0 +1,1 @@
+web: NODE_OPTIONS="--max-old-space-size=300" npm run start
