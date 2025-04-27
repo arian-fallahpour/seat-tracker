@@ -25,6 +25,11 @@ const app = require("./app");
 app.get("/test", (req, res) => {
   console.log("<<ABCD>> LOG <<ABCD>>");
   console.error("<<ABCD>> ERROR <<ABCD>>");
+  Logger.log("<<ABCD>> LOG 2 <<ABCD>>");
+  Logger.info("<<ABCD>> info <<ABCD>>");
+  Logger.announce("<<ABCD>> announce <<ABCD>>");
+  Logger.error("<<ABCD>> error <<ABCD>>");
+  Logger.warn("<<ABCD>> warn <<ABCD>>");
   res.status(200).json("NICE");
 });
 
