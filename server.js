@@ -19,11 +19,7 @@ const nextRequestHandler = nextApp.getRequestHandler();
 
 let server;
 nextApp.prepare().then(() => {
-  const Logger = require("./utils/Logger");
-
   const app = require("./app");
-
-  app.use("port", port);
 
   // Database initialization
   const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
@@ -31,18 +27,17 @@ nextApp.prepare().then(() => {
     .connect(dbUri, { autoIndex: true })
     .then(() => Logger.announce(`Database connection successful`));
 
+  // Server initialization
   server = app.listen(port, async () => {
-    const scheduleController = require("./controllers/scheduleController");
-
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+
+    const scheduleController = require("./controllers/scheduleController");
 
     await scheduleController.initialize();
   });
 
   // Next.js routes
-  app.get("*", (req, res) => {
-    return nextRequestHandler(req, res);
-  });
+  app.get("*", (req, res) => nextRequestHandler(req, res));
 });
 
 process.on("unhandledRejection", (error) => {

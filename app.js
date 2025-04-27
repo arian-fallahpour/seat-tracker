@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
-const cors = require("cors");
+// const cors = require("cors");
 
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
@@ -29,7 +29,7 @@ const webhookController = require("./controllers/webhookController");
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, "public")));
