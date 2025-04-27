@@ -23,20 +23,19 @@ nextApp.prepare().then(() => {
 
   const app = require("./app");
 
-  // Database initialization
-  let dbUri = process.env.DATABASE_CONNECTION;
-  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-  console.log("DB URI: ", dbUri);
-  mongoose
-    .connect(dbUri, { autoIndex: true })
-    .then(() => Logger.announce(`Database connection successful`));
-
   server = app.listen(port, async () => {
-    const scheduleController = require("./controllers/scheduleController");
-
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
+    const scheduleController = require("./controllers/scheduleController");
+
+    // Database initialization
+    let dbUri = process.env.DATABASE_CONNECTION;
+    dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
+    dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
+    await mongoose.connect(dbUri, { autoIndex: true });
+    Logger.announce(`Database connection successful`);
+
+    // Schedule controller intialization
     await scheduleController.initialize();
   });
 
