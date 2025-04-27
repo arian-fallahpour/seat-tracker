@@ -18,7 +18,6 @@ async function scheduleAlerts() {
 
     // 1. Find all active alerts and group then in an object by their code
     const alerts = await AlertModel.findAlertable();
-    console.log(alerts);
     if (alerts.length === 0) return;
     Logger.info("(1/6) Found all active alerts.");
 
