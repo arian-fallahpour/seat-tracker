@@ -28,7 +28,7 @@ mongoose
   .then(() => Logger.announce(`Database connection successful`));
 
 // Server initialization
-server = app.listen(port, async () => {
+server = app.listen(port, () => {
   Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
   // const scheduleController = require("./controllers/scheduleController");
