@@ -41,7 +41,6 @@ nextApp.prepare().then(() => {
   // Server initialization
   const server = app.listen(port, async () => {
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
-    Logger.log(process.env.PORT, process.env.NODE_ENV);
 
     const scheduleController = require("./controllers/scheduleController");
     await scheduleController.initialize();
