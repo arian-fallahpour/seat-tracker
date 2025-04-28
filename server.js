@@ -32,16 +32,17 @@ app.get("/test", (req, res) => {
   res.status(200).json("NICE");
 });
 
+// Database initialization
+const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
+console.log(dbUri);
+mongoose
+  .connect(dbUri, { autoIndex: true })
+  .then(() => Logger.announce(`Database connection successful`))
+  .catch((error) => Logger.error(`Database connection unsuccessful: ${error.message}`));
+
 // Server initialization
 const server = app.listen(port, async () => {
   Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
-
-  // Database initialization
-  const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
-  await mongoose
-    .connect(dbUri, { autoIndex: true })
-    .then(() => Logger.announce(`Database connection successful`))
-    .catch((error) => Logger.error(`Database connection unsuccessful: ${error.message}`));
 
   const scheduleController = require("./controllers/scheduleController");
   await scheduleController.initialize();
