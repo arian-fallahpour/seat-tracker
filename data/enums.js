@@ -16,11 +16,11 @@ const enums = {
   },
   log: {
     type: [
-      "log",
-      "info", // General operational messages, no issue
-      "warn", // A potential issue that doesn’t cause failure but may need attention
-      "error", // A severe issue that affects the system’s operation
-      "alert", // A critical issue that results in a notification being sent
+      "info", // General operational messages, no log created
+      "log", // General operational messages, log created
+      "warn", // A potential issue that doesn’t cause failure but may need attention, log created
+      "error", // A severe issue that affects the system’s operation, log created
+      "alert", // A critical issue that results in a notification being sent, log created
     ],
   },
 };

@@ -24,13 +24,11 @@ class Logger {
   }
 
   static emit(type, description, data) {
-    if (process.env.NODE_ENV !== "production") {
-      let method = "error";
-      if (type === "info" || type === "log" || type === "announce" || type === "alert")
-        method = "log";
-      if (type === "warn") method = "warn";
-      console[method](`[${type.toUpperCase()}] ${description}`);
-    }
+    let method = "error";
+    if (type === "info" || type === "log" || type === "announce" || type === "alert")
+      method = "log";
+    if (type === "warn") method = "warn";
+    console[method](`[${type.toUpperCase()}] ${description}`);
 
     if (this.documentableLogs.includes(type)) {
       LogModel.create({ type, description, data });
