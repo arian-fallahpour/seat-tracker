@@ -44,9 +44,11 @@ nextApp.prepare().then(() => {
   const server = app.listen(port, async () => {
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-    const scheduleController = require("./controllers/scheduleController");
-    await scheduleController.initialize();
+    // const scheduleController = require("./controllers/scheduleController");
+    // await scheduleController.initialize();
   });
+
+  // PROBLEM: mongoose does not connect to database for some reason, which results in timeout
 
   // Next.js routes
   app.get("*", (req, res) => nextRequestHandler(req, res));
