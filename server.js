@@ -2,7 +2,6 @@ require("@babel/register"); // Required for importing of react components in nod
 
 const dotenv = require("dotenv");
 // const next = require("next");
-const express = require("express");
 const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
 
