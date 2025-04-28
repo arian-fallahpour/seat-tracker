@@ -20,7 +20,7 @@ class Logger {
   }
 
   static announce(message) {
-    this.emit("annouce", message);
+    this.emit("announce", message);
   }
 
   static emit(type, description, data) {
