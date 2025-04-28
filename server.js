@@ -36,7 +36,8 @@ app.get("/test", (req, res) => {
 const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
 mongoose
   .connect(dbUri, { autoIndex: true })
-  .then(() => Logger.announce(`Database connection successful`));
+  .then(() => Logger.announce(`Database connection successful`))
+  .catch((error) => Logger.error(`Database connection unsuccessful: ${error.message}`));
 
 // Server initialization
 const server = app.listen(port, async () => {
