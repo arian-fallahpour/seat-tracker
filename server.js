@@ -20,17 +20,17 @@ const port = Number(process.env.PORT) || 8080;
 // const nextRequestHandler = nextApp.getRequestHandler();
 
 // Database initialization
-const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
-console.log(dbUri, process.env.NODE_ENV === "production");
-mongoose
-  .connect(dbUri, {
-    autoIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    ssl: true,
-  })
-  .then(() => Logger.announce(`Database connection successful`))
-  .catch((error) => Logger.error("Database connection unsuccessful", error));
+// const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
+// console.log(dbUri, process.env.NODE_ENV === "production");
+// mongoose
+//   .connect(dbUri, {
+//     autoIndex: true,
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     ssl: true,
+//   })
+//   .then(() => Logger.announce(`Database connection successful`))
+//   .catch((error) => Logger.error("Database connection unsuccessful", error));
 
 // nextApp.prepare().then(() => {
 // const app = require("./app");
