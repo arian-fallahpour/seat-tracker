@@ -33,7 +33,7 @@ nextApp.prepare().then(() => {
   });
 
   // Database initialization
-  const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
+  const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
   console.log(dbUri, process.env.NODE_ENV === "production");
   mongoose
     .connect(dbUri, {
