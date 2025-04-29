@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 // const next = require("next");
 const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
+const express = require("express");
 
 process.on("uncaughtException", (error) => {
   Logger.error(`Uncaught Exception: ${error.message}`, { error });
