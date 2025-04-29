@@ -36,9 +36,14 @@ nextApp.prepare().then(() => {
   const dbUri = process.env.AZURE_COSMOS_CONNECTIONSTRING || process.env.MONGODB_URI;
   console.log(dbUri, process.env.NODE_ENV === "production");
   mongoose
-    .connect(dbUri, { autoIndex: true })
+    .connect(dbUri, {
+      autoIndex: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      ssl: true,
+    })
     .then(() => Logger.announce(`Database connection successful`))
-    .catch((error) => Logger.error(`Database connection unsuccessful: ${error.message}`));
+    .catch((error) => Logger.error("Database connection unsuccessful", error));
 
   // Server initialization
   const server = app.listen(port, async () => {
