@@ -15,22 +15,8 @@ dotenv.config({ path: "./config.env" });
 
 // Next configuration
 const port = Number(process.env.PORT) || 8080;
-const nextApp = next({ dev: process.env.NODE_ENV === "development" });
-const nextRequestHandler = nextApp.getRequestHandler();
-
-// nextApp.prepare().then(() => {
-const app = require("./app");
-
-app.get("/test", (req, res) => {
-  console.log("<<ABCD>> LOG <<ABCD>>");
-  console.error("<<ABCD>> ERROR <<ABCD>>");
-  Logger.log("<<ABCD>> LOG 2 <<ABCD>>");
-  Logger.info("<<ABCD>> info <<ABCD>>");
-  Logger.announce("<<ABCD>> announce <<ABCD>>");
-  Logger.error("<<ABCD>> error <<ABCD>>");
-  Logger.warn("<<ABCD>> warn <<ABCD>>");
-  res.status(200).json("NICE");
-});
+// const nextApp = next({ dev: process.env.NODE_ENV === "development" });
+// const nextRequestHandler = nextApp.getRequestHandler();
 
 // Database initialization
 const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
@@ -44,6 +30,21 @@ mongoose
   })
   .then(() => Logger.announce(`Database connection successful`))
   .catch((error) => Logger.error("Database connection unsuccessful", error));
+
+// nextApp.prepare().then(() => {
+// const app = require("./app");
+const app = express();
+
+app.get("/test", (req, res) => {
+  console.log("<<ABCD>> LOG <<ABCD>>");
+  console.error("<<ABCD>> ERROR <<ABCD>>");
+  Logger.log("<<ABCD>> LOG 2 <<ABCD>>");
+  Logger.info("<<ABCD>> info <<ABCD>>");
+  Logger.announce("<<ABCD>> announce <<ABCD>>");
+  Logger.error("<<ABCD>> error <<ABCD>>");
+  Logger.warn("<<ABCD>> warn <<ABCD>>");
+  res.status(200).json("NICE");
+});
 
 // Server initialization
 const server = app
