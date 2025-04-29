@@ -18,57 +18,57 @@ const port = Number(process.env.PORT) || 8080;
 const nextApp = next({ dev: process.env.NODE_ENV === "development" });
 const nextRequestHandler = nextApp.getRequestHandler();
 
-nextApp.prepare().then(() => {
-  const app = require("./app");
+// nextApp.prepare().then(() => {
+const app = require("./app");
 
-  app.get("/test", (req, res) => {
-    console.log("<<ABCD>> LOG <<ABCD>>");
-    console.error("<<ABCD>> ERROR <<ABCD>>");
-    Logger.log("<<ABCD>> LOG 2 <<ABCD>>");
-    Logger.info("<<ABCD>> info <<ABCD>>");
-    Logger.announce("<<ABCD>> announce <<ABCD>>");
-    Logger.error("<<ABCD>> error <<ABCD>>");
-    Logger.warn("<<ABCD>> warn <<ABCD>>");
-    res.status(200).json("NICE");
-  });
+app.get("/test", (req, res) => {
+  console.log("<<ABCD>> LOG <<ABCD>>");
+  console.error("<<ABCD>> ERROR <<ABCD>>");
+  Logger.log("<<ABCD>> LOG 2 <<ABCD>>");
+  Logger.info("<<ABCD>> info <<ABCD>>");
+  Logger.announce("<<ABCD>> announce <<ABCD>>");
+  Logger.error("<<ABCD>> error <<ABCD>>");
+  Logger.warn("<<ABCD>> warn <<ABCD>>");
+  res.status(200).json("NICE");
+});
 
-  // Database initialization
-  const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
-  console.log(dbUri, process.env.NODE_ENV === "production");
-  mongoose
-    .connect(dbUri, {
-      autoIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      ssl: true,
-    })
-    .then(() => Logger.announce(`Database connection successful`))
-    .catch((error) => Logger.error("Database connection unsuccessful", error));
+// Database initialization
+const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
+console.log(dbUri, process.env.NODE_ENV === "production");
+mongoose
+  .connect(dbUri, {
+    autoIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+  })
+  .then(() => Logger.announce(`Database connection successful`))
+  .catch((error) => Logger.error("Database connection unsuccessful", error));
 
-  // Server initialization
-  const server = app
-    .listen(port, async () => {
-      Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+// Server initialization
+const server = app
+  .listen(port, async () => {
+    Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-      // const scheduleController = require("./controllers/scheduleController");
-      // await scheduleController.initialize();
-    })
-    .catch((error) => "Server error", error);
+    // const scheduleController = require("./controllers/scheduleController");
+    // await scheduleController.initialize();
+  })
+  .catch((error) => "Server error", error);
 
-  // PROBLEM: mongoose does not connect to database for some reason, which results in timeout
+// PROBLEM: mongoose does not connect to database for some reason, which results in timeout
 
-  // Next.js routes
-  app.get("*", (req, res) => nextRequestHandler(req, res));
+// Next.js routes
+// app.get("*", (req, res) => nextRequestHandler(req, res));
 
-  process.on("unhandledRejection", (error) => {
-    Logger.error(`Unhandled Rejection: ${error.message}`, { error });
-    server.close(() => process.exit(1));
-  });
+process.on("unhandledRejection", (error) => {
+  Logger.error(`Unhandled Rejection: ${error.message}`, { error });
+  server.close(() => process.exit(1));
+});
 
-  process.on("SIGTERM", () => {
-    Logger.announce("SIGTERM Received. Shutting down gracefully");
-    server.close(() => {
-      console.log("Process terminated");
-    });
+process.on("SIGTERM", () => {
+  Logger.announce("SIGTERM Received. Shutting down gracefully");
+  server.close(() => {
+    console.log("Process terminated");
   });
 });
+// });
