@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 // const next = require("next");
 const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
-const express = require("express");
 
 process.on("uncaughtException", (error) => {
   Logger.error(`Uncaught Exception: ${error.message}`, { error });
@@ -22,21 +21,20 @@ console.log("PORT:", port);
 // const nextRequestHandler = nextApp.getRequestHandler();
 
 // Database initialization
-// const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
-// console.log(dbUri, process.env.NODE_ENV === "production");
-// mongoose
-//   .connect(dbUri, {
-//     autoIndex: true,
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     ssl: true,
-//   })
-//   .then(() => Logger.announce(`Database connection successful`))
-//   .catch((error) => Logger.error("Database connection unsuccessful", error));
+const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
+console.log(dbUri, process.env.NODE_ENV === "production");
+mongoose
+  .connect(dbUri, {
+    autoIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+  })
+  .then(() => Logger.announce(`Database connection successful`))
+  .catch((error) => Logger.error("Database connection unsuccessful", error));
 
 // nextApp.prepare().then(() => {
-// const app = require("./app");
-const app = express();
+const app = require("./app");
 
 app.get("/test", (req, res) => {
   console.log("<<ABCD>> LOG <<ABCD>>");
@@ -51,14 +49,10 @@ app.get("/test", (req, res) => {
 
 // Server initialization
 const server = app.listen(port, async () => {
-  try {
-    Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+  Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-    // const scheduleController = require("./controllers/scheduleController");
-    // await scheduleController.initialize();
-  } catch (error) {
-    console.error("Server connection:", error);
-  }
+  // const scheduleController = require("./controllers/scheduleController");
+  // await scheduleController.initialize();
 });
 
 // PROBLEM: mongoose does not connect to database for some reason, which results in timeout
