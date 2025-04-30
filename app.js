@@ -14,10 +14,9 @@ const webhookController = require("./controllers/webhookController");
  * - complete testing of app
  * - Add security packages like helmet, rate limiter, etc...
  * - fix errors (determine what to do when they occur)
- * - Use cosmodb database instead of dev database
- * - fix stripe price to become quantity instead of id
  *
  * DONE (double check at the end of development):
+ * - Use cosmodb database instead of dev database
  * - Add lectures and practicals (or other)
  * - Determine how to handle failed operations when processing alerts (Rehaul logging)
  * - Remove alert paused status (maybe) and create another field instead

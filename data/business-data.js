@@ -1,7 +1,10 @@
 const businessData = {
   name: "Uni Tracker",
   stripe: {
-    alertPriceID: "price_1QvAO6GLcRGY5lHyxO59Lvkv",
+    alertPriceID:
+      process.env.NODE_ENV === "development"
+        ? "price_1QvAO6GLcRGY5lHyxO59Lvkv"
+        : "price_1RJjmjGLcRGY5lHyqwrVrMmr",
   },
 };
 module.exports = businessData;

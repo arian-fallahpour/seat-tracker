@@ -52,7 +52,12 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 
   // Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
-    line_items: [{ price: businessData.stripe.alertPriceID, quantity: 1 }],
+    line_items: [
+      {
+        price: businessData.stripe.alertPriceID,
+        quantity: 1,
+      },
+    ],
     allow_promotion_codes: true,
     metadata: { alert: alert.id, order: order.id },
     mode: "payment",
