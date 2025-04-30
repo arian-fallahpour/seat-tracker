@@ -1,7 +1,6 @@
 const AppError = require("../utils/app/AppError");
 const Logger = require("../utils/Logger");
 
-// TODO: revert + add logging
 const errorHandler = (error, req, res, next) => {
   error.statusCode = error.statusCode || 500;
   error.status = error.status || "error.js";
@@ -12,14 +11,12 @@ const errorHandler = (error, req, res, next) => {
   }
 
   // Send production error
-  return handleDevError(error, res);
+  return handleProdError(error, res);
 };
 module.exports = errorHandler;
 
 function handleDevError(error, res) {
-  if (!error.isOperational) {
-    console.error(error);
-  }
+  console.error(error);
 
   return res.status(error.statusCode).json({
     status: error.status,
@@ -32,18 +29,20 @@ function handleProdError(error, res) {
   if (error.name === "ValidationError") error = handleValidationError(error);
   if (error.code === 11000) error = handleDuplicateKeyError(error);
 
-  // Return simple data if operational
-  if (error.isOperational) {
-    return res.status(error.statusCode).json({
-      status: error.status,
-      message: error.message,
+  // Return no error data if not operational
+  if (!error.isOperational) {
+    Logger.error(`Non-operational error: ${error.message}`, { error });
+
+    return res.status(500).json({
+      status: "error",
+      message: "Something went wrong.",
     });
   }
 
-  // Return no error data if not operational
-  return res.status(500).json({
-    status: "error",
-    message: "Something went wrong.",
+  // Return simple data if operational
+  return res.status(error.statusCode).json({
+    status: error.status,
+    message: error.message,
   });
 }
 
