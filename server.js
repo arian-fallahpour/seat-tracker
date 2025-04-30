@@ -15,7 +15,9 @@ process.on("uncaughtException", (error) => {
 dotenv.config({ path: "./config.env" });
 
 // Next configuration
-const port = Number(process.env.PORT) || 8080;
+const port = process.env.PORT || 8080;
+console.log("PORT:", port);
+
 // const nextApp = next({ dev: process.env.NODE_ENV === "development" });
 // const nextRequestHandler = nextApp.getRequestHandler();
 
