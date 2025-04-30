@@ -5,6 +5,7 @@ import Search from "./Search/Search";
 import { join } from "@/utils/helper-client";
 import { getEnrollableSeasons } from "../../../../utils/app/schema-utils";
 import InfoIcon from "@/components/elements/icons/InfoIcon";
+import businessData from "@/data/business-data";
 
 const SearchSection = ({ className }) => {
   const isEnrollmentOpen = getEnrollableSeasons().length > 0;
@@ -12,7 +13,7 @@ const SearchSection = ({ className }) => {
   return (
     <Section className={join(className, classes.SearchSection)}>
       <header className={classes.Header}>
-        <h1 className="header header-title">Seat Tracker</h1>
+        <h1 className="header header-title">{businessData.name}</h1>
         <p className="paragraph">
           Search for courses to send alerts from the University Of Toronto
         </p>
