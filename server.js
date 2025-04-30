@@ -50,14 +50,16 @@ app.get("/test", (req, res) => {
 });
 
 // Server initialization
-const server = app
-  .listen(port, async () => {
+const server = app.listen(port, async () => {
+  try {
     Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
     // const scheduleController = require("./controllers/scheduleController");
     // await scheduleController.initialize();
-  })
-  .catch((error) => "Server error", error);
+  } catch (error) {
+    console.error("Server connection:", error);
+  }
+});
 
 // PROBLEM: mongoose does not connect to database for some reason, which results in timeout
 
