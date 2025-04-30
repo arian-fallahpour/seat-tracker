@@ -13,6 +13,9 @@ const webhookController = require("./controllers/webhookController");
  * - (Maybe) Automate course upserting at the start of the term?
  * - complete testing of app
  * - Add security packages like helmet, rate limiter, etc...
+ * - fix errors (determine what to do when they occur)
+ * - Use cosmodb database instead of dev database
+ * - fix stripe price to become quantity instead of id
  *
  * DONE (double check at the end of development):
  * - Add lectures and practicals (or other)

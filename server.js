@@ -29,7 +29,7 @@ const nextRequestHandler = nextApp.getRequestHandler();
     await nextApp.prepare();
     Logger.announce("Next app prepared");
 
-    // Setup app
+    // Setup Express app
     const app = require("./app");
     app.get("/test", (req, res) => {
       console.log("<<ABCD>> LOG <<ABCD>>");
