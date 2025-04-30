@@ -1,1 +1,2 @@
-Avoid throwing errors in non-api parts of program, since it may cause total failure. Log instead.
+- Avoid throwing errors in non-api parts of program, since it may cause total failure. Log instead.
+- Cannot connect to port may be due to an error occur before the app can connect

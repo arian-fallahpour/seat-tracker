@@ -1,6 +1,7 @@
 const AppError = require("../utils/app/AppError");
+const Logger = require("../utils/Logger");
 
-// TODO: Revert
+// TODO: revert + add logging
 const errorHandler = (error, req, res, next) => {
   error.statusCode = error.statusCode || 500;
   error.status = error.status || "error.js";
