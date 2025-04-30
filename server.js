@@ -1,7 +1,7 @@
 require("@babel/register"); // Required for importing of react components in nodejs
 
 const dotenv = require("dotenv");
-// const next = require("next");
+const next = require("next");
 const mongoose = require("mongoose");
 // const Logger = require("./utils/Logger");
 
@@ -17,8 +17,8 @@ dotenv.config({ path: "./config.env" });
 const port = process.env.PORT || 8080;
 console.log("PORT:", port);
 
-// const nextApp = next({ dev: process.env.NODE_ENV === "development" });
-// const nextRequestHandler = nextApp.getRequestHandler();
+const nextApp = next({ dev: process.env.NODE_ENV === "development" });
+const nextRequestHandler = nextApp.getRequestHandler();
 
 // Database initialization
 const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
@@ -33,37 +33,37 @@ mongoose
   .then(() => console.log(`Database connection successful`))
   .catch((error) => console.log("Database connection unsuccessful", error));
 
-// nextApp.prepare().then(() => {
-const app = require("./app");
+nextApp.prepare().then(() => {
+  const app = require("./app");
 
-app.get("/test", (req, res) => {
-  console.log("<<ABCD>> LOG <<ABCD>>");
-  console.error("<<ABCD>> ERROR <<ABCD>>");
-  res.status(200).json("NICE");
-});
+  app.get("/test", (req, res) => {
+    console.log("<<ABCD>> LOG <<ABCD>>");
+    console.error("<<ABCD>> ERROR <<ABCD>>");
+    res.status(200).json("NICE");
+  });
 
-// Server initialization
-const server = app.listen(port, async () => {
-  console.log(`Running ${process.env.NODE_ENV} server on port ${port}`);
+  // Server initialization
+  const server = app.listen(port, async () => {
+    console.log(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-  // const scheduleController = require("./controllers/scheduleController");
-  // await scheduleController.initialize();
-});
+    // const scheduleController = require("./controllers/scheduleController");
+    // await scheduleController.initialize();
+  });
 
-// PROBLEM: mongoose does not connect to database for some reason, which results in timeout
+  // PROBLEM: mongoose does not connect to database for some reason, which results in timeout
 
-// Next.js routes
-// app.get("*", (req, res) => nextRequestHandler(req, res));
+  // Next.js routes
+  app.get("*", (req, res) => nextRequestHandler(req, res));
 
-process.on("unhandledRejection", (error) => {
-  console.error(`Unhandled Rejection: ${error.message}`, { error });
-  server.close(() => process.exit(1));
-});
+  process.on("unhandledRejection", (error) => {
+    console.error(`Unhandled Rejection: ${error.message}`, { error });
+    server.close(() => process.exit(1));
+  });
 
-process.on("SIGTERM", () => {
-  console.log("SIGTERM Received. Shutting down gracefully");
-  server.close(() => {
-    console.log("Process terminated");
+  process.on("SIGTERM", () => {
+    console.log("SIGTERM Received. Shutting down gracefully");
+    server.close(() => {
+      console.log("Process terminated");
+    });
   });
 });
-// });
