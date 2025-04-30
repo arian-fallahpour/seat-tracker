@@ -1,5 +1,5 @@
 const businessData = {
-  name: "Seat Tracker",
+  name: "Uni Tracker",
   stripe: {
     alertPriceID: "price_1QvAO6GLcRGY5lHyxO59Lvkv",
   },
