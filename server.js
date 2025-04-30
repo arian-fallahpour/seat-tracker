@@ -27,13 +27,14 @@ mongoose
   .connect(dbUri, {
     autoIndex: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true,
     ssl: true,
   })
   .then(() => console.log(`Database connection successful`))
   .catch((error) => console.log("Database connection unsuccessful", error));
 
 nextApp.prepare().then(() => {
+  console.log("next app prepared");
+
   const app = require("./app");
 
   app.get("/test", (req, res) => {
