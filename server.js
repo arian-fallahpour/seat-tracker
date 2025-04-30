@@ -3,10 +3,10 @@ require("@babel/register"); // Required for importing of react components in nod
 const dotenv = require("dotenv");
 // const next = require("next");
 const mongoose = require("mongoose");
-const Logger = require("./utils/Logger");
+// const Logger = require("./utils/Logger");
 
 process.on("uncaughtException", (error) => {
-  Logger.error(`Uncaught Exception: ${error.message}`, { error });
+  console.error(`Uncaught Exception: ${error.message}`, { error });
   process.exit(1);
 });
 
@@ -30,8 +30,8 @@ mongoose
     useUnifiedTopology: true,
     ssl: true,
   })
-  .then(() => Logger.announce(`Database connection successful`))
-  .catch((error) => Logger.error("Database connection unsuccessful", error));
+  .then(() => console.log(`Database connection successful`))
+  .catch((error) => console.log("Database connection unsuccessful", error));
 
 // nextApp.prepare().then(() => {
 const app = require("./app");
@@ -39,17 +39,12 @@ const app = require("./app");
 app.get("/test", (req, res) => {
   console.log("<<ABCD>> LOG <<ABCD>>");
   console.error("<<ABCD>> ERROR <<ABCD>>");
-  Logger.log("<<ABCD>> LOG 2 <<ABCD>>");
-  Logger.info("<<ABCD>> info <<ABCD>>");
-  Logger.announce("<<ABCD>> announce <<ABCD>>");
-  Logger.error("<<ABCD>> error <<ABCD>>");
-  Logger.warn("<<ABCD>> warn <<ABCD>>");
   res.status(200).json("NICE");
 });
 
 // Server initialization
 const server = app.listen(port, async () => {
-  Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
+  console.log(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
   // const scheduleController = require("./controllers/scheduleController");
   // await scheduleController.initialize();
@@ -61,12 +56,12 @@ const server = app.listen(port, async () => {
 // app.get("*", (req, res) => nextRequestHandler(req, res));
 
 process.on("unhandledRejection", (error) => {
-  Logger.error(`Unhandled Rejection: ${error.message}`, { error });
+  console.error(`Unhandled Rejection: ${error.message}`, { error });
   server.close(() => process.exit(1));
 });
 
 process.on("SIGTERM", () => {
-  Logger.announce("SIGTERM Received. Shutting down gracefully");
+  console.log("SIGTERM Received. Shutting down gracefully");
   server.close(() => {
     console.log("Process terminated");
   });
