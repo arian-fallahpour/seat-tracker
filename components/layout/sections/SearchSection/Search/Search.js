@@ -9,13 +9,10 @@ import debounce from "lodash.debounce";
 import SearchResults from "./SearchResults";
 import Loader from "@/components/elements/Loader/Loader";
 import { SearchIcon } from "@/components/elements/icons/SearchIcon";
-import { GlobalErrorContext } from "@/store/global-error-context";
 import config from "@/utils/config";
 import { join } from "@/utils/helper-client";
 
 const Search = ({ isDisabled }) => {
-  const { setGlobalError } = useContext(GlobalErrorContext);
-
   const [query, setQuery] = useState("");
   const [courses, setCourses] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
