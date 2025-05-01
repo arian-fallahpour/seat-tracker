@@ -14,7 +14,9 @@ exports.initialize = async () => {
 
 async function scheduleAlerts() {
   try {
-    Logger.info(`(0/6) Starting alert notification process at ${new Date(Date.now())}.`);
+    Logger.info(
+      `(0/6) Starting alert notification process at ${new Date(Date.now()).toLocaleString("en-US", { timeZone: "America/Toronto" })}.`
+    );
 
     // 1. Find all active alerts and group then in an object by their code
     const alerts = await AlertModel.findAlertable();
