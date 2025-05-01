@@ -1,31 +1,40 @@
-const { createContext, useState } = require("react");
+const { createContext, useState, useEffect, useRef } = require("react");
 
 const errorTimeout = 2000;
 
 export const GlobalErrorContext = createContext({
-  globalError: null,
-  setGlobalError: (error) => {},
+  globalErrors: [],
+  pushGlobalError: (message) => {},
+  popGlobalError: () => {},
 });
 
 export const GlobalErrorProvider = ({ children }) => {
-  const [globalError, setGlobalError] = useState(null);
-  const [timeoutId, setTimeoutId] = useState(null);
+  const [globalErrors, setGlobalErrors] = useState([]);
+  const timeoutId = useRef(null);
 
-  const setGlobalErrorHandler = (error) => {
-    if (error === null) {
-      return setGlobalError(null);
+  useEffect(() => {
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
     }
 
-    setGlobalError(error.message);
+    if (globalErrors.length > 0) {
+      const id = setTimeout(() => popGlobalError(), errorTimeout);
+      timeoutId.current = id;
+    }
+  }, [globalErrors]);
 
-    const id = setTimeout(() => setGlobalError(null), errorTimeout);
-    if (timeoutId !== null) clearTimeout(timeoutId);
-    setTimeoutId(id);
+  const pushGlobalError = (message) => {
+    setGlobalErrors((prev) => [...prev, message]);
+  };
+
+  const popGlobalError = () => {
+    setGlobalErrors((prev) => prev.slice(1, prev.length));
   };
 
   const globalErrorContext = {
-    globalError,
-    setGlobalError: setGlobalErrorHandler,
+    globalErrors,
+    pushGlobalError,
+    popGlobalError,
   };
 
   return (

@@ -9,19 +9,23 @@ import { removeParam } from "@/utils/helper-client";
 const GlobalErrors = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { globalError, setGlobalError } = useContext(GlobalErrorContext);
+  const { globalErrors, pushGlobalError, popGlobalError } = useContext(GlobalErrorContext);
 
   useEffect(() => {
-    const errorMessage = searchParams.get("error");
-    if (errorMessage) {
-      setGlobalError(new Error(errorMessage));
+    const error = searchParams.get("error");
+    if (typeof error === "string" && error.trim() !== "") {
+      pushGlobalError(error);
       removeParam(searchParams, router, "error");
     }
   }, []);
 
+  const firstThreeErrors = globalErrors.slice(0, 3);
+
   return (
     <div className={classes.GlobalErrors}>
-      {!!globalError && <GlobalError message={globalError} setGlobalError={setGlobalError} />}
+      {firstThreeErrors.map((message) => (
+        <GlobalError key={message} message={message} onClose={popGlobalError} />
+      ))}
     </div>
   );
 };
