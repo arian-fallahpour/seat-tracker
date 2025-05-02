@@ -201,12 +201,15 @@ alertSchema.methods.getFreedSections = async function (updatedCourse) {
 alertSchema.methods.activate = async function () {
   await this.populate([{ path: "course" }, { path: "sections" }]);
 
+  const emailData = { course: this.course, alert: this };
+
   // Construct and send the activation email
-  await new Email()
-    .toEmail(this.email)
-    .withSubject(`Alert activated for ${this.course.code}`)
-    .withTemplate("alert-activate", { course: this.course, alert: this })
-    .send();
+  await new Email({
+    to: this.email,
+    subject: `Alert activated for ${this.course.code}`,
+    template: "alert-data",
+    data: emailData,
+  }).send();
 
   // Set status to active
   this.status = "active";
@@ -240,11 +243,12 @@ alertSchema.methods.notify = async function () {
   };
 
   // Construct and send notification email
-  await new Email()
-    .toEmail(this.email)
-    .withSubject(`New seats open for ${this.course.code}`)
-    .withTemplate("alert-notify", emailData)
-    .send();
+  await new Email({
+    to: this.email,
+    subject: `New seats open for ${this.course.code}`,
+    template: "alert-notify",
+    data: emailData,
+  }).send();
 
   // Update last alerted at
   this.lastAlertedAt = new Date(Date.now());

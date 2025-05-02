@@ -13,7 +13,7 @@ const webhookController = require("./controllers/webhookController");
  * - (Maybe) Automate course upserting at the start of the term?
  * - complete testing of app
  * - Add security packages like helmet, rate limiter, etc...
- * - fix errors (determine what to do when they occur)
+ * - fix errors (determine what to do when they occur, when email fails, we don't get a console error)
  *
  * DONE (double check at the end of development):
  * - Use cosmodb database instead of dev database

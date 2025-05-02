@@ -18,11 +18,12 @@ dotenv.config({ path: "./config.env" });
   const alert = await Alert.findOne();
 
   // Send email
-  const email = await new Email()
-    .toEmail("arianf2004@gmail.com")
-    .withSubject(`Alerts activated for YOU`)
-    .withTemplate("alert-notify", { alert });
-  await email.send();
+  await new Email({
+    to: "arianf2004@gmail.com",
+    subject: `Alerts activated for YOU`,
+    template: "alert-notify",
+    data: { alert },
+  }).send();
 
   console.log("Done!");
   process.exit();

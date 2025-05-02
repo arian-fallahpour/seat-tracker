@@ -8,65 +8,48 @@ const businessData = require("../../data/business-data.js");
 const { jsxToHtml, jsxToText } = require("../helper-server.js");
 const Logger = require("../Logger.js");
 
+const mailgunClient = new Mailgun(formData).client({
+  username: "api",
+  key: process.env.MAILGUN_API_KEY,
+});
 class Email {
-  constructor() {
+  constructor({ to, subject, template, data }) {
+    if (!Array.isArray(to)) to = [to];
     this.from = `${businessData.name} <alerts@${process.env.MAILGUN_DOMAIN}>`;
-
-    const mailgun = new Mailgun(formData);
-    this.mailgun = mailgun.client({
-      username: "api",
-      key: process.env.MAILGUN_API_KEY,
-    });
-  }
-
-  toEmail(email) {
-    this.to = [email];
-    return this;
-  }
-
-  toEmails(emails) {
-    this.to = emails;
-    return this;
-  }
-
-  withSubject(subject) {
+    this.to = to;
     this.subject = subject;
-    return this;
-  }
-
-  withTemplate(template, data) {
     this.template = template;
-
-    if (template === "alert-notify") {
-      this.withTemplateAlertNotify(data);
-    } else if (template === "alert-activate") {
-      this.withTemplateAlertActivate(data);
-    }
-
-    return this;
+    this.data = data;
   }
 
-  withTemplateAlertNotify(data) {
-    const props = this.getProps(data);
+  renderTemplate() {
+    if (this.template === "alert-notify") {
+      this.renderTemplateAlertNotify();
+    } else if (this.template === "alert-activate") {
+      this.renderTemplateAlertActivate();
+    }
+  }
+
+  renderTemplateAlertNotify() {
+    const props = this.getProps();
     this.html = jsxToHtml(AlertNotify, props);
     this.text = jsxToText(AlertNotify, props);
-    return this;
   }
 
-  withTemplateAlertActivate(data) {
-    const props = this.getProps(data);
+  renderTemplateAlertActivate() {
+    const props = this.getProps();
     this.html = jsxToHtml(AlertActivate, props);
     this.text = jsxToText(AlertActivate, props);
-    return this;
   }
 
   /**
    * Sends email using details in current email object
-   * Logs an alert in the cases of error or failure
    */
   async send() {
     try {
-      await this.mailgun.messages.create(process.env.MAILGUN_DOMAIN, {
+      this.renderTemplate();
+
+      await mailgunClient.messages.create(process.env.MAILGUN_DOMAIN, {
         from: this.from,
         to: this.to,
         subject: this.subject,
@@ -75,19 +58,20 @@ class Email {
       });
       Logger.announce(`The ${this.template} email was sent to ${this.to}`);
     } catch (error) {
-      Logger.warn(`The ${this.template} email not sent to ${this.to}`, {
+      Logger.warn(`The ${this.template} email was not sent to ${this.to}`, {
         email: this.to,
+        error,
       });
     }
 
     return this;
   }
 
-  getProps(data) {
+  getProps() {
     const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
 
     return {
-      data,
+      data: this.data,
       context: {
         host: process.env.HOST,
         port: process.env.PORT,
