@@ -101,6 +101,7 @@
   .Result {
     padding: var(--width-tiny) var(--width-small);
     border-radius: $input-border-radius;
+    position: relative;
 
     &:hover,
     &:focus-within {
@@ -127,6 +128,29 @@
     }
 
     &Name {
+    }
+
+    &Loader {
+      position: absolute;
+      top: 50%;
+      right: var(--width-small);
+      translate: 0 -50%;
+      color: var(--color-card-text);
+
+      opacity: 0;
+      scale: 0.8;
+      filter: blur(10px);
+
+      transition:
+        opacity 0.3s ease,
+        scale 0.3s ease,
+        filter 0.3s ease;
+
+      &.loading {
+        opacity: 1;
+        scale: 1;
+        filter: blur(0px);
+      }
     }
   }
 }
