@@ -8,10 +8,6 @@ const businessData = require("../../data/business-data.js");
 const { jsxToHtml, jsxToText } = require("../helper-server.js");
 const Logger = require("../Logger.js");
 
-const mailgunClient = new Mailgun(formData).client({
-  username: "api",
-  key: process.env.MAILGUN_API_KEY,
-});
 class Email {
   constructor({ to, subject, template, data }) {
     if (!Array.isArray(to)) to = [to];
@@ -20,6 +16,10 @@ class Email {
     this.subject = subject;
     this.template = template;
     this.data = data;
+    this.mailgunClient = new Mailgun(formData).client({
+      username: "api",
+      key: process.env.MAILGUN_API_KEY,
+    });
   }
 
   renderTemplate() {
@@ -49,7 +49,7 @@ class Email {
     try {
       this.renderTemplate();
 
-      await mailgunClient.messages.create(process.env.MAILGUN_DOMAIN, {
+      await this.mailgunClient.messages.create(process.env.MAILGUN_DOMAIN, {
         from: this.from,
         to: this.to,
         subject: this.subject,
