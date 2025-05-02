@@ -13,17 +13,8 @@ class UoftAdapter {
    * Logs a warning in the case of error or failure
    */
   static async fetchCourses(options = {}) {
-    options = {
-      query: options.query || "",
-      page: options.page || 1,
-      fetchMethod: options.fetchMethod || "lambda",
-    };
-
-    // Build fetch options object
-    const fetchOptions = this.getFetchOptions({
-      query: options.query,
-      page: options.page,
-    });
+    options = this.getDefaultOptions(options);
+    const fetchOptions = this.getFetchOptions(options);
 
     // Make fetch request
     let response;
@@ -130,10 +121,7 @@ class UoftAdapter {
   }
 
   static getBody(options = {}) {
-    options = {
-      query: options.query || "",
-      page: options.page || 1,
-    };
+    options = this.getDefaultOptions(options);
 
     return {
       courseCodeAndTitleProps: {
@@ -144,15 +132,7 @@ class UoftAdapter {
       },
       departmentProps: [],
       campuses: [],
-      sessions: [
-        // "20249",
-        // "20251",
-        // "20249-20251", // Fall Winter (2024-2025)
-
-        "20255F",
-        "20255S",
-        "20255", // Summer
-      ],
+      sessions: this.getSessions(options),
       requirementProps: [],
       instructor: "",
       courseLevels: [],
@@ -170,10 +150,7 @@ class UoftAdapter {
   }
 
   static getFetchOptions(options = {}) {
-    options = {
-      query: options.query || "",
-      page: options.page || 1,
-    };
+    options = this.getDefaultOptions(options);
 
     return {
       url: this.URL_GET_COURSES,
@@ -184,6 +161,33 @@ class UoftAdapter {
         Accept: "application/json",
       },
     };
+  }
+
+  static getDefaultOptions(options = {}) {
+    return {
+      query: options.query || "",
+      season:
+        options.season && ["fall-winter", "summer"].includes(options.season)
+          ? options.season
+          : "summer",
+      year: options.year || new Date(Date.now()).getFullYear(), // 2025
+      page: options.page || 1,
+      fetchMethod: options.fetchMethod || "lambda",
+    };
+  }
+
+  static getSessions(options = {}) {
+    options = this.getDefaultOptions(options);
+
+    if (options.season === "fall-winter") {
+      return [
+        `${String(options.year)}9`,
+        `${String(options.year + 1)}1`,
+        `${String(options.year)}9-${String(options.year)}1`,
+      ];
+    } else {
+      return [`${String(options.year)}5F`, `${String(options.year)}5S`, `${String(options.year)}5`];
+    }
   }
 }
 

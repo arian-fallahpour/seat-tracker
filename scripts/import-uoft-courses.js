@@ -26,13 +26,16 @@ dotenv.config({ path: "./config.env" });
 const importData = async () => {
   const updatedCourses = [];
 
-  let page = 0;
+  const season = args.season;
+  const year = args.year;
   const limit = args.limit || -1;
+
+  let page = 0;
   while (page != limit) {
     console.log(`[INFO] Requesting UofT API (page: ${++page})`);
 
     // Fetch courses from school API
-    const fetchedCourses = await UoftAdapter.fetchCourses({ page });
+    const fetchedCourses = await UoftAdapter.fetchCourses({ page, season, year });
     if (fetchedCourses.length === 0) break;
 
     updatedCourses.push(...fetchedCourses);
