@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const next = require("next");
 const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
-const { connectToDB } = require("./utils/helper-server");
 
 // Env file initialization
 dotenv.config({ path: "./config.env" });
