@@ -16,7 +16,8 @@ const nextRequestHandler = nextApp.getRequestHandler();
 (async () => {
   try {
     // Database initialization
-    await connectToDB();
+    const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
+    await mongoose.connect(dbUri, { autoIndex: true });
     Logger.announce("Database connection successful");
 
     // Handle uncaught exceptions
