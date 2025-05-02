@@ -94,13 +94,11 @@ alertSchema.statics.findAlertable = async function () {
 };
 
 alertSchema.statics.getInfo = async function (id) {
-  return await Alert.findById(id).populate({
+  const alert = await Alert.findById(id).populate({
     path: "course",
-    populate: {
-      path: "sections",
-      select: "type number campus lastAlertedAt",
-    },
+    populate: { path: "sections" },
   });
+  return alert;
 };
 
 /**
