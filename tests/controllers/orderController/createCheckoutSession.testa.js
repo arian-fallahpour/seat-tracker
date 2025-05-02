@@ -2,6 +2,7 @@ jest.mock("../../../models/AlertModel");
 jest.mock("../../../models/Course/UoftCourseModel");
 jest.mock("../../../models/OrderModel");
 
+// TODO: mock email so it doesnt actually send an email
 const sessionMock = { id: "stripe_session_id", url: "stripe_session_url" };
 jest.mock("stripe", () => {
   return jest.fn().mockImplementation(() => ({
