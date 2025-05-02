@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const args = require("args-parser")(process.argv);
 
@@ -6,15 +5,14 @@ const SectionModel = require("../models/Section/SectionModel");
 const CourseModel = require("../models/Course/CourseModel");
 const UoftAdapter = require("../utils/Uoft/UoftAdapter");
 const UoftCourseModel = require("../models/Course/UoftCourseModel");
+const { connectToDB } = require("../utils/helper-server");
 
 dotenv.config({ path: "./config.env" });
 
 (async () => {
   // Connect to database
-  let dbUri = process.env.DATABASE_CONNECTION;
-  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-  await mongoose.connect(dbUri, { autoIndex: true });
+  await connectToDB();
+  console.log("Database connection successful");
 
   // Run script
   if (args.delete === "--delete") {

@@ -4,6 +4,12 @@ const ReactDOMServer = require("react-dom/server");
 const archiver = require("archiver");
 const { headers } = require("next/headers");
 const { convert } = require("html-to-text");
+const mongoose = require("mongoose");
+
+exports.connectToDB = async () => {
+  const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
+  await mongoose.connect(dbUri, { autoIndex: true });
+};
 
 exports.createServerURL = async (relativeURL) => {
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";

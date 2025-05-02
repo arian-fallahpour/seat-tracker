@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const next = require("next");
 const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
+const { connectToDB } = require("./utils/helper-server");
 
 // Env file initialization
 dotenv.config({ path: "./config.env" });
@@ -15,8 +16,7 @@ const nextRequestHandler = nextApp.getRequestHandler();
 (async () => {
   try {
     // Database initialization
-    const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
-    await mongoose.connect(dbUri, { autoIndex: true });
+    await connectToDB();
     Logger.announce("Database connection successful");
 
     // Handle uncaught exceptions
