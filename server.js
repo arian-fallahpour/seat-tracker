@@ -31,11 +31,6 @@ const nextRequestHandler = nextApp.getRequestHandler();
 
     // Setup Express app
     const app = require("./app");
-    app.get("/test", (req, res) => {
-      console.log("<<ABCD>> LOG <<ABCD>>");
-      console.error("<<ABCD>> ERROR <<ABCD>>");
-      res.status(200).json("NICE");
-    });
 
     // Server initialization
     const port = process.env.PORT || 8080;
