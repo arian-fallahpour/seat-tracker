@@ -3,6 +3,11 @@ import React from "react";
 import CoursePage from "@/components/pages/CoursePage/CoursePage";
 import config from "@/utils/config";
 import { createServerURL } from "@/utils/helper-server";
+import { getPageHeader } from "@/utils/helper-client";
+
+export const metadata = {
+  title: getPageHeader("Create Alert"),
+};
 
 const getData = async (slug) => {
   const url = await createServerURL(`${config.API_PATH}/courses/info/${slug}`);

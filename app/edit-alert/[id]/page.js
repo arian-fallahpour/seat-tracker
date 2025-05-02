@@ -4,6 +4,11 @@ import config from "@/utils/config";
 import { createServerURL } from "@/utils/helper-server";
 import AlertPage from "@/components/pages/AlertPage/AlertPage";
 import { redirect } from "next/navigation";
+import { getPageHeader } from "../../../utils/helper-client";
+
+export const metadata = {
+  title: getPageHeader("Edit Alert"),
+};
 
 const getData = async (alertId) => {
   const url = await createServerURL(`${config.API_PATH}/alerts/info/${alertId}`);
