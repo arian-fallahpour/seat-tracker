@@ -1,11 +1,17 @@
 const mongoose = require("mongoose");
 const { CronJob } = require("cron");
+const Logger = require("../utils/Logger");
 
 const scheduleSchema = new mongoose.Schema({
   name: {
     type: String,
     unique: [true, "Schedule name must be unique"],
     required: [true, "Please provide the schedule name"],
+  },
+  enabled: {
+    type: Boolean,
+    required: [true, "Please indicate if this schedule is enabled"],
+    default: false,
   },
   lastCalledAt: Date,
 });
@@ -25,6 +31,8 @@ scheduleSchema.statics.intializeRecurring = async function (scheduleName, option
   let schedule = await this.findOne({ name: scheduleName });
   if (!schedule) {
     schedule = await this.create({ name: scheduleName });
+  } else if (!schedule.enabled) {
+    return Logger.info(`Schedule (${schedule.name}) is not enabled`);
   }
 
   // Determine when the cron job should be initialized and executed
