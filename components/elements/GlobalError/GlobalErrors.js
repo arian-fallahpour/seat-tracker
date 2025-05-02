@@ -5,7 +5,6 @@ import { GlobalErrorContext } from "@/store/global-error-context";
 import { useRouter, useSearchParams } from "next/navigation";
 import { removeParam } from "@/utils/helper-client";
 
-// TODO: Fix animation + multiple errors + no more new Error(), just put the message
 const GlobalErrors = () => {
   const searchParams = useSearchParams();
   const router = useRouter();

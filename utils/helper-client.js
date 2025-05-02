@@ -1,4 +1,4 @@
-import businessData from "../data/business-data";
+import businessData from "../data/business-data.js";
 
 export const sleep = function (ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
