@@ -14,7 +14,7 @@ import { sleep } from "@/utils/helper-client";
 
 const CreateAlertSection = ({ course, selectedSessions }) => {
   const router = useRouter();
-  const { setGlobalError } = useContext(GlobalErrorContext);
+  const { pushGlobalError } = useContext(GlobalErrorContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -39,8 +39,7 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
 
       router.push(stripeSessionUrl);
     } catch (axiosError) {
-      const error = new Error(axiosError.response.data.message);
-      setGlobalError(error);
+      pushGlobalError(axiosError.response.data.message);
     }
 
     await sleep(1000);

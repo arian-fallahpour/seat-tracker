@@ -24,7 +24,7 @@ export const GlobalErrorProvider = ({ children }) => {
   }, [globalErrors]);
 
   const pushGlobalError = (message) => {
-    setGlobalErrors((prev) => [...prev, message]);
+    setGlobalErrors((prev) => [...prev, { message, key: Math.random() }]);
   };
 
   const popGlobalError = () => {

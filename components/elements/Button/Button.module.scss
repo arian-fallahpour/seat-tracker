@@ -9,6 +9,14 @@
 
   position: relative;
 
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &::selection {
+    background-color: transparent;
+  }
+
   &Loader,
   &Children {
     visibility: hidden;
@@ -32,7 +40,7 @@
   &Loader {
     display: block;
     position: absolute;
-    top: calc(50% - 5px);
+    top: calc(50% - 5.5px);
     left: 50%;
     translate: -50% -50%;
     height: 1em;

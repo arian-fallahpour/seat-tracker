@@ -1,18 +1,20 @@
 "use client";
 
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import classes from "./Search.module.scss";
-
 import axios from "axios";
 import debounce from "lodash.debounce";
+import classes from "./Search.module.scss";
 
 import SearchResults from "./SearchResults";
 import Loader from "@/components/elements/Loader/Loader";
 import { SearchIcon } from "@/components/elements/icons/SearchIcon";
 import config from "@/utils/config";
 import { join } from "@/utils/helper-client";
+import { GlobalErrorContext } from "@/store/global-error-context";
 
 const Search = ({ isDisabled }) => {
+  const { pushGlobalError } = useContext(GlobalErrorContext);
+
   const [query, setQuery] = useState("");
   const [courses, setCourses] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -31,10 +33,7 @@ const Search = ({ isDisabled }) => {
 
         setCourses(courses);
       } catch (axiosError) {
-        const { message } = axiosError.response.data;
-        const error = new Error(message);
-
-        setGlobalError(error);
+        pushGlobalError(axiosError.response.data.message);
       }
 
       setIsLoading(false);

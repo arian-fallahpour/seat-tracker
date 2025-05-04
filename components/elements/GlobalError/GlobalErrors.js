@@ -22,8 +22,8 @@ const GlobalErrors = () => {
 
   return (
     <div className={classes.GlobalErrors}>
-      {firstThreeErrors.map((message) => (
-        <GlobalError key={message} message={message} onClose={popGlobalError} />
+      {firstThreeErrors.map((error) => (
+        <GlobalError key={error.key} message={error.message} onClose={popGlobalError} />
       ))}
     </div>
   );

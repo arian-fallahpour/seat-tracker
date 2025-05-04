@@ -15,7 +15,11 @@ const Button = ({
 }) => {
   const Tag = isLink ? Link : "button";
   return (
-    <Tag className={join(className, classes.Button, classes["Button--" + variant])} {...otherProps}>
+    <Tag
+      className={join(className, classes.Button, classes["Button--" + variant])}
+      disabled={isLoading}
+      {...otherProps}
+    >
       <span className={join(classes.ButtonLoader, isLoading ? classes.visible : null)}>
         <Loader />
       </span>
