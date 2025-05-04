@@ -63,8 +63,6 @@ class Email {
         error,
       });
     }
-
-    return this;
   }
 
   getProps() {
