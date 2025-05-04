@@ -10,8 +10,11 @@ const webhookController = require("./controllers/webhookController");
 // TODO: App
 /**
  * TODO LIST
+ * - IMPORTANT - To reduce costs, make 1 outbound request to some other place, where there it does the data fetching for cheaper (AWS Lightsail?)
+ * - Add feedback button
  * - complete testing of app
  * - Add security packages like helmet, rate limiter, etc...
+ * - configure cors
  * - fix unit testing (removed bc not mocking Email)
  * - fix errors (determine what to do when they occur, when email fails, we don't get a console error)
  *

@@ -24,6 +24,7 @@ scheduleSchema.statics.intializeRecurring = async function (scheduleName, option
   if (typeof options.onTick !== "function") throw new Error("Please provide an onTick function");
   options = {
     periodMinutes: options.periodMinutes || 15,
+    activeRange: options.activeRange, // [start, end]
     onTick: options.onTick,
   };
 
@@ -49,8 +50,10 @@ scheduleSchema.statics.intializeRecurring = async function (scheduleName, option
   }
 
   // Initialize CronJob
+  const minutes = `*/${options.periodMinutes}`;
+  const hours = options.activeRange ? `${options.activeRange[0]}-${options.activeRange[1]}` : "*";
   const cronOptions = {
-    cronTime: `0 */${options.periodMinutes} * * * *`,
+    cronTime: `0 ${minutes} ${hours} * * *`,
     onTick,
     waitForCompletion: true,
     start: true,
