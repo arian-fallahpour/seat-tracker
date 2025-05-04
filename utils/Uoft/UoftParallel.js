@@ -18,10 +18,10 @@ class UoftParallel {
       }
     };
 
-    // Group promises into alertsData.maxRequestsPerIp length groups
+    // Group promises into alertsData.maxRequestsPerLambdaIp length groups
     const promisesGroups = [];
     courseCodes.forEach((courseCode, i) => {
-      const index = Math.floor(i / alertsData.maxRequestsPerIp);
+      const index = Math.floor(i / alertsData.maxRequestsPerLambdaIp);
 
       if (!promisesGroups[index]) {
         promisesGroups[index] = [];
