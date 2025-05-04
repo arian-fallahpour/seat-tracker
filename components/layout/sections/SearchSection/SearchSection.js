@@ -13,10 +13,15 @@ const SearchSection = ({ className }) => {
   return (
     <Section className={join(className, classes.SearchSection)}>
       <header className={classes.Header}>
-        <h1 className="header header-title">{businessData.name}</h1>
-        <p className="paragraph">
-          Search for courses to send alerts from the University Of Toronto
-        </p>
+        <div className={classes.HeaderImage}>
+          <img src="/logo.svg" />
+        </div>
+        <div className={classes.HeaderContent}>
+          <h1 className="header header-title">{businessData.name}</h1>
+          <p className="paragraph">
+            Search for courses to send alerts from the University Of Toronto
+          </p>
+        </div>
       </header>
       <Search isDisabled={!isEnrollmentOpen} />
       {!isEnrollmentOpen && (
