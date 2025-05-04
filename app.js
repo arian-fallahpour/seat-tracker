@@ -8,6 +8,7 @@ const apiRouter = require("./routers/apiRouter");
 const webhookController = require("./controllers/webhookController");
 
 // TODO: App
+
 /**
  * TODO LIST
  * - IMPORTANT - To reduce costs, make 1 outbound request to some other place, where there it does the data fetching for cheaper (AWS Lightsail?)
