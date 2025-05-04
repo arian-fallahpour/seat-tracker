@@ -53,8 +53,6 @@ const Search = ({ isDisabled }) => {
     searchCourses(query);
   }, [query]);
 
-  console.log(courses);
-
   return (
     <div
       className={join(

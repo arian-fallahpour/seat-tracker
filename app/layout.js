@@ -6,6 +6,10 @@ import { getPageHeader, join } from "@/utils/helper-client";
 export const metadata = {
   title: getPageHeader(),
   description: "Create alerts for courses that don't have waitlists!",
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 const poppins = Poppins({
