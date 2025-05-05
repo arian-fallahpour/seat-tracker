@@ -63,7 +63,7 @@ app.use(
 
 // Limit requests from same person
 const limiter = rateLimit({
-  max: 10,
+  max: 45,
   windowMs: 60 * 1000, // 1 min
   message: { status: 429, message: "Too many requests sent, please try again in a bit!" },
 });
