@@ -1,7 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
-// const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const { xss } = require("express-xss-sanitizer");
+const hpp = require("hpp");
 
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
@@ -10,15 +14,13 @@ const webhookController = require("./controllers/webhookController");
 // TODO: App
 /**
  * TODO LIST
- * - IMPORTANT - To reduce costs, make 1 outbound request to some other place, where there it does the data fetching for cheaper (AWS Lightsail?)
  * - Add feedback button
  * - complete testing of app
- * - Add security packages like helmet, rate limiter, etc...
- * - configure cors
  * - fix unit testing (removed bc not mocking Email)
  * - fix errors (determine what to do when they occur, when email fails, we don't get a console error)
  *
  * DONE (double check at the end of development):
+ * - Add security packages like helmet, rate limiter, etc...
  * - Use cosmodb database instead of dev database
  * - Add lectures and practicals (or other)
  * - Determine how to handle failed operations when processing alerts (Rehaul logging)
@@ -35,8 +37,6 @@ const webhookController = require("./controllers/webhookController");
 
 const app = express();
 
-// app.use(cors());
-
 // Serving static files
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -48,13 +48,40 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev", morganOptions));
 }
 
-// Webhooks
+// Webhooks (Apparently does not need protections)
 app.post("/webhooks", express.raw({ type: "application/json" }), webhookController.handleWebhooks);
+
+// Set security HTTP headers
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: { scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"] },
+    },
+  })
+);
+
+// Limit requests from same person
+const limiter = rateLimit({
+  max: 10,
+  windowMs: 60 * 1000, // 1 min
+  message: { status: 429, message: "Too many requests sent, please try again in a bit!" },
+});
+app.use("/api", limiter);
 
 // Request body parsing
 const bodySizeLimit = "10kb";
 app.use(express.json({ limit: bodySizeLimit }));
 app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS
+app.use(xss());
+
+// Prevent parameter pollution
+app.use(hpp());
 
 // API routes
 app.use("/api", apiRouter);

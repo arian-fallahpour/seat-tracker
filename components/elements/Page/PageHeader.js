@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import Button from "../Button/Button";
-import { BackIcon } from "@/components/elements/icons/BackIcon";
+import BackIcon from "@/components/elements/icons/BackIcon";
 import classes from "./Page.module.scss";
 import Section from "../Section/Section";
 

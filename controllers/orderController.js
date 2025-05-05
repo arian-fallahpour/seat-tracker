@@ -48,7 +48,12 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   const protocol = req.protocol;
   const host =
     process.env.NODE_ENV === "development" ? `localhost:${process.env.PORT}` : req.headers.host;
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
+
+  const successMessage = `You will now get alerts for ${course.code}.`;
+  const cancelMessage = "Could not complete transaction.";
+
+  console.log(`${baseUrl}/?success=${encodeURIComponent(successMessage)}`);
 
   // Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
@@ -61,8 +66,8 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     allow_promotion_codes: true,
     metadata: { alert: alert.id, order: order.id },
     mode: "payment",
-    success_url: url,
-    cancel_url: url,
+    success_url: `${baseUrl}/?success=${encodeURIComponent(successMessage)}`,
+    cancel_url: `${baseUrl}/?error=${encodeURIComponent(cancelMessage)}`,
   });
 
   // Save stripe session id to order

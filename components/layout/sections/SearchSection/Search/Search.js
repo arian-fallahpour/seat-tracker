@@ -7,7 +7,7 @@ import classes from "./Search.module.scss";
 
 import SearchResults from "./SearchResults";
 import Loader from "@/components/elements/Loader/Loader";
-import { SearchIcon } from "@/components/elements/icons/SearchIcon";
+import SearchIcon from "@/components/elements/icons/SearchIcon";
 import config from "@/utils/config";
 import { join } from "@/utils/helper-client";
 import { GlobalErrorContext } from "@/store/global-error-context";
@@ -33,6 +33,7 @@ const Search = ({ isDisabled }) => {
 
         setCourses(courses);
       } catch (axiosError) {
+        console.log(axiosError);
         pushGlobalError(axiosError.response.data.message);
       }
 

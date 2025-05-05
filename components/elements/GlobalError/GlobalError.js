@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./GlobalError.module.scss";
-import { ErrorIcon } from "../icons/ErrorIcon";
+import ErrorIcon from "../icons/ErrorIcon";
 import { join } from "@/utils/helper-client";
-import { CloseIcon } from "../icons/CloseIcon";
+import CloseIcon from "../icons/CloseIcon";
 import Button from "../Button/Button";
 
 const Error = ({ className, message, onClose }) => {

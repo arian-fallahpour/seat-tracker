@@ -1,6 +1,6 @@
 .GlobalErrors {
   position: fixed;
-  top: 1rem;
+  top: var(--width-tiny);
   z-index: 100;
   width: 100%;
   max-width: 50rem;
