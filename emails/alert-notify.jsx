@@ -56,10 +56,10 @@ export default function AlertNotify({ data, context }) {
       <Text>New seat alert notification for {alert.email}!</Text>
       <Section style={{ marginTop: 16, marginBottom: 16 }}>
         <Text style={{ padding: 0, margin: 0 }}>
-          The following section{freedSections.length > 1 ? "s" : ""} has been freed in {course.name}{" "}
-          ({course.code}):
+          The following section{freedSections?.length > 1 ? "s" : ""} has been freed in{" "}
+          {course.name} ({course.code}):
         </Text>
-        {freedSections.map((section, i) => {
+        {freedSections?.map((section, i) => {
           const seatsEmpty = section.seatsAvailable - section.seatsTaken;
           return (
             <Text style={{ padding: 0, margin: 0 }} key={section.type + section.number}>

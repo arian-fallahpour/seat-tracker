@@ -18,6 +18,7 @@ const webhookController = require("./controllers/webhookController");
  * - complete testing of app
  * - fix unit testing (removed bc not mocking Email)
  * - fix errors (determine what to do when they occur, when email fails, we don't get a console error)
+ * - Find a way to reduce artical zip size
  *
  * DONE (double check at the end of development):
  * - Add security packages like helmet, rate limiter, etc...

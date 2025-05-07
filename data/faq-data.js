@@ -10,6 +10,11 @@ const faqData = [
     answer: `There are many factors that are calculated into the cost of running ${businessData.name}. For example, the proxy used to send the requests costs money per IP. Also, the cost of running the servers and sending emails are also considered. Overall, I try to keep the cost low, while providing the most utility as possible. I specifically use an excel formula to determine this price.`,
   },
   {
+    question: "I did not recieve my activation/notification email",
+    answer:
+      "Please check your spam folder too! We use a no-reply address, so you may need to add it to your trusted senders list.",
+  },
+  {
     question: `Is it safe to use my payment method on ${businessData.name}?`,
     answer: `Yes, we use the widely know Stripe payments infrastucture to process our payments. This means that we have no access to your payment details, since the payment is done on Stripe's checkout website. Well-known brands such as Shopify and Amazon use it too, so rest assured that your sensitive info is safe!`,
   },

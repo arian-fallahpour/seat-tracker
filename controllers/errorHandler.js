@@ -16,6 +16,8 @@ const errorHandler = (error, req, res, next) => {
 module.exports = errorHandler;
 
 function handleDevError(error, res) {
+  error = handleKnownErrors(error);
+
   console.error(error);
 
   return res.status(error.statusCode).json({
@@ -26,8 +28,7 @@ function handleDevError(error, res) {
 }
 
 function handleProdError(error, res) {
-  if (error.name === "ValidationError") error = handleValidationError(error);
-  if (error.code === 11000) error = handleDuplicateKeyError(error);
+  error = handleKnownErrors(error);
 
   // Return no error data if not operational
   if (!error.isOperational) {
@@ -44,6 +45,12 @@ function handleProdError(error, res) {
     status: error.status,
     message: error.message,
   });
+}
+
+function handleKnownErrors(error) {
+  if (error.name === "ValidationError") error = handleValidationError(error);
+  if (error.code === 11000) error = handleDuplicateKeyError(error);
+  return error;
 }
 
 function handleDuplicateKeyError(error) {

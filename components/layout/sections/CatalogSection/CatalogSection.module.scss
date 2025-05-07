@@ -60,6 +60,11 @@
     &:focus-within {
       background-color: var(--color-card-background-hover);
     }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
   }
 
   &Check {

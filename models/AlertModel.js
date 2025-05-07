@@ -6,6 +6,7 @@ const Email = require("../utils/app/Email");
 const UoftCourseModel = require("./Course/UoftCourseModel");
 const UoftAdapter = require("../utils/Uoft/UoftAdapter");
 const Logger = require("../utils/Logger");
+const { maxSectionsPerAlert } = require("../data/alerts-data");
 require("./Section/UoftSectionModel"); // Required for instance methods
 
 const alertSchema = new mongoose.Schema({
@@ -26,8 +27,12 @@ const alertSchema = new mongoose.Schema({
     ref: "Section",
     validate: [
       {
-        validator: validateSectionsLength,
+        validator: validateHasOneSection,
         message: "Please select at least one section.",
+      },
+      {
+        validator: validateSectionsLength,
+        message: `You cannot select more than ${maxSectionsPerAlert} sections.`,
       },
     ],
   },
@@ -51,8 +56,12 @@ const alertSchema = new mongoose.Schema({
   lastAlertedAt: Date,
 });
 
-function validateSectionsLength(sections) {
+function validateHasOneSection(sections) {
   return sections.length > 0;
+}
+
+function validateSectionsLength(sections) {
+  return sections.length <= maxSectionsPerAlert;
 }
 
 /**
@@ -205,7 +214,7 @@ alertSchema.methods.activate = async function () {
   await new Email({
     to: this.email,
     subject: `Alert activated for ${this.course.code}`,
-    template: "alert-data",
+    template: "alert-activate",
     data: emailData,
   }).send();
 
