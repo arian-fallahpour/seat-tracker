@@ -21,7 +21,7 @@ dotenv.config({ path: "./config.env" });
           </html>`,
       },
       recipients: {
-        to: [{ address: "eylahi132@gmail.com" }],
+        to: [{ address: "arianf2004@gmail.com" }],
       },
     };
 

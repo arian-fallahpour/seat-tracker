@@ -53,14 +53,15 @@ if (process.env.NODE_ENV === "development") {
 app.post("/webhooks", express.raw({ type: "application/json" }), webhookController.handleWebhooks);
 
 // Set security HTTP headers
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      useDefaults: true,
-      directives: { scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"] },
-    },
-  })
-);
+// TODO: add back in a way that doesn't throw errors
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       useDefaults: true,
+//       directives: { scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"] },
+//     },
+//   })
+// );
 
 // Limit requests from same person
 const limiter = rateLimit({

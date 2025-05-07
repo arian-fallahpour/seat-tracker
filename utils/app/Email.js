@@ -51,7 +51,7 @@ class Email {
 
       Logger.announce(`The ${this.template} email was sent to ${this.to}`);
     } catch (error) {
-      console.erro("EMAIL FAILED", error);
+      console.error("EMAIL FAILED:", error);
       Logger.warn(`The ${this.template} email was not sent to ${this.to}`, {
         email: this.to,
         error,

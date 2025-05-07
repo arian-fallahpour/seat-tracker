@@ -53,8 +53,6 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   const successMessage = `You will now get alerts for ${course.code}.`;
   const cancelMessage = "Could not complete transaction.";
 
-  console.log(`${baseUrl}/?success=${encodeURIComponent(successMessage)}`);
-
   // Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
     line_items: [

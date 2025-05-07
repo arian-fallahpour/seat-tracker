@@ -5,6 +5,7 @@ const Footer = ({ editAlertLink }) => {
   return (
     <Section>
       <Row>
+        {/* TODO: fix link */}
         <FooterLink href="https://example.com/">Home</FooterLink>
         {editAlertLink && <FooterLink href={editAlertLink}>Edit Alert</FooterLink>}
       </Row>
