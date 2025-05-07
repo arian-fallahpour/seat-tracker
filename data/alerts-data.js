@@ -1,6 +1,7 @@
 const alertsData = {
   alertsPeriodMinutes: 30,
   maxRequestsPerLambdaIp: 50,
+  maxSectionsPerAlert: 10,
   enrollmentDates: {
     fall: [new Date("2024-07-07"), new Date("2024-09-15")], // 2024
     winter: [new Date("2024-07-07"), new Date("2025-01-19")], // 2025
