@@ -1,28 +1,25 @@
 require("@babel/register");
 
-const { default: mongoose } = require("mongoose");
-const Alert = require("../models/database/Alert");
-const Email = require("../utils/Email");
+const mongoose = require("mongoose");
+const AlertModel = require("../models/AlertModel");
+const Email = require("../utils/app/Email");
 
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
 (async () => {
   // Connect to database
-  let dbUri = process.env.DATABASE_CONNECTION;
-  dbUri = dbUri.replace("<DATABASE_USER>", process.env.DATABASE_USER);
-  dbUri = dbUri.replace("<DATABASE_PASS>", process.env.DATABASE_PASS);
-  await mongoose.connect(dbUri, { autoIndex: true });
+  await mongoose.connect(process.env.MONGODB_URI, { autoIndex: true });
 
   // Find alert
-  const alert = await Alert.findOne();
+  const alert = await AlertModel.findOne().populate("course");
 
   // Send email
   await new Email({
     to: "arianf2004@gmail.com",
-    subject: `Alerts activated for YOU`,
-    template: "alert-notify",
-    data: { alert },
+    subject: "Alerts activated",
+    template: "alert-activate",
+    data: { course: alert.course, alert },
   }).send();
 
   console.log("Done!");

@@ -1,25 +1,18 @@
 const AlertNotify = require("../../emails/alert-notify.jsx").default;
 const AlertActivate = require("../../emails/alert-activate.jsx").default;
 
-const formData = require("form-data");
-const Mailgun = require("mailgun.js");
-
-const businessData = require("../../data/business-data.js");
 const { jsxToHtml, jsxToText } = require("../helper-server.js");
 const Logger = require("../Logger.js");
+const AzureEmailAdapter = require("../../utils/services/AzureEmailAdapter.js");
+const businessData = require("../../data/business-data.js");
 
 class Email {
   constructor({ to, subject, template, data }) {
     if (!Array.isArray(to)) to = [to];
-    this.from = `${businessData.name} <alerts@${process.env.MAILGUN_DOMAIN}>`;
     this.to = to;
     this.subject = subject;
     this.template = template;
     this.data = data;
-    this.mailgunClient = new Mailgun(formData).client({
-      username: "api",
-      key: process.env.MAILGUN_API_KEY,
-    });
   }
 
   renderTemplate() {
@@ -49,13 +42,13 @@ class Email {
     try {
       this.renderTemplate();
 
-      await this.mailgunClient.messages.create(process.env.MAILGUN_DOMAIN, {
-        from: this.from,
+      await new AzureEmailAdapter({
         to: this.to,
-        subject: this.subject,
-        text: this.text,
+        subject: `${businessData.name} - ${this.subject}`,
+        plainText: this.text,
         html: this.html,
-      });
+      }).send();
+
       Logger.announce(`The ${this.template} email was sent to ${this.to}`);
     } catch (error) {
       Logger.warn(`The ${this.template} email was not sent to ${this.to}`, {
