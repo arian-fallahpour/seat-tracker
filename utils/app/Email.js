@@ -68,7 +68,7 @@ class Email {
         host: process.env.HOST,
         port: process.env.PORT,
         protocol: protocol,
-        baseURL: `${protocol}://${process.env.HOST}:${process.env.PORT}`,
+        baseURL: `${protocol}://${process.env.HOST}`,
       },
     };
   }

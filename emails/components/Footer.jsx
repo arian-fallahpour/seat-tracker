@@ -1,12 +1,11 @@
 import React from "react";
 import { Button, Row, Section, Text } from "@react-email/components";
 
-const Footer = ({ editAlertLink }) => {
+const Footer = ({ context, editAlertLink }) => {
   return (
     <Section>
       <Row>
-        {/* TODO: fix link */}
-        <FooterLink href="https://example.com/">Home</FooterLink>
+        <FooterLink href={context.baseURL}>Home</FooterLink>
         {editAlertLink && <FooterLink href={editAlertLink}>Edit Alert</FooterLink>}
       </Row>
     </Section>

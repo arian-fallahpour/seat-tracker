@@ -30,9 +30,9 @@ const dummyContext = {
   baseURL: "http://localhost:3000",
 };
 
-export default function AlertActivate({ data, context }) {
-  const { course, alert } = data || dummyData;
-  const { baseURL } = context || dummyContext;
+export default function AlertActivate({ data = dummyData, context = dummyContext }) {
+  const { course, alert } = data;
+  const { baseURL } = context;
 
   const editAlertLink = `${baseURL}/edit-alert/${alert.id}`;
 
@@ -51,7 +51,7 @@ export default function AlertActivate({ data, context }) {
           </Text>
         ))}
       </Section>
-      <Footer editAlertLink={editAlertLink} />
+      <Footer context={context} editAlertLink={editAlertLink} />
     </Email>
   );
 }

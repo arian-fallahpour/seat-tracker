@@ -44,9 +44,9 @@ const dummyContext = {
   baseURL: "http://localhost:3000",
 };
 
-export default function AlertNotify({ data, context }) {
-  const { course, alert, freedSections } = data || dummyData;
-  const { baseURL } = context || dummyContext;
+export default function AlertNotify({ data = dummyData, context = dummyContext }) {
+  const { course, alert, freedSections } = data;
+  const { baseURL } = context;
 
   const editAlertLink = `${baseURL}/edit-alert/${alert.id}`;
 
@@ -69,7 +69,7 @@ export default function AlertNotify({ data, context }) {
           );
         })}
       </Section>
-      <Footer editAlertLink={editAlertLink} />
+      <Footer context={context} editAlertLink={editAlertLink} />
     </Email>
   );
 }
