@@ -50,7 +50,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     process.env.NODE_ENV === "development" ? `localhost:${process.env.PORT}` : req.headers.host;
   const baseUrl = `${protocol}://${host}`;
 
-  const successMessage = `You will now get alerts for ${course.code}.`;
+  const successMessage = `You will now get alerts for ${course.code}. Check your email!`;
   const cancelMessage = "Could not complete transaction.";
 
   // Create stripe checkout session

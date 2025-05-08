@@ -15,11 +15,10 @@ const webhookController = require("./controllers/webhookController");
 /**
  * TODO LIST
  * - Add feedback button
- * - complete testing of app
- * - fix unit testing (removed bc not mocking Email)
+ * - complete testing of app + fix unit testing (removed bc not mocking Email)
  * - fix errors (determine what to do when they occur, when email fails, we don't get a console error)
  * - Find a way to reduce artifact zip size
- *  *
+ *
  * DONE (double check at the end of development):
  * - Add security packages like helmet, rate limiter, etc...
  * - Use cosmodb database instead of dev database
@@ -53,15 +52,14 @@ if (process.env.NODE_ENV === "development") {
 app.post("/webhooks", express.raw({ type: "application/json" }), webhookController.handleWebhooks);
 
 // Set security HTTP headers
-// TODO: add back in a way that doesn't throw errors
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       useDefaults: true,
-//       directives: { scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"] },
-//     },
-//   })
-// );
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: { scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"] },
+    },
+  })
+);
 
 // Limit requests from same person
 const limiter = rateLimit({
