@@ -68,10 +68,6 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
         },
         quantity: 1,
       },
-      // {
-      //   price: businessData.stripe.alertPriceID,
-      //   quantity: 1,
-      // },
     ],
     allow_promotion_codes: true,
     metadata: { alert: alert.id, order: order.id },

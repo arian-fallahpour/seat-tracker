@@ -61,6 +61,10 @@ class Email {
 
   getProps() {
     const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+    const baseURL =
+      process.env.NODE_ENV === "development"
+        ? `${protocol}://${process.env.HOST}:${process.env.PORT}`
+        : `${protocol}://${process.env.HOST}`;
 
     return {
       data: this.data,
@@ -68,7 +72,7 @@ class Email {
         host: process.env.HOST,
         port: process.env.PORT,
         protocol: protocol,
-        baseURL: `${protocol}://${process.env.HOST}`,
+        baseURL,
       },
     };
   }

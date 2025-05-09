@@ -1,6 +1,6 @@
 const alertsData = {
   alertPriceCAD: 2,
-  alertsPeriodMinutes: 30,
+  alertsPeriodMinutes: 15,
   maxRequestsPerLambdaIp: 50,
   maxSectionsPerAlert: 10,
   enrollmentDates: {
