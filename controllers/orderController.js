@@ -5,6 +5,7 @@ const catchAsync = require("../utils/app/catchAsync");
 const AppError = require("../utils/app/AppError");
 const businessData = require("../data/business-data");
 const UoftCourseModel = require("../models/Course/UoftCourseModel");
+const alertsData = require("../data/alerts-data");
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -50,16 +51,27 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     process.env.NODE_ENV === "development" ? `localhost:${process.env.PORT}` : req.headers.host;
   const baseUrl = `${protocol}://${host}`;
 
-  const successMessage = `You will now get alerts for ${course.code}. Check your email!`;
+  const successMessage = `You will now get alerts for ${course.code}. Check your inbox!`;
   const cancelMessage = "Could not complete transaction.";
 
   // Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
-        price: businessData.stripe.alertPriceID,
+        price_data: {
+          currency: "CAD",
+          product_data: {
+            name: `Alerts for ${course.code}`,
+            description: `Set up alerts for ${course.name} (${course.code}) that notify you when a selected section is no longer full.`,
+          },
+          unit_amount: alertsData.alertPriceCAD * 100,
+        },
         quantity: 1,
       },
+      // {
+      //   price: businessData.stripe.alertPriceID,
+      //   quantity: 1,
+      // },
     ],
     allow_promotion_codes: true,
     metadata: { alert: alert.id, order: order.id },

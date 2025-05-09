@@ -80,7 +80,7 @@ async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
       order: order.id,
       alert: metadata.alert,
     });
-    return res.status(400).send(loggerMessage);
+    return res.status(400).send(message);
   } else if (alert.status !== "processing") {
     return res.status(400).send("Alert was already activated!");
   }

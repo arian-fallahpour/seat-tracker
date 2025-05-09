@@ -11,6 +11,7 @@ import Form, { FormRow } from "@/components/elements/Form/Form";
 import Input from "@/components/elements/Input/Input";
 import { GlobalErrorContext } from "@/store/global-error-context";
 import { sleep } from "@/utils/helper-client";
+import alertsData from "../../../../data/alerts-data";
 
 const CreateAlertSection = ({ course, selectedSessions }) => {
   const router = useRouter();
@@ -67,7 +68,7 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
           </FormRow>
           <p className="paragram">Disclaimer: We do not accept refunds at this time.</p>
           <Button className={classes.FormSubmit} isLoading={isLoading}>
-            Checkout
+            ${alertsData.alertPriceCAD.toFixed(2)}
           </Button>
         </Form>
       </div>

@@ -1,4 +1,5 @@
 const alertsData = {
+  alertPriceCAD: 2,
   alertsPeriodMinutes: 30,
   maxRequestsPerLambdaIp: 50,
   maxSectionsPerAlert: 10,
