@@ -29,6 +29,7 @@ const importData = async () => {
   const season = args.season;
   const year = args.year;
   const limit = args.limit || -1;
+  const upsert = args.upsert || 500;
 
   let page = 0;
   while (page != limit) {
@@ -42,7 +43,14 @@ const importData = async () => {
   }
 
   // Upsert courses and sections
-  await UoftCourseModel.upsertCoursesAndSections(updatedCourses);
+  let i = 0;
+  while (i < updatedCourses.length) {
+    const max = Math.min(i + upsert, updatedCourses.length);
+
+    console.log(`[INFO] Upserting courses ${i + 1} to ${max}`);
+    await UoftCourseModel.upsertCoursesAndSections(updatedCourses.slice(i, max));
+    i += upsert;
+  }
 };
 
 const deleteData = async () => {

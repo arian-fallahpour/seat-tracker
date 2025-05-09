@@ -8,6 +8,11 @@ const orderSchema = new mongoose.Schema({
   },
   stripeSessionId: String,
   stripePaymentId: String,
+  stripePromotionIds: {
+    type: [String],
+    default: [],
+    required: [true, "Stripe promotion ids must be an array."],
+  },
   isFulfilled: {
     type: Boolean,
     default: false,
@@ -19,8 +24,9 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-orderSchema.methods.fulfill = async function (stripePaymentId) {
+orderSchema.methods.fulfill = async function (stripePaymentId, stripePromotionIds) {
   this.stripePaymentId = stripePaymentId;
+  this.stripePromotionIds = stripePromotionIds;
   this.isFulfilled = true;
   await this.save();
 };

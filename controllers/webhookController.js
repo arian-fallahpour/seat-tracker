@@ -37,21 +37,24 @@ exports.handleWebhooks = async (req, res) => {
 };
 
 exports.fulfillCheckout = fulfillCheckout;
-async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
-  const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId, {
-    expand: ["line_items"],
-  });
-  const { metadata } = checkoutSession;
+async function fulfillCheckout(res, eventData) {
+  const {
+    id: sessionId,
+    payment_intent, // May be null if amount === 0
+    discounts, // Empty array if no discounts
+  } = eventData;
+
+  const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
 
   // Check if order exists, or order has been fulfilled already
-  const order = await OrderModel.findById(metadata.order);
+  const order = await OrderModel.findById(checkoutSession.metadata.order);
   if (!order) {
     const message = "Order not found";
     Logger.error(message, {
       stripeSessionId: sessionId,
       stripePaymentId: payment_intent,
-      order: metadata.order,
-      alert: metadata.alert,
+      order: checkoutSession.metadata.order,
+      alert: checkoutSession.metadata.alert,
     });
     return res.status(400).send(message);
   } else if (order.isFulfilled) {
@@ -65,20 +68,20 @@ async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
       stripeSessionId: sessionId,
       stripePaymentId: payment_intent,
       order: order.id,
-      alert: metadata.alert,
+      alert: checkoutSession.metadata.alert,
     });
     return res.status(400).send(message);
   }
 
   // Find alert associated with payment
-  const alert = await AlertModel.findById(metadata.alert);
+  const alert = await AlertModel.findById(checkoutSession.metadata.alert);
   if (!alert) {
     const message = "Alert not found";
     Logger.error(message, {
       stripeSessionId: sessionId,
       stripePaymentId: payment_intent,
       order: order.id,
-      alert: metadata.alert,
+      alert: checkoutSession.metadata.alert,
     });
     return res.status(400).send(message);
   } else if (alert.status !== "processing") {
@@ -89,7 +92,8 @@ async function fulfillCheckout(res, { id: sessionId, payment_intent }) {
   await alert.activate();
 
   // Fulfill order
-  await order.fulfill(payment_intent);
+  const stripePromotionIds = discounts.map((discount) => discount.promotion_code);
+  await order.fulfill(payment_intent, stripePromotionIds);
 
   // Return success
   return res.status(200).end();
