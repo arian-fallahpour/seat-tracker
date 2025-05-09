@@ -6,6 +6,7 @@ import classes from "./ActiveAlertsSection.module.scss";
 
 import Button from "@/components/elements/Button/Button";
 import { join } from "@/utils/helper-client";
+import businessData from "../../../../data/business-data";
 
 const getData = async () => {
   const url = await createServerURL(`${config.API_PATH}/alerts/count`);
@@ -26,7 +27,7 @@ const ActiveAlertsSection = async () => {
   return (
     <Section className={classes.ActiveAlertsSection}>
       <p className={join("paragraph", classes.Copyright)}>
-        © {new Date(Date.now()).getFullYear()} Seat Tracker.
+        © {new Date(Date.now()).getFullYear()} {businessData.name}.
       </p>
 
       <Button variant="text" className={classes.FAQ} href="/faq" isLink>
