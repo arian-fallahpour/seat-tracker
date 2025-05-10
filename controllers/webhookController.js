@@ -8,7 +8,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
  * - Make this function safe to run multiple times (May not be needed in this case)
  * - in future, add a checkout.session.async_payment_failed handler to notify for failed payment
  */
-//sds
 
 exports.handleWebhooks = async (req, res) => {
   const payload = req.body;
