@@ -24,7 +24,8 @@ jobs:
           node-version: "22.x"
 
       - name: npm test
-        run: npm run test --if-present
+        run: |
+          npm run test --if-present
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* .next -r -x "node_modules/*"
