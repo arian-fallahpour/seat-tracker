@@ -6,7 +6,7 @@
     "dev": "nodemon server.js",
     "email": "email dev",
     "build": "NODE_ENV=production next build",
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
     "lint": "next lint",
     "test": "jest"
   },
