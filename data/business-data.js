@@ -1,5 +1,5 @@
 const businessData = {
-  name: "Course TEST 2 Tracker",
+  name: "Course Tracker",
   stripe: {
     alertPriceID:
       process.env.NODE_ENV === "development"
