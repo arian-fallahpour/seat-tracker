@@ -11,7 +11,6 @@ const orderSchema = new mongoose.Schema({
   stripePromotionIds: {
     type: [String],
     default: [],
-    required: [true, "Stripe promotion ids must be an array."],
   },
   isFulfilled: {
     type: Boolean,

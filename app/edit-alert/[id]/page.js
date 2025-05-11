@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const getData = async (alertId) => {
-  const url = await createServerURL(`${config.API_PATH}/alerts/info/${alertId}`);
+  const url = await createServerURL(`/${config.API_PATH}/alerts/info/${alertId}`);
   const response = await fetch({ url, method: "GET" });
   const body = await response.json();
 

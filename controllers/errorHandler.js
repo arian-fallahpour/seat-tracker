@@ -48,9 +48,14 @@ function handleProdError(error, res) {
 }
 
 function handleKnownErrors(error) {
-  if (error.name === "ValidationError") error = handleValidationError(error);
-  if (error.code === 11000) error = handleDuplicateKeyError(error);
+  if (error.name === "CastError") return handleCastError();
+  if (error.name === "ValidationError") return handleValidationError(error);
+  if (error.code === 11000) return handleDuplicateKeyError(error);
   return error;
+}
+
+function handleCastError() {
+  return new AppError("Please provide a valid id.", 400);
 }
 
 function handleDuplicateKeyError(error) {
@@ -73,11 +78,4 @@ function handleValidationError(error) {
 
   if (error.name === "CastError") return handleCastError(error);
   return new AppError(error.message, 400);
-}
-
-function handleCastError(error) {
-  const errors = Object.values(error.errors);
-  const key = errors[0].path;
-
-  return new AppError(`Please provide a valid ${key}.`, 400);
 }

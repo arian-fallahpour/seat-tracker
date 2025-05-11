@@ -37,6 +37,43 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     return next(new AppError(message, 400));
   }
 
+  // If the alert is free, activate it immediately
+  if (alertsData.alertPriceCAD === 0) {
+    return createFreeAlert(res, next, alert);
+  }
+
+  // Otherwise, create a checkout session
+  else {
+    return createCheckoutSession(req, res, course, alert);
+  }
+});
+
+async function createFreeAlert(res, next, alert) {
+  // Check if user with email already created an alert 24hrs ago
+  const recentlyActivatedAlert = await AlertModel.findOne({
+    email: alert.email,
+    status: "active",
+    createdAt: { $gte: new Date(Date.now() - alertsData.daysPerFreeAlert * 24 * 60 * 60 * 1000) },
+  });
+  if (recentlyActivatedAlert)
+    return next(
+      new AppError("You already created an alert today. Please try again tomorrow.", 400)
+    );
+
+  // Create verification code and send it to the user
+  await alert.createVerificationCode();
+
+  // Return checkout page url
+  return res.status(200).json({
+    status: "success",
+    message: "Verification code sent to email. Please check your inbox.",
+    data: {
+      type: "verification",
+    },
+  });
+}
+
+async function createCheckoutSession(req, res, course, alert) {
   // Find or created order for this alert
   let order = await OrderModel.findOne({ alert: alert.id });
   if (!order) {
@@ -51,6 +88,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     process.env.NODE_ENV === "development" ? `localhost:${process.env.PORT}` : req.headers.host;
   const baseUrl = `${protocol}://${host}`;
 
+  // Generate success and cancel messages
   const successMessage = `You will now get alerts for ${course.code}. Check your inbox!`;
   const cancelMessage = "Could not complete transaction.";
 
@@ -83,11 +121,13 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   // Return checkout page url
   return res.status(200).json({
     status: "success",
+    message: "Checkout session created. Please complete the payment.",
     data: {
+      type: "checkout",
       stripeSessionUrl: session.url,
     },
   });
-});
+}
 
 exports.getOneOrder = crudController.getOne(OrderModel);
 exports.getAllOrders = crudController.getAll(OrderModel);

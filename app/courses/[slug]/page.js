@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 const getData = async (slug) => {
-  const url = await createServerURL(`${config.API_PATH}/courses/info/${slug}`);
+  const url = await createServerURL(`/${config.API_PATH}/courses/info/${slug}`);
   const response = await fetch({ url, method: "GET" });
 
   if (!response.ok) {

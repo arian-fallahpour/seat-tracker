@@ -5,6 +5,7 @@ const { jsxToHtml, jsxToText } = require("../helper-server.js");
 const Logger = require("../Logger.js");
 const AzureEmailAdapter = require("../../utils/services/AzureEmailAdapter.js");
 const businessData = require("../../data/business-data.js");
+const { default: AlertVerify } = require("../../emails/alert-verify.jsx");
 
 class Email {
   constructor({ to, subject, template, data }) {
@@ -20,6 +21,8 @@ class Email {
       this.renderTemplateAlertNotify();
     } else if (this.template === "alert-activate") {
       this.renderTemplateAlertActivate();
+    } else if (this.template === "alert-verify") {
+      this.renderTemplateAlertVerify();
     }
   }
 
@@ -33,6 +36,12 @@ class Email {
     const props = this.getProps();
     this.html = jsxToHtml(AlertActivate, props);
     this.text = jsxToText(AlertActivate, props);
+  }
+
+  renderTemplateAlertVerify() {
+    const props = this.getProps();
+    this.html = jsxToHtml(AlertVerify, props);
+    this.text = jsxToText(AlertVerify, props);
   }
 
   /**

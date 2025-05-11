@@ -9,7 +9,7 @@ import { join } from "@/utils/helper-client";
 import businessData from "../../../../data/business-data";
 
 const getData = async () => {
-  const url = await createServerURL(`${config.API_PATH}/alerts/count`);
+  const url = await createServerURL(`/${config.API_PATH}/alerts/count`);
   const response = await fetch({ url, method: "GET" }, { next: { revalidate: 3600 } });
 
   if (!response.ok) {

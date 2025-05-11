@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const crypto = require("crypto");
 
 const enums = require("../data/enums");
 const Email = require("../utils/app/Email");
@@ -7,6 +8,8 @@ const UoftCourseModel = require("./Course/UoftCourseModel");
 const UoftAdapter = require("../utils/Uoft/UoftAdapter");
 const Logger = require("../utils/Logger");
 const { maxSectionsPerAlert } = require("../data/alerts-data");
+const { encryptCode } = require("../utils/helper-server");
+const alertsData = require("../data/alerts-data");
 require("./Section/UoftSectionModel"); // Required for instance methods
 
 const alertSchema = new mongoose.Schema({
@@ -46,14 +49,16 @@ const alertSchema = new mongoose.Schema({
   },
   isPaused: {
     type: Boolean,
-    required: [true, "Please indicate if this alert has been paused or not."],
     default: false,
+    required: [true, "Please indicate if this alert has been paused or not."],
   },
   createdAt: {
     type: Date,
     default: new Date(Date.now()),
   },
   lastAlertedAt: Date,
+  verificationCode: String,
+  verificationExpiresAt: Date,
 });
 
 function validateHasOneSection(sections) {
@@ -73,18 +78,6 @@ alertSchema.index({ email: 1, course: 1 }, { unique: true });
 /**
  * MIDDLEWARE
  */
-
-// alertSchema.pre("save", async function (next) {
-//   if (!(this.isModified("status") && this.status === "active")) {
-//     return next();
-//   }
-
-//   const course = await UoftCourseModel.findById(this.course);
-//   const updatedCourses = await UoftAdapter.fetchCourses({ query: course.code });
-//   const updatedCourse = updatedCourses.find((updatedCourse) => updatedCourse.code === course.code);
-
-//   await course.save();
-// });
 
 /**
  * STATICS
@@ -259,6 +252,40 @@ alertSchema.methods.notify = async function () {
 
   // Update last alerted at
   this.lastAlertedAt = new Date(Date.now());
+  await this.save();
+};
+
+/**
+ * Creates a verification code and sends it to the email address associated with the alert
+ */
+alertSchema.methods.createVerificationCode = async function () {
+  // Generate a random verification code
+  const verificationCode = crypto.randomBytes(32).toString("hex");
+
+  // Set the verification code and sent date
+  this.verificationCode = encryptCode(verificationCode);
+  this.verificationExpiresAt = new Date(
+    Date.now() + alertsData.alertVerificationTimeLimitMinutes * 60 * 1000
+  ); // 10 minutes
+  await this.save();
+
+  console.log("Verification code:", verificationCode);
+
+  // Sebd verification code
+  await new Email({
+    to: this.email,
+    subject: "Alert verification code",
+    template: "alert-verify",
+    data: { code: verificationCode },
+  }).send();
+};
+
+/**
+ * Verifies the provided verification code and removes if valid
+ */
+alertSchema.methods.verify = async function (providedCode) {
+  this.verificationCode = undefined;
+  this.verificationExpiresAt = undefined;
   await this.save();
 };
 

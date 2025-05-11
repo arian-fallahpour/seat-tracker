@@ -8,7 +8,8 @@ import InfoIcon from "@/components/elements/icons/InfoIcon";
 import businessData from "@/data/business-data";
 
 const SearchSection = ({ className }) => {
-  const isEnrollmentOpen = getEnrollableSeasons().length > 0;
+  const enrollableSeasons = getEnrollableSeasons();
+  const isEnrollmentOpen = enrollableSeasons.length > 0;
 
   return (
     <Section className={join(className, classes.SearchSection)}>
@@ -25,6 +26,14 @@ const SearchSection = ({ className }) => {
         </div>
       </header>
       <Search isDisabled={!isEnrollmentOpen} />
+      {isEnrollmentOpen && (
+        <div className={classes.Message}>
+          <InfoIcon className={classes.MessageIcon} />
+          <p className="paragraph">
+            Enrollment is current open for the following sessions: {enrollableSeasons.join(", ")}
+          </p>
+        </div>
+      )}
       {!isEnrollmentOpen && (
         <div className={classes.Message}>
           <InfoIcon className={classes.MessageIcon} />

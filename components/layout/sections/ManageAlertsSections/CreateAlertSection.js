@@ -36,9 +36,13 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
         },
       });
 
-      const { stripeSessionUrl } = body.data;
+      const { type, stripeSessionUrl } = body.data;
 
-      router.push(stripeSessionUrl);
+      if (type === "verification") {
+        router.push(`/?success=${body.message}`);
+      } else {
+        router.push(stripeSessionUrl);
+      }
     } catch (axiosError) {
       pushGlobalError(axiosError.response.data.message);
     }
@@ -68,7 +72,9 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
           </FormRow>
           <p className="paragram">Disclaimer: We do not accept refunds at this time.</p>
           <Button className={classes.FormSubmit} isLoading={isLoading}>
-            ${alertsData.alertPriceCAD.toFixed(2)}
+            {alertsData.alertPriceCAD === 0
+              ? "Create Alert"
+              : `Buy $${alertsData.alertPriceCAD.toFixed(2)}`}
           </Button>
         </Form>
       </div>
