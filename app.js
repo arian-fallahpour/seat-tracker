@@ -52,14 +52,22 @@ if (process.env.NODE_ENV === "development") {
 app.post("/webhooks", express.raw({ type: "application/json" }), webhookController.handleWebhooks);
 
 // Set security HTTP headers
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      useDefaults: true,
-      directives: { scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"] },
-    },
-  })
-);
+// TODO: Figure out how to set headers with Google Analytics
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       useDefaults: true,
+//       directives: {
+//         scriptSrc: [
+//           "'self'",
+//           "https://www.googletagmanager.com",
+//           "https://www.google-analytics.com",
+//         ],
+//         connectSrc: ["'self'", "https://www.google-analytics.com"],
+//       },
+//     },
+//   })
+// );
 
 // Limit requests from same person
 const limiter = rateLimit({
@@ -84,7 +92,7 @@ app.use(xss());
 app.use(hpp());
 
 // API routes
-app.use("/api", apiRouter);
+app.use("/api/v1", apiRouter);
 
 // Global error handler
 app.use(errorHandler);

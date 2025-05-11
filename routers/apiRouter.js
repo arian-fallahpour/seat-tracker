@@ -10,10 +10,10 @@ const { get404Message } = require("../utils/helper-server");
 
 const router = express.Router();
 
-router.use("/v1/alerts", alertRouter);
-router.use("/v1/orders", orderRouter);
-router.use("/v1/courses", courseRouter);
-router.use("/v1/sections", sectionRouter);
+router.use("/alerts", alertRouter);
+router.use("/orders", orderRouter);
+router.use("/courses", courseRouter);
+router.use("/sections", sectionRouter);
 
 // Route not found
 router.all("*", (req, res, next) => {
