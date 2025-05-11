@@ -1,4 +1,5 @@
 import { Poppins } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "@/sass/globals.scss";
 import { getPageHeader, join } from "@/utils/helper-client";
@@ -20,6 +21,7 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <GoogleAnalytics gaId="G-XJGNBKQJ1P" />
       <body className={join(poppins.className)}>{children}</body>
     </html>
   );
