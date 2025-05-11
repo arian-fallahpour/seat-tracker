@@ -1,5 +1,5 @@
 const alertsData = {
-  alertPriceCAD: 0,
+  alertPriceCAD: 2,
   alertsPeriodMinutes: 15,
   daysPerFreeAlert: 1,
   alertVerificationTimeLimitMinutes: 10,
