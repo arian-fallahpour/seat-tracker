@@ -29,17 +29,22 @@ termSchema.virtual("year").get(function () {
 });
 
 termSchema.virtual("name").get(function () {
-  if (this.season === "fall-winter") return "fall/winter";
-  if (this.season.startsWith("summer")) {
-    const split = this.season.split("-");
-    return `${split[0]} (${split[1]})`;
-  }
-  return this.season;
+  return formatSeason(this.season);
 });
 
 /**
  * STATICS
  */
+
+termSchema.statics.formatSeason = formatSeason;
+function formatSeason(season) {
+  if (season === "fall-winter") return "fall/winter";
+  if (season.startsWith("summer")) {
+    const split = season.split("-");
+    return `${split[0]} (${split[1]})`;
+  }
+  return season;
+}
 
 termSchema.statics.getEnrollableSeasons = getEnrollableSeasons;
 

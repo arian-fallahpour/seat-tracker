@@ -6,6 +6,7 @@ import { join } from "@/utils/helper-client";
 import { getEnrollableSeasons } from "../../../../utils/app/schema-utils";
 import InfoIcon from "@/components/elements/icons/InfoIcon";
 import businessData from "@/data/business-data";
+import TermModel from "@/models/Course/TermModel";
 
 const SearchSection = ({ className }) => {
   const enrollableSeasons = getEnrollableSeasons();
@@ -30,7 +31,8 @@ const SearchSection = ({ className }) => {
         <div className={classes.Message}>
           <InfoIcon className={classes.MessageIcon} />
           <p className="paragraph">
-            Enrollment is current open for the following sessions: {enrollableSeasons.join(", ")}
+            Enrollment is currently open for the following sessions:
+            {" " + enrollableSeasons.map((season) => TermModel.formatSeason(season)).join(", ")}
           </p>
         </div>
       )}

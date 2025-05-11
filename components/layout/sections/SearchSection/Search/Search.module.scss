@@ -96,6 +96,7 @@
     background-color: var(--color-card-background);
     border: var(--border-width) solid var(--color-card-border);
     border-radius: calc(#{$input-border-radius} + var(--border-width) + #{$padding});
+    backdrop-filter: blur(10px);
   }
 
   .Result {
