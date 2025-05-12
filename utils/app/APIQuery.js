@@ -3,7 +3,7 @@ const excludedFields = ["page", "sort", "limit", "select", "search", "populate"]
 const defaultPageLength = 10;
 const maxPageLength = 50;
 
-// NOTE: Parameter pollution protection may cause weird bugs when using arrays in query
+// TODO: NOTE: Parameter pollution protection may cause weird bugs when using arrays in query
 
 class APIQuery {
   constructor(query, options) {

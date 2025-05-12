@@ -46,7 +46,7 @@ const nextRequestHandler = nextApp.getRequestHandler();
 
     // Handle unhandled rejections
     process.on("unhandledRejection", (error) => {
-      console.error(`Unhandled Rejection: ${error.message}`, { error });
+      Logger.error(`Unhandled Rejection: ${error.message}`, { error });
       server.close(() => process.exit(1));
     });
 

@@ -47,6 +47,6 @@ async function scheduleAlerts() {
     await UoftCourseModel.upsertCoursesAndSections(updatedCoursesData);
     Logger.info("(6/6) Upserted updated course data.");
   } catch (error) {
-    console.error(`Uoft Schedule Error: ${error.message}`);
+    Logger.error(`Uoft Schedule Error: ${error.message}`, { error });
   }
 }

@@ -17,8 +17,10 @@ exports.handleWebhooks = async (req, res) => {
   let event;
   try {
     event = stripe.webhooks.constructEvent(payload, sig, process.env.STRIPE_WEBHOOK_SECRET);
-  } catch (err) {
-    return res.status(400).send(`Stripe Webhook Error: ${err.message}`);
+  } catch (error) {
+    const message = `Webhook Construct Event Error: ${error.message}`;
+    Logger.error(message, { error });
+    return res.status(400).send(message);
   }
 
   // Handle events based on their type
@@ -30,7 +32,9 @@ exports.handleWebhooks = async (req, res) => {
       return await fulfillCheckout(res, event.data.object);
     }
   } catch (error) {
-    return res.status(400).send(error.message);
+    const message = `Webhook Event Error: ${error.message}`;
+    Logger.error(message, { error });
+    return res.status(400).send(message);
   }
 
   return res.status(200).end();

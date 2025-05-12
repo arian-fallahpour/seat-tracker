@@ -1,5 +1,6 @@
 const catchAsync = require("../utils/app/catchAsync");
 const AppError = require("../utils/app/AppError");
+const APIQuery = require("../utils/app/APIQuery");
 
 exports.getOne = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -19,13 +20,8 @@ exports.getOne = (Model) =>
 
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
-    const documents = await Model.find();
-
-    // const features = new APIFeatures(Model.find(filter), req.query)
-    //   .filter()
-    //   .sort()
-    //   .limitFields()
-    //   .paginate();
+    const apiQuery = new APIQuery(Model.find(), req.query).filter().sort().select().paginate();
+    const documents = await apiQuery.execute();
 
     res.status(200).json({
       status: "success",

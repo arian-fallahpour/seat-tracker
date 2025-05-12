@@ -60,9 +60,9 @@ class Email {
 
       Logger.announce(`The ${this.template} email was sent to ${this.to}`);
     } catch (error) {
-      console.error("EMAIL FAILED:", error);
-      Logger.warn(`The ${this.template} email was not sent to ${this.to}`, {
-        email: this.to,
+      Logger.warn(`Email Send Error: ${error.message}`, {
+        to: this.to,
+        template: this.template,
         error,
       });
     }

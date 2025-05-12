@@ -11,6 +11,8 @@ const SearchInput = ({ query, setQuery, isDisabled }) => {
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const timeoutRef = useRef(null);
 
+  const nextIndex = (i) => (i + 1) % placeholders.length;
+
   useEffect(() => {
     if (query === "") {
       timeoutRef.current = setTimeout(() => {
@@ -19,14 +21,15 @@ const SearchInput = ({ query, setQuery, isDisabled }) => {
     } else {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       setPlaceholderVisible(false);
-      setPlaceholderIndex((p) => (p + 1) % placeholders.length);
+      setPlaceholderIndex(nextIndex);
     }
   }, [query]);
 
   useEffect(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (placeholderVisible) {
       timeoutRef.current = setTimeout(() => {
-        setPlaceholderIndex((p) => (p + 1) % placeholders.length);
+        setPlaceholderIndex(nextIndex);
       }, 5000);
     }
   }, [placeholderVisible, placeholderIndex]);

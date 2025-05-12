@@ -27,7 +27,7 @@ class UoftAdapter {
         response = await this.fetchRegular(fetchOptions);
       }
     } catch (error) {
-      Logger.warn(`Could not fetch updated UofT courses`, {
+      Logger.warn(`Uoft Fetch Courses Error: ${error.message}`, {
         options,
         error: error.message,
       });

@@ -45,9 +45,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   }
 
   // Otherwise, create a checkout session
-  else {
-    return createCheckoutSession(req, res, course, alert);
-  }
+  return createCheckoutSession(req, res, course, alert);
 });
 
 async function createFreeAlert(res, next, alert) {
