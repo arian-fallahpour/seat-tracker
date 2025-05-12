@@ -11,6 +11,7 @@ import SearchIcon from "@/components/elements/icons/SearchIcon";
 import config from "@/utils/config";
 import { join } from "@/utils/helper-client";
 import { GlobalErrorContext } from "@/store/global-error-context";
+import SearchInput from "./SearchInput";
 
 const Search = ({ isDisabled }) => {
   const { pushGlobalError } = useContext(GlobalErrorContext);
@@ -64,12 +65,7 @@ const Search = ({ isDisabled }) => {
       onBlur={() => setIsFocused(false)}
     >
       <div className={classes.SearchMain}>
-        <input
-          className={classes.SearchInput}
-          placeholder="e.g. MIE245H1 S"
-          onChange={(e) => setQuery(e.target.value.trim())}
-          disabled={isDisabled}
-        />
+        <SearchInput query={query} setQuery={setQuery} isDisabled={isDisabled} />
 
         <div className={join(classes.SearchIcon, !isLoading ? classes.visible : null)}>
           <SearchIcon />
