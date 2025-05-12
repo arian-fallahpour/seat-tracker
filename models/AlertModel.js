@@ -259,6 +259,8 @@ alertSchema.methods.notify = async function () {
  * Creates a verification code and sends it to the email address associated with the alert
  */
 alertSchema.methods.createVerificationCode = async function () {
+  await this.populate("course");
+
   // Generate a random verification code
   const verificationCode = crypto.randomBytes(32).toString("hex");
 
@@ -274,7 +276,7 @@ alertSchema.methods.createVerificationCode = async function () {
     to: this.email,
     subject: "Alert verification code",
     template: "alert-verify",
-    data: { code: verificationCode },
+    data: { alert: this, course: this.course, code: verificationCode },
   }).send();
 };
 
