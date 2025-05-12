@@ -204,7 +204,7 @@ alertSchema.methods.activate = async function () {
   const emailData = { course: this.course, alert: this };
 
   // Construct and send the activation email
-  await new Email({
+  new Email({
     to: this.email,
     subject: `Alert activated for ${this.course.code}`,
     template: "alert-activate",
@@ -243,7 +243,7 @@ alertSchema.methods.notify = async function () {
   };
 
   // Construct and send notification email
-  await new Email({
+  new Email({
     to: this.email,
     subject: `New seats open for ${this.course.code}`,
     template: "alert-notify",
@@ -265,14 +265,12 @@ alertSchema.methods.createVerificationCode = async function () {
   // Set the verification code and sent date
   this.verificationCode = encryptCode(verificationCode);
   this.verificationExpiresAt = new Date(
-    Date.now() + alertsData.alertVerificationTimeLimitMinutes * 60 * 1000
-  ); // 10 minutes
+    Date.now() + alertsData.alertVerificationTimeLimitMinutes * 60 * 1000 // 10 minutes
+  );
   await this.save();
 
-  console.log("Verification code:", verificationCode);
-
-  // Sebd verification code
-  await new Email({
+  // Send verification code
+  new Email({
     to: this.email,
     subject: "Alert verification code",
     template: "alert-verify",
