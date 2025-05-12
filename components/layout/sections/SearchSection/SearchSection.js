@@ -20,8 +20,7 @@ const SearchSection = ({ className }) => {
         <div className={classes.HeaderContent}>
           <h1 className="header header-title">{businessData.name}</h1>
           <p className="paragraph">
-            Create a waitlist that sends email alerts for UofT courses that are full and don't have
-            one!
+            Create a waitlist that sends email alerts for UofT courses that don't have one!
           </p>
         </div>
       </header>
