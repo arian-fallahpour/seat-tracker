@@ -33,13 +33,14 @@ const SearchInput = ({ query, setQuery, isDisabled }) => {
 
   return (
     <div className={classes.Input}>
-      <span className={classes.InputPlaceholders}>
+      <span className={join(classes.InputPlaceholders, query !== "" ? classes.hidden : "")}>
         {placeholders.map((placeholder, index) => (
           <span
             key={placeholder}
             className={join(
               classes.InputPlaceholder,
-              placeholderVisible && index === placeholderIndex ? classes.active : ""
+              placeholderVisible && index === placeholderIndex ? classes.active : "",
+              query !== "" ? classes.instant : ""
             )}
           >
             {placeholder}

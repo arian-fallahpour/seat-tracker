@@ -84,12 +84,10 @@
       height: 1em;
       top: 50%;
       translate: 0 -50%;
-      // opacity: 0;
-      // visibility: hidden;
 
-      &.active {
-        opacity: 1;
-        visibility: visible;
+      &.hidden {
+        opacity: 0;
+        visibility: hidden;
       }
     }
 
@@ -113,6 +111,11 @@
         translate: 0 -50%;
 
         animation: reveal-placeholder $duration ease-in-out;
+      }
+
+      &.instant {
+        transition: all 0s;
+        animation: reveal-placeholder 0s;
       }
 
       @keyframes reveal-placeholder {
