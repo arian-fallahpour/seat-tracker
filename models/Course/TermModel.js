@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const enums = require("../../data/enums");
-const { getEnrollableSeasons } = require("../../utils/app/schema-utils");
 const alertsData = require("../../data/alerts-data");
 
 const termSchema = new mongoose.Schema(
@@ -46,7 +45,16 @@ function formatSeason(season) {
   return season;
 }
 
-termSchema.statics.getEnrollableSeasons = getEnrollableSeasons;
+termSchema.statics.getEnrollableSeasons = function () {
+  const { enrollmentDates } = alertsData;
+  const currentDate = new Date(Date.now());
+
+  const enrollableTerms = Object.keys(enrollmentDates).filter(
+    (term) => enrollmentDates[term][0] <= currentDate && currentDate <= enrollmentDates[term][1]
+  );
+
+  return enrollableTerms;
+};
 
 const TermModel = mongoose.models?.Term || mongoose.model("Term", termSchema);
 module.exports = TermModel;

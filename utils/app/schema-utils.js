@@ -110,18 +110,6 @@ function upsertSections(SectionModel, shouldBulkSave = true) {
   };
 }
 
-exports.getEnrollableSeasons = getEnrollableSeasons;
-function getEnrollableSeasons() {
-  const { enrollmentDates } = alertsData;
-  const currentDate = new Date(Date.now());
-
-  const enrollableTerms = Object.keys(enrollmentDates).filter(
-    (term) => enrollmentDates[term][0] < currentDate && currentDate < enrollmentDates[term][1]
-  );
-
-  return enrollableTerms;
-}
-
 exports.setLastUpdatedAt = function (next) {
   this.lastUpdatedAt = new Date(Date.now());
   next();

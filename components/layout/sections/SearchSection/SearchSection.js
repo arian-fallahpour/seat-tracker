@@ -3,13 +3,12 @@ import classes from "./SearchSection.module.scss";
 import Section from "@/components/elements/Section/Section";
 import Search from "./Search/Search";
 import { join } from "@/utils/helper-client";
-import { getEnrollableSeasons } from "../../../../utils/app/schema-utils";
 import InfoIcon from "@/components/elements/icons/InfoIcon";
 import businessData from "@/data/business-data";
 import TermModel from "@/models/Course/TermModel";
 
 const SearchSection = ({ className }) => {
-  const enrollableSeasons = getEnrollableSeasons();
+  const enrollableSeasons = TermModel.getEnrollableSeasons();
   const isEnrollmentOpen = enrollableSeasons.length > 0;
 
   return (

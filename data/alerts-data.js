@@ -1,3 +1,5 @@
+const { DateTime } = require("luxon");
+
 const alertsData = {
   alertPriceCAD: 2,
   alertsPeriodMinutes: 15,
@@ -6,14 +8,18 @@ const alertsData = {
   maxRequestsPerLambdaIp: 50,
   maxSectionsPerAlert: 10,
   enrollmentDates: {
-    fall: [new Date("2024-07-07"), new Date("2024-09-15")], // 2024
-    winter: [new Date("2024-07-07"), new Date("2025-01-19")], // 2025
-    "fall-winter": [new Date("2024-07-07"), new Date("2024-09-15")], // 2024
-    "summer-first": [new Date("2025-03-03"), new Date("2025-05-12")], // 2025
-    // "summer-first": [new Date("2025-03-03"), new Date("2025-05-11")], // 2025
-    "summer-second": [new Date("2025-03-03"), new Date("2025-06-08")], // 2025
-    "summer-full": [new Date("2025-03-03"), new Date("2025-05-11")], // 2025
+    fall: [easternToUTC("2024-07-07"), easternToUTC("2024-09-15")], // 2024
+    winter: [easternToUTC("2024-07-07"), easternToUTC("2025-01-19")], // 2025
+    "fall-winter": [easternToUTC("2024-07-07"), easternToUTC("2024-09-15")], // 2024
+    "summer-first": [easternToUTC("2025-03-03"), easternToUTC("2025-05-12")], // 2025
+    // "summer-first": [easternToUTC("2025-03-03"), easternToUTC("2025-05-11")], // 2025
+    "summer-second": [easternToUTC("2025-03-03"), easternToUTC("2025-06-08")], // 2025
+    "summer-full": [easternToUTC("2025-03-03"), easternToUTC("2025-05-11")], // 2025
   },
 };
+
+function easternToUTC(date) {
+  return DateTime.fromISO(date, { zone: "America/Toronto" }).toUTC().toJSDate();
+}
 
 module.exports = alertsData;
