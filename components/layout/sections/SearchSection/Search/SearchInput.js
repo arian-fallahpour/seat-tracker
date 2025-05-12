@@ -29,7 +29,11 @@ const SearchInput = ({ query, setQuery, isDisabled }) => {
       return nextPlaceholderWord();
     }
 
-    if (placeholderIndexLetter === 0) {
+    if (placeholderIndex === 0 && placeholderIndexLetter === 0) {
+      placeholderTimeout.current = setTimeout(() => {
+        nextPlaceholderLetter();
+      }, 1500);
+    } else if (placeholderIndexLetter === 0) {
       placeholderTimeout.current = setTimeout(() => {
         nextPlaceholderLetter();
       }, 3000);
