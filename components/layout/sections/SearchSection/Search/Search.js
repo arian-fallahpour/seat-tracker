@@ -64,8 +64,10 @@ const Search = ({ isDisabled }) => {
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
-      <div className={classes.SearchMain}>
-        <SearchInput query={query} setQuery={setQuery} isDisabled={isDisabled} />
+      <div className={classes.SearchField}>
+        <div className={classes.SearchInput}>
+          <SearchInput query={query} setQuery={setQuery} isDisabled={isDisabled} />
+        </div>
 
         <div className={join(classes.SearchIcon, !isLoading ? classes.visible : null)}>
           <SearchIcon />
@@ -74,7 +76,6 @@ const Search = ({ isDisabled }) => {
           <Loader />
         </div>
       </div>
-
       <div className={classes.SearchResults} onMouseDown={(e) => e.preventDefault()}>
         {courses.length > 0 && isFocused && <SearchResults courses={courses} />}
       </div>

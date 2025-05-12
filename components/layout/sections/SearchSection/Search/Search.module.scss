@@ -26,29 +26,14 @@
     opacity: 0.5;
   }
 
-  &Main {
-    display: flex;
+  &Field {
+    display: grid;
     gap: var(--width-small);
     position: relative;
   }
 
   &Input {
-    padding: var(--padding-button-vertical);
-    padding-left: var(--padding-button-horizontal);
-    padding-right: calc(var(--padding-button-horizontal) + 2.25rem);
-    font-size: var(--font-size-regular);
-    background-color: var(--color-card-background);
-    color: var(--color-card-text);
-    border: 0;
-    border-radius: $input-border-radius;
-    position: relative;
-    z-index: 2;
-
-    width: 100%;
-
-    &::placeholder {
-      color: var(--color-card-text-placeholder);
-    }
+    display: grid;
   }
 
   &Icon {
@@ -81,6 +66,80 @@
     top: 0;
     height: 100%;
     width: 100%;
+  }
+
+  .Input {
+    display: grid;
+
+    position: relative;
+    z-index: 2;
+
+    &Placeholders {
+      pointer-events: none;
+      position: absolute;
+      display: grid;
+
+      width: 100%;
+      overflow: hidden;
+      height: 1em;
+      top: 50%;
+      translate: 0 -50%;
+      // opacity: 0;
+      // visibility: hidden;
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &Placeholder {
+      $duration: 0.5s;
+      $distance: 1em;
+      color: var(--color-card-placeholder);
+      display: block;
+      visibility: hidden;
+      position: absolute;
+      left: var(--padding-button-horizontal);
+      top: 50%;
+      translate: 0 calc(-50% - #{$distance});
+
+      transition:
+        visibility $duration ease-in-out,
+        translate $duration ease-in-out;
+
+      &.active {
+        visibility: visible;
+        translate: 0 -50%;
+
+        animation: reveal-placeholder $duration ease-in-out;
+      }
+
+      @keyframes reveal-placeholder {
+        0% {
+          translate: 0 calc(-50% + #{$distance});
+        }
+        100% {
+          visibility: visible;
+          translate: 0 -50%;
+        }
+      }
+    }
+
+    & > input {
+      padding: var(--padding-button-vertical);
+      padding-left: var(--padding-button-horizontal);
+      padding-right: calc(var(--padding-button-horizontal) + 2.25rem);
+      font-size: var(--font-size-regular);
+      background-color: var(--color-card-background);
+      color: var(--color-card-text);
+      border: 0;
+      border-radius: $input-border-radius;
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
   }
 
   .Results {
