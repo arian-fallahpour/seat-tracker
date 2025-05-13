@@ -16,11 +16,11 @@ const webhookController = require("./controllers/webhookController");
  * TODO LIST
  * - Add feedback button
  * - complete testing of app + fix unit testing (removed bc not mocking Email)
- * - fix errors (determine what to do when they occur, when email fails, we don't get a console error)
- * - Find a way to reduce artifact zip size
- * - Redirect user if alert is inactive on edit-alert page
+ * - implement sms messaging
+ * - add website to google query
  *
  * DONE (double check at the end of development):
+ * - fix errors (determine what to do when they occur, when email fails, we don't get a console error) SHOULD BE FIXED
  * - Add security packages like helmet, rate limiter, etc...
  * - Use cosmodb database instead of dev database
  * - Add lectures and practicals (or other)

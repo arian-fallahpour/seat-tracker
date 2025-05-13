@@ -29,7 +29,7 @@ const SearchSection = ({ className }) => {
         <div className={classes.Message}>
           <InfoIcon className={classes.MessageIcon} />
           <p className="paragraph">
-            Enrollment is currently open for the following sessions:
+            Course selection is currently open for the following sessions:
             {" " + enrollableSeasons.map((season) => TermModel.formatSeason(season)).join(", ")}
           </p>
         </div>
@@ -38,7 +38,7 @@ const SearchSection = ({ className }) => {
         <div className={classes.Message}>
           <InfoIcon className={classes.MessageIcon} />
           <p className="paragraph">
-            Enrollment is not currently open! Come back when it is to set up an alert.
+            Course selection is not currently open! Come back when it is to set up an alert.
           </p>
         </div>
       )}
