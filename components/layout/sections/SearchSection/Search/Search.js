@@ -44,7 +44,6 @@ const Search = ({ isDisabled }) => {
   }, []);
 
   const onBlurHandler = (e) => {
-    console.log(searchRef.current, e.relatedTarget);
     if (!searchRef.current.contains(e.relatedTarget)) {
       setIsFocused(false);
     }
@@ -88,6 +87,7 @@ const Search = ({ isDisabled }) => {
           classes.SearchResults,
           courses.length > 0 && isFocused ? classes.visible : null
         )}
+        onMouseDown={(e) => e.preventDefault()}
       >
         <SearchResults courses={courses} />
       </div>
