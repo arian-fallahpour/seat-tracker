@@ -10,6 +10,7 @@ const hpp = require("hpp");
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
 const webhookController = require("./controllers/webhookController");
+const { default: helmetConfig } = require("./data/helmet-config");
 
 // TODO: App
 /**
@@ -53,22 +54,7 @@ if (process.env.NODE_ENV === "development") {
 app.post("/webhooks", express.raw({ type: "application/json" }), webhookController.handleWebhooks);
 
 // Set security HTTP headers
-// TODO: Figure out how to set headers with Google Analytics
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       useDefaults: true,
-//       directives: {
-//         scriptSrc: [
-//           "'self'",
-//           "https://www.googletagmanager.com",
-//           "https://www.google-analytics.com",
-//         ],
-//         connectSrc: ["'self'", "https://www.google-analytics.com"],
-//       },
-//     },
-//   })
-// );
+app.use(helmet(helmetConfig));
 
 // Limit requests from same person
 const limiter = rateLimit({
