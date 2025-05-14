@@ -54,7 +54,7 @@ if (process.env.NODE_ENV === "development") {
 app.post("/webhooks", express.raw({ type: "application/json" }), webhookController.handleWebhooks);
 
 // Set security HTTP headers
-app.use(helmet(helmetConfig));
+// app.use(helmet(helmetConfig));
 
 // Limit requests from same person
 const limiter = rateLimit({
