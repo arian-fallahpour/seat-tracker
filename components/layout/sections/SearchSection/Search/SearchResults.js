@@ -6,7 +6,7 @@ const SearchResults = ({ courses }) => {
   return (
     <div className={classes.Results}>
       {courses.map((course) => (
-        <SearchResult key={course.code} {...course} />
+        <SearchResult {...course} key={course.code} />
       ))}
     </div>
   );

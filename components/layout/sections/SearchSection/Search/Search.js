@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import debounce from "lodash.debounce";
 import classes from "./Search.module.scss";
@@ -20,10 +20,12 @@ const Search = ({ isDisabled }) => {
   const [courses, setCourses] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const searchRef = useRef(null);
 
   // Fetch courses in a debounced manner
-  const searchCourses = useCallback(
-    debounce(async (query) => {
+  const searchCourses = useCallback((query) => {
+    setIsLoading(true);
+    return debounce(async (query) => {
       try {
         const { data } = await axios({
           url: `/${config.API_PATH}/courses/search?query=${query}`,
@@ -34,14 +36,19 @@ const Search = ({ isDisabled }) => {
 
         setCourses(courses);
       } catch (axiosError) {
-        console.log(axiosError);
         pushGlobalError(axiosError.response.data.message);
       }
 
       setIsLoading(false);
-    }, 500),
-    []
-  );
+    }, 500)(query);
+  }, []);
+
+  const onBlurHandler = (e) => {
+    console.log(searchRef.current, e.relatedTarget);
+    if (!searchRef.current.contains(e.relatedTarget)) {
+      setIsFocused(false);
+    }
+  };
 
   // Run search query when value of input changes
   useEffect(() => {
@@ -49,8 +56,7 @@ const Search = ({ isDisabled }) => {
       return setCourses([]);
     }
 
-    setIsLoading(true);
-
+    // setIsLoading(true);
     searchCourses(query);
   }, [query]);
 
@@ -62,7 +68,8 @@ const Search = ({ isDisabled }) => {
         isDisabled ? classes.disabled : null
       )}
       onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
+      onBlur={onBlurHandler}
+      ref={searchRef}
     >
       <div className={classes.SearchField}>
         <div className={classes.SearchInput}>
@@ -76,8 +83,13 @@ const Search = ({ isDisabled }) => {
           <Loader />
         </div>
       </div>
-      <div className={classes.SearchResults} onMouseDown={(e) => e.preventDefault()}>
-        {courses.length > 0 && isFocused && <SearchResults courses={courses} />}
+      <div
+        className={join(
+          classes.SearchResults,
+          courses.length > 0 && isFocused ? classes.visible : null
+        )}
+      >
+        <SearchResults courses={courses} />
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const SearchSection = ({ className }) => {
     <Section className={join(className, classes.SearchSection)}>
       <header className={classes.Header}>
         <div className={classes.HeaderImage}>
-          <img src="/logo.svg" />
+          <img src="/logo.svg" alt="Course Tracker Logo" />
         </div>
         <div className={classes.HeaderContent}>
           <h1 className="header header-title">{businessData.name}</h1>
