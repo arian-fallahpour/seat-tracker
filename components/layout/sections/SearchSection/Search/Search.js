@@ -85,7 +85,7 @@ const Search = ({ isDisabled }) => {
         )}
         onMouseDown={(e) => e.preventDefault()}
       >
-        <SearchResults courses={courses} />
+        {courses.length > 0 && isFocused && <SearchResults courses={courses} />}
       </div>
     </div>
   );
