@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
-import axios from "axios";
 import debounce from "lodash.debounce";
 import classes from "./Search.module.scss";
 
@@ -23,25 +22,22 @@ const Search = ({ isDisabled }) => {
   const searchRef = useRef(null);
 
   // Fetch courses in a debounced manner
-  const searchCourses = useCallback((query) => {
-    setIsLoading(true);
-    return debounce(async (query) => {
-      try {
-        const { data } = await axios({
-          url: `/${config.API_PATH}/courses/search?query=${query}`,
-          method: "GET",
-        });
+  const searchCourses = useCallback(
+    debounce(async (query) => {
+      const response = await fetch(`/${config.API_PATH}/courses/search?query=${query}`, {
+        cache: "force-cache",
+      });
+      const body = await response.json();
+      setIsLoading(false);
 
-        const { courses } = data.data;
-
-        setCourses(courses);
-      } catch (axiosError) {
-        pushGlobalError(axiosError.response.data.message);
+      if (!response.ok) {
+        return pushGlobalError(body.message);
       }
 
-      setIsLoading(false);
-    }, 500)(query);
-  }, []);
+      setCourses(body.data.courses);
+    }, 500),
+    []
+  );
 
   const onBlurHandler = (e) => {
     if (!searchRef.current.contains(e.relatedTarget)) {
@@ -55,7 +51,7 @@ const Search = ({ isDisabled }) => {
       return setCourses([]);
     }
 
-    // setIsLoading(true);
+    setIsLoading(true);
     searchCourses(query);
   }, [query]);
 
