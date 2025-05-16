@@ -1,7 +1,7 @@
 const { DateTime } = require("luxon");
 
 const alertsData = {
-  alertPriceCAD: 2,
+  alertPriceCAD: 0,
   alertsPeriodMinutes: 15,
   daysPerFreeAlert: 1,
   alertVerificationTimeLimitMinutes: 10,

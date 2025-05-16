@@ -21,7 +21,11 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
   }
 
   // Find courses based on search input
-  const searchQuery = UoftCourseModel.search(query).populate({ path: "sections", select: "type" });
+  const cleanQuery = query.trim().replace(/[^a-z0-9]/gi, "");
+  const searchQuery = UoftCourseModel.search(cleanQuery).populate({
+    path: "sections",
+    select: "type",
+  });
   const courses = await new APIQuery(searchQuery, { limit: 5 }).paginate().execute();
 
   res.status(200).json({
