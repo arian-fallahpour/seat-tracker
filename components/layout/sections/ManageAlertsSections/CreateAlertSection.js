@@ -20,6 +20,8 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
 
+  const alertsAreFree = alertsData.alertPriceCAD === 0;
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -70,11 +72,14 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormRow>
-          <p className="paragram">Disclaimer: We do not accept refunds at this time.</p>
+
+          <p className="paragraph">
+            {alertsAreFree
+              ? "Disclaimer: This app is currently in its testing stages so it may have some bugs."
+              : "Disclaimer: We do not accept refunds at this time."}
+          </p>
           <Button className={classes.FormSubmit} isLoading={isLoading}>
-            {alertsData.alertPriceCAD === 0
-              ? "Create Alert"
-              : `Buy $${alertsData.alertPriceCAD.toFixed(2)}`}
+            {alertsAreFree ? "Create Alert" : `Buy $${alertsData.alertPriceCAD.toFixed(2)}`}
           </Button>
         </Form>
       </div>
