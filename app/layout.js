@@ -4,13 +4,14 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "@/sass/globals.scss";
 import { getPageHeader, join } from "@/utils/helper-client";
 
+const title = getPageHeader();
+const description = "Create alerts for courses that don't have waitlists!";
 export const metadata = {
-  title: getPageHeader(),
-  description: "Create alerts for courses that don't have waitlists!",
-  icons: {
-    icon: "/logo.svg",
-    apple: "/logo.svg",
-  },
+  title,
+  description,
+  icons: { icon: "/logo.png", apple: "/logo.png" },
+  twitter: { title, description, images: ["/preview.png"] },
+  openGraph: { title, description, images: ["/preview.png"] },
 };
 
 export const viewport = {
