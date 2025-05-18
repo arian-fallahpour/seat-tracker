@@ -9,6 +9,7 @@ const description = "Create alerts for courses that don't have waitlists!";
 export const metadata = {
   title,
   description,
+  metadataBase: new URL("https://coursetracker.ca/"),
   icons: { icon: "/logo.png", apple: "/logo.png" },
   twitter: { title, description, images: ["/preview.png"] },
   openGraph: { title, description, images: ["/preview.png"] },

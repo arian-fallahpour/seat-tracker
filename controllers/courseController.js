@@ -6,6 +6,8 @@ const CourseModel = require("../models/Course/CourseModel");
 const UoftCourseModel = require("../models/Course/UoftCourseModel");
 const TermModel = require("../models/Course/TermModel");
 
+// const searchQueryCache = new Map();
+
 exports.searchForCourses = catchAsync(async (req, res, next) => {
   const { query } = req.query;
 
@@ -20,20 +22,32 @@ exports.searchForCourses = catchAsync(async (req, res, next) => {
     return next(new AppError("Please provide a valid query to search from.", 400));
   }
 
-  // Find courses based on search input
+  // Check if query is cached
   const cleanQuery = query.trim().replace(/[^a-z0-9]/gi, "");
+  // if (
+  //   searchQueryCache.has(cleanQuery) &&
+  //   searchQueryCache.get(cleanQuery).cachedAt > Date.now() - 1000 * 60 * 5 // 5 minutes
+  // ) {
+  //   const data = searchQueryCache.get(cleanQuery);
+  //   return res.status(200).json({
+  //     status: "success",
+  //     results: data.courses.length,
+  //     data: { cached: true, courses: data.courses },
+  //   });
+  // }
+
+  // Find courses based on search input
   const searchQuery = UoftCourseModel.search(cleanQuery).populate({
     path: "sections",
     select: "type",
   });
   const courses = await new APIQuery(searchQuery, { limit: 5 }).paginate().execute();
+  // searchQueryCache.set(cleanQuery, { cachedAt: Date.now(), courses });
 
   res.status(200).json({
     status: "success",
     results: courses.length,
-    data: {
-      courses,
-    },
+    data: { cached: false, courses },
   });
 });
 
