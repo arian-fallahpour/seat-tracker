@@ -1,0 +1,87 @@
+@use "@/sass/abstracts/mixins" as *;
+
+section.VerifyAlertSection {
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.Card {
+  background-color: var(--color-card-background);
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: 2rem;
+  max-width: 35rem;
+  aspect-ratio: 1;
+  width: 100%;
+  position: relative;
+
+  @include respond(500px) {
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+  }
+
+  &Content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: var(--width-regular);
+    display: grid;
+    gap: var(--width-small);
+    grid-template-rows: 1fr auto auto;
+
+    filter: blur(10px);
+    opacity: 0;
+    scale: 0.8;
+    visibility: hidden;
+    transition:
+      filter 0.3s ease-in-out,
+      opacity 0.3s ease-in-out,
+      scale 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+
+    @include respond(500px) {
+      padding: 0;
+    }
+
+    &.active {
+      filter: blur(0);
+      opacity: 1;
+      scale: 1;
+      visibility: visible;
+    }
+  }
+
+  &Header {
+    position: relative;
+    aspect-ratio: 1;
+    width: 7.5rem;
+    justify-self: center;
+    align-self: center;
+  }
+
+  &Icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .Loader {
+    color: var(--color-card-text);
+  }
+
+  .Error {
+    color: var(--color-error);
+  }
+
+  .Success {
+    color: var(--color-success);
+  }
+
+  &Text {
+    text-align: center;
+  }
+}

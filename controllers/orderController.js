@@ -26,7 +26,9 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 
   // Handle alert creation or update
   const allowedStatus = ["processing", "active"];
-  let alert = await AlertModel.findOne({ email, course: courseId, status: allowedStatus });
+  let alert = await AlertModel.findOne({ email, course: courseId, status: allowedStatus }).sort({
+    createdAt: -1,
+  });
   if (!alert) {
     alert = await AlertModel.create({ email, course: courseId, sections });
   } else if (alert.verificationCode && new Date(Date.now()) < alert.verificationExpiresAt) {

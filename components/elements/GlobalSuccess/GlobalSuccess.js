@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import classes from "./GlobalSuccess.module.scss";
 import CheckIcon from "../icons/CheckIcon";
-import { join, removeParam } from "@/utils/helper-client";
+import { join } from "@/utils/helper-client";
+import { useQueryParams } from "@/hooks/use-query-params";
 
 const GlobalSuccess = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  const queryParams = useQueryParams();
 
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    const success = searchParams.get("success");
+    const success = queryParams.get("success");
     if (typeof success === "string" && success.trim() !== "") {
       setMessage(success);
-      removeParam(searchParams, router, "success");
+      queryParams.delete("success");
     }
   }, []);
 

@@ -73,7 +73,7 @@ function validateSectionsLength(sections) {
  * INDEXES
  */
 
-alertSchema.index({ email: 1, course: 1 }, { unique: true });
+// alertSchema.index({ email: 1, course: 1 }, { unique: true });
 
 /**
  * MIDDLEWARE
