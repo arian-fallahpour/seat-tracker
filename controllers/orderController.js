@@ -25,10 +25,11 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   }
 
   // Handle alert creation or update
-  const allowedStatus = ["processing", "active"];
-  let alert = await AlertModel.findOne({ email, course: courseId, status: allowedStatus }).sort({
-    createdAt: -1,
-  });
+  let alert = await AlertModel.findOne({
+    email,
+    course: courseId,
+    status: ["processing", "active"],
+  }).sort({ createdAt: -1 });
   if (!alert) {
     alert = await AlertModel.create({ email, course: courseId, sections });
   } else if (alert.verificationCode && new Date(Date.now()) < alert.verificationExpiresAt) {
@@ -55,7 +56,9 @@ async function createFreeAlert(res, next, alert) {
   const recentlyActivatedAlert = await AlertModel.findOne({
     email: alert.email,
     status: "active",
-    createdAt: { $gte: new Date(Date.now() - alertsData.daysPerFreeAlert * 24 * 60 * 60 * 1000) },
+    createdAt: {
+      $gte: new Date(Date.now() - alertsData.alertCreationCooldownDays * 24 * 60 * 60 * 1000),
+    },
   });
   if (recentlyActivatedAlert)
     return next(

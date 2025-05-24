@@ -11,9 +11,9 @@ const logSchema = new mongoose.Schema({
       message: "Please provide a valid log type.",
     },
   },
-  description: {
+  message: {
     type: String,
-    required: [true, "Please provide a description of the log"],
+    required: [true, "Please provide a log message"],
   },
   data: mongoose.Schema.Types.Mixed,
   createdAt: {
