@@ -3,6 +3,7 @@ const axios = require("axios");
 const LambdaAdapter = require("../services/LambdaAdapter");
 const Logger = require("../Logger");
 const UoftFormatter = require("./UoftFormatter");
+const lambdaData = require("../../data/lambda-data");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
@@ -20,7 +21,7 @@ class UoftAdapter {
     let response;
     try {
       if (options.fetchMethod === "lambda") {
-        response = await this.fetchLambda(fetchOptions);
+        response = await this.fetchLambda(fetchOptions, options);
       } else if (options.fetchMethod === "axios") {
         response = await this.fetchAxios(fetchOptions);
       } else {
@@ -77,19 +78,22 @@ class UoftAdapter {
   /**
    * Fetches Uoft API data using lambda for ip rotation
    */
-  static async fetchLambda(fetchOptions) {
-    Logger.info("Making LAMBDA request to UOFT API");
+  static async fetchLambda(fetchOptions, options) {
+    Logger.info(`Making LAMBDA (${options.lambdaFunctionName}) request to UOFT API`);
 
     // Make request to lambda function and increase request count
     const payload = {
       options: {
-        url: fetchOptions.url,
-        method: fetchOptions.method,
-        data: fetchOptions.body,
+        url: "https://checkip.amazonaws.com/",
+        method: "GET",
+        // url: fetchOptions.url,
+        // method: fetchOptions.method,
+        // data: fetchOptions.body,
       },
     };
-    const response = await LambdaAdapter.invokeAxiosRequest(payload);
+    const response = await LambdaAdapter.invoke(options.lambdaFunctionName, payload);
 
+    console.log(response);
     return response;
   }
 
@@ -173,6 +177,7 @@ class UoftAdapter {
       year: options.year || new Date(Date.now()).getFullYear(), // 2025
       page: options.page || 1,
       fetchMethod: options.fetchMethod || "lambda",
+      lambdaFunctionName: options.lambdaFunctionName || lambdaData.functions.static.axiosRequest,
     };
   }
 

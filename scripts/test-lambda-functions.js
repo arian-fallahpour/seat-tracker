@@ -12,7 +12,7 @@ const functionName = "axios-request";
   // Update function
   try {
     const functionFilePath = path.resolve(__dirname, `../aws/lambdas/${functionName}/index.js`);
-    await LambdaAdapter.updateLambdaFunction("axios-request", functionFilePath);
+    await LambdaAdapter.update("axios-request", functionFilePath);
   } catch (error) {
     console.error(error);
   }

@@ -1,4 +1,13 @@
+/**
+ * USED DURING PRODUCTION
+ *
+ * This script fetches all of the uoft courses based on the year and season
+ * and upserts them into the database
+ */
+
 const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+
 const args = require("args-parser")(process.argv);
 
 const SectionModel = require("../models/Section/SectionModel");
@@ -6,8 +15,6 @@ const CourseModel = require("../models/Course/CourseModel");
 const UoftAdapter = require("../utils/Uoft/UoftAdapter");
 const UoftCourseModel = require("../models/Course/UoftCourseModel");
 const { connectToDB } = require("../utils/helper-server");
-
-dotenv.config({ path: "./config.env" });
 
 (async () => {
   // Connect to database

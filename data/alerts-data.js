@@ -2,11 +2,14 @@ const { DateTime } = require("luxon");
 
 const alertsData = {
   alertPriceCAD: 0,
-  alertsPeriodMinutes: 15,
-  daysPerFreeAlert: 1,
   alertVerificationTimeLimitMinutes: 10,
-  maxRequestsPerLambdaIp: 50,
+  alertCreationCooldownDays: 1,
+  alertsPeriodMinutes: 5,
+
+  maxRequestsPerLambda: 20,
+  maxConcurrentLambdas: 20, // NOTE, if increasing, make sure you run the create lambdas script first
   maxSectionsPerAlert: 10,
+
   enrollmentDates: {
     fall: [easternToUTC("2024-07-07"), easternToUTC("2024-09-15")], // 2024
     winter: [easternToUTC("2024-07-07"), easternToUTC("2025-01-19")], // 2025

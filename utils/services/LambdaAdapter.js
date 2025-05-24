@@ -1,13 +1,16 @@
 const path = require("path");
+const fs = require("fs");
+const archiver = require("archiver");
+const { fromEnv } = require("@aws-sdk/credential-providers");
 const {
   LambdaClient,
   InvokeCommand,
   UpdateFunctionCodeCommand,
+  CreateFunctionCommand,
 } = require("@aws-sdk/client-lambda");
-const { fromEnv } = require("@aws-sdk/credential-providers");
+
 const Logger = require("../Logger");
 const { sleep } = require("../helper-client");
-const { fileToZipBuffer } = require("../helper-server");
 
 const client = new LambdaClient({
   region: process.env.AWS_REGION,
@@ -16,38 +19,44 @@ const client = new LambdaClient({
 
 class LambdaAdapter {
   static axiosRequestName = "axios-request";
-
-  static async invokeParallelAxiosRequests() {}
-
-  /**
-   * Invokes the axios-request lambda function
-   */
-  static async invokeAxiosRequest(payload) {
-    return await this.invokeLambdaFunction(this.axiosRequestName, payload);
-  }
+  static axiosLayerName = "arn:aws:lambda:us-east-1:307800276274:layer:axios:1";
 
   /**
    * Updates the axios-request lambda function to rotate its IP address
    */
-  static async rotateAxiosRequest() {
-    Logger.info("Updating lambda function code to rotate ip (wait 5 seconds)");
+  static async rotate(functionName, fileName) {
+    const filePath = path.resolve(__dirname, `../../aws/lambdas/${fileName}/index.js`);
+    await this.update(functionName, filePath);
 
-    const filePath = `../../aws/lambdas/${this.axiosRequestName}/index.js`;
-    const functionFilePath = path.resolve(__dirname, filePath);
-
-    await this.updateLambdaFunction(this.axiosRequestName, functionFilePath);
+    Logger.info(`Rotating ${functionName} (wait 5 seconds)`);
     await sleep(5000);
+  }
+
+  /**
+   * Creates a lambda function with the name and file path specified
+   */
+  static async create(functionName, filePath) {
+    const ZipFile = await this.#fileToZipBuffer(filePath);
+    const createCommand = new CreateFunctionCommand({
+      FunctionName: functionName,
+      Code: { ZipFile },
+      Role: process.env.AWS_LAMBDA_ROLE_ARN,
+      Runtime: "nodejs22.x",
+      Handler: "index.handler",
+      Layers: [this.axiosLayerName],
+    });
+
+    await client.send(createCommand);
   }
 
   /**
    * Updates the lambda function with the name specified in functionName
    */
-  static async updateLambdaFunction(functionName, filePath) {
-    const functionZip = await fileToZipBuffer(filePath);
-
+  static async update(functionName, filePath) {
+    const ZipFile = await this.#fileToZipBuffer(filePath);
     const updateCommand = new UpdateFunctionCodeCommand({
       FunctionName: functionName,
-      ZipFile: functionZip,
+      ZipFile,
     });
 
     await client.send(updateCommand);
@@ -56,7 +65,7 @@ class LambdaAdapter {
   /**
    * Invokes the lambda function with the name specified in functionName
    */
-  static async invokeLambdaFunction(functionName, payload) {
+  static async invoke(functionName, payload) {
     const invokeCommand = new InvokeCommand({
       FunctionName: functionName,
       Payload: JSON.stringify(payload),
@@ -64,10 +73,10 @@ class LambdaAdapter {
 
     const response = await client.send(invokeCommand);
 
-    return this.parseResponse(response);
+    return this.#parseResponse(response);
   }
 
-  static parseResponse(response) {
+  static #parseResponse(response) {
     const json = new TextDecoder("utf-8").decode(response.Payload);
     const parsed = JSON.parse(json);
     if (!!parsed.errorType) {
@@ -76,6 +85,20 @@ class LambdaAdapter {
 
     const data = JSON.parse(parsed.body);
     return data;
+  }
+
+  static #fileToZipBuffer(filePath) {
+    return new Promise((resolve, reject) => {
+      const archive = archiver("zip", { zlib: { level: 9 } });
+      const chunks = [];
+
+      archive.on("data", (chunk) => chunks.push(chunk));
+      archive.on("end", () => resolve(Buffer.concat(chunks)));
+      archive.on("error", reject);
+
+      archive.append(fs.createReadStream(filePath), { name: require("path").basename(filePath) });
+      archive.finalize();
+    });
   }
 }
 
