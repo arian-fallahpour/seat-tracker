@@ -5,7 +5,7 @@ const enums = require("../data/enums");
 const logSchema = new mongoose.Schema({
   type: {
     type: String,
-    required: [true, "Please provide a log type"],
+    required: [true, "Please provide a log type."],
     enum: {
       values: enums.log.type,
       message: "Please provide a valid log type.",
@@ -13,7 +13,7 @@ const logSchema = new mongoose.Schema({
   },
   message: {
     type: String,
-    required: [true, "Please provide a log message"],
+    required: [true, "Please provide a log message."],
   },
   data: mongoose.Schema.Types.Mixed,
   createdAt: {
