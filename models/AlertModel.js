@@ -74,6 +74,7 @@ function validateSectionsLength(sections) {
  */
 
 // alertSchema.index({ email: 1, course: 1 }, { unique: true });
+alertSchema.index({ createdAt: 1 }); // Needed for sort
 
 /**
  * MIDDLEWARE

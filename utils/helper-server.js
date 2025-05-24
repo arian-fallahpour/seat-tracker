@@ -11,7 +11,8 @@ exports.connectToDB = async () => {
 };
 
 exports.createServerURL = async (relativeURL) => {
-  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  const protocol =
+    process.env.NODE_ENV === "development" || process.env.HOST === "localhost" ? "http" : "https";
 
   const header = await headers();
   const host =
