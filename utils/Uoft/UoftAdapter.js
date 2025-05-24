@@ -84,16 +84,13 @@ class UoftAdapter {
     // Make request to lambda function and increase request count
     const payload = {
       options: {
-        url: "https://checkip.amazonaws.com/",
-        method: "GET",
-        // url: fetchOptions.url,
-        // method: fetchOptions.method,
-        // data: fetchOptions.body,
+        url: fetchOptions.url,
+        method: fetchOptions.method,
+        data: fetchOptions.body,
       },
     };
     const response = await LambdaAdapter.invoke(options.lambdaFunctionName, payload);
 
-    console.log(response);
     return response;
   }
 
