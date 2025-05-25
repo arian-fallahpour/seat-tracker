@@ -18,7 +18,7 @@ const logSchema = new mongoose.Schema({
   data: mongoose.Schema.Types.Mixed,
   createdAt: {
     type: Date,
-    default: new Date(Date.now()),
+    default: () => new Date(Date.now()),
   },
 });
 

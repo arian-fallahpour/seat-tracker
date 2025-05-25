@@ -24,7 +24,7 @@ const sectionSchema = new mongoose.Schema({
   },
   lastUpdatedAt: {
     type: Date,
-    default: new Date(Date.now()),
+    default: () => new Date(Date.now()),
   },
 });
 

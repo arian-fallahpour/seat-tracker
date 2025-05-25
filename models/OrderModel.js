@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date(Date.now()),
+    default: () => new Date(Date.now()),
     immutable: [true, "You cannot change the creation date."],
   },
 });

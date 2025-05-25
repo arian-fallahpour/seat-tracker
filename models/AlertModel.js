@@ -54,7 +54,7 @@ const alertSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: new Date(Date.now()),
+    default: () => new Date(Date.now()),
   },
   lastAlertedAt: Date,
   verificationCode: String,
