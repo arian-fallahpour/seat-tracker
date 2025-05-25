@@ -20,7 +20,7 @@ const courseSchema = new mongoose.Schema({
   slug: String,
   lastUpdatedAt: {
     type: Date,
-    default: () => new Date(Date.now()),
+    default: Date.now,
   },
 });
 
