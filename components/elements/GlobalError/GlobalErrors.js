@@ -3,6 +3,7 @@ import classes from "./GlobalError.module.scss";
 import GlobalError from "./GlobalError";
 import { GlobalErrorContext } from "@/store/global-error-context";
 import { useQueryParams } from "@/hooks/use-query-params";
+import { AnimatePresence } from "motion/react";
 
 const GlobalErrors = () => {
   const queryParams = useQueryParams();
@@ -20,9 +21,16 @@ const GlobalErrors = () => {
 
   return (
     <div className={classes.GlobalErrors}>
-      {firstThreeErrors.map((error) => (
-        <GlobalError key={error.key} message={error.message} onClose={popGlobalError} />
-      ))}
+      <AnimatePresence>
+        {firstThreeErrors.map((error, index) => (
+          <GlobalError
+            key={error.key}
+            index={index}
+            message={error.message}
+            onClose={popGlobalError}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };
