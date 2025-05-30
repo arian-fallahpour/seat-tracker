@@ -33,10 +33,10 @@ class UoftFormatter {
       type: this.sectionTypes[sectionData.teachMethod] || "other",
       number: sectionData.sectionNumber,
       campus: this.formatCampus(sectionData.campus),
-      seatsTaken: sectionData.currentEnrolment,
-      seatsAvailable: sectionData.maxEnrolment,
+      seatsTaken: sectionData.currentEnrolment || 0,
+      seatsAvailable: sectionData.maxEnrolment || 0,
       hasWaitlist: sectionData.waitlistInd === "Y" ? true : false,
-      waitlist: sectionData.currentWaitlist,
+      waitlist: sectionData.waitlistInd === "Y" ? sectionData.currentWaitlist : 0,
     };
   }
 
