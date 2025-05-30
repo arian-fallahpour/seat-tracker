@@ -16,7 +16,7 @@ const Search = ({ isDisabled }) => {
   const { pushGlobalError } = useContext(GlobalErrorContext);
 
   const [query, setQuery] = useState("");
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const searchRef = useRef(null);
@@ -48,7 +48,7 @@ const Search = ({ isDisabled }) => {
   // Run search query when value of input changes
   useEffect(() => {
     if (!query || query === "") {
-      return setCourses([]);
+      return setCourses(null);
     }
 
     setIsLoading(true);
@@ -79,13 +79,10 @@ const Search = ({ isDisabled }) => {
         </div>
       </div>
       <div
-        className={join(
-          classes.SearchResults,
-          courses.length > 0 && isFocused ? classes.visible : null
-        )}
+        className={join(classes.SearchResults, courses && isFocused ? classes.visible : null)}
         onMouseDown={(e) => e.preventDefault()}
       >
-        {courses.length > 0 && isFocused && <SearchResults courses={courses} />}
+        {courses && isFocused && <SearchResults courses={courses} />}
       </div>
     </div>
   );
