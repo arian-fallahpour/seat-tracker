@@ -17,11 +17,11 @@ const GlobalSuccess = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (message) {
-      setTimeout(() => setMessage(null), 5000);
-    }
-  }, [message]);
+  // useEffect(() => {
+  //   if (message) {
+  //     setTimeout(() => setMessage(null), 5000);
+  //   }
+  // }, [message]);
 
   return (
     <div className={join(classes.GlobalSuccess, message ? classes.visible : null)}>
