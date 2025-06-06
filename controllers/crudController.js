@@ -20,6 +20,7 @@ exports.getOne = (Model) =>
 
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
+    console.log(req.query);
     const apiQuery = new APIQuery(Model.find(), req.query).filter().sort().select().paginate();
     const documents = await apiQuery.execute();
 

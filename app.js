@@ -4,13 +4,13 @@ const path = require("path");
 const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
-const { xss } = require("express-xss-sanitizer");
 const hpp = require("hpp");
 
 const errorHandler = require("./controllers/errorHandler");
 const apiRouter = require("./routers/apiRouter");
 const webhookController = require("./controllers/webhookController");
 const { default: helmetConfig } = require("./data/helmet-config");
+const { sanitizeObjectXSS } = require("./utils/helper-server");
 
 // TODO: App
 /**
@@ -69,11 +69,18 @@ const bodySizeLimit = "10kb";
 app.use(express.json({ limit: bodySizeLimit }));
 app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 
+// Data sanitization against XSS
+app.use((req, res, next) => {
+  req.query = sanitizeObjectXSS(req.query);
+  req.body = sanitizeObjectXSS(req.body);
+  req.params = sanitizeObjectXSS(req.params);
+  req.cookies = sanitizeObjectXSS(req.cookies);
+  req.headers = sanitizeObjectXSS(req.headers);
+  next();
+});
+
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
-
-// Data sanitization against XSS
-app.use(xss());
 
 // Prevent parameter pollution
 app.use(hpp());

@@ -115,6 +115,15 @@ exports.setLastUpdatedAt = function (next) {
   next();
 };
 
+exports.formatSeason = function (season) {
+  if (season === "fall-winter") return "fall/winter";
+  if (season.startsWith("summer")) {
+    const split = season.split("-");
+    return `${split[0]} (${split[1]})`;
+  }
+  return season;
+};
+
 function generateSectionsMap(sections) {
   const sectionsMap = new Map();
 

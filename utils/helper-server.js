@@ -4,6 +4,7 @@ const { headers } = require("next/headers");
 const { convert } = require("html-to-text");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
+const xss = require("xss");
 
 exports.connectToDB = async () => {
   const dbUri = process.env.MONGODB_URI || process.env.AZURE_COSMOS_CONNECTIONSTRING;
@@ -36,4 +37,12 @@ exports.get404Message = (originalUrl) => `The route ${originalUrl} does not exis
 
 exports.encryptCode = (code) => {
   return crypto.createHash("sha256").update(code).digest("hex");
+};
+
+exports.sanitizeObjectXSS = function (obj) {
+  const result = {};
+  for (const key in obj) {
+    result[key] = xss(obj[key]);
+  }
+  return result;
 };

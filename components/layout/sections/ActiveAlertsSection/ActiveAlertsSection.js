@@ -1,4 +1,3 @@
-import React from "react";
 import { createServerURL } from "@/utils/helper-server";
 import Section from "@/components/elements/Section/Section";
 import config from "@/utils/config";
