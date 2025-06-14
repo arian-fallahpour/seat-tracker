@@ -9,7 +9,9 @@ const lambdaData = require("../data/lambda-data");
   async function createFunction(functionName) {
     try {
       const filePath = path.resolve(__dirname, "../aws/lambdas/axios-request/index.js");
-      await LambdaAdapter.create(functionName, filePath);
+      await LambdaAdapter.create(functionName, filePath, {
+        layers: [LambdaAdapter.axiosLayerName],
+      });
     } catch (error) {
       console.error(error.message);
     }

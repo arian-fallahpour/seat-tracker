@@ -19,7 +19,10 @@ const client = new LambdaClient({
 
 class LambdaAdapter {
   static axiosRequestName = "axios-request";
+  static webScrapeRequestName = "web-scrape-request";
+
   static axiosLayerName = "arn:aws:lambda:us-east-1:307800276274:layer:axios:1";
+  static webScrapLayerName = "arn:aws:lambda:us-east-1:307800276274:layer:web-scrape:1";
 
   /**
    * Updates the axios-request lambda function to rotate its IP address
@@ -35,7 +38,7 @@ class LambdaAdapter {
   /**
    * Creates a lambda function with the name and file path specified
    */
-  static async create(functionName, filePath) {
+  static async create(functionName, filePath, options = {}) {
     const ZipFile = await this.#fileToZipBuffer(filePath);
     const createCommand = new CreateFunctionCommand({
       FunctionName: functionName,
@@ -43,7 +46,7 @@ class LambdaAdapter {
       Role: process.env.AWS_LAMBDA_ROLE_ARN,
       Runtime: "nodejs22.x",
       Handler: "index.handler",
-      Layers: [this.axiosLayerName],
+      Layers: options.layers || [],
     });
 
     await client.send(createCommand);
