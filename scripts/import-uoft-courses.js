@@ -43,8 +43,8 @@ const importData = async () => {
   const limit = args.limit || -1;
   const upsert = args.upsert || 500;
   let maxSkips = args.skips || 5;
+  let page = args.page || 0;
 
-  let page = 0;
   let skips = 0;
   while (page != limit) {
     if (skips >= maxSkips) {
