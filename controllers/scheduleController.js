@@ -17,35 +17,39 @@ async function scheduleAlerts() {
     const currentDate = new Date(Date.now()).toLocaleString("en-US", {
       timeZone: "America/Toronto",
     });
-    Logger.info(`(0/6) Starting alert notification process at ${currentDate}.`);
+    Logger.info(`(0/7) Starting alert notification process at ${currentDate}.`);
 
     // 1. Find all active alerts and group then in an object by their code
     const alerts = await AlertModel.findAlertable();
     if (alerts.length === 0) return;
-    Logger.info("(1/6) Found all active alerts.");
+    Logger.info("(1/7) Found all active alerts.");
 
     // 2. Deactivate alerts with non-enrollable courses
     const enrollableAlerts = await AlertModel.deactivateExpired(alerts);
-    Logger.info(`(2/6) Deactivated expired alerts.`);
+    Logger.info(`(2/7) Deactivated expired alerts.`);
 
-    // 3. Fetch updated course data for all the unique courses that have alerts
-    const groupedAlertsByCode = AlertModel.groupByCode(enrollableAlerts);
+    // 3. Filter out paused alerts
+    const unPausedAlerts = enrollableAlerts.filter((alert) => !alert.isPaused);
+    Logger.info("(3/7) Filtering out unpaused alerts.");
+
+    // 4. Fetch updated course data for all the unique courses that have alerts
+    const groupedAlertsByCode = AlertModel.groupByCode(unPausedAlerts);
     const courseCodes = Object.keys(groupedAlertsByCode);
     const updatedCoursesByCode = await UoftParallel.fetchAllLambda(courseCodes);
-    Logger.info("(3/6) Fetched updated courses.");
+    Logger.info("(4/7) Fetched updated courses.");
 
-    // 4. Filter alerts by whether they have sections freed up and set updated section values (but don't save)
+    // 5. Filter alerts by whether they have sections freed up and set updated section values (but don't save)
     const filteredAlerts = await AlertModel.filterAllNotifiable(alerts, updatedCoursesByCode);
-    Logger.info("(4/6) Filtered non-notifiable alerts.");
+    Logger.info("(5/7) Filtered non-notifiable alerts.");
 
-    // 5. Notify users of alerts that have sections freed up in parallel
+    // 6. Notify users of alerts that have sections freed up in parallel
     await AlertModel.notifyAll(filteredAlerts);
-    Logger.info("(5/6) Sent notifications for filtered alerts.");
+    Logger.info("(6/7) Sent notifications for filtered alerts.");
 
-    // 6. Upsert courses and sections with updated data
+    // 7. Upsert courses and sections with updated data
     const updatedCoursesData = Object.values(updatedCoursesByCode);
     await UoftCourseModel.upsertCoursesAndSections(updatedCoursesData);
-    Logger.info("(6/6) Upserted updated course data.");
+    Logger.info("(7/7) Upserted updated course data.");
   } catch (error) {
     Logger.error(`Uoft Schedule Error: ${error.message}`, { error });
   }

@@ -88,7 +88,7 @@ alertSchema.index({ createdAt: 1 }); // Needed for sort
  * Returns alerts that are active and not paused, as well as associated course and sections
  */
 alertSchema.statics.findAlertable = async function () {
-  const alerts = await this.find({ status: "active", isPaused: false })
+  const alerts = await this.find({ status: "active" })
     .populate({ path: "course" })
     .populate({ path: "sections" });
 
