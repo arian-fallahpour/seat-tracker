@@ -26,10 +26,12 @@ async function scheduleAlerts() {
 
     // 2. Deactivate alerts with non-enrollable courses
     const enrollableAlerts = await AlertModel.deactivateExpired(alerts);
+    if (enrollableAlerts.length === 0) return;
     Logger.info(`(2/7) Deactivated expired alerts.`);
 
     // 3. Filter out paused alerts
     const unPausedAlerts = enrollableAlerts.filter((alert) => !alert.isPaused);
+    if (unPausedAlerts.length === 0) return;
     Logger.info("(3/7) Filtering out unpaused alerts.");
 
     // 4. Fetch updated course data for all the unique courses that have alerts
