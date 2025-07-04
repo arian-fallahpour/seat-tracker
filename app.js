@@ -70,14 +70,15 @@ app.use(express.json({ limit: bodySizeLimit }));
 app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 
 // Data sanitization against XSS
-app.use((req, res, next) => {
-  req.query = sanitizeObjectXSS(req.query);
-  req.body = sanitizeObjectXSS(req.body);
-  req.params = sanitizeObjectXSS(req.params);
-  req.cookies = sanitizeObjectXSS(req.cookies);
-  req.headers = sanitizeObjectXSS(req.headers);
-  next();
-});
+// BUG: Arrays get sent as strings
+// app.use((req, res, next) => {
+//   req.query = sanitizeObjectXSS(req.query);
+//   req.body = sanitizeObjectXSS(req.body);
+//   req.params = sanitizeObjectXSS(req.params);
+//   req.cookies = sanitizeObjectXSS(req.cookies);
+//   req.headers = sanitizeObjectXSS(req.headers);
+//   next();
+// });
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
