@@ -4,6 +4,7 @@ const LambdaAdapter = require("../services/LambdaAdapter");
 const Logger = require("../Logger");
 const UoftFormatter = require("./UoftFormatter");
 const lambdaData = require("../../data/lambda-data");
+const TermModel = require("../../models/Course/TermModel");
 
 class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
@@ -165,12 +166,27 @@ class UoftAdapter {
   }
 
   static getDefaultOptions(options = {}) {
+    let defaultSeason = null;
+    if (
+      TermModel.getEnrollableSeasons().includes("fall") ||
+      TermModel.getEnrollableSeasons().includes("winter") ||
+      TermModel.getEnrollableSeasons().includes("fall-winter")
+    ) {
+      defaultSeason = "fall-winter";
+    } else if (
+      TermModel.getEnrollableSeasons().includes("summer-first") ||
+      TermModel.getEnrollableSeasons().includes("summer-second") ||
+      TermModel.getEnrollableSeasons().includes("summer-full")
+    ) {
+      defaultSeason = "summer";
+    }
+
     return {
       query: options.query || "",
       season:
         options.season && ["fall-winter", "summer"].includes(options.season)
           ? options.season
-          : "summer",
+          : defaultSeason,
       year: options.year || new Date(Date.now()).getFullYear(), // 2025
       page: options.page || 1,
       fetchMethod: options.fetchMethod || "lambda",
