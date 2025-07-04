@@ -63,7 +63,7 @@ uoftCourseSchema.statics.search = function (query) {
 
   return this.find({
     $or: [{ code: regex }, { name: regex }],
-    "term.season": enrollableSeasons,
+    "term.season": { $in: enrollableSeasons },
   });
 };
 
