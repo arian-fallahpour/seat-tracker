@@ -83,13 +83,6 @@ exports.verifyAlert = catchAsync(async (req, res, next) => {
     },
   });
 
-  console.log(
-    "BBBBB",
-    recentlyActivatedAlerts,
-    alertsData.alertCreationCooldownDays,
-    alertsData.alertCreationCooldownCount
-  );
-
   if (recentlyActivatedAlerts.length >= alertsData.alertCreationCooldownCount)
     return next(
       new AppError(

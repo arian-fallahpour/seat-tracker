@@ -61,14 +61,6 @@ async function createFreeAlert(res, next, alert) {
     },
   });
 
-  console.log(
-    "AAAAA",
-    recentlyActivatedAlerts.length,
-    recentlyActivatedAlerts,
-    alertsData.alertCreationCooldownDays,
-    alertsData.alertCreationCooldownCount
-  );
-
   if (recentlyActivatedAlerts.length >= alertsData.alertCreationCooldownCount)
     return next(
       new AppError(
