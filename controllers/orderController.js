@@ -52,17 +52,29 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 });
 
 async function createFreeAlert(res, next, alert) {
-  // Check if user with email already created an alert 24hrs ago
-  const recentlyActivatedAlert = await AlertModel.findOne({
+  // Check if user with email already created the maximum number of alerts in the cooldown period
+  const recentlyActivatedAlerts = await AlertModel.find({
     email: alert.email,
     status: "active",
     createdAt: {
       $gte: new Date(Date.now() - alertsData.alertCreationCooldownDays * 24 * 60 * 60 * 1000),
     },
   });
-  if (recentlyActivatedAlert)
+
+  console.log(
+    "AAAAA",
+    recentlyActivatedAlerts.length,
+    recentlyActivatedAlerts,
+    alertsData.alertCreationCooldownDays,
+    alertsData.alertCreationCooldownCount
+  );
+
+  if (recentlyActivatedAlerts.length >= alertsData.alertCreationCooldownCount)
     return next(
-      new AppError("You already created an alert today. Please try again tomorrow.", 400)
+      new AppError(
+        `You already created ${alertsData.alertCreationCooldownCount} alerts today. Please try again ${alertsData.alertCreationCooldownDays === 1 ? "tomorrow" : `in ${alertsData.alertCreationCooldownDays} days`}.`,
+        400
+      )
     );
 
   // Create verification code and send it to the user

@@ -3,6 +3,7 @@ const AlertModel = require("../models/AlertModel");
 const catchAsync = require("../utils/app/catchAsync");
 const AppError = require("../utils/app/AppError");
 const { encryptCode } = require("../utils/helper-server");
+const alertsData = require("../data/alerts-data");
 
 exports.getAlertInfo = catchAsync(async (req, res, next) => {
   const alert = await AlertModel.getInfo(req.params.id);
@@ -70,6 +71,32 @@ exports.verifyAlert = catchAsync(async (req, res, next) => {
     verificationExpiresAt: { $gt: new Date(Date.now()) },
   });
   if (!alert) return next(new AppError("Verification code is invalid or expired.", 404));
+
+  // TODO: Prevent duplication of this code, also found in orderController.js
+
+  // Check if user with email already created the maximum number of alerts in the cooldown period
+  const recentlyActivatedAlerts = await AlertModel.find({
+    email: alert.email,
+    status: "active",
+    createdAt: {
+      $gte: new Date(Date.now() - alertsData.alertCreationCooldownDays * 24 * 60 * 60 * 1000),
+    },
+  });
+
+  console.log(
+    "BBBBB",
+    recentlyActivatedAlerts,
+    alertsData.alertCreationCooldownDays,
+    alertsData.alertCreationCooldownCount
+  );
+
+  if (recentlyActivatedAlerts.length >= alertsData.alertCreationCooldownCount)
+    return next(
+      new AppError(
+        `You already created ${alertsData.alertCreationCooldownCount} alerts today. Please try again ${alertsData.alertCreationCooldownDays === 1 ? "tomorrow" : `in ${alertsData.alertCreationCooldownDays} days`}.`,
+        400
+      )
+    );
 
   // Remove the verification code and expiration date
   await alert.verify();

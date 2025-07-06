@@ -4,6 +4,7 @@ const alertsData = {
   alertPriceCAD: 0,
   alertVerificationTimeLimitMinutes: 10,
   alertCreationCooldownDays: 1,
+  alertCreationCooldownCount: 3,
   alertsPeriodMinutes: 5,
 
   maxRequestsPerLambda: 20,
