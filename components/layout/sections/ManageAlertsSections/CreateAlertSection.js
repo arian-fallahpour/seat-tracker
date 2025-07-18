@@ -59,7 +59,7 @@ const CreateAlertSection = ({ course, selectedSessions }) => {
       <div className={classes.Main}>
         <div className={classes.Header}>
           <h3 className="header header-section margin-bottom-auto">Create Alert</h3>
-          <p className="paragraph">Enter the details below to buy an alert for this course.</p>
+          <p className="paragraph">Enter the details below to get an alert for this course.</p>
         </div>
         <Form className={classes.Form} onSubmit={onSubmitHandler}>
           <FormRow>
