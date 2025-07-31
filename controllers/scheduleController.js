@@ -50,7 +50,15 @@ async function scheduleAlerts() {
 
     // 7. Upsert courses and sections with updated data
     const updatedCoursesData = Object.values(updatedCoursesByCode);
-    await UoftCourseModel.upsertCoursesAndSections(updatedCoursesData);
+    let i = 0;
+    const upsert = 50; // Number of courses to upsert at a time
+    while (i < updatedCoursesData.length) {
+      const max = Math.min(i + upsert, updatedCoursesData.length);
+
+      console.log(`[INFO] Upserting courses ${i + 1} to ${max}`);
+      await UoftCourseModel.upsertCoursesAndSections(updatedCoursesData.slice(i, max));
+      i += upsert;
+    }
     Logger.info("(7/7) Upserted updated course data.");
   } catch (error) {
     Logger.error(`Uoft Schedule Error: ${error.message}`, { error });
