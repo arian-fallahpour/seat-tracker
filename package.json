@@ -55,7 +55,7 @@
     "@types/react": "19.0.12",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
-    "react-email": "4.0.7",
+    "react-email": "^4.2.11",
     "typescript": "5.8.2"
   },
   "nodemonConfig": {

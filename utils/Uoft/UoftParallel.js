@@ -25,7 +25,7 @@ class UoftParallel {
     }
 
     // Distribute fetch requests across all lambdas
-    let iterations = [];
+    const iterations = [];
     courseCodes.forEach((courseCode, i) => {
       const iterationsIndex = Math.floor(i / (maxRequestsPerLambda * maxConcurrentLambdas));
       if (!iterations[iterationsIndex]) {
@@ -43,21 +43,16 @@ class UoftParallel {
       );
     });
 
-    // Handle all requests in each lambdaGroup concurrently and rotating each lambda
-    iterations = iterations.map((lambdaGroups) => {
-      async function sendAllRequests(lambdaGroup, functionName) {
-        await Promise.allSettled(lambdaGroup.map((fn) => fn()));
+    // Process iterations one after another
+    for (const lambdaGroups of iterations) {
+      const lambdaGroupPromises = lambdaGroups.map(async (lambdaGroup, i) => {
+        const functionName = lambdaData.functions.dynamic.axiosRequest[i];
+
+        for (const fn of lambdaGroup) await fn();
         await LambdaAdapter.rotate(functionName, lambdaData.functions.static.axiosRequest);
-      }
-
-      return lambdaGroups.map((lambdaGroup, i) => {
-        return () => sendAllRequests(lambdaGroup, lambdaData.functions.dynamic.axiosRequest[i]);
       });
-    });
 
-    // Iteratively settle iterations, that run lambdaGroup request concurrently
-    for (const iteration of iterations) {
-      await Promise.allSettled(iteration.map((fn) => fn()));
+      await Promise.allSettled(lambdaGroupPromises);
     }
 
     return updatedCoursesByCode;

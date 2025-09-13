@@ -1,8 +1,7 @@
 const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
 
 const { EmailClient } = require("@azure/communication-email");
-
-dotenv.config({ path: "./config.env" });
 
 (async () => {
   try {

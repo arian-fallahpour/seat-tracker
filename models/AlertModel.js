@@ -160,6 +160,48 @@ alertSchema.statics.filterAllNotifiable = async function (alerts = [], updatedCo
   return filteredAlerts;
 };
 
+alertSchema.statics.filterCoursesByStatus = function (
+  oldCoursesByCode = {},
+  updatedCoursesByCode = {}
+) {
+  const filteredCoursesByCode = {};
+
+  for (const oldCourse of Object.values(oldCoursesByCode)) {
+    const updatedCourse = updatedCoursesByCode[oldCourse.code];
+    if (!updatedCourse) continue;
+
+    const updatedSectionsByCode = Object.fromEntries(
+      updatedCourse.sections.map((section) => [`${section.type}-${section.number}`, section])
+    );
+
+    const filteredSections = [];
+    for (const oldSection of oldCourse.sections) {
+      const updatedSection = updatedSectionsByCode[`${oldSection.type}-${oldSection.number}`];
+      if (!updatedSection) continue;
+
+      const wasFullNowOpen =
+        oldSection.seatsTaken >= oldSection.seatsAvailable &&
+        updatedSection.seatsTaken < updatedSection.seatsAvailable;
+      const wasOpenNowFull =
+        oldSection.seatsTaken < oldSection.seatsAvailable &&
+        updatedSection.seatsTaken >= updatedSection.seatsAvailable;
+
+      if (wasFullNowOpen || wasOpenNowFull) {
+        filteredSections.push(updatedSection);
+      }
+    }
+
+    if (filteredSections.length > 0) {
+      filteredCoursesByCode[oldCourse.code] = {
+        ...updatedCourse,
+        sections: filteredSections,
+      };
+    }
+  }
+
+  return Object.values(filteredCoursesByCode);
+};
+
 alertSchema.statics.notifyAll = async function (alerts = []) {
   const sendNotification = async (alert) => {
     await alert.notify();
@@ -233,6 +275,8 @@ alertSchema.methods.deactivate = async function () {
  * Sends notification email to email address associated with alert
  */
 alertSchema.methods.notify = async function () {
+  console.log(`Atemptying ${this.email} for ${this.course.code}`);
+
   if (!this.freedSections || this.freedSections.length === 0) {
     throw new Error("Alert was asked to notify, but has no freed sections");
   }
