@@ -11,6 +11,8 @@ const UoftParallel = require("../utils/Uoft/UoftParallel");
  * - refactor to make more readable
  * - test
  * - add quick link to pause alert in email
+ * - determine why isPaused: true alerts are being notified
+ * - add rate limit to emails? maybe
  */
 
 exports.initialize = async () => {

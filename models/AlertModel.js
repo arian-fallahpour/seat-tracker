@@ -275,7 +275,7 @@ alertSchema.methods.deactivate = async function () {
  * Sends notification email to email address associated with alert
  */
 alertSchema.methods.notify = async function () {
-  if (this.isPaused) return; // TODO: should not happen
+  if (this.isPaused) return; // TODO: should not happen, also, this may not be populated.
   console.log(`Atemptying ${this.email} for ${this.course.code}`);
 
   if (!this.freedSections || this.freedSections.length === 0) {
@@ -300,7 +300,8 @@ alertSchema.methods.notify = async function () {
   this.lastAlertedAt = new Date(Date.now());
   await this.save();
 
-  Logger.log(`Sent ${this.email} for ${this.course.code}`);
+  // TODO: Should include or not?
+  // Logger.log(`Sent ${this.email} for ${this.course.code}`);
 };
 
 /**
