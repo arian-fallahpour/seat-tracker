@@ -275,6 +275,7 @@ alertSchema.methods.deactivate = async function () {
  * Sends notification email to email address associated with alert
  */
 alertSchema.methods.notify = async function () {
+  if (this.isPaused) return; // TODO: should not happen
   console.log(`Atemptying ${this.email} for ${this.course.code}`);
 
   if (!this.freedSections || this.freedSections.length === 0) {
