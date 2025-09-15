@@ -301,7 +301,7 @@ alertSchema.methods.notify = async function () {
   await this.save();
 
   // TODO: Should include or not?
-  // Logger.log(`Sent ${this.email} for ${this.course.code}`);
+  Logger.log(`Sent ${this.email} for ${this.course.code}`);
 };
 
 /**
