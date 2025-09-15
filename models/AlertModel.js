@@ -298,6 +298,8 @@ alertSchema.methods.notify = async function () {
   // Update last alerted at
   this.lastAlertedAt = new Date(Date.now());
   await this.save();
+
+  Logger.log(`Sent ${this.email} for ${this.course.code}`);
 };
 
 /**
