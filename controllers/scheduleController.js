@@ -16,10 +16,10 @@ const UoftParallel = require("../utils/Uoft/UoftParallel");
  */
 
 exports.initialize = async () => {
-  await ScheduleModel.intializeRecurring("alerts", {
-    periodMinutes: alertsData.alertsPeriodMinutes,
-    onTick: scheduleAlerts,
-  });
+  // await ScheduleModel.intializeRecurring("alerts", {
+  //   periodMinutes: alertsData.alertsPeriodMinutes,
+  //   onTick: scheduleAlerts,
+  // });
 };
 
 exports.scheduleAlerts = scheduleAlerts;
