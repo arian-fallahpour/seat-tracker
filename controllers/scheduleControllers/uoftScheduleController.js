@@ -29,7 +29,6 @@ exports.task = async function uoftScheduleController() {
     Logger.info(`${i++}. Fetched updated courses.`);
 
     const notifiableAlerts = await filterNotifiableAlerts(unPausedAlerts, updatedCoursesByCode);
-    console.log(notifiableAlerts);
     Logger.info(`${i++}. Filtered alerts with opened sections.`);
 
     await notifyAlerts(notifiableAlerts);
@@ -190,7 +189,6 @@ async function upsertIteratively(oldCoursesByCode = {}, upsertableCourses = []) 
     Logger.info(`Upserting upsertableCourses ${i + 1} to ${max}`);
 
     const updatedCourses = upsertableCourses.slice(i, max);
-    // console.log("UPSERTING COURSES: ", updatedCourses);
     await upsertCourses(updatedCourses);
 
     const updatedSections = [];
@@ -199,7 +197,6 @@ async function upsertIteratively(oldCoursesByCode = {}, upsertableCourses = []) 
         ...c.sections.map((s) => ({ ...s, course: oldCoursesByCode[c.code].id }))
       );
     }
-    // console.log("UPDATING SECTIONS: ", updatedSections);
     await upsertSections(updatedSections);
 
     i += upsert;
