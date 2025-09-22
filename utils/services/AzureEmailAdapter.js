@@ -1,7 +1,7 @@
 const { EmailClient } = require("@azure/communication-email");
 
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 
 const client = new EmailClient(process.env.AZURE_COMMUNICATION_SERVICES_CONNECTION_STRING);
 const senderAddress = process.env.AZURE_COMMUNICATION_SERVICES_SENDER_ADDRESS;

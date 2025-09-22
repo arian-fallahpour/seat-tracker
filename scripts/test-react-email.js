@@ -5,7 +5,7 @@ const AlertModel = require("../models/AlertModel");
 const Email = require("../utils/app/Email");
 
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 
 (async () => {
   // Connect to database

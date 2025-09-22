@@ -2,7 +2,6 @@ const crudController = require("./crudController");
 const AlertModel = require("../models/AlertModel");
 const catchAsync = require("../utils/app/catchAsync");
 const AppError = require("../utils/app/AppError");
-const { encryptCode } = require("../utils/helper-server");
 const alertsData = require("../data/alerts-data");
 
 exports.getAlertInfo = catchAsync(async (req, res, next) => {
@@ -67,7 +66,7 @@ exports.verifyAlert = catchAsync(async (req, res, next) => {
 
   // Check if verification code is valid
   const alert = await AlertModel.findOne({
-    verificationCode: encryptCode(code),
+    verificationCode: AlertModel.encryptCode(code),
     verificationExpiresAt: { $gt: new Date(Date.now()) },
   });
   if (!alert) return next(new AppError("Verification code is invalid or expired.", 404));
@@ -92,7 +91,7 @@ exports.verifyAlert = catchAsync(async (req, res, next) => {
     );
 
   // Remove the verification code and expiration date
-  await alert.verify();
+  await alert.expireVerification();
 
   // Activate alert
   await alert.activate();

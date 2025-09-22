@@ -10,13 +10,10 @@ class UoftAdapter {
   static URL_GET_COURSES = "https://api.easi.utoronto.ca/ttb/getPageableCourses";
   static URL_SMART_PROXY = "https://scraper-api.smartproxy.com/v2/scrape";
 
-  /**
-   * Returns updated courses based on query and page.
-   * Logs a warning in the case of error or failure
-   */
   static async fetchCourses(options = {}) {
     options = this.getDefaultOptions(options);
     const fetchOptions = this.getFetchOptions(options);
+    // console.log("FETCH OPTIONS: ", options, fetchOptions);
 
     // Make fetch request
     let response;
@@ -45,9 +42,6 @@ class UoftAdapter {
     return courses;
   }
 
-  /**
-   * Fetches Uoft API data using fetch from current ip
-   */
   static async fetchRegular(fetchOptions) {
     Logger.info("Making REGULAR request to UOFT API");
 
@@ -65,9 +59,6 @@ class UoftAdapter {
     return response;
   }
 
-  /**
-   * Fetches Uoft API data using axios from current ip
-   */
   static async fetchAxios(fetchOptions) {
     Logger.info("Making AXIOS request to UOFT API");
 
@@ -76,13 +67,9 @@ class UoftAdapter {
     return await axios(fetchOptions);
   }
 
-  /**
-   * Fetches Uoft API data using lambda for ip rotation
-   */
   static async fetchLambda(fetchOptions, options) {
     Logger.info(`Making LAMBDA (${options.lambdaFunctionName}) request to UOFT API`);
 
-    // Make request to lambda function and increase request count
     const payload = {
       options: {
         url: fetchOptions.url,
@@ -91,33 +78,6 @@ class UoftAdapter {
       },
     };
     const response = await LambdaAdapter.invoke(options.lambdaFunctionName, payload);
-
-    return response;
-  }
-
-  static async fetchSmartProxy(fetchOptions) {
-    const payloadBase64 = Buffer.from(JSON.stringify(fetchOptions.body)).toString("base64");
-
-    const response = await fetch(this.URL_SMART_PROXY, {
-      method: fetchOptions.method,
-      body: JSON.stringify({
-        target: "universal",
-        url: "https://api.easi.utoronto.ca/ttb/getPageableCourses",
-        http_method: fetchOptions.method,
-        payload: payloadBase64,
-        headers: fetchOptions.headers,
-        force_headers: true,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "",
-      },
-    });
-    response.data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(response.data.message);
-    }
 
     return response;
   }

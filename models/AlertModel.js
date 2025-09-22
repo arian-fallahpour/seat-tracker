@@ -8,8 +8,8 @@ const UoftCourseModel = require("./Course/UoftCourseModel");
 const UoftAdapter = require("../utils/Uoft/UoftAdapter");
 const Logger = require("../utils/Logger");
 const { maxSectionsPerAlert } = require("../data/alerts-data");
-const { encryptCode } = require("../utils/helper-server");
 const alertsData = require("../data/alerts-data");
+
 require("./Section/UoftSectionModel"); // Required for instance methods
 
 const alertSchema = new mongoose.Schema({
@@ -30,11 +30,15 @@ const alertSchema = new mongoose.Schema({
     ref: "Section",
     validate: [
       {
-        validator: validateHasOneSection,
+        validator: function (sections) {
+          return sections.length > 0;
+        },
         message: "Please select at least one section.",
       },
       {
-        validator: validateSectionsLength,
+        validator: function (sections) {
+          return sections.length <= maxSectionsPerAlert;
+        },
         message: `You cannot select more than ${maxSectionsPerAlert} sections.`,
       },
     ],
@@ -61,14 +65,6 @@ const alertSchema = new mongoose.Schema({
   verificationExpiresAt: Date,
 });
 
-function validateHasOneSection(sections) {
-  return sections.length > 0;
-}
-
-function validateSectionsLength(sections) {
-  return sections.length <= maxSectionsPerAlert;
-}
-
 /**
  * INDEXES
  */
@@ -84,18 +80,6 @@ alertSchema.index({ createdAt: 1 }); // Needed for sort
  * STATICS
  */
 
-/**
- * Returns alerts that are active and not paused, as well as associated course and sections
- */
-alertSchema.statics.findAlertable = async function () {
-  const alerts = await this.find({ status: "active" })
-    .populate({ path: "course" })
-    .populate({ path: "sections" });
-
-  const filtered = alerts.filter((alert) => alert.course !== null);
-  return filtered;
-};
-
 alertSchema.statics.getInfo = async function (id) {
   const alert = await Alert.findById(id).populate({
     path: "course",
@@ -104,133 +88,30 @@ alertSchema.statics.getInfo = async function (id) {
   return alert;
 };
 
-/**
- * Returns an object of alerts grouped by their course code
- */
-alertSchema.statics.groupByCode = function (alerts = []) {
-  const groupedAlerts = {};
-
-  for (const alert of alerts) {
-    if (!alert.course.code) continue;
-    if (!groupedAlerts[alert.course.code]) {
-      groupedAlerts[alert.course.code] = [];
-    }
-
-    groupedAlerts[alert.course.code].push(alert);
-  }
-
-  return groupedAlerts;
-};
-
-alertSchema.statics.deactivateExpired = async function (alerts) {
-  const enrollableAlerts = [];
-
-  const deactivateAlert = async (alert) => {
-    if (!alert.course.isEnrollable()) await alert.deactivate();
-
-    enrollableAlerts.push(alert);
-  };
-
-  const promises = alerts.map((alert) => deactivateAlert(alert));
-  await Promise.allSettled(promises);
-
-  return enrollableAlerts;
-};
-
-alertSchema.statics.filterAllNotifiable = async function (alerts = [], updatedCoursesByCode = {}) {
-  const filteredAlerts = [];
-
-  const filterAlert = async (alert) => {
-    // Check if updatedCourse was found
-    const updatedCourse = updatedCoursesByCode[alert.course.code];
-    if (!updatedCourse) return;
-
-    // Check if any sections were freed
-    const freedSections = await alert.getFreedSections(updatedCourse);
-    if (freedSections.length === 0) return;
-
-    // Add to filtered alerts and set its freedSections
-    alert.freedSections = freedSections;
-    filteredAlerts.push(alert);
-  };
-
-  const promises = alerts.map((alert) => filterAlert(alert));
-  await Promise.allSettled(promises);
-
-  return filteredAlerts;
-};
-
-alertSchema.statics.filterCoursesByStatus = function (
-  oldCoursesByCode = {},
-  updatedCoursesByCode = {}
-) {
-  const filteredCoursesByCode = {};
-
-  for (const oldCourse of Object.values(oldCoursesByCode)) {
-    const updatedCourse = updatedCoursesByCode[oldCourse.code];
-    if (!updatedCourse) continue;
-
-    const updatedSectionsByCode = Object.fromEntries(
-      updatedCourse.sections.map((section) => [`${section.type}-${section.number}`, section])
-    );
-
-    const filteredSections = [];
-    for (const oldSection of oldCourse.sections) {
-      const updatedSection = updatedSectionsByCode[`${oldSection.type}-${oldSection.number}`];
-      if (!updatedSection) continue;
-
-      const wasFullNowOpen =
-        oldSection.seatsTaken >= oldSection.seatsAvailable &&
-        updatedSection.seatsTaken < updatedSection.seatsAvailable;
-      const wasOpenNowFull =
-        oldSection.seatsTaken < oldSection.seatsAvailable &&
-        updatedSection.seatsTaken >= updatedSection.seatsAvailable;
-
-      if (wasFullNowOpen || wasOpenNowFull) {
-        filteredSections.push(updatedSection);
-      }
-    }
-
-    if (filteredSections.length > 0) {
-      filteredCoursesByCode[oldCourse.code] = {
-        ...updatedCourse,
-        sections: filteredSections,
-      };
-    }
-  }
-
-  return Object.values(filteredCoursesByCode);
-};
-
-alertSchema.statics.notifyAll = async function (alerts = []) {
-  const sendNotification = async (alert) => {
-    await alert.notify();
-  };
-
-  const promises = alerts.map((alert) => sendNotification(alert));
-  await Promise.allSettled(promises);
+alertSchema.statics.encryptCode = function (code) {
+  return crypto.createHash("sha256").update(code).digest("hex");
 };
 
 /**
  * METHODS
  */
 
-alertSchema.methods.getFreedSections = async function (updatedCourse) {
-  if (!this.populated("sections") || !this.sections) {
-    await this.populate("sections");
+alertSchema.methods.getOpenedSections = function (updatedCourse) {
+  if (!this.populated("sections")) {
+    throw new Error("Please populate alert's sections before calling this function.");
   }
 
-  // Create an object of updated Sections by their type and number
-  const sectionEntries = updatedCourse.sections.map((s) => [s.type + s.number, s]);
-  const updatedSections = Object.fromEntries(sectionEntries);
+  const updatedSectionsByCode = {};
+  for (const updatedSection of updatedCourse.sections) {
+    updatedSectionsByCode[updatedSection.type + updatedSection.number] = updatedSection;
+  }
 
-  // Filter sections that have freed up
   const freedSections = [];
   for (const section of this.sections) {
-    const updatedSection = updatedSections[section.type + section.number];
+    const updatedSection = updatedSectionsByCode[section.type + section.number];
 
     if (!updatedSection) continue;
-    if (!section.isFreed(updatedSection)) continue;
+    if (!section.hasOpened(updatedSection)) continue;
 
     freedSections.push(updatedSection);
   }
@@ -238,9 +119,6 @@ alertSchema.methods.getFreedSections = async function (updatedCourse) {
   return freedSections;
 };
 
-/**
- * Sends activation email to email address associated with alert
- */
 alertSchema.methods.activate = async function () {
   await this.populate([{ path: "course" }, { path: "sections" }]);
 
@@ -271,16 +149,11 @@ alertSchema.methods.deactivate = async function () {
   await this.save();
 };
 
-/**
- * Sends notification email to email address associated with alert
- */
 alertSchema.methods.notify = async function () {
-  if (this.isPaused) return; // TODO: should not happen, also, this may not be populated.
-  console.log(`Atemptying ${this.email} for ${this.course.code}`);
+  if (this.isPaused) return;
+  if (!this.freedSections || this.freedSections.length === 0) return;
 
-  if (!this.freedSections || this.freedSections.length === 0) {
-    throw new Error("Alert was asked to notify, but has no freed sections");
-  }
+  Logger.info(`Attempting to notify ${this.email} for ${this.course.code}`);
 
   const emailData = {
     course: this.course,
@@ -300,13 +173,9 @@ alertSchema.methods.notify = async function () {
   this.lastAlertedAt = new Date(Date.now());
   await this.save();
 
-  // TODO: Should include or not?
   Logger.log(`Sent ${this.email} for ${this.course.code}`);
 };
 
-/**
- * Creates a verification code and sends it to the email address associated with the alert
- */
 alertSchema.methods.createVerificationCode = async function () {
   await this.populate("course");
 
@@ -314,7 +183,7 @@ alertSchema.methods.createVerificationCode = async function () {
   const verificationCode = crypto.randomBytes(32).toString("hex");
 
   // Set the verification code and sent date
-  this.verificationCode = encryptCode(verificationCode);
+  this.verificationCode = this.constructor.encryptCode(verificationCode);
   this.verificationExpiresAt = new Date(
     Date.now() + alertsData.alertVerificationTimeLimitMinutes * 60 * 1000 // 10 minutes
   );
@@ -329,10 +198,7 @@ alertSchema.methods.createVerificationCode = async function () {
   }).send();
 };
 
-/**
- * Verifies the provided verification code and removes if valid
- */
-alertSchema.methods.verify = async function (providedCode) {
+alertSchema.methods.expireVerification = async function () {
   this.verificationCode = undefined;
   this.verificationExpiresAt = undefined;
   await this.save();

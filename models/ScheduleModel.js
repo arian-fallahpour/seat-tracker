@@ -21,7 +21,10 @@ const scheduleSchema = new mongoose.Schema({
  */
 
 scheduleSchema.statics.intializeRecurring = async function (scheduleName, options) {
-  if (typeof options.onTick !== "function") throw new Error("Please provide an onTick function");
+  if (typeof options.onTick !== "function") {
+    throw new Error("Please provide an onTick function");
+  }
+
   options = {
     periodMinutes: options.periodMinutes || 15,
     activeRange: options.activeRange, // [start, end]

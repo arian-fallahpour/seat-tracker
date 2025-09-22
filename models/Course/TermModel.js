@@ -49,10 +49,11 @@ termSchema.statics.getEnrollableSeasons = function () {
   const { enrollmentDates } = alertsData;
   const currentDate = new Date(Date.now());
 
-  const enrollableTerms = Object.keys(enrollmentDates).filter((term) => {
+  const seasons = Object.keys(enrollmentDates);
+  const enrollableTerms = seasons.filter((term) => {
     return (
-      enrollmentDates[term][0] < currentDate &&
-      currentDate < new Date(enrollmentDates[term][1].getTime() + 24 * 60 * 60 * 1000) // Enrollable until the end of the day
+      enrollmentDates[term][0] < currentDate && // Enrollable at start of day
+      currentDate < new Date(enrollmentDates[term][1].getTime() + 24 * 60 * 60 * 1000) // Still enrollable until the end of the day
     );
   });
 

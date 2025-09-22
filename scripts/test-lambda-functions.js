@@ -5,7 +5,7 @@ const fs = require("fs");
 const LambdaAdapter = require("../utils/services/LambdaAdapter");
 const UoftAdapter = require("../utils/Uoft/UoftAdapter");
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 
 const functionName = LambdaAdapter.webScrapeRequestName;
 const layerName = LambdaAdapter.webScrapLayerName;

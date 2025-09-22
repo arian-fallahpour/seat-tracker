@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const Logger = require("./utils/Logger");
 
 // Env file initialization
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 
 // Next configuration
 const nextApp = next({ dev: process.env.NODE_ENV === "development" });
@@ -37,7 +37,7 @@ const nextRequestHandler = nextApp.getRequestHandler();
     const server = app.listen(port, async () => {
       Logger.announce(`Running ${process.env.NODE_ENV} server on port ${port}`);
 
-      const scheduleController = require("./controllers/scheduleController");
+      const scheduleController = require("./controllers/scheduleControllers/scheduleController");
       await scheduleController.initialize();
     });
 

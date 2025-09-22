@@ -1,17 +1,16 @@
 require("@babel/register");
 
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 const { connectToDB } = require("../utils/helper-server");
 
-const scheduleController = require("../controllers/scheduleController");
+const uoftScheduleController = require("../controllers/scheduleControllers/uoftScheduleController");
 
 (async () => {
-  // Connect to database
   await connectToDB();
   console.log("Database connection successful");
 
-  await scheduleController.scheduleAlerts();
+  await uoftScheduleController.task();
 
   process.exit();
 })();

@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
 const Section = require("./SectionModel");
-const {
-  validateSeatsTaken,
-  calculateEmptySeats,
-  upsertSections,
-} = require("../../utils/app/schema-utils");
+const { upsertSections } = require("../../utils/app/schema-utils");
 
 const uoftSectionSchema = new mongoose.Schema(
   {
@@ -15,7 +11,9 @@ const uoftSectionSchema = new mongoose.Schema(
       default: 0,
       min: [0, "Seats taken cannot be a negative number."],
       validate: {
-        validator: validateSeatsTaken,
+        validator: function (seatsTaken) {
+          return seatsTaken <= this.seatsAvailable;
+        },
         message: "Seats taken must be less than or equal to seats available.",
       },
     },
@@ -53,8 +51,6 @@ const uoftSectionSchema = new mongoose.Schema(
  * VIRTUALS
  */
 
-uoftSectionSchema.virtual("seatsEmpty").get(calculateEmptySeats);
-
 /**
  * STATICS
  */
@@ -67,9 +63,17 @@ uoftSectionSchema.statics.upsertSections = async function (sectionsData) {
  * METHODS
  */
 
-uoftSectionSchema.methods.isFreed = function (updatedSection) {
-  const seatsEmptyUpdated = updatedSection.seatsAvailable - updatedSection.seatsTaken;
-  return this.seatsEmpty === 0 && seatsEmptyUpdated !== 0;
+// !hasOpened does not mean hasClosed
+uoftSectionSchema.methods.hasOpened = function (updatedSection) {
+  const previouslyFilled = this.seatsTaken >= this.seatsAvailable;
+  const nowOpened = updatedSection.seatsTaken < updatedSection.seatsAvailable;
+  return previouslyFilled && nowOpened;
+};
+
+uoftSectionSchema.methods.hasFilled = function (updatedSection) {
+  const previouslyOpen = this.seatsTaken < this.seatsAvailable;
+  const nowFilled = updatedSection.seatsTaken >= updatedSection.seatsAvailable;
+  return previouslyOpen && nowFilled;
 };
 
 const UoftSection =

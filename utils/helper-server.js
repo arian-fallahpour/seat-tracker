@@ -35,10 +35,6 @@ exports.jsxToText = function (Component, props) {
 
 exports.get404Message = (originalUrl) => `The route ${originalUrl} does not exist.`;
 
-exports.encryptCode = (code) => {
-  return crypto.createHash("sha256").update(code).digest("hex");
-};
-
 exports.sanitizeObjectXSS = function (obj) {
   const result = {};
   for (const key in obj) {

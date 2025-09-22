@@ -1,13 +1,4 @@
-const alertsData = require("../../data/alerts-data");
-
-exports.validateSeatsTaken = function (value) {
-  return value <= this.seatsAvailable;
-};
-
-exports.calculateEmptySeats = function () {
-  return this.seatsAvailable - this.seatsTaken;
-};
-
+// Note: May override sections array in each course, so if updated sections is a subset of existing sections, be careful when using this function
 exports.upsertCoursesAndSections = upsertCoursesAndSections;
 function upsertCoursesAndSections(CourseModel, SectionModel) {
   return async function (coursesData) {
@@ -110,19 +101,11 @@ function upsertSections(SectionModel, shouldBulkSave = true) {
   };
 }
 
-exports.setLastUpdatedAt = function (next) {
+exports.setLastUpdatedAt = setLastUpdatedAt;
+function setLastUpdatedAt(next) {
   this.lastUpdatedAt = new Date(Date.now());
   next();
-};
-
-exports.formatSeason = function (season) {
-  if (season === "fall-winter") return "fall/winter";
-  if (season.startsWith("summer")) {
-    const split = season.split("-");
-    return `${split[0]} (${split[1]})`;
-  }
-  return season;
-};
+}
 
 function generateSectionsMap(sections) {
   const sectionsMap = new Map();
