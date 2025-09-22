@@ -137,6 +137,7 @@ async function filterNotifiableAlerts(alerts = [], updatedCoursesByCode = {}) {
 
     const openedSections = await alert.getOpenedSections(updatedCourse);
     if (openedSections.length === 0) return;
+    console.log(openedSections);
 
     alert.freedSections = openedSections;
     notifiableAlerts.push(alert);

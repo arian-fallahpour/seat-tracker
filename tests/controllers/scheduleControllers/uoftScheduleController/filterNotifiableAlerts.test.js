@@ -15,6 +15,7 @@ test("Should return empty array alerts don't have course or its course code is n
     updatedCoursesByCode
   );
 
+  expect(notifiableAlerts).toBeInstanceOf(Array);
   expect(notifiableAlerts).toHaveLength(0);
 });
 
@@ -23,12 +24,12 @@ test("Should filter alerts that have changed state to opened", async () => {
   const alerts = [
     {
       id: 1,
-      course: { code: "1" },
+      course: { code: "A" },
       getOpenedSections: jest.fn(() => []),
     },
     {
       id: 2,
-      course: { code: "2" },
+      course: { code: "B" },
       getOpenedSections: jest.fn(() => openedSections),
     },
     {
@@ -38,14 +39,15 @@ test("Should filter alerts that have changed state to opened", async () => {
     },
   ];
 
-  const updatedCoursesByCode = { 1: { code: "1" }, 2: { code: "2" } };
+  const updatedCoursesByCode = { A: { code: "A" }, B: { code: "2" } };
 
   const notifiableAlerts = await uoftScheduleController.filterNotifiableAlerts(
     alerts,
     updatedCoursesByCode
   );
 
+  expect(notifiableAlerts).toBeInstanceOf(Array);
   expect(notifiableAlerts).toHaveLength(1);
   expect(notifiableAlerts[0].id).toBe(alerts[1].id);
-  expect(notifiableAlerts[0].openedSections).toBe(openedSections);
+  expect(notifiableAlerts[0].freedSections).toBe(openedSections);
 });
