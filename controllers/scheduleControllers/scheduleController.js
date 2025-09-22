@@ -13,8 +13,9 @@ const uoftScheduleController = require("./uoftScheduleController");
  */
 
 exports.initialize = async () => {
-  await ScheduleModel.intializeRecurring("alerts", {
-    periodMinutes: alertsData.alertsPeriodMinutes,
-    onTick: uoftScheduleController.task,
-  });
+  // Remove until we figue out why active alerts are not being shut down
+  // await ScheduleModel.intializeRecurring("alerts", {
+  //   periodMinutes: alertsData.alertsPeriodMinutes,
+  //   onTick: uoftScheduleController.task,
+  // });
 };
