@@ -23,37 +23,10 @@ exports.task = async function uoftScheduleController() {
       return Logger.info("No unpaused alerts found. Stopping schedule.");
     Logger.info(`${i++}. Filtered out paused alerts.`);
 
-    // TEST
-    // unPausedAlerts[0].sections[0].seatsTaken = unPausedAlerts[0].sections[0].seatsAvailable;
-    // unPausedAlerts[0].sections[1].seatsTaken = unPausedAlerts[0].sections[1].seatsAvailable - 1;
-    // console.log("DATABASE: ", unPausedAlerts[0].sections[0], unPausedAlerts[0].sections[1]);
-
     const groupedAlertsByCode = groupAlertsByCourseCode(unPausedAlerts);
     const courseCodes = Object.keys(groupedAlertsByCode);
     const updatedCoursesByCode = await UoftParallel.fetchAllLambda(courseCodes);
     Logger.info(`${i++}. Fetched updated courses.`);
-
-    // TEST
-    // const testSection = updatedCoursesByCode["MAT224H1 S"].sections.find(
-    //   (s) =>
-    //     s.type === unPausedAlerts[0].sections[1].type &&
-    //     s.number === unPausedAlerts[0].sections[1].number
-    // );
-    // testSection.seatsTaken = testSection.seatsAvailable;
-
-    // console.log(
-    //   "UPDATED: ",
-    //   updatedCoursesByCode["MAT224H1 S"].sections.find(
-    //     (s) =>
-    //       s.type === unPausedAlerts[0].sections[0].type &&
-    //       s.number === unPausedAlerts[0].sections[0].number
-    //   ),
-    //   updatedCoursesByCode["MAT224H1 S"].sections.find(
-    //     (s) =>
-    //       s.type === unPausedAlerts[0].sections[1].type &&
-    //       s.number === unPausedAlerts[0].sections[1].number
-    //   )
-    // );
 
     const notifiableAlerts = await filterNotifiableAlerts(unPausedAlerts, updatedCoursesByCode);
     console.log(notifiableAlerts);
