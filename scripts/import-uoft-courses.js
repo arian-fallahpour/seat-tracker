@@ -8,6 +8,11 @@
  *      The only seasons are fall-winter and summer
  *      The year is the year of the fall semester, e.g. 2025 for fall-winter 2025
  *      Upsert is the number of courses to upsert at a time, default is 500
+ *
+ *
+ *  If there are inconcsistencies with alert references,
+ *  use test-alerts.js to reimport courses and sections from a JSON file
+ *  in a rate limited manner to not overflow the database
  */
 
 const dotenv = require("dotenv");

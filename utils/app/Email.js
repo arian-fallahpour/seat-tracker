@@ -49,14 +49,16 @@ class Email {
    */
   async send() {
     try {
-      this.renderTemplate();
+      if (!process.env.DO_NOT_SEND_EMAILS) {
+        this.renderTemplate();
 
-      await new AzureEmailAdapter({
-        to: this.to,
-        subject: `${businessData.name} - ${this.subject}`,
-        plainText: this.text,
-        html: this.html,
-      }).send();
+        await new AzureEmailAdapter({
+          to: this.to,
+          subject: `${businessData.name} - ${this.subject}`,
+          plainText: this.text,
+          html: this.html,
+        }).send();
+      }
 
       Logger.announce(`The ${this.template} email was sent to ${this.to}`);
     } catch (error) {
