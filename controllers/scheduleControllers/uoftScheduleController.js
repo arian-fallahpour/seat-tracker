@@ -34,12 +34,12 @@ exports.task = async function uoftScheduleController() {
     Logger.info(`${i++}. Fetched updated courses.`);
 
     // TEST
-    const testSection = updatedCoursesByCode["MAT224H1 S"].sections.find(
-      (s) =>
-        s.type === unPausedAlerts[0].sections[1].type &&
-        s.number === unPausedAlerts[0].sections[1].number
-    );
-    testSection.seatsTaken = testSection.seatsAvailable;
+    // const testSection = updatedCoursesByCode["MAT224H1 S"].sections.find(
+    //   (s) =>
+    //     s.type === unPausedAlerts[0].sections[1].type &&
+    //     s.number === unPausedAlerts[0].sections[1].number
+    // );
+    // testSection.seatsTaken = testSection.seatsAvailable;
 
     // console.log(
     //   "UPDATED: ",
@@ -56,6 +56,7 @@ exports.task = async function uoftScheduleController() {
     // );
 
     const notifiableAlerts = await filterNotifiableAlerts(unPausedAlerts, updatedCoursesByCode);
+    console.log(notifiableAlerts);
     Logger.info(`${i++}. Filtered alerts with opened sections.`);
 
     await notifyAlerts(notifiableAlerts);
@@ -137,7 +138,7 @@ async function filterNotifiableAlerts(alerts = [], updatedCoursesByCode = {}) {
     const openedSections = await alert.getOpenedSections(updatedCourse);
     if (openedSections.length === 0) return;
 
-    alert.openedSections = openedSections;
+    alert.freedSections = openedSections;
     notifiableAlerts.push(alert);
   });
   await Promise.allSettled(promises);

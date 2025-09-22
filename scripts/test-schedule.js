@@ -12,5 +12,7 @@ const uoftScheduleController = require("../controllers/scheduleControllers/uoftS
 
   await uoftScheduleController.task();
 
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
   process.exit();
 })();
