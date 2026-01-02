@@ -13,8 +13,8 @@ const uoftScheduleController = require("./uoftScheduleController");
  */
 
 exports.initialize = async () => {
-  // await ScheduleModel.intializeRecurring("alerts", {
-  //   periodMinutes: alertsData.alertsPeriodMinutes,
-  //   onTick: uoftScheduleController.task,
-  // });
+  await ScheduleModel.intializeRecurring("alerts", {
+    periodMinutes: alertsData.alertsPeriodMinutes,
+    onTick: uoftScheduleController.task,
+  });
 };
