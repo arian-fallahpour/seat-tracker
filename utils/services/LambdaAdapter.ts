@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { fromEnv } from "@aws-sdk/credential-providers";
 import {
   InvokeCommand,
   LambdaClient,
@@ -16,7 +15,10 @@ import archiver from "archiver";
 
 const lambdaClient = new LambdaClient({
   region: process.env.AWS_REGION,
-  credentials: fromEnv(),
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
+  },
 });
 
 class LambdaAdapter {

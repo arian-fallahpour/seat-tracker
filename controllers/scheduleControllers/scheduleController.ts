@@ -25,9 +25,9 @@ export const initialize = async () => {
     await initializeFunctions();
   }
 
-  await UoftUpdateSchedule.initialize();
+  // await UoftUpdateSchedule.initialize();
 
-  await UoftAlertSchedule.initialize();
+  // await UoftAlertSchedule.initialize();
 };
 
 async function initializeFunctions() {
