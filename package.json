@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon --exec tsx server.ts",
     "email": "email dev",
-    "build": "NODE_ENV=production next build",
-    "start": "node server.ts",
+    "build": "next build",
+    "start": "NODE_ENV=production tsx server.ts",
     "test": "jest",
     "script": "f() { npx tsx ./scripts/$1.ts ${@:2}; }; f"
   },
