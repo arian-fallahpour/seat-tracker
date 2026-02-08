@@ -29,7 +29,6 @@
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
     "html-to-text": "^9.0.5",
-    "jest": "^30.2.0",
     "lodash.debounce": "^4.0.8",
     "luxon": "^3.7.2",
     "mongoose": "^9.1.5",
@@ -48,6 +47,7 @@
     "xss": "^1.0.15"
   },
   "devDependencies": {
+    "jest": "^30.2.0",
     "@babel/preset-env": "^7.28.6",
     "@babel/preset-react": "^7.28.5",
     "@eslint/eslintrc": "^3",
