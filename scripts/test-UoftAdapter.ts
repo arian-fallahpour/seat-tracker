@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
-import UoftAdapter from "@/utils/Uoft/UoftAdapter";
+// import UoftAdapter from "@/utils/Uoft/UoftAdapter";
 
-import path from "path";
-import fs from "fs/promises";
-import AlertModel from "@/models/AlertModel";
-import { connectToDB } from "@/utils/helper-next";
-import { uoftCampusValues, uoftTermValues } from "@/Types/ModelTypes";
+// import path from "path";
+// import fs from "fs/promises";
+// import AlertModel from "@/models/AlertModel";
+// import { connectToDB } from "@/utils/helper-next";
+// import { uoftCampusValues, uoftTermValues } from "@/Types/ModelTypes";
 
 try {
   // await connectToDB();

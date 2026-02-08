@@ -1,7 +1,14 @@
-import UoftAdapter from "@/utils/Uoft/UoftAdapter";
 import { DateTime } from "luxon";
 
-const fallYear = UoftAdapter.getSchoolYear();
+// TODO: fix
+const date = new Date();
+let fallYear: number;
+const month = date.getMonth() + 1;
+if (month >= 9) {
+  fallYear = date.getFullYear();
+} else {
+  fallYear = date.getFullYear() - 1;
+}
 
 const alertsData = {
   alertPriceCAD: 0,

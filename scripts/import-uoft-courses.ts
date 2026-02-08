@@ -35,7 +35,7 @@ let currentSkips = 0;
 let page = 1;
 
 while (maxPage < 0 || page <= maxPage) {
-  const course = await UoftAdapter.fetch({ page, season: "fall-winter" });
+  const course = await UoftAdapter.fetch({ page, season: "fall-winter", method: "api" }); // TODO: change to lambda
   if (course.length === 0) {
     if (currentSkips >= maxSkips) {
       break;

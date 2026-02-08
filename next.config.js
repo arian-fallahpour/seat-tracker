@@ -1,6 +1,6 @@
 export default {
   experimental: {
-    forceSwcTransforms: true, // Fixes error when using babel register with nextjs
+    // forceSwcTransforms: true, // Fixes error when using babel register with nextjs
     webpackMemoryOptimizations: true,
   },
   async rewrites() {

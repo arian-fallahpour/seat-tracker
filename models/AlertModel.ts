@@ -99,7 +99,7 @@ alertSchema.methods.activate = async function () {
   this.status = "active";
   await this.save();
 
-  const updatedCourses = await UoftAdapter.fetch({ query: course.code });
+  const updatedCourses = await UoftAdapter.fetch({ query: course.code, method: "api" }); // TODO: change to lambda
   if (updatedCourses.length === 0) return;
 
   await upsertCoursesAndSections(updatedCourses);
