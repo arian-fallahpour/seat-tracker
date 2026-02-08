@@ -10,6 +10,7 @@ const { maxLambdas } = alertsData;
 
 /**
  * TODO:
+ * - ** Fix deployment script so it doesn't upload artifact to github
  * - ** Automatic updating of course and section data before enrollment periods start
  * - ** Email spam prevention + logging if reaches threshold
  * - * Add issues entry for users
