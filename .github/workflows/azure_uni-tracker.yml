@@ -13,7 +13,6 @@ jobs:
       name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # Required for requesting the JWT
       contents: read # Required for actions/checkout
 
     steps:
@@ -30,13 +29,6 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A62AFB1415C2465CA44DF2889A03A2C1 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_ED80F8CF494A481B8D7C24E3036AAE8E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8373C82E098043BEA75D1EBC04272337 }}
-
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -44,6 +36,7 @@ jobs:
           app-name: "uni-tracker"
           slot-name: "Production"
           package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9B0A0BAC6A434433A8689777566CCE60 }}
 
 # # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # # More GitHub Actions for Azure: https://github.com/Azure/actions
