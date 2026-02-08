@@ -2,7 +2,7 @@ import React from "react";
 
 import CoursePage from "@/components/pages/CoursePage/CoursePage";
 import config from "@/utils/config";
-import { createServerURL } from "@/utils/helper-server";
+import { createServerURL } from "@/utils/helper-next";
 import { getPageHeader } from "@/utils/helper-client";
 
 export const metadata = {

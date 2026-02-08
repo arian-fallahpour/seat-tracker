@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "68cedb7cf11ef8039e4d8917"
+  },
+  "name": "alerts",
+  "enabled": true,
+  "__v": 0,
+  "lastCalledAt": {
+    "$date": "2026-01-17T05:19:12.821Z"
+  }
+}]

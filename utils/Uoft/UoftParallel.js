@@ -1,7 +1,7 @@
-const { maxRequestsPerLambda, maxConcurrentLambdas } = require("../../data/alerts-data");
-const lambdaData = require("../../data/lambda-data");
-const LambdaAdapter = require("../services/LambdaAdapter");
-const UoftAdapter = require("./UoftAdapter");
+import alertsData from "../../data/alerts-data";
+import lambdaData from "../../data/lambda-data";
+import LambdaAdapter from "../services/LambdaAdapter";
+import UoftAdapter from "./UoftAdapter";
 
 class UoftParallel {
   static axiosRequestNames = lambdaData.functions.dynamic.axiosRequest;
@@ -27,19 +27,21 @@ class UoftParallel {
     // Distribute fetch requests across all lambdas
     const iterations = [];
     courseCodes.forEach((courseCode, i) => {
-      const iterationsIndex = Math.floor(i / (maxRequestsPerLambda * maxConcurrentLambdas));
+      const iterationsIndex = Math.floor(
+        i / (alertsData.maxLambdaRequests * alertsData.maxLambdas),
+      );
       if (!iterations[iterationsIndex]) {
         iterations[iterationsIndex] = [];
       }
 
-      const lambdaGroupIndex = i % maxConcurrentLambdas;
+      const lambdaGroupIndex = i % alertsData.maxLambdas;
       if (!iterations[iterationsIndex][lambdaGroupIndex]) {
         iterations[iterationsIndex][lambdaGroupIndex] = [];
       }
 
       const functionName = lambdaData.functions.dynamic.axiosRequest[lambdaGroupIndex];
       iterations[iterationsIndex][lambdaGroupIndex].push(() =>
-        fetchCourse(courseCode, functionName)
+        fetchCourse(courseCode, functionName),
       );
     });
 
@@ -59,4 +61,4 @@ class UoftParallel {
   }
 }
 
-module.exports = UoftParallel;
+export default UoftParallel;

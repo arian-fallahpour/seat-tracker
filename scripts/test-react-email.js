@@ -1,11 +1,11 @@
-require("@babel/register");
+import "@babel/register";
 
-const mongoose = require("mongoose");
-const AlertModel = require("../models/AlertModel");
-const Email = require("../utils/app/Email");
-
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
+
+import mongoose from "mongoose";
+import AlertModel from "../models/AlertModel";
+import Email from "../utils/app/Email";
 
 (async () => {
   // Connect to database

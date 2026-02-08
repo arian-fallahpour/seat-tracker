@@ -1,9 +1,9 @@
-const dotenv = require("dotenv");
-const path = require("path");
-const fs = require("fs");
+import dotenv from "dotenv";
+import path from "path";
+import fs from "fs";
 
-const LambdaAdapter = require("../utils/services/LambdaAdapter");
-const UoftAdapter = require("../utils/Uoft/UoftAdapter");
+import LambdaAdapter from "../utils/services/LambdaAdapter";
+import UoftAdapter from "../utils/Uoft/UoftAdapter";
 
 dotenv.config({ path: "./.env" });
 
@@ -13,7 +13,7 @@ const layerName = LambdaAdapter.webScrapLayerName;
 (async () => {
   // Update function
   // try {
-  //   const functionFilePath = path.resolve(__dirname, `../aws/lambdas/${functionName}/index.js`);
+  //   const functionFilePath = path.resolve(process.cwd(), `../aws/lambdas/${functionName}/index.js`);
   //   await LambdaAdapter.create(functionName, functionFilePath, { layers: [layerName] });
   // } catch (error) {
   //   console.error(error);
@@ -30,7 +30,7 @@ const layerName = LambdaAdapter.webScrapLayerName;
     console.log(response);
 
     // Write response data to html file in current directory
-    const outputFilePath = path.resolve(__dirname, `./output-${functionName}.html`);
+    const outputFilePath = path.resolve(process.cwd(), `./output-${functionName}.html`);
 
     // Check the structure of the response and log it for debugging
     console.log("Lambda response:", response);

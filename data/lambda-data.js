@@ -1,4 +1,4 @@
-const { maxConcurrentLambdas } = require("./alerts-data");
+import alertsData from "./alerts-data";
 
 const lambdaData = {
   functions: {
@@ -8,7 +8,7 @@ const lambdaData = {
       testUpdateLambda: "test-update-lambda",
     },
     dynamic: {
-      axiosRequest: new Array(maxConcurrentLambdas)
+      axiosRequest: new Array(alertsData.maxLambdas)
         .fill("axios-request")
         .map((n, i) => `${n}-${i + 1}`),
     },
@@ -21,5 +21,4 @@ const lambdaData = {
     dynamic: {},
   },
 };
-
-module.exports = lambdaData;
+export default lambdaData;

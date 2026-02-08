@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   experimental: {
     forceSwcTransforms: true, // Fixes error when using babel register with nextjs
     webpackMemoryOptimizations: true,

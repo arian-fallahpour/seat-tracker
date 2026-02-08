@@ -1,21 +1,22 @@
-const OrderModel = require("../models/OrderModel");
-const AlertModel = require("../models/AlertModel");
-const Logger = require("../utils/Logger");
+import OrderModel from "../models/OrderModel";
+import AlertModel from "../models/AlertModel";
+import Logger from "../utils/Logger";
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import Stripe from "stripe";
 
 /**
  * - Make this function safe to run multiple times (May not be needed in this case)
  * - in future, add a checkout.session.async_payment_failed handler to notify for failed payment
  */
 
-exports.handleWebhooks = async (req, res) => {
+export const handleWebhooks = async (req, res) => {
   const payload = req.body;
   const sig = req.headers["stripe-signature"];
 
   // Construct webhook event
   let event;
   try {
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     event = stripe.webhooks.constructEvent(payload, sig, process.env.STRIPE_WEBHOOK_SECRET);
   } catch (error) {
     const message = `Webhook Construct Event Error: ${error.message}`;
@@ -40,14 +41,14 @@ exports.handleWebhooks = async (req, res) => {
   return res.status(200).end();
 };
 
-exports.fulfillCheckout = fulfillCheckout;
-async function fulfillCheckout(res, eventData) {
+export async function fulfillCheckout(res, eventData) {
   const {
     id: sessionId,
     payment_intent, // May be null if amount === 0
     discounts, // Empty array if no discounts
   } = eventData;
 
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
 
   // Check if order exists, or order has been fulfilled already

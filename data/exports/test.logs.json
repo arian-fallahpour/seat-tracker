@@ -1,0 +1,7700 @@
+[{
+  "_id": {
+    "$oid": "68320d2141f20a96b074e451"
+  },
+  "type": "error",
+  "message": "Non-operational error: Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 875e25fb-8be7-4d66-bddc-74026d8f08c0; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 875e25fb-8be7-4d66-bddc-74026d8f08c0, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413969s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+  "data": {
+    "error": {
+      "errorLabelSet": {},
+      "errorResponse": {
+        "ok": 0,
+        "errmsg": "Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 875e25fb-8be7-4d66-bddc-74026d8f08c0; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 875e25fb-8be7-4d66-bddc-74026d8f08c0, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413969s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+        "code": 2,
+        "codeName": "BadValue"
+      },
+      "ok": 0,
+      "code": 2,
+      "codeName": "BadValue",
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-05-24T17:57:29.765Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68320d2741f20a96b074e457"
+  },
+  "type": "error",
+  "message": "Non-operational error: Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: b7de56f2-1c1d-49de-ab5c-bbfc5f11190a; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: b7de56f2-1c1d-49de-ab5c-bbfc5f11190a, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413968s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+  "data": {
+    "error": {
+      "errorLabelSet": {},
+      "errorResponse": {
+        "ok": 0,
+        "errmsg": "Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: b7de56f2-1c1d-49de-ab5c-bbfc5f11190a; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: b7de56f2-1c1d-49de-ab5c-bbfc5f11190a, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413968s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+        "code": 2,
+        "codeName": "BadValue"
+      },
+      "ok": 0,
+      "code": 2,
+      "codeName": "BadValue",
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-05-24T17:57:29.765Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68320d3e41f20a96b074e45d"
+  },
+  "type": "error",
+  "message": "Non-operational error: Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: e8e6756d-b9f7-4c34-bd9a-32d02e4b7440; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: e8e6756d-b9f7-4c34-bd9a-32d02e4b7440, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413967p/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+  "data": {
+    "error": {
+      "errorLabelSet": {},
+      "errorResponse": {
+        "ok": 0,
+        "errmsg": "Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: e8e6756d-b9f7-4c34-bd9a-32d02e4b7440; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: e8e6756d-b9f7-4c34-bd9a-32d02e4b7440, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413967p/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+        "code": 2,
+        "codeName": "BadValue"
+      },
+      "ok": 0,
+      "code": 2,
+      "codeName": "BadValue",
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-05-24T17:57:29.765Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68320d9841f20a96b074e465"
+  },
+  "type": "error",
+  "message": "Non-operational error: Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 39bdde79-53d4-4708-a173-fd8ecddddd26; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 39bdde79-53d4-4708-a173-fd8ecddddd26, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413967p/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+  "data": {
+    "error": {
+      "errorLabelSet": {},
+      "errorResponse": {
+        "ok": 0,
+        "errmsg": "Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 39bdde79-53d4-4708-a173-fd8ecddddd26; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 39bdde79-53d4-4708-a173-fd8ecddddd26, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413967p/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+        "code": 2,
+        "codeName": "BadValue"
+      },
+      "ok": 0,
+      "code": 2,
+      "codeName": "BadValue",
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-05-24T17:57:29.765Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68320fa2fd7ee9f3ce66189d"
+  },
+  "type": "error",
+  "message": "Non-operational error: Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 149767dc-eb2d-4e5d-af68-14bcc559c1ea; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 149767dc-eb2d-4e5d-af68-14bcc559c1ea, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413969s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+  "data": {
+    "error": {
+      "errorLabelSet": {},
+      "errorResponse": {
+        "ok": 0,
+        "errmsg": "Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 149767dc-eb2d-4e5d-af68-14bcc559c1ea; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 149767dc-eb2d-4e5d-af68-14bcc559c1ea, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413969s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+        "code": 2,
+        "codeName": "BadValue"
+      },
+      "ok": 0,
+      "code": 2,
+      "codeName": "BadValue",
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-05-24T18:25:12.054Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683210acfd7ee9f3ce6618ac"
+  },
+  "type": "error",
+  "message": "Non-operational error: Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: c83a6628-915a-4041-ba4c-ed622b78d8a2; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: c83a6628-915a-4041-ba4c-ed622b78d8a2, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413967p/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+  "data": {
+    "error": {
+      "errorLabelSet": {},
+      "errorResponse": {
+        "ok": 0,
+        "errmsg": "Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: c83a6628-915a-4041-ba4c-ed622b78d8a2; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: c83a6628-915a-4041-ba4c-ed622b78d8a2, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413967p/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+        "code": 2,
+        "codeName": "BadValue"
+      },
+      "ok": 0,
+      "code": 2,
+      "codeName": "BadValue",
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-05-24T18:25:12.054Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683212dc4bde855c5c63830b"
+  },
+  "type": "error",
+  "message": "Non-operational error: Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 81972a91-7be0-4dba-ad48-05d8aae56a8f; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 81972a91-7be0-4dba-ad48-05d8aae56a8f, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413969s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+  "data": {
+    "error": {
+      "errorLabelSet": {},
+      "errorResponse": {
+        "ok": 0,
+        "errmsg": "Error=2, Details='Response status code does not indicate success: BadRequest (400); Substatus: 0; ActivityId: 81972a91-7be0-4dba-ad48-05d8aae56a8f; Reason: (Message: {\"Errors\":[\"The index path corresponding to the specified order-by item is excluded.\"]}\r\nActivityId: 81972a91-7be0-4dba-ad48-05d8aae56a8f, Request URI: /apps/cf48872d-9da8-4b78-9e1c-ad1ec8577b78/services/bdd0d604-3458-4571-8bc5-ad9ba8465363/partitions/5817add6-e7d4-40a4-a521-6519410307f1/replicas/133917012046413969s/, RequestStats: Microsoft.Azure.Cosmos.Tracing.TraceData.ClientSideRequestStatisticsTraceDatum, SDK: Windows/10.0.20348 cosmos-netstandard-sdk/3.18.0);",
+        "code": 2,
+        "codeName": "BadValue"
+      },
+      "ok": 0,
+      "code": 2,
+      "codeName": "BadValue",
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-05-24T18:36:02.597Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68680a0534e9619e7d7b3676"
+  },
+  "type": "error",
+  "message": "Non-operational error: Cannot read properties of undefined (reading 'payload')",
+  "data": {
+    "error": {
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-07-04T17:06:13.835Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68680a2234e9619e7d7b367e"
+  },
+  "type": "error",
+  "message": "Non-operational error: Cannot read properties of undefined (reading 'payload')",
+  "data": {
+    "error": {
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-07-04T17:06:42.718Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68680a2b34e9619e7d7b3685"
+  },
+  "type": "error",
+  "message": "Non-operational error: Cannot read properties of undefined (reading 'payload')",
+  "data": {
+    "error": {
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-07-04T17:06:51.877Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68757f2c8b0bd4f8465a0eda"
+  },
+  "type": "error",
+  "message": "Uoft Schedule Error: UoftCourse.bulkSave() was not able to update 2 of the given documents due to incorrect version or optimistic concurrency, document ids: 681421bcc996be37be226caa, 681421c4c996be37be226d3f, 681421c6c996be37be226d6e, 681421c7c996be37be226d...",
+  "data": {
+    "error": {
+      "modelName": "UoftCourse",
+      "documents": [
+        {
+          "_id": {
+            "$oid": "681421bcc996be37be226caa"
+          },
+          "__t": "UoftCourse",
+          "code": "ANT208H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 2243,
+          "sections": [
+            {
+              "$oid": "6814220df591447757af58d6"
+            },
+            {
+              "$oid": "6814220df591447757af58d7"
+            },
+            {
+              "$oid": "6814220df591447757af58d8"
+            },
+            {
+              "$oid": "6814220df591447757af58d9"
+            },
+            {
+              "$oid": "685ed4ad2503c4d84c1eb7fe"
+            },
+            {
+              "$oid": "685ed4ad2503c4d84c1eb7ff"
+            },
+            {
+              "$oid": "685ed4ad2503c4d84c1eb800"
+            },
+            {
+              "$oid": "685ed4ad2503c4d84c1eb801"
+            },
+            {
+              "$oid": "685ed4ad2503c4d84c1eb802"
+            },
+            {
+              "$oid": "685ed4ad2503c4d84c1eb803"
+            },
+            {
+              "$oid": "685ed4ae2503c4d84c1eb804"
+            },
+            {
+              "$oid": "685ed4ae2503c4d84c1eb805"
+            },
+            {
+              "$oid": "685ed4ae2503c4d84c1eb806"
+            },
+            {
+              "$oid": "685ed4ae2503c4d84c1eb807"
+            },
+            {
+              "$oid": "685ed4ae2503c4d84c1eb808"
+            },
+            {
+              "$oid": "685ed4ae2503c4d84c1eb809"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ec1"
+            }
+          },
+          "name": "Medical Anthropology: an Evolutionary Perspective on Human Health",
+          "slug": "ant208h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "681421c4c996be37be226d3f"
+          },
+          "__t": "UoftCourse",
+          "code": "CCT250H5 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 2679,
+          "sections": [
+            {
+              "$oid": "68142220f591447757af5a50"
+            },
+            {
+              "$oid": "68142220f591447757af5a51"
+            },
+            {
+              "$oid": "68142220f591447757af5a52"
+            },
+            {
+              "$oid": "68142220f591447757af5a53"
+            },
+            {
+              "$oid": "685ed60c7bc3cc224ae2d270"
+            },
+            {
+              "$oid": "685ed60c7bc3cc224ae2d271"
+            }
+          ],
+          "campus": "Mississauga",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb1"
+            }
+          },
+          "name": "Foundations of Digital Design and Production",
+          "slug": "cct250h5-s"
+        },
+        {
+          "_id": {
+            "$oid": "681421c6c996be37be226d6e"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM236H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 87,
+          "sections": [
+            {
+              "$oid": "68142226f591447757af5ab9"
+            },
+            {
+              "$oid": "68142226f591447757af5aba"
+            },
+            {
+              "$oid": "68142226f591447757af5abb"
+            },
+            {
+              "$oid": "685ed6512503c4d84c1eba99"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea6"
+            }
+          },
+          "name": "Introductory Inorganic Chemistry I",
+          "slug": "chm236h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421c7c996be37be226d71"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM247H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 86,
+          "sections": [
+            {
+              "$oid": "68142226f591447757af5ac7"
+            },
+            {
+              "$oid": "68142226f591447757af5ac8"
+            },
+            {
+              "$oid": "68142226f591447757af5ac9"
+            },
+            {
+              "$oid": "68142227f591447757af5aca"
+            },
+            {
+              "$oid": "68142227f591447757af5acb"
+            },
+            {
+              "$oid": "685ed6a1c2ab7d22800ad2b9"
+            },
+            {
+              "$oid": "685ed6a1c2ab7d22800ad2ba"
+            },
+            {
+              "$oid": "685ed6a1c2ab7d22800ad2bb"
+            },
+            {
+              "$oid": "685ed6a1c2ab7d22800ad2bc"
+            },
+            {
+              "$oid": "685ed6a1c2ab7d22800ad2bd"
+            },
+            {
+              "$oid": "685ed6a2c2ab7d22800ad2be"
+            },
+            {
+              "$oid": "685ed6a2c2ab7d22800ad2bf"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0e9f"
+            }
+          },
+          "name": "Introductory Organic Chemistry II",
+          "slug": "chm247h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "681421d0c996be37be226e2e"
+          },
+          "__t": "UoftCourse",
+          "code": "ECO374H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 67,
+          "sections": [
+            {
+              "$oid": "6814223cf591447757af5c66"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ec3"
+            }
+          },
+          "name": "Forecasting and Time Series Econometrics",
+          "slug": "eco374h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421dec996be37be226f44"
+          },
+          "__t": "UoftCourse",
+          "code": "HMB300H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 26,
+          "sections": [
+            {
+              "$oid": "681422599a97eb31c3854787"
+            },
+            {
+              "$oid": "681422599a97eb31c3854788"
+            },
+            {
+              "$oid": "681422599a97eb31c3854789"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec19a"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec19b"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec19c"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec19d"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec19e"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec19f"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec1a0"
+            },
+            {
+              "$oid": "685edb282503c4d84c1ec1a1"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea1"
+            }
+          },
+          "name": "Neurobiology of Behaviour",
+          "slug": "hmb300h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421e6c996be37be226fe5"
+          },
+          "__t": "UoftCourse",
+          "code": "MAT224H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 32,
+          "sections": [
+            {
+              "$oid": "6814226d9a97eb31c3854908"
+            },
+            {
+              "$oid": "6814226d9a97eb31c3854909"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490a"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490b"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15e9"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15ea"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15eb"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15ec"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15ed"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15ee"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15ef"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f0"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f1"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f2"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f3"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ec5"
+            }
+          },
+          "name": "Linear Algebra II",
+          "slug": "mat224h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421e6c996be37be226fe6"
+          },
+          "__t": "UoftCourse",
+          "code": "MAT224H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 32,
+          "sections": [
+            {
+              "$oid": "6814226d9a97eb31c385490c"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490d"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490e"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f4"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f5"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f6"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f7"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f8"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f9"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fa"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fb"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fc"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fd"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fe"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15ff"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1600"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1601"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1602"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1603"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1604"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1605"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1606"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1607"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1608"
+            },
+            {
+              "$oid": "685ef98f88114722a0be1609"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160a"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160b"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160c"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160d"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160e"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ec6"
+            }
+          },
+          "name": "Linear Algebra II",
+          "slug": "mat224h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "681421f24daad8080b342732"
+          },
+          "__t": "UoftCourse",
+          "code": "PHY256H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 39,
+          "sections": [
+            {
+              "$oid": "681422840ed98f7e3c4edc33"
+            },
+            {
+              "$oid": "681422840ed98f7e3c4edc34"
+            },
+            {
+              "$oid": "681422840ed98f7e3c4edc35"
+            },
+            {
+              "$oid": "685efbe4b00be48a0495d84f"
+            },
+            {
+              "$oid": "685efbe4b00be48a0495d850"
+            },
+            {
+              "$oid": "685efbe4b00be48a0495d851"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb8"
+            }
+          },
+          "name": "Introduction to Quantum Physics",
+          "slug": "phy256h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421f34daad8080b342754"
+          },
+          "__t": "UoftCourse",
+          "code": "POL200Y1 Y",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 90,
+          "sections": [
+            {
+              "$oid": "681422880ed98f7e3c4edc82"
+            },
+            {
+              "$oid": "681422880ed98f7e3c4edc83"
+            },
+            {
+              "$oid": "681422880ed98f7e3c4edc84"
+            },
+            {
+              "$oid": "681422880ed98f7e3c4edc85"
+            },
+            {
+              "$oid": "681422880ed98f7e3c4edc86"
+            },
+            {
+              "$oid": "681422880ed98f7e3c4edc87"
+            },
+            {
+              "$oid": "685f0a205c6149a636c54771"
+            },
+            {
+              "$oid": "685f0a205c6149a636c54772"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54773"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54774"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54775"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54776"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54777"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54778"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54779"
+            },
+            {
+              "$oid": "685f0a215c6149a636c5477a"
+            },
+            {
+              "$oid": "685f0a215c6149a636c5477b"
+            },
+            {
+              "$oid": "685f0a215c6149a636c5477c"
+            },
+            {
+              "$oid": "685f0a215c6149a636c5477d"
+            },
+            {
+              "$oid": "685f0a215c6149a636c5477e"
+            },
+            {
+              "$oid": "685f0a215c6149a636c5477f"
+            },
+            {
+              "$oid": "685f0a215c6149a636c54780"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54781"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54782"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54783"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54784"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54785"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54786"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54787"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54788"
+            },
+            {
+              "$oid": "685f0a225c6149a636c54789"
+            },
+            {
+              "$oid": "685f0a225c6149a636c5478a"
+            },
+            {
+              "$oid": "685f0a225c6149a636c5478b"
+            },
+            {
+              "$oid": "685f0a225c6149a636c5478c"
+            },
+            {
+              "$oid": "685f0a225c6149a636c5478d"
+            },
+            {
+              "$oid": "685f0a225c6149a636c5478e"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall-winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ec2"
+            }
+          },
+          "name": "Political Theory: Visions of the Just/Good Society",
+          "slug": "pol200y1-y"
+        },
+        {
+          "_id": {
+            "$oid": "681421f44daad8080b342759"
+          },
+          "__t": "UoftCourse",
+          "code": "POL214H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 61,
+          "sections": [
+            {
+              "$oid": "681422890ed98f7e3c4edc9b"
+            },
+            {
+              "$oid": "681422890ed98f7e3c4edc9c"
+            },
+            {
+              "$oid": "681422890ed98f7e3c4edc9d"
+            },
+            {
+              "$oid": "681422890ed98f7e3c4edc9e"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edc9f"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edca0"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edca1"
+            },
+            {
+              "$oid": "685f0a265c6149a636c547b8"
+            },
+            {
+              "$oid": "685f0a265c6149a636c547b9"
+            },
+            {
+              "$oid": "685f0a265c6149a636c547ba"
+            },
+            {
+              "$oid": "685f0a265c6149a636c547bb"
+            },
+            {
+              "$oid": "685f0a275c6149a636c547bc"
+            },
+            {
+              "$oid": "685f0a275c6149a636c547bd"
+            },
+            {
+              "$oid": "685f0a275c6149a636c547be"
+            },
+            {
+              "$oid": "685f0a275c6149a636c547bf"
+            },
+            {
+              "$oid": "685f0a275c6149a636c547c0"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eaa"
+            }
+          },
+          "name": "Canadian Government",
+          "slug": "pol214h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421f44daad8080b34275c"
+          },
+          "__t": "UoftCourse",
+          "code": "POL222H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 61,
+          "sections": [
+            {
+              "$oid": "6814228a0ed98f7e3c4edca9"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edcaa"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edcab"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edcac"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d1"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d2"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d3"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d4"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d5"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d6"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d7"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d8"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547d9"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547da"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547db"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547dc"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547dd"
+            },
+            {
+              "$oid": "685f0a295c6149a636c547de"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547df"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e0"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e1"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e2"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e3"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e4"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e5"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e6"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e7"
+            },
+            {
+              "$oid": "68682774a9d54d59665c57a2"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eac"
+            }
+          },
+          "name": "Introduction to Quantitative Reasoning I (formerly POL 322H1)",
+          "slug": "pol222h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421f44daad8080b34275d"
+          },
+          "__t": "UoftCourse",
+          "code": "POL232H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 61,
+          "sections": [
+            {
+              "$oid": "6814228a0ed98f7e3c4edcad"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edcae"
+            },
+            {
+              "$oid": "6814228a0ed98f7e3c4edcaf"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e8"
+            },
+            {
+              "$oid": "685f0a2a5c6149a636c547e9"
+            },
+            {
+              "$oid": "685f0a2b5c6149a636c547ea"
+            },
+            {
+              "$oid": "685f0a2b5c6149a636c547eb"
+            },
+            {
+              "$oid": "685f0a2b5c6149a636c547ec"
+            },
+            {
+              "$oid": "685f0a2b5c6149a636c547ed"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ead"
+            }
+          },
+          "name": "Introduction to Quantitative Reasoning II",
+          "slug": "pol232h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "681421fd4daad8080b342819"
+          },
+          "__t": "UoftCourse",
+          "code": "SOC202H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 69,
+          "sections": [
+            {
+              "$oid": "6814229c0ed98f7e3c4eddff"
+            },
+            {
+              "$oid": "685f0bde66d9c552f234e406"
+            },
+            {
+              "$oid": "685f0bde66d9c552f234e407"
+            },
+            {
+              "$oid": "685f0bde66d9c552f234e408"
+            },
+            {
+              "$oid": "685f0bde66d9c552f234e409"
+            },
+            {
+              "$oid": "685f0bde66d9c552f234e40a"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e40b"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e40c"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e40d"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e40e"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea8"
+            }
+          },
+          "name": "Introduction to Quantitative Methods in Sociology",
+          "slug": "soc202h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed4a02503c4d84c1eb75f"
+          },
+          "__t": "UoftCourse",
+          "code": "ANA300Y1 Y",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 39,
+          "sections": [
+            {
+              "$oid": "685ed4b02503c4d84c1eb822"
+            },
+            {
+              "$oid": "685ed4b02503c4d84c1eb823"
+            },
+            {
+              "$oid": "685ed4b02503c4d84c1eb824"
+            },
+            {
+              "$oid": "685ed4b02503c4d84c1eb825"
+            },
+            {
+              "$oid": "685ed4b02503c4d84c1eb826"
+            },
+            {
+              "$oid": "685ed4b02503c4d84c1eb827"
+            },
+            {
+              "$oid": "685ed4b12503c4d84c1eb828"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall-winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea5"
+            }
+          },
+          "name": "Human Anatomy and Histology",
+          "slug": "ana300y1-y"
+        },
+        {
+          "_id": {
+            "$oid": "685ed6057bc3cc224ae2d22c"
+          },
+          "__t": "UoftCourse",
+          "code": "CCT250H5 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 2675,
+          "sections": [
+            {
+              "$oid": "685ed6167bc3cc224ae2d2ee"
+            },
+            {
+              "$oid": "685ed6167bc3cc224ae2d2ef"
+            },
+            {
+              "$oid": "685ed6167bc3cc224ae2d2f0"
+            },
+            {
+              "$oid": "685ed6167bc3cc224ae2d2f1"
+            }
+          ],
+          "campus": "Mississauga",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb0"
+            }
+          },
+          "name": "Foundations of Digital Design and Production",
+          "slug": "cct250h5-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed64c2503c4d84c1eba7a"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM151Y1 Y",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 84,
+          "sections": [
+            {
+              "$oid": "685ed6732503c4d84c1ebc81"
+            },
+            {
+              "$oid": "685ed6732503c4d84c1ebc82"
+            },
+            {
+              "$oid": "685ed6732503c4d84c1ebc83"
+            },
+            {
+              "$oid": "685ed6732503c4d84c1ebc84"
+            },
+            {
+              "$oid": "685ed6742503c4d84c1ebc85"
+            },
+            {
+              "$oid": "685ed6742503c4d84c1ebc86"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall-winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0e9e"
+            }
+          },
+          "name": "Chemistry: The Molecular Science",
+          "slug": "chm151y1-y"
+        },
+        {
+          "_id": {
+            "$oid": "685ed64d2503c4d84c1eba82"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM217H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 12,
+          "sections": [
+            {
+              "$oid": "685ed6762503c4d84c1ebca5"
+            },
+            {
+              "$oid": "685ed6762503c4d84c1ebca6"
+            },
+            {
+              "$oid": "685ed6762503c4d84c1ebca7"
+            },
+            {
+              "$oid": "685ed6762503c4d84c1ebca8"
+            },
+            {
+              "$oid": "685ed6762503c4d84c1ebca9"
+            },
+            {
+              "$oid": "685ed6762503c4d84c1ebcaa"
+            },
+            {
+              "$oid": "685ed6762503c4d84c1ebcab"
+            },
+            {
+              "$oid": "685ed6762503c4d84c1ebcac"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ebe"
+            }
+          },
+          "name": "Introduction to Analytical Chemistry",
+          "slug": "chm217h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed64d2503c4d84c1eba86"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM237H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 85,
+          "sections": [
+            {
+              "$oid": "685ed6772503c4d84c1ebcb5"
+            },
+            {
+              "$oid": "685ed6772503c4d84c1ebcb6"
+            },
+            {
+              "$oid": "685ed6772503c4d84c1ebcb7"
+            },
+            {
+              "$oid": "685ed6772503c4d84c1ebcb8"
+            },
+            {
+              "$oid": "685ed6772503c4d84c1ebcb9"
+            },
+            {
+              "$oid": "685ed6772503c4d84c1ebcba"
+            },
+            {
+              "$oid": "685ed6772503c4d84c1ebcbb"
+            },
+            {
+              "$oid": "685ed6772503c4d84c1ebcbc"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea7"
+            }
+          },
+          "name": "Introductory Inorganic Chemistry II",
+          "slug": "chm237h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed69bc2ab7d22800ad260"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM249H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 84,
+          "sections": [
+            {
+              "$oid": "685ed6a7c2ab7d22800ad2f0"
+            },
+            {
+              "$oid": "685ed6a7c2ab7d22800ad2f1"
+            },
+            {
+              "$oid": "685ed6a7c2ab7d22800ad2f2"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea0"
+            }
+          },
+          "name": "Organic Chemistry",
+          "slug": "chm249h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed69bc2ab7d22800ad269"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM328H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 54,
+          "sections": [
+            {
+              "$oid": "685ed6a9c2ab7d22800ad30a"
+            },
+            {
+              "$oid": "685ed6a9c2ab7d22800ad30b"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea2"
+            }
+          },
+          "name": "Modern Physical Chemistry",
+          "slug": "chm328h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed7859f49a019a8b7b84e"
+          },
+          "__t": "UoftCourse",
+          "code": "CSC236H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 83,
+          "sections": [
+            {
+              "$oid": "685ed79ec3deb6787c92f57d"
+            },
+            {
+              "$oid": "685ed79ec3deb6787c92f57e"
+            },
+            {
+              "$oid": "685ed79ec3deb6787c92f57f"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f580"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f581"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f582"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f583"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f584"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f585"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f586"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f587"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f588"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f589"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f58a"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f58b"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f58c"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f58d"
+            },
+            {
+              "$oid": "685ed79fc3deb6787c92f58e"
+            },
+            {
+              "$oid": "685ed7a0c3deb6787c92f58f"
+            },
+            {
+              "$oid": "685ed7a0c3deb6787c92f590"
+            },
+            {
+              "$oid": "685ed7a0c3deb6787c92f591"
+            },
+            {
+              "$oid": "685ed7a0c3deb6787c92f592"
+            },
+            {
+              "$oid": "685ed7a0c3deb6787c92f593"
+            },
+            {
+              "$oid": "685ed7a0c3deb6787c92f594"
+            },
+            {
+              "$oid": "685ed7a0c3deb6787c92f595"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ebb"
+            }
+          },
+          "name": "Introduction to the Theory of Computation",
+          "slug": "csc236h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed7869f49a019a8b7b850"
+          },
+          "__t": "UoftCourse",
+          "code": "CSC240H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 83,
+          "sections": [
+            {
+              "$oid": "685ed7a1c3deb6787c92f5aa"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ebc"
+            }
+          },
+          "name": "Enriched Introduction to the Theory of Computation",
+          "slug": "csc240h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed87619ab358384bb0d7d"
+          },
+          "__t": "UoftCourse",
+          "code": "ECE532H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 29,
+          "sections": [
+            {
+              "$oid": "685ed8a0acaf45795a00f2ba"
+            },
+            {
+              "$oid": "685ed8a0acaf45795a00f2bb"
+            },
+            {
+              "$oid": "685ed8a0acaf45795a00f2bc"
+            },
+            {
+              "$oid": "685ed8a0acaf45795a00f2bd"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea3"
+            }
+          },
+          "name": "Digital Systems Design",
+          "slug": "ece532h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed8d333c9e784b2df85b3"
+          },
+          "__t": "UoftCourse",
+          "code": "ECO374H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 65,
+          "sections": [
+            {
+              "$oid": "685ed8e133c9e784b2df8655"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ec4"
+            }
+          },
+          "name": "Forecasting and Time Series Econometrics",
+          "slug": "eco374h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed8f82503c4d84c1ebe70"
+          },
+          "__t": "UoftCourse",
+          "code": "EDS265H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 57,
+          "sections": [
+            {
+              "$oid": "685ed9012503c4d84c1ebed5"
+            },
+            {
+              "$oid": "685ed9012503c4d84c1ebed6"
+            },
+            {
+              "$oid": "685ed9012503c4d84c1ebed7"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ebd"
+            }
+          },
+          "name": "Introduction to Teaching",
+          "slug": "eds265h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed8fa2503c4d84c1ebe84"
+          },
+          "__t": "UoftCourse",
+          "code": "EEB125H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 2919,
+          "sections": [
+            {
+              "$oid": "685ed9022503c4d84c1ebeed"
+            },
+            {
+              "$oid": "685ed9022503c4d84c1ebeee"
+            },
+            {
+              "$oid": "685ed9022503c4d84c1ebeef"
+            },
+            {
+              "$oid": "685ed9022503c4d84c1ebef0"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb5"
+            }
+          },
+          "name": "Introductory Computation and Data Science for the Life and Physical Sciences",
+          "slug": "eeb125h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed9e76b37261956a9b8e2"
+          },
+          "__t": "UoftCourse",
+          "code": "EUR200Y1 Y",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 2918,
+          "sections": [
+            {
+              "$oid": "685ed9f16b37261956a9b961"
+            },
+            {
+              "$oid": "685ed9f16b37261956a9b962"
+            },
+            {
+              "$oid": "685ed9f16b37261956a9b963"
+            },
+            {
+              "$oid": "685ed9f16b37261956a9b964"
+            },
+            {
+              "$oid": "685ed9f16b37261956a9b965"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall-winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea4"
+            }
+          },
+          "name": "Europe: Nation-State to Supranational Union",
+          "slug": "eur200y1-y"
+        },
+        {
+          "_id": {
+            "$oid": "685eda729f49a019a8b7b963"
+          },
+          "__t": "UoftCourse",
+          "code": "GGR124H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 2918,
+          "sections": [
+            {
+              "$oid": "685eda7d9f49a019a8b7b9e3"
+            },
+            {
+              "$oid": "685eda7d9f49a019a8b7b9e4"
+            },
+            {
+              "$oid": "685eda7d9f49a019a8b7b9e5"
+            },
+            {
+              "$oid": "685eda7d9f49a019a8b7b9e6"
+            },
+            {
+              "$oid": "685eda7d9f49a019a8b7b9e7"
+            },
+            {
+              "$oid": "685eda7d9f49a019a8b7b9e8"
+            },
+            {
+              "$oid": "685eda7d9f49a019a8b7b9e9"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9ea"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9eb"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9ec"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ebf"
+            }
+          },
+          "name": "Cities and Urban Life",
+          "slug": "ggr124h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685eda729f49a019a8b7b964"
+          },
+          "__t": "UoftCourse",
+          "code": "GGR124H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 2918,
+          "sections": [
+            {
+              "$oid": "685eda7e9f49a019a8b7b9ed"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9ee"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9ef"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f0"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f1"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f2"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f3"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f4"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f5"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f6"
+            },
+            {
+              "$oid": "685eda7e9f49a019a8b7b9f7"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9f8"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9f9"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9fa"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9fb"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9fc"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9fd"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9fe"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7b9ff"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7ba00"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7ba01"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7ba02"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7ba03"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7ba04"
+            },
+            {
+              "$oid": "685eda7f9f49a019a8b7ba05"
+            },
+            {
+              "$oid": "685eda809f49a019a8b7ba06"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ec0"
+            }
+          },
+          "name": "Cities and Urban Life",
+          "slug": "ggr124h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685edb202503c4d84c1ec143"
+          },
+          "__t": "UoftCourse",
+          "code": "HMB320H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 39,
+          "sections": [
+            {
+              "$oid": "685edb372503c4d84c1ec26e"
+            },
+            {
+              "$oid": "685edb372503c4d84c1ec26f"
+            },
+            {
+              "$oid": "685edb372503c4d84c1ec270"
+            },
+            {
+              "$oid": "685edb372503c4d84c1ec271"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb4"
+            }
+          },
+          "name": "Neuroanatomy",
+          "slug": "hmb320h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685efb5eb036e6418198ac8e"
+          },
+          "__t": "UoftCourse",
+          "code": "PHL265H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 58,
+          "sections": [
+            {
+              "$oid": "685efb73b53bdc4c121c6896"
+            },
+            {
+              "$oid": "685efb73b53bdc4c121c6897"
+            },
+            {
+              "$oid": "685efb73b53bdc4c121c6898"
+            },
+            {
+              "$oid": "685efb73b53bdc4c121c6899"
+            },
+            {
+              "$oid": "685efb74b53bdc4c121c689a"
+            },
+            {
+              "$oid": "685efb74b53bdc4c121c689b"
+            },
+            {
+              "$oid": "685efb74b53bdc4c121c689c"
+            },
+            {
+              "$oid": "685efb74b53bdc4c121c689d"
+            },
+            {
+              "$oid": "685efb74b53bdc4c121c689e"
+            },
+            {
+              "$oid": "685efb74b53bdc4c121c689f"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eba"
+            }
+          },
+          "name": "Introduction to Political Philosophy",
+          "slug": "phl265h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685efbdc88114722a0be18f4"
+          },
+          "__t": "UoftCourse",
+          "code": "PHY256H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 37,
+          "sections": [
+            {
+              "$oid": "685efbe7b00be48a0495d878"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d879"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d87a"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d87b"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d87c"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb9"
+            }
+          },
+          "name": "Introduction to Quantum Physics",
+          "slug": "phy256h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0a1ad1c5287807eb3c44"
+          },
+          "__t": "UoftCourse",
+          "code": "POL214H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 59,
+          "sections": [
+            {
+              "$oid": "685f0a505c6149a636c5486f"
+            },
+            {
+              "$oid": "685f0a505c6149a636c54870"
+            },
+            {
+              "$oid": "685f0a505c6149a636c54871"
+            },
+            {
+              "$oid": "685f0a505c6149a636c54872"
+            },
+            {
+              "$oid": "685f0a505c6149a636c54873"
+            },
+            {
+              "$oid": "685f0a505c6149a636c54874"
+            },
+            {
+              "$oid": "685f0a505c6149a636c54875"
+            },
+            {
+              "$oid": "685f0a505c6149a636c54876"
+            },
+            {
+              "$oid": "685f0a515c6149a636c54877"
+            },
+            {
+              "$oid": "685f0a515c6149a636c54878"
+            },
+            {
+              "$oid": "685f0a515c6149a636c54879"
+            },
+            {
+              "$oid": "685f0a515c6149a636c5487a"
+            },
+            {
+              "$oid": "685f0a515c6149a636c5487b"
+            },
+            {
+              "$oid": "685f0a515c6149a636c5487c"
+            },
+            {
+              "$oid": "685f0a515c6149a636c5487d"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eab"
+            }
+          },
+          "name": "Canadian Government",
+          "slug": "pol214h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0a90bf37569c5962e040"
+          },
+          "__t": "UoftCourse",
+          "code": "POL352H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 59,
+          "sections": [
+            {
+              "$oid": "685f0a999748b6d3147f5d9a"
+            },
+            {
+              "$oid": "685f0a999748b6d3147f5d9b"
+            },
+            {
+              "$oid": "685f0a999748b6d3147f5d9c"
+            },
+            {
+              "$oid": "685f0a999748b6d3147f5d9d"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eae"
+            }
+          },
+          "name": "Introduction to Qualitative Research Methods",
+          "slug": "pol352h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0a94bf37569c5962e068"
+          },
+          "__t": "UoftCourse",
+          "code": "POL440H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 59,
+          "sections": [
+            {
+              "$oid": "685f0a9c9748b6d3147f5dca"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eaf"
+            }
+          },
+          "name": "Topics in Methods II",
+          "slug": "pol440h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b1eb2c85cb1ae8c512c"
+          },
+          "__t": "UoftCourse",
+          "code": "PSY473H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 39,
+          "sections": [
+            {
+              "$oid": "685f0b27dacb5f9040c54f8a"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb6"
+            }
+          },
+          "name": "Social Cognitive Neuroscience",
+          "slug": "psy473h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b1eb2c85cb1ae8c512d"
+          },
+          "__t": "UoftCourse",
+          "code": "PSY473H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 39,
+          "sections": [
+            {
+              "$oid": "685f0b27dacb5f9040c54f8b"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb7"
+            }
+          },
+          "name": "Social Cognitive Neuroscience",
+          "slug": "psy473h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b895c6149a636c54934"
+          },
+          "__t": "UoftCourse",
+          "code": "RSM220H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 17,
+          "sections": [
+            {
+              "$oid": "685f0b95f331a8c6e15ad14e"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad14f"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad150"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad151"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad152"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad153"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb2"
+            }
+          },
+          "name": "Intermediate Financial Accounting I",
+          "slug": "rsm220h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b895c6149a636c54935"
+          },
+          "__t": "UoftCourse",
+          "code": "RSM220H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 17,
+          "sections": [
+            {
+              "$oid": "685f0b95f331a8c6e15ad154"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad155"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0eb3"
+            }
+          },
+          "name": "Intermediate Financial Accounting I",
+          "slug": "rsm220h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0bd52c7dcb3903d92457"
+          },
+          "__t": "UoftCourse",
+          "code": "SOC202H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-07-14T22:05:29.822Z"
+          },
+          "__v": 67,
+          "sections": [
+            {
+              "$oid": "685f0be666d9c552f234e470"
+            },
+            {
+              "$oid": "685f0be666d9c552f234e471"
+            },
+            {
+              "$oid": "685f0be666d9c552f234e472"
+            },
+            {
+              "$oid": "685f0be666d9c552f234e473"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68757f158b0bd4f8465a0ea9"
+            }
+          },
+          "name": "Introduction to Quantitative Methods in Sociology",
+          "slug": "soc202h1-s"
+        }
+      ],
+      "bulkWriteResult": {
+        "insertedCount": 0,
+        "matchedCount": 39,
+        "modifiedCount": 39,
+        "deletedCount": 0,
+        "upsertedCount": 0,
+        "upsertedIds": {},
+        "insertedIds": {}
+      },
+      "numDocumentsNotUpdated": 2
+    }
+  },
+  "createdAt": {
+    "$date": "2025-07-14T22:05:32.538Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6875d1188b0bd4f8465a1c01"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CRI365H1 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-10"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-15T03:55:04.319Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6875d2448b0bd4f8465a1c25"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CRI365H1 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-10"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-15T04:00:04.426Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6876cd0c8b0bd4f8465a329b"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CHM328H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-15"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-15T21:50:04.361Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6877abb48b0bd4f8465a3ee2"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "ANA300Y1 Y",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-16"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-16T13:40:04.677Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687c39b8dd8d1183a92bcb27"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "ECO374H1 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-10"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T00:35:04.544Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687dd3e02ea89ff8347e1c4b"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "BIOB52H3 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-8"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T05:45:04.633Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687f12257a8852c05e43949d"
+  },
+  "type": "warn",
+  "message": "Email Send Error: The long-running operation has failed. EmailDroppedAllRecipientsSuppressed. Message dropped because all recipients were suppressed",
+  "data": {
+    "to": [
+      "mimibaha777@gmail.com"
+    ],
+    "template": "alert-verify",
+    "error": {}
+  },
+  "createdAt": {
+    "$date": "2025-07-22T04:23:01.228Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687f123a7a8852c05e4394a8"
+  },
+  "type": "warn",
+  "message": "Email Send Error: The long-running operation has failed. EmailDroppedAllRecipientsSuppressed. Message dropped because all recipients were suppressed",
+  "data": {
+    "to": [
+      "mimibaha777@gmail.com"
+    ],
+    "template": "alert-verify",
+    "error": {}
+  },
+  "createdAt": {
+    "$date": "2025-07-22T04:23:22.233Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687f12477a8852c05e4394b3"
+  },
+  "type": "warn",
+  "message": "Email Send Error: The long-running operation has failed. EmailDroppedAllRecipientsSuppressed. Message dropped because all recipients were suppressed",
+  "data": {
+    "to": [
+      "mimibaha777@gmail.com"
+    ],
+    "template": "alert-verify",
+    "error": {}
+  },
+  "createdAt": {
+    "$date": "2025-07-22T04:23:35.667Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688156b5e6ff153c82239a6f"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CRI215H1 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-13"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T21:40:05.289Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688483fde6ff153c8224357b"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "EUR200Y1 Y",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-3"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T07:30:05.491Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6884b8b8e6ff153c82244075"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CJH332H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-6"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T11:15:04.630Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6884de39e6ff153c82244811"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CHMA10H3 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-3"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T13:55:05.659Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6884e2e8e6ff153c8224490c"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "EEB125H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-1"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T14:15:04.864Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68852488e6ff153c8224567d"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CHMA10H3 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-3"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T18:55:04.743Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68853f7de6ff153c82245bfa"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "ENGA02H3 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-10"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T20:50:05.422Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68855cc8e6ff153c82246203"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CJH332H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-6"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T22:55:04.516Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688dbd54eaab6022ceaf49be"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CHMB41H3 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-15"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-02T07:25:08.284Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6890d6b0eaab6022ceb01468"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "BIOC17H3 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-13"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-04T15:50:08.392Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68915541eaab6022ceb032d0"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "STA237H1 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-11"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-05T00:50:09.562Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689bffbae269c414ec4a92ac"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "TEP442H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-19"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-13T03:00:10.112Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689c60fce269c414ec4aa620"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "PSYD50H3 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-12"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-13T09:55:08.342Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689e8a1de269c414ec4b1c80"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "PHL265H1 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-13"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-15T01:15:09.369Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689f9d80e269c414ec4b531a"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "BIOC17H3 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-13"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-15T20:50:08.473Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a0011ce269c414ec4b67df"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "PHYA21H3 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-16"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-16T03:55:08.214Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a16ebce269c414ec4ba6ae"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "HMB320H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-17"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-17T05:55:08.437Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68adda0b026e263d33d059b6"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "TEP442H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-18"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-26T16:00:11.425Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b07d0a026e263d33d0c860"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "HLTB60H3 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-13"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-28T16:00:10.296Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b0dbf6026e263d33d0d740"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "TRN198H1 F",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-15"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-28T22:45:10.138Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b1fd69026e263d33d1077d"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "PSYD32H3 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-11"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-29T19:20:09.179Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b265b4026e263d33d1196c"
+  },
+  "type": "error",
+  "message": "Non-operational error: Cannot read properties of undefined (reading 'payload')",
+  "data": {
+    "error": {
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-08-30T02:45:08.578Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b42d8d683dfcb40e3583bb"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CSC209H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-9"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-08-31T11:10:05.758Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b7a830683dfcb40e35e210"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "CHM328H1 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-14"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-09-03T02:30:08.519Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b7af38683dfcb40e35e2df"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "ANA300Y1 Y",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-15"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-09-03T03:00:08.448Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c44ab78f91f01025c3a4da"
+  },
+  "type": "error",
+  "message": "Uoft Schedule Error: UoftCourse.bulkSave() was not able to update 2 of the given documents due to incorrect version or optimistic concurrency, document ids: 681421d4c996be37be226e78, 681421e6c996be37be226fdf, 681421e6c996be37be226fe5, 681421e6c996be37be226f...",
+  "data": {
+    "error": {
+      "modelName": "UoftCourse",
+      "documents": [
+        {
+          "_id": {
+            "$oid": "681421d4c996be37be226e78"
+          },
+          "__t": "UoftCourse",
+          "code": "ENG323H5 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 2269,
+          "sections": [
+            {
+              "$oid": "681422429a97eb31c38545d1"
+            }
+          ],
+          "campus": "Mississauga",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a48f"
+            }
+          },
+          "name": "Austen and Her Contemporaries",
+          "slug": "eng323h5-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421e6c996be37be226fdf"
+          },
+          "__t": "UoftCourse",
+          "code": "MAT137Y1 Y",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 4392,
+          "sections": [
+            {
+              "$oid": "6814226b9a97eb31c38548ec"
+            },
+            {
+              "$oid": "6814226b9a97eb31c38548ed"
+            },
+            {
+              "$oid": "6814226b9a97eb31c38548ee"
+            },
+            {
+              "$oid": "6814226b9a97eb31c38548ef"
+            },
+            {
+              "$oid": "6814226b9a97eb31c38548f0"
+            },
+            {
+              "$oid": "6814226b9a97eb31c38548f1"
+            },
+            {
+              "$oid": "6814226c9a97eb31c38548f2"
+            },
+            {
+              "$oid": "6814226c9a97eb31c38548f3"
+            },
+            {
+              "$oid": "6814226c9a97eb31c38548f4"
+            },
+            {
+              "$oid": "685edc8659057f823390232c"
+            },
+            {
+              "$oid": "685edc8659057f823390232d"
+            },
+            {
+              "$oid": "685edc8659057f823390232e"
+            },
+            {
+              "$oid": "685edc8659057f823390232f"
+            },
+            {
+              "$oid": "685edc8659057f8233902330"
+            },
+            {
+              "$oid": "685edc8659057f8233902331"
+            },
+            {
+              "$oid": "685edc8659057f8233902332"
+            },
+            {
+              "$oid": "685edc8759057f8233902333"
+            },
+            {
+              "$oid": "685edc8759057f8233902334"
+            },
+            {
+              "$oid": "685edc8759057f8233902335"
+            },
+            {
+              "$oid": "685edc8759057f8233902336"
+            },
+            {
+              "$oid": "685edc8759057f8233902337"
+            },
+            {
+              "$oid": "685edc8759057f8233902338"
+            },
+            {
+              "$oid": "685edc8759057f8233902339"
+            },
+            {
+              "$oid": "685edc8759057f823390233a"
+            },
+            {
+              "$oid": "685edc8859057f823390233b"
+            },
+            {
+              "$oid": "685edc8859057f823390233c"
+            },
+            {
+              "$oid": "685edc8859057f823390233d"
+            },
+            {
+              "$oid": "685edc8859057f823390233e"
+            },
+            {
+              "$oid": "685edc8859057f823390233f"
+            },
+            {
+              "$oid": "685edc8859057f8233902340"
+            },
+            {
+              "$oid": "685edc8859057f8233902341"
+            },
+            {
+              "$oid": "685edc8859057f8233902342"
+            },
+            {
+              "$oid": "685edc8859057f8233902343"
+            },
+            {
+              "$oid": "685edc8859057f8233902344"
+            },
+            {
+              "$oid": "685edc8859057f8233902345"
+            },
+            {
+              "$oid": "685edc8859057f8233902346"
+            },
+            {
+              "$oid": "685edc8959057f8233902347"
+            },
+            {
+              "$oid": "685edc8959057f8233902348"
+            },
+            {
+              "$oid": "685edc8959057f8233902349"
+            },
+            {
+              "$oid": "685edc8959057f823390234a"
+            },
+            {
+              "$oid": "685edc8959057f823390234b"
+            },
+            {
+              "$oid": "685edc8959057f823390234c"
+            },
+            {
+              "$oid": "685edc8959057f823390234d"
+            },
+            {
+              "$oid": "685edc8959057f823390234e"
+            },
+            {
+              "$oid": "685edc8959057f823390234f"
+            },
+            {
+              "$oid": "685edc8959057f8233902350"
+            },
+            {
+              "$oid": "685edc8959057f8233902351"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall-winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a497"
+            }
+          },
+          "name": "Calculus with Proofs",
+          "slug": "mat137y1-y"
+        },
+        {
+          "_id": {
+            "$oid": "681421e6c996be37be226fe5"
+          },
+          "__t": "UoftCourse",
+          "code": "MAT224H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7852,
+          "sections": [
+            {
+              "$oid": "6814226d9a97eb31c3854908"
+            },
+            {
+              "$oid": "6814226d9a97eb31c3854909"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490a"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490b"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15e9"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15ea"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15eb"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15ec"
+            },
+            {
+              "$oid": "685ef98c88114722a0be15ed"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15ee"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15ef"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f0"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f1"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f2"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f3"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b3"
+            }
+          },
+          "name": "Linear Algebra II",
+          "slug": "mat224h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421e6c996be37be226fe6"
+          },
+          "__t": "UoftCourse",
+          "code": "MAT224H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7852,
+          "sections": [
+            {
+              "$oid": "6814226d9a97eb31c385490c"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490d"
+            },
+            {
+              "$oid": "6814226d9a97eb31c385490e"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f4"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f5"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f6"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f7"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f8"
+            },
+            {
+              "$oid": "685ef98d88114722a0be15f9"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fa"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fb"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fc"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fd"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15fe"
+            },
+            {
+              "$oid": "685ef98e88114722a0be15ff"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1600"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1601"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1602"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1603"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1604"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1605"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1606"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1607"
+            },
+            {
+              "$oid": "685ef98e88114722a0be1608"
+            },
+            {
+              "$oid": "685ef98f88114722a0be1609"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160a"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160b"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160c"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160d"
+            },
+            {
+              "$oid": "685ef98f88114722a0be160e"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b4"
+            }
+          },
+          "name": "Linear Algebra II",
+          "slug": "mat224h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "681421f24daad8080b342732"
+          },
+          "__t": "UoftCourse",
+          "code": "PHY256H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 8242,
+          "sections": [
+            {
+              "$oid": "681422840ed98f7e3c4edc33"
+            },
+            {
+              "$oid": "681422840ed98f7e3c4edc34"
+            },
+            {
+              "$oid": "681422840ed98f7e3c4edc35"
+            },
+            {
+              "$oid": "685efbe4b00be48a0495d84f"
+            },
+            {
+              "$oid": "685efbe4b00be48a0495d850"
+            },
+            {
+              "$oid": "685efbe4b00be48a0495d851"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a499"
+            }
+          },
+          "name": "Introduction to Quantum Physics",
+          "slug": "phy256h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "681421fd4daad8080b34281b"
+          },
+          "__t": "UoftCourse",
+          "code": "SOC204H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 734,
+          "sections": [
+            {
+              "$oid": "6814229c0ed98f7e3c4ede01"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e40f"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e410"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e411"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e412"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e413"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e414"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e415"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e416"
+            },
+            {
+              "$oid": "685f0bdf66d9c552f234e417"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4af"
+            }
+          },
+          "name": "Introduction to Qualitative Methods in Sociology",
+          "slug": "soc204h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed4dd3a8fc7648171c017"
+          },
+          "__t": "UoftCourse",
+          "code": "ANTA02H3 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7450,
+          "sections": [
+            {
+              "$oid": "685ed4e63d727d96c0de12e5"
+            },
+            {
+              "$oid": "685ed4e63d727d96c0de12e6"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12e7"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12e8"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12e9"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12ea"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12eb"
+            },
+            {
+              "$oid": "6888ff5c425d857178af466f"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a49d"
+            }
+          },
+          "name": "Introduction to Anthropology: Society, Culture and Language",
+          "slug": "anta02h3-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed4dd3a8fc7648171c018"
+          },
+          "__t": "UoftCourse",
+          "code": "ANTA02H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7450,
+          "sections": [
+            {
+              "$oid": "685ed4e73d727d96c0de12ec"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12ed"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12ee"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12ef"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12f0"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12f1"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12f2"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12f3"
+            },
+            {
+              "$oid": "685ed4e73d727d96c0de12f4"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12f5"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12f6"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12f7"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12f8"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12f9"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12fa"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12fb"
+            },
+            {
+              "$oid": "685ed4e83d727d96c0de12fc"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a49e"
+            }
+          },
+          "name": "Introduction to Anthropology: Society, Culture and Language",
+          "slug": "anta02h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed4e03a8fc7648171c045"
+          },
+          "__t": "UoftCourse",
+          "code": "APM236H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 111,
+          "sections": [
+            {
+              "$oid": "685ed4ec3d727d96c0de133a"
+            },
+            {
+              "$oid": "685ed4ec3d727d96c0de133b"
+            },
+            {
+              "$oid": "685ed4ec3d727d96c0de133c"
+            },
+            {
+              "$oid": "685ed4ed3d727d96c0de133d"
+            },
+            {
+              "$oid": "685ed4ed3d727d96c0de133e"
+            },
+            {
+              "$oid": "685ed4ed3d727d96c0de133f"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a492"
+            }
+          },
+          "name": "Applications of Linear Programming",
+          "slug": "apm236h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed4e03a8fc7648171c046"
+          },
+          "__t": "UoftCourse",
+          "code": "APM236H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 111,
+          "sections": [
+            {
+              "$oid": "685ed4ed3d727d96c0de1340"
+            },
+            {
+              "$oid": "685ed4ed3d727d96c0de1341"
+            },
+            {
+              "$oid": "685ed4ed3d727d96c0de1342"
+            },
+            {
+              "$oid": "685ed4ed3d727d96c0de1343"
+            },
+            {
+              "$oid": "685ed4ed3d727d96c0de1344"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a493"
+            }
+          },
+          "name": "Applications of Linear Programming",
+          "slug": "apm236h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed5942503c4d84c1eb937"
+          },
+          "__t": "UoftCourse",
+          "code": "BIOA11H3 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 272,
+          "sections": [
+            {
+              "$oid": "685ed5b033c9e784b2df84f6"
+            },
+            {
+              "$oid": "685ed5b033c9e784b2df84f7"
+            },
+            {
+              "$oid": "685ed5b033c9e784b2df84f8"
+            },
+            {
+              "$oid": "685ed5b033c9e784b2df84f9"
+            },
+            {
+              "$oid": "685ed5b033c9e784b2df84fa"
+            },
+            {
+              "$oid": "685ed5b033c9e784b2df84fb"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a49b"
+            }
+          },
+          "name": "Introduction to the Biology of Humans",
+          "slug": "bioa11h3-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed69bc2ab7d22800ad268"
+          },
+          "__t": "UoftCourse",
+          "code": "CHM327H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1467,
+          "sections": [
+            {
+              "$oid": "685ed6a8c2ab7d22800ad306"
+            },
+            {
+              "$oid": "685ed6a8c2ab7d22800ad307"
+            },
+            {
+              "$oid": "685ed6a8c2ab7d22800ad308"
+            },
+            {
+              "$oid": "685ed6a8c2ab7d22800ad309"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a49c"
+            }
+          },
+          "name": "Experimental Physical Chemistry",
+          "slug": "chm327h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed69ec2ab7d22800ad297"
+          },
+          "__t": "UoftCourse",
+          "code": "CHMA10H3 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1817,
+          "sections": [
+            {
+              "$oid": "685ed6aec2ab7d22800ad35a"
+            },
+            {
+              "$oid": "685ed6aec2ab7d22800ad35b"
+            },
+            {
+              "$oid": "685ed6aec2ab7d22800ad35c"
+            },
+            {
+              "$oid": "685ed6aec2ab7d22800ad35d"
+            },
+            {
+              "$oid": "685ed6aec2ab7d22800ad35e"
+            },
+            {
+              "$oid": "685ed6aec2ab7d22800ad35f"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad360"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad361"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad362"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad363"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad364"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad365"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad366"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad367"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad368"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad369"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad36a"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad36b"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad36c"
+            },
+            {
+              "$oid": "685ed6afc2ab7d22800ad36d"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad36e"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad36f"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad370"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad371"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad372"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad373"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad374"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad375"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad376"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad377"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad378"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad379"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad37a"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad37b"
+            },
+            {
+              "$oid": "685ed6b0c2ab7d22800ad37c"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad37d"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad37e"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad37f"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad380"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad381"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad382"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad383"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad384"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad385"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad386"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad387"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad388"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad389"
+            },
+            {
+              "$oid": "685ed6b1c2ab7d22800ad38a"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad38b"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad38c"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad38d"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad38e"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad38f"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad390"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad391"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad392"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad393"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad394"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad395"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad396"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad397"
+            },
+            {
+              "$oid": "685ed6b2c2ab7d22800ad398"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad399"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad39a"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad39b"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad39c"
+            },
+            {
+              "$oid": "689f4482600d40eb1ed48c87"
+            },
+            {
+              "$oid": "689f4483600d40eb1ed48c88"
+            },
+            {
+              "$oid": "689f4483600d40eb1ed48c89"
+            },
+            {
+              "$oid": "689f4484600d40eb1ed48c8a"
+            },
+            {
+              "$oid": "689f4484600d40eb1ed48c8b"
+            },
+            {
+              "$oid": "689f4485600d40eb1ed48c8c"
+            },
+            {
+              "$oid": "689f4485600d40eb1ed48c8d"
+            },
+            {
+              "$oid": "689f4485600d40eb1ed48c8e"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b5"
+            }
+          },
+          "name": "Introductory Chemistry I: Structure and Bonding",
+          "slug": "chma10h3-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed69ec2ab7d22800ad298"
+          },
+          "__t": "UoftCourse",
+          "code": "CHMA10H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1817,
+          "sections": [
+            {
+              "$oid": "685ed6b3c2ab7d22800ad39d"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad39e"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad39f"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad3a0"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad3a1"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad3a2"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad3a3"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad3a4"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad3a5"
+            },
+            {
+              "$oid": "685ed6b3c2ab7d22800ad3a6"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3a7"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3a8"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3a9"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3aa"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3ab"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3ac"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3ad"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3ae"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b6"
+            }
+          },
+          "name": "Introductory Chemistry I: Structure and Bonding",
+          "slug": "chma10h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed69fc2ab7d22800ad299"
+          },
+          "__t": "UoftCourse",
+          "code": "CHMA11H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1872,
+          "sections": [
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3af"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3b0"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3b1"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3b2"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3b3"
+            },
+            {
+              "$oid": "685ed6b4c2ab7d22800ad3b4"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3b5"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3b6"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3b7"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3b8"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3b9"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3ba"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3bb"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3bc"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3bd"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3be"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3bf"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3c0"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3c1"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3c2"
+            },
+            {
+              "$oid": "685ed6b5c2ab7d22800ad3c3"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3c4"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3c5"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3c6"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3c7"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3c8"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3c9"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3ca"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3cb"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3cc"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3cd"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3ce"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3cf"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3d0"
+            },
+            {
+              "$oid": "685ed6b6c2ab7d22800ad3d1"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d2"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d3"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d4"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d5"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d6"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d7"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d8"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3d9"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3da"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3db"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3dc"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3dd"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3de"
+            },
+            {
+              "$oid": "685ed6b7c2ab7d22800ad3df"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e0"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e1"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b8"
+            }
+          },
+          "name": "Introductory Chemistry II: Reactions and Mechanisms",
+          "slug": "chma11h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed69fc2ab7d22800ad29a"
+          },
+          "__t": "UoftCourse",
+          "code": "CHMA12H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 2566,
+          "sections": [
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e2"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e3"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e4"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e5"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e6"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e7"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e8"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3e9"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3ea"
+            },
+            {
+              "$oid": "685ed6b8c2ab7d22800ad3eb"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b7"
+            }
+          },
+          "name": "Advanced General Chemistry",
+          "slug": "chma12h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed7859f49a019a8b7b849"
+          },
+          "__t": "UoftCourse",
+          "code": "CSC207H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 148,
+          "sections": [
+            {
+              "$oid": "685ed799c3deb6787c92f535"
+            },
+            {
+              "$oid": "685ed799c3deb6787c92f536"
+            },
+            {
+              "$oid": "685ed799c3deb6787c92f537"
+            },
+            {
+              "$oid": "685ed799c3deb6787c92f538"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f539"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f53a"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f53b"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f53c"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f53d"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f53e"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f53f"
+            },
+            {
+              "$oid": "685ed79ac3deb6787c92f540"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b1"
+            }
+          },
+          "name": "Software Design",
+          "slug": "csc207h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed7879f49a019a8b7b865"
+          },
+          "__t": "UoftCourse",
+          "code": "CSC311H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7628,
+          "sections": [
+            {
+              "$oid": "685ed7a9c3deb6787c92f612"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f613"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f614"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f615"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f616"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f617"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a49f"
+            }
+          },
+          "name": "Introduction to Machine Learning",
+          "slug": "csc311h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ed7879f49a019a8b7b866"
+          },
+          "__t": "UoftCourse",
+          "code": "CSC311H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7628,
+          "sections": [
+            {
+              "$oid": "685ed7a9c3deb6787c92f618"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f619"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f61a"
+            },
+            {
+              "$oid": "685ed7a9c3deb6787c92f61b"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a0"
+            }
+          },
+          "name": "Introduction to Machine Learning",
+          "slug": "csc311h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed7d6c2ab7d22800ad4de"
+          },
+          "__t": "UoftCourse",
+          "code": "CSCA48H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1898,
+          "sections": [
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7042"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7043"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7044"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7045"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7046"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7047"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7048"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba7049"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba704a"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba704b"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba704c"
+            },
+            {
+              "$oid": "685ed7e6f9a881c0d3ba704d"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba704e"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba704f"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7050"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7051"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7052"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7053"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7054"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7055"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7056"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7057"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7058"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba7059"
+            },
+            {
+              "$oid": "685ed7e7f9a881c0d3ba705a"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4ad"
+            }
+          },
+          "name": "Introduction to Computer Science II",
+          "slug": "csca48h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ed87619ab358384bb0d7d"
+          },
+          "__t": "UoftCourse",
+          "code": "ECE532H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 3265,
+          "sections": [
+            {
+              "$oid": "685ed8a0acaf45795a00f2ba"
+            },
+            {
+              "$oid": "685ed8a0acaf45795a00f2bb"
+            },
+            {
+              "$oid": "685ed8a0acaf45795a00f2bc"
+            },
+            {
+              "$oid": "685ed8a0acaf45795a00f2bd"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4ae"
+            }
+          },
+          "name": "Digital Systems Design",
+          "slug": "ece532h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685edb1c2503c4d84c1ec111"
+          },
+          "__t": "UoftCourse",
+          "code": "HLTC19H3 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 5143,
+          "sections": [
+            {
+              "$oid": "685edb2d2503c4d84c1ec1e7"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a491"
+            }
+          },
+          "name": "Chronic Diseases",
+          "slug": "hltc19h3-f"
+        },
+        {
+          "_id": {
+            "$oid": "685edba82503c4d84c1ec42a"
+          },
+          "__t": "UoftCourse",
+          "code": "ITA197H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 3269,
+          "sections": [
+            {
+              "$oid": "685edbb92503c4d84c1ec500"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a5"
+            }
+          },
+          "name": "The Fine Art of Murder: Reading Detective Fiction",
+          "slug": "ita197h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685edba82503c4d84c1ec42b"
+          },
+          "__t": "UoftCourse",
+          "code": "ITA197H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 3269,
+          "sections": [
+            {
+              "$oid": "685edbb92503c4d84c1ec501"
+            },
+            {
+              "$oid": "68b89e6276682ab8bc9dad72"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a6"
+            }
+          },
+          "name": "The Fine Art of Murder: Reading Detective Fiction",
+          "slug": "ita197h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685ef97d8c2a279ff27ad3c7"
+          },
+          "__t": "UoftCourse",
+          "code": "MAT138H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 5029,
+          "sections": [
+            {
+              "$oid": "685ef99288114722a0be1638"
+            },
+            {
+              "$oid": "685ef99288114722a0be1639"
+            },
+            {
+              "$oid": "685ef99388114722a0be163a"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a498"
+            }
+          },
+          "name": "Introduction to Proofs",
+          "slug": "mat138h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685ef9808c2a279ff27ad3eb"
+          },
+          "__t": "UoftCourse",
+          "code": "MAT247H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1167,
+          "sections": [
+            {
+              "$oid": "685ef9ac88114722a0be17d3"
+            },
+            {
+              "$oid": "685ef9ac88114722a0be17d4"
+            },
+            {
+              "$oid": "685ef9ac88114722a0be17d5"
+            },
+            {
+              "$oid": "685ef9ac88114722a0be17d6"
+            },
+            {
+              "$oid": "685ef9ac88114722a0be17d7"
+            },
+            {
+              "$oid": "685ef9ad88114722a0be17d8"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b2"
+            }
+          },
+          "name": "Algebra II",
+          "slug": "mat247h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685efb90636d7573fcaac0b5"
+          },
+          "__t": "UoftCourse",
+          "code": "PHL345H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 151,
+          "sections": [
+            {
+              "$oid": "685efb99636d7573fcaac136"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a4"
+            }
+          },
+          "name": "Intermediate Logic",
+          "slug": "phl345h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685efbdc88114722a0be18f4"
+          },
+          "__t": "UoftCourse",
+          "code": "PHY256H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 8240,
+          "sections": [
+            {
+              "$oid": "685efbe7b00be48a0495d878"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d879"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d87a"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d87b"
+            },
+            {
+              "$oid": "685efbe7b00be48a0495d87c"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a49a"
+            }
+          },
+          "name": "Introduction to Quantum Physics",
+          "slug": "phy256h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b1eb2c85cb1ae8c512c"
+          },
+          "__t": "UoftCourse",
+          "code": "PSY473H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7514,
+          "sections": [
+            {
+              "$oid": "685f0b27dacb5f9040c54f8a"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a495"
+            }
+          },
+          "name": "Social Cognitive Neuroscience",
+          "slug": "psy473h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b1eb2c85cb1ae8c512d"
+          },
+          "__t": "UoftCourse",
+          "code": "PSY473H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7514,
+          "sections": [
+            {
+              "$oid": "685f0b27dacb5f9040c54f8b"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a496"
+            }
+          },
+          "name": "Social Cognitive Neuroscience",
+          "slug": "psy473h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b21b2c85cb1ae8c5152"
+          },
+          "__t": "UoftCourse",
+          "code": "PSYC08H3 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 2459,
+          "sections": [
+            {
+              "$oid": "685f0b2bdacb5f9040c54fcd"
+            },
+            {
+              "$oid": "685f0b2bdacb5f9040c54fce"
+            },
+            {
+              "$oid": "685f0b2bdacb5f9040c54fcf"
+            },
+            {
+              "$oid": "685f0b2bdacb5f9040c54fd0"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a1"
+            }
+          },
+          "name": "Advanced Data Analysis in Psychology",
+          "slug": "psyc08h3-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b21b2c85cb1ae8c5153"
+          },
+          "__t": "UoftCourse",
+          "code": "PSYC08H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 2459,
+          "sections": [
+            {
+              "$oid": "685f0b2bdacb5f9040c54fd1"
+            },
+            {
+              "$oid": "685f0b2bdacb5f9040c54fd2"
+            },
+            {
+              "$oid": "685f0b2bdacb5f9040c54fd3"
+            },
+            {
+              "$oid": "685f0b2bdacb5f9040c54fd4"
+            },
+            {
+              "$oid": "685f0b2cdacb5f9040c54fd5"
+            },
+            {
+              "$oid": "685f0b2cdacb5f9040c54fd6"
+            },
+            {
+              "$oid": "685f0b2cdacb5f9040c54fd7"
+            },
+            {
+              "$oid": "685f0b2cdacb5f9040c54fd8"
+            },
+            {
+              "$oid": "685f0b2cdacb5f9040c54fd9"
+            },
+            {
+              "$oid": "685f0b2cdacb5f9040c54fda"
+            },
+            {
+              "$oid": "685f0b2cdacb5f9040c54fdb"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a2"
+            }
+          },
+          "name": "Advanced Data Analysis in Psychology",
+          "slug": "psyc08h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b3f5c6149a636c548e9"
+          },
+          "__t": "UoftCourse",
+          "code": "PSYD18H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 5358,
+          "sections": [
+            {
+              "$oid": "685f0b47782d9082c416c3bc"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a490"
+            }
+          },
+          "name": "Psychology of Gender",
+          "slug": "psyd18h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b895c6149a636c54932"
+          },
+          "__t": "UoftCourse",
+          "code": "RSM219H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1739,
+          "sections": [
+            {
+              "$oid": "685f0b93f331a8c6e15ad134"
+            },
+            {
+              "$oid": "685f0b93f331a8c6e15ad135"
+            },
+            {
+              "$oid": "685f0b93f331a8c6e15ad136"
+            },
+            {
+              "$oid": "685f0b93f331a8c6e15ad137"
+            },
+            {
+              "$oid": "685f0b93f331a8c6e15ad138"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad139"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad13a"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad13b"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad13c"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad13d"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad13e"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad13f"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad140"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad141"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad142"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad143"
+            },
+            {
+              "$oid": "68ba7dc643ddd7c50e5724eb"
+            },
+            {
+              "$oid": "68ba7dc743ddd7c50e5724ec"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a9"
+            }
+          },
+          "name": "Introduction to Financial Accounting",
+          "slug": "rsm219h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b895c6149a636c54933"
+          },
+          "__t": "UoftCourse",
+          "code": "RSM219H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1739,
+          "sections": [
+            {
+              "$oid": "685f0b94f331a8c6e15ad144"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad145"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad146"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad147"
+            },
+            {
+              "$oid": "685f0b94f331a8c6e15ad148"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad149"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad14a"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad14b"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad14c"
+            },
+            {
+              "$oid": "685f0b95f331a8c6e15ad14d"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4aa"
+            }
+          },
+          "name": "Introduction to Financial Accounting",
+          "slug": "rsm219h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0b8b5c6149a636c54953"
+          },
+          "__t": "UoftCourse",
+          "code": "RSM329H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1739,
+          "sections": [
+            {
+              "$oid": "685f0b9af331a8c6e15ad1a6"
+            },
+            {
+              "$oid": "685f0b9af331a8c6e15ad1a7"
+            },
+            {
+              "$oid": "685f0b9af331a8c6e15ad1a8"
+            },
+            {
+              "$oid": "685f0b9af331a8c6e15ad1a9"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4ab"
+            }
+          },
+          "name": "Accounting for Finance Professionals",
+          "slug": "rsm329h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0bd52c7dcb3903d92458"
+          },
+          "__t": "UoftCourse",
+          "code": "SOC204H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 732,
+          "sections": [
+            {
+              "$oid": "685f0be666d9c552f234e474"
+            },
+            {
+              "$oid": "685f0be666d9c552f234e475"
+            },
+            {
+              "$oid": "685f0be666d9c552f234e476"
+            },
+            {
+              "$oid": "685f0be666d9c552f234e477"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4b0"
+            }
+          },
+          "name": "Introduction to Qualitative Methods in Sociology",
+          "slug": "soc204h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0c1bb94027e5a5551dcd"
+          },
+          "__t": "UoftCourse",
+          "code": "SOCB30H3 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 1727,
+          "sections": [
+            {
+              "$oid": "685f0c26dacb5f9040c55114"
+            },
+            {
+              "$oid": "685f0c26dacb5f9040c55115"
+            },
+            {
+              "$oid": "685f0c26dacb5f9040c55116"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a3"
+            }
+          },
+          "name": "Political Sociology",
+          "slug": "socb30h3-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0c1cb94027e5a5551dd3"
+          },
+          "__t": "UoftCourse",
+          "code": "SOCB59H3 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 2294,
+          "sections": [
+            {
+              "$oid": "685f0c27dacb5f9040c5512a"
+            },
+            {
+              "$oid": "685f0c27dacb5f9040c5512b"
+            },
+            {
+              "$oid": "685f0c28dacb5f9040c5512c"
+            },
+            {
+              "$oid": "685f0c28dacb5f9040c5512d"
+            }
+          ],
+          "campus": "Scarborough",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4ac"
+            }
+          },
+          "name": "Sociology of Law",
+          "slug": "socb59h3-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0c41dacb5f9040c551a8"
+          },
+          "__t": "UoftCourse",
+          "code": "STA313H1 F",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 239,
+          "sections": [
+            {
+              "$oid": "685f0c56dacb5f9040c552c9"
+            },
+            {
+              "$oid": "685f0c57dacb5f9040c552ca"
+            },
+            {
+              "$oid": "685f0c57dacb5f9040c552cb"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "fall",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a7"
+            }
+          },
+          "name": "Data Visualization",
+          "slug": "sta313h1-f"
+        },
+        {
+          "_id": {
+            "$oid": "685f0c41dacb5f9040c551a9"
+          },
+          "__t": "UoftCourse",
+          "code": "STA313H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 239,
+          "sections": [
+            {
+              "$oid": "685f0c57dacb5f9040c552cc"
+            },
+            {
+              "$oid": "685f0c57dacb5f9040c552cd"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a4a8"
+            }
+          },
+          "name": "Data Visualization",
+          "slug": "sta313h1-s"
+        },
+        {
+          "_id": {
+            "$oid": "685f0c7f5c6149a636c549ff"
+          },
+          "__t": "UoftCourse",
+          "code": "TEP442H1 S",
+          "lastUpdatedAt": {
+            "$date": "2025-09-12T16:30:44.137Z"
+          },
+          "__v": 7567,
+          "sections": [
+            {
+              "$oid": "685f0c87dacb5f9040c553ab"
+            }
+          ],
+          "campus": "St. George",
+          "term": {
+            "season": "winter",
+            "_id": {
+              "$oid": "68c44a9b8f91f01025c3a494"
+            }
+          },
+          "name": "Cognitive and Psychological Foundations of Effective Leadership",
+          "slug": "tep442h1-s"
+        }
+      ],
+      "bulkWriteResult": {
+        "insertedCount": 0,
+        "matchedCount": 40,
+        "modifiedCount": 40,
+        "deletedCount": 0,
+        "upsertedCount": 0,
+        "upsertedIds": {},
+        "insertedIds": {}
+      },
+      "numDocumentsNotUpdated": 2
+    }
+  },
+  "createdAt": {
+    "$date": "2025-09-12T16:30:47.112Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c4726d8f91f01025c3ad36"
+  },
+  "type": "error",
+  "message": "Non-operational error: Cannot read properties of undefined (reading 'payload')",
+  "data": {
+    "error": {
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-09-12T19:20:13.861Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c4e9f78f91f01025c3d3b1"
+  },
+  "type": "warn",
+  "message": "Uoft Fetch Courses Error: \"undefined\" is not valid JSON",
+  "data": {
+    "options": {
+      "query": "SOCB59H3 S",
+      "season": "fall-winter",
+      "year": 2025,
+      "page": 1,
+      "fetchMethod": "lambda",
+      "lambdaFunctionName": "axios-request-20"
+    },
+    "error": "\"undefined\" is not valid JSON"
+  },
+  "createdAt": {
+    "$date": "2025-09-13T03:50:15.192Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c4f2298f91f01025c3d5db"
+  },
+  "type": "error",
+  "message": "Non-operational error: Cannot read properties of undefined (reading 'payload')",
+  "data": {
+    "error": {
+      "statusCode": 500,
+      "status": "error.js"
+    }
+  },
+  "createdAt": {
+    "$date": "2025-09-13T04:25:13.957Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c7872056cabdae54500c83"
+  },
+  "type": "log",
+  "message": "Sent ttyraaziz@gmail.com for ANT344H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T03:25:20.744Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c7872056cabdae54500c85"
+  },
+  "type": "log",
+  "message": "Sent arianf2004@gmail.com for ANT344H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T03:25:20.772Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8925"
+  },
+  "type": "log",
+  "message": "Sent shuman.dai@mail.utoronto.ca for PHY256H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.397Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8927"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.409Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae892d"
+  },
+  "type": "log",
+  "message": "Sent kedi.cat.lama.tembel.hayvan.power@gmail.com for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.549Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae892b"
+  },
+  "type": "log",
+  "message": "Sent nathanandrew.lee@mail.utoronto.ca for PSYB20H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.540Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae892f"
+  },
+  "type": "log",
+  "message": "Sent connieliu349@gmail.com for SOC204H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.628Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8931"
+  },
+  "type": "log",
+  "message": "Sent andrewchouni@gmail.com for BIO130H1 S",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.631Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8933"
+  },
+  "type": "log",
+  "message": "Sent derekyuyue@gmail.com for PHY256H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.669Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8939"
+  },
+  "type": "log",
+  "message": "Sent kiranpretzel@gmail.com for CHM327H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.761Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae893b"
+  },
+  "type": "log",
+  "message": "Sent schhina27@gmail.com for RLG199H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.791Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8935"
+  },
+  "type": "log",
+  "message": "Sent dereksci.yu@mail.utoronto.ca for PHY256H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.719Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae893d"
+  },
+  "type": "log",
+  "message": "Sent cassiaioannidis06@gmail.com for SOCB30H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.880Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae893f"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.962Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8937"
+  },
+  "type": "log",
+  "message": "Sent youyounews.live@gmail.com for PHY256H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.732Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c800ff3faa364851ae8929"
+  },
+  "type": "log",
+  "message": "Sent seajun.kim@mail.utoronto.ca for MAT257Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T12:05:19.478Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8022b3faa364851ae8969"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:10:19.844Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8022b3faa364851ae896b"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:10:19.864Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c803573faa364851ae8973"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:15:19.324Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c803573faa364851ae8975"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:15:19.343Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c804823faa364851ae897d"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:20:18.431Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c804823faa364851ae897f"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:20:18.441Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c805ac3faa364851ae8987"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:25:16.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c805ac3faa364851ae8989"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:25:16.832Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c806df3faa364851ae8991"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:30:23.191Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c806df3faa364851ae8993"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:30:23.216Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c808063faa364851ae89a1"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:35:18.229Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c808063faa364851ae899f"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:35:18.217Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c808063faa364851ae89a3"
+  },
+  "type": "log",
+  "message": "Sent youyounews.live@gmail.com for PHY256H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:35:18.317Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c809353faa364851ae89b6"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:40:21.685Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c809353faa364851ae89b8"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:40:21.703Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80a5d3faa364851ae89c0"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:45:17.140Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80a5d3faa364851ae89c2"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:45:17.154Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80b8a3faa364851ae89ca"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:50:18.395Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80b8a3faa364851ae89cc"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:50:18.410Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80cb53faa364851ae89d4"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:55:17.795Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80cb53faa364851ae89d6"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T12:55:17.834Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80de83faa364851ae89de"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:00:24.018Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80de83faa364851ae89e0"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:00:24.028Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80f0f3faa364851ae89eb"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:05:19.360Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c80f0f3faa364851ae89ed"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:05:19.379Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8103b3faa364851ae89f7"
+  },
+  "type": "log",
+  "message": "Sent 12_locket_gists@icloud.com for MAT247H1 S",
+  "createdAt": {
+    "$date": "2025-09-15T13:10:19.293Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8103b3faa364851ae89f9"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:10:19.303Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8103b3faa364851ae89fb"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:10:19.447Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c811653faa364851ae8a13"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:15:17.587Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c811653faa364851ae8a15"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:15:17.616Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c812923faa364851ae8a29"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:20:18.185Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c812923faa364851ae8a2b"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:20:18.194Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c813bf3faa364851ae8a33"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:25:19.416Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c813bf3faa364851ae8a35"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:25:19.435Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c814ef3faa364851ae8a40"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:30:23.080Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c814ef3faa364851ae8a42"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:30:23.083Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c816163faa364851ae8a4a"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:35:18.869Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c816163faa364851ae8a4c"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:35:18.878Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c817423faa364851ae8a5d"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:40:18.489Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c817423faa364851ae8a5f"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:40:18.509Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8186d3faa364851ae8a67"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:45:17.957Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8186d3faa364851ae8a69"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:45:17.987Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8199a3faa364851ae8a71"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:50:18.905Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8199a3faa364851ae8a73"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:50:18.914Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81ac63faa364851ae8a7e"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:55:18.082Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81ac63faa364851ae8a80"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T13:55:18.091Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81bf53faa364851ae8a88"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:00:21.448Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81bf53faa364851ae8a8a"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:00:21.452Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81d1e3faa364851ae8a94"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:05:18.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81d1e3faa364851ae8a96"
+  },
+  "type": "log",
+  "message": "Sent shuman.dai@mail.utoronto.ca for PHL345H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:05:18.105Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81d1e3faa364851ae8a98"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:05:18.291Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81d1e3faa364851ae8a9a"
+  },
+  "type": "log",
+  "message": "Sent nadaaalomrani@gmail.com for CSC364H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:05:18.360Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81e4b3faa364851ae8aaf"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:10:19.135Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81e4b3faa364851ae8ab1"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:10:19.146Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81f773faa364851ae8ab9"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:15:19.445Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c81f773faa364851ae8abb"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:15:19.478Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c820a13faa364851ae8ac6"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:20:17.681Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c820a13faa364851ae8ac8"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:20:17.688Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c821cd3faa364851ae8ad0"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:25:17.746Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c821cd3faa364851ae8ad2"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:25:17.765Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c823033faa364851ae8ada"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:30:27.910Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c823033faa364851ae8adc"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:30:27.921Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c824263faa364851ae8ae4"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:35:18.206Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c824263faa364851ae8ae6"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:35:18.236Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c825523faa364851ae8af2"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:40:18.052Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c825523faa364851ae8af0"
+  },
+  "type": "log",
+  "message": "Sent nathanandrew.lee@mail.utoronto.ca for ANTA02H3 S",
+  "createdAt": {
+    "$date": "2025-09-15T14:40:18.049Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c825523faa364851ae8af4"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:40:18.283Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8267e3faa364851ae8b0b"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:45:18.988Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8267f3faa364851ae8b0d"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:45:19.042Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c827aa3faa364851ae8b15"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:50:18.863Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c827aa3faa364851ae8b17"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:50:18.881Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c828d63faa364851ae8b1f"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:55:18.997Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c828d73faa364851ae8b21"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T14:55:19.007Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82a073faa364851ae8b29"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:00:23.077Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82a073faa364851ae8b2b"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:00:23.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82b2f3faa364851ae8b33"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:05:19.443Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82b2f3faa364851ae8b35"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:05:19.474Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b49"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.354Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b4b"
+  },
+  "type": "log",
+  "message": "Sent saithanpanchaharan123@gmail.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.375Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b4f"
+  },
+  "type": "log",
+  "message": "Sent joe.zhu@mail.utoronto.ca for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.417Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b51"
+  },
+  "type": "log",
+  "message": "Sent 3173068746@qq.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.426Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b4d"
+  },
+  "type": "log",
+  "message": "Sent zhu060304@gmail.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.385Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b57"
+  },
+  "type": "log",
+  "message": "Sent jasmine.jnq@gmail.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.488Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b59"
+  },
+  "type": "log",
+  "message": "Sent pedrowcdias@gmail.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.566Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b55"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.475Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b5b"
+  },
+  "type": "log",
+  "message": "Sent monicawang1002@gmail.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.681Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b53"
+  },
+  "type": "log",
+  "message": "Sent areesha.abidi77@gmail.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.439Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82c5c3faa364851ae8b5d"
+  },
+  "type": "log",
+  "message": "Sent hannahlc.tan@gmail.com for STA237H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:10:20.741Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82d863faa364851ae8b70"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:15:18.413Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82d863faa364851ae8b72"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:15:18.442Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82eb73faa364851ae8b7a"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:20:23.703Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82eb73faa364851ae8b7c"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:20:23.720Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82fdf3faa364851ae8b84"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:25:19.665Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c82fdf3faa364851ae8b86"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:25:19.697Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8310f3faa364851ae8b8e"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:30:23.004Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8310f3faa364851ae8b90"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:30:23.032Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c832353faa364851ae8b9b"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:35:17.390Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c832353faa364851ae8b9d"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:35:17.400Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c833833faa364851ae8baa"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:40:51.835Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c833833faa364851ae8bac"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:40:51.885Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c833833faa364851ae8bae"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:40:51.907Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c833833faa364851ae8bb0"
+  },
+  "type": "log",
+  "message": "Sent jasmine.jnq@gmail.com for MGT201H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:40:51.937Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c833843faa364851ae8bb2"
+  },
+  "type": "log",
+  "message": "Sent seannishanthan@gmail.com for GGR107H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:40:52.469Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c833843faa364851ae8bb4"
+  },
+  "type": "log",
+  "message": "Sent abhisha.sakthievel12@gmail.com for MAT135H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T15:40:52.540Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83a6f271dc4eb2eaeaf40"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:10:23.513Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83a6f271dc4eb2eaeaf42"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:10:23.615Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83a6f271dc4eb2eaeaf44"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:10:23.777Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83b97271dc4eb2eaeaf4d"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:15:19.469Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83b97271dc4eb2eaeaf4f"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:15:19.510Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83b97271dc4eb2eaeaf51"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:15:19.621Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83cc1271dc4eb2eaeaf5a"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:20:17.601Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83cc1271dc4eb2eaeaf5c"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:20:17.612Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83cc1271dc4eb2eaeaf5e"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:20:17.726Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83def271dc4eb2eaeaf6c"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:25:19.355Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83def271dc4eb2eaeaf6a"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:25:19.335Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83def271dc4eb2eaeaf6e"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:25:19.434Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83f1e271dc4eb2eaeaf77"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:30:22.226Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83f1e271dc4eb2eaeaf79"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:30:22.295Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c83f1e271dc4eb2eaeaf7b"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:30:22.387Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeaf95"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.518Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeaf99"
+  },
+  "type": "log",
+  "message": "Sent satwik.nethi@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.568Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeaf97"
+  },
+  "type": "log",
+  "message": "Sent bizeps.teekanne-90@icloud.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.547Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeaf9b"
+  },
+  "type": "log",
+  "message": "Sent nathan.fermin@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.638Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeaf9d"
+  },
+  "type": "log",
+  "message": "Sent billziang.chen@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.639Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeaf9f"
+  },
+  "type": "log",
+  "message": "Sent chengziang2024@163.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.669Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafa1"
+  },
+  "type": "log",
+  "message": "Sent isaachong2006@gmail.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.678Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafa3"
+  },
+  "type": "log",
+  "message": "Sent nathaniel.fermin912@gmail.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.738Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafa5"
+  },
+  "type": "log",
+  "message": "Sent cynthiarong2012@gmail.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.740Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafa7"
+  },
+  "type": "log",
+  "message": "Sent stranglyfunky@gmail.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.770Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafa9"
+  },
+  "type": "log",
+  "message": "Sent cynthia.rong@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.779Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafad"
+  },
+  "type": "log",
+  "message": "Sent y.wangg27@gmail.com for PCL200H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.849Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafaf"
+  },
+  "type": "log",
+  "message": "Sent seajun.kim@mail.utoronto.ca for MAT257Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.880Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafb3"
+  },
+  "type": "log",
+  "message": "Sent andrewsamirpols@gmail.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.941Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafb5"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.960Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafb7"
+  },
+  "type": "log",
+  "message": "Sent emilie.verno@gmail.com for PSY330H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.962Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84048271dc4eb2eaeafb9"
+  },
+  "type": "log",
+  "message": "Sent yaafei.wang@mail.utoronto.ca for PCL200H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:20.202Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84048271dc4eb2eaeafbb"
+  },
+  "type": "log",
+  "message": "Sent arafeh.massah2007@gmail.com for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:20.242Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafab"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.831Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84047271dc4eb2eaeafb1"
+  },
+  "type": "log",
+  "message": "Sent e.vernolavigne@mail.utoronto.ca for PSY330H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:35:19.889Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84174271dc4eb2eaeaff7"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:40:20.438Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84174271dc4eb2eaeaff9"
+  },
+  "type": "log",
+  "message": "Sent satwik.nethi@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:40:20.468Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84174271dc4eb2eaeaffb"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:40:20.621Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84174271dc4eb2eaeaffd"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:40:20.651Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8429c271dc4eb2eaeb009"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:45:16.821Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8429c271dc4eb2eaeb007"
+  },
+  "type": "log",
+  "message": "Sent satwik.nethi@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:45:16.819Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8429c271dc4eb2eaeb00b"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:45:16.952Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8429c271dc4eb2eaeb00d"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:45:16.970Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c843ca271dc4eb2eaeb01a"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:50:18.464Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c843ca271dc4eb2eaeb01c"
+  },
+  "type": "log",
+  "message": "Sent satwik.nethi@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:50:18.483Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c843ca271dc4eb2eaeb01e"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:50:18.641Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c843ca271dc4eb2eaeb020"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:50:18.731Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c844f4271dc4eb2eaeb07e"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:55:16.619Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c844f4271dc4eb2eaeb080"
+  },
+  "type": "log",
+  "message": "Sent satwik.nethi@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:55:16.631Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c844f4271dc4eb2eaeb082"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:55:16.748Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c844f4271dc4eb2eaeb084"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T16:55:16.781Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84629271dc4eb2eaeb0f3"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:00:25.396Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84629271dc4eb2eaeb0f5"
+  },
+  "type": "log",
+  "message": "Sent satwik.nethi@mail.utoronto.ca for CSC236H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:00:25.406Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84629271dc4eb2eaeb0f7"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:00:25.579Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84629271dc4eb2eaeb0f9"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:00:25.657Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb112"
+  },
+  "type": "log",
+  "message": "Sent choukairiyacout@gmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.256Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb110"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.205Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb114"
+  },
+  "type": "log",
+  "message": "Sent evanhtanner3@gmail.com for MAT235Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.284Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb116"
+  },
+  "type": "log",
+  "message": "Sent amyy.zhang@hotmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.293Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb11c"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.505Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb11e"
+  },
+  "type": "log",
+  "message": "Sent zhiyang941223@gmail.com for POL340H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.506Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb118"
+  },
+  "type": "log",
+  "message": "Sent alifazalansari00@gmail.com for MAT136H5 S",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.315Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8474e271dc4eb2eaeb11a"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:05:18.324Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8487b271dc4eb2eaeb139"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:10:19.541Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8487b271dc4eb2eaeb13b"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:10:19.573Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8487b271dc4eb2eaeb13d"
+  },
+  "type": "log",
+  "message": "Sent choukairiyacout@gmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:10:19.582Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8487b271dc4eb2eaeb13f"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:10:19.745Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c8487b271dc4eb2eaeb141"
+  },
+  "type": "log",
+  "message": "Sent evanhtanner3@gmail.com for MAT235Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T17:10:19.756Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c849a5271dc4eb2eaeb15c"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:15:17.056Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c849a5271dc4eb2eaeb15e"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:15:17.097Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c849a5271dc4eb2eaeb160"
+  },
+  "type": "log",
+  "message": "Sent choukairiyacout@gmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:15:17.106Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c849a5271dc4eb2eaeb162"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:15:17.250Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c849a5271dc4eb2eaeb164"
+  },
+  "type": "log",
+  "message": "Sent evanhtanner3@gmail.com for MAT235Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T17:15:17.259Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84ad5271dc4eb2eaeb171"
+  },
+  "type": "log",
+  "message": "Sent choukairiyacout@gmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:20:21.524Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84ad5271dc4eb2eaeb16f"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:20:21.494Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84ad5271dc4eb2eaeb175"
+  },
+  "type": "log",
+  "message": "Sent evanhtanner3@gmail.com for MAT235Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T17:20:21.627Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84ad5271dc4eb2eaeb173"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:20:21.536Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84ad5271dc4eb2eaeb177"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:20:21.987Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84bff271dc4eb2eaeb18b"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:25:19.912Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84bff271dc4eb2eaeb18d"
+  },
+  "type": "log",
+  "message": "Sent choukairiyacout@gmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:25:19.922Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84bff271dc4eb2eaeb18f"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:25:19.952Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84c00271dc4eb2eaeb191"
+  },
+  "type": "log",
+  "message": "Sent evanhtanner3@gmail.com for MAT235Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T17:25:20.132Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84c00271dc4eb2eaeb193"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:25:20.152Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84d2e271dc4eb2eaeb19e"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:30:22.592Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84d2e271dc4eb2eaeb1a2"
+  },
+  "type": "log",
+  "message": "Sent choukairiyacout@gmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:30:22.634Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84d2e271dc4eb2eaeb1a0"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:30:22.623Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84d2e271dc4eb2eaeb1a4"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:30:22.694Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84d2e271dc4eb2eaeb1a6"
+  },
+  "type": "log",
+  "message": "Sent evanhtanner3@gmail.com for MAT235Y1 Y",
+  "createdAt": {
+    "$date": "2025-09-15T17:30:22.854Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84e7c271dc4eb2eaeb1b3"
+  },
+  "type": "log",
+  "message": "Sent choukairiyacout@gmail.com for HLTA02H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:35:56.271Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84e7c271dc4eb2eaeb1b1"
+  },
+  "type": "log",
+  "message": "Sent graceyt.cheng@mail.utoronto.ca for MATA31H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:35:56.180Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84e7c271dc4eb2eaeb1b5"
+  },
+  "type": "log",
+  "message": "Sent youyounews.live@gmail.com for PHY256H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:35:56.281Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84e7d271dc4eb2eaeb1b7"
+  },
+  "type": "log",
+  "message": "Sent keshi10@icloud.com for BIO230H1 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:35:57.906Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c84e7e271dc4eb2eaeb1b9"
+  },
+  "type": "log",
+  "message": "Sent jodramo213@gmail.com for CHMA10H3 F",
+  "createdAt": {
+    "$date": "2025-09-15T17:35:58.006Z"
+  },
+  "__v": 0
+}]

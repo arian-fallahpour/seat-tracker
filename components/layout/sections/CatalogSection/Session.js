@@ -27,8 +27,7 @@ const Session = ({
         <div className={classes.SessionContent}>
           <div className={classes.SessionCampus}>{campus}</div>
           <div className={join("header", "header-card", classes.SessionHeader)}>
-            <div>{type}</div>
-            <div>{number}</div>
+            {type} {number}
           </div>
           <div className={classes.SessionDate}>
             Updated at {lastUpdatedDate.toLocaleDateString("en-US")},{" "}

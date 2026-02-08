@@ -1,11 +1,11 @@
-require("@babel/register");
+import "@babel/register";
 
-const mongoose = require("mongoose");
-const Alert = require("../models/database/Alert");
-const Course = require("../models/database/Course/Course");
-const Section = require("../models/database/Section/Section");
+import mongoose from "mongoose";
+import Alert from "../models/database/Alert";
+import Course from "../models/database/Course/Course";
+import Section from "../models/database/Section/Section";
 
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
 // (async () => {

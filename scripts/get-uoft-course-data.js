@@ -1,9 +1,8 @@
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
-const args = require("args-parser")(process.argv);
-const { connectToDB } = require("../utils/helper-server");
-const UoftAdapter = require("../utils/Uoft/UoftAdapter");
+import { connectToDB } from "../utils/helper-server";
+import UoftAdapter from "../utils/Uoft/UoftAdapter";
 
 (async () => {
   // Connect to database

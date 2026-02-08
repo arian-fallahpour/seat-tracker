@@ -1,7 +1,7 @@
 import React from "react";
 
 import config from "@/utils/config";
-import { createServerURL } from "@/utils/helper-server";
+import { createServerURL } from "@/utils/helper-next";
 import AlertPage from "@/components/pages/AlertPage/AlertPage";
 import { redirect } from "next/navigation";
 import { getPageHeader } from "../../../utils/helper-client";

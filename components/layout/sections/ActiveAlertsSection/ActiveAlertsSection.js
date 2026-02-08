@@ -1,4 +1,4 @@
-import { createServerURL } from "@/utils/helper-server";
+import { createServerURL } from "@/utils/helper-next";
 import Section from "@/components/elements/Section/Section";
 import config from "@/utils/config";
 import classes from "./ActiveAlertsSection.module.scss";

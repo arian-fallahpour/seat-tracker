@@ -1,14 +1,14 @@
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
-const path = require("path");
-const LambdaAdapter = require("../utils/services/LambdaAdapter");
-const lambdaData = require("../data/lambda-data");
+import path from "path";
+import LambdaAdapter from "../utils/services/LambdaAdapter";
+import lambdaData from "../data/lambda-data";
 
 (async () => {
   async function createFunction(functionName) {
     try {
-      const filePath = path.resolve(__dirname, "../aws/lambdas/axios-request/index.js");
+      const filePath = path.resolve(process.cwd(), "../aws/lambdas/axios-request/index.js");
       await LambdaAdapter.create(functionName, filePath, {
         layers: [LambdaAdapter.axiosLayerName],
       });

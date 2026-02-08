@@ -1,20 +1,20 @@
-require("@babel/register");
+import "@babel/register";
 
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
-const { connectToDB } = require("../utils/helper-server");
+import { connectToDB } from "../utils/helper-server";
 
-const UoftCourseModel = require("../models/Course/UoftCourseModel");
-const UoftSectionModel = require("../models/Section/UoftSectionModel");
-const fsp = require("fs/promises");
-const path = require("path");
+import UoftCourseModel from "../models/Course/UoftCourseModel";
+import UoftSectionModel from "../models/Section/UoftSectionModel";
+import fsp from "fs/promises";
+import path from "path";
 
 (async () => {
   // Connect to database
   await connectToDB();
   console.log("Database connection successful");
 
-  const filePath = path.join(__dirname, "../ignore/db-import/test.sections.json");
+  const filePath = path.join(process.cwd(), "../ignore/db-import/test.sections.json");
   const documentsJSON = await fsp.readFile(filePath, "utf-8");
   const documents = JSON.parse(documentsJSON).map(convertMongoTypes);
 

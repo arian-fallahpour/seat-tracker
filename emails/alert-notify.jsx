@@ -21,7 +21,7 @@ const dummyData = {
     school: "uoft",
     status: "active",
   },
-  freedSections: [
+  alteredSections: [
     {
       id: "67ac0ae08500d508d978ddaf",
       type: "lab",
@@ -29,8 +29,8 @@ const dummyData = {
       couse: "67ac0ad78500d508d978b77b",
       campus: "St. George",
       hasWaitlist: true,
-      seatsAvailable: 75,
-      seatsTaken: 75,
+      seatsTotal: 75,
+      seatsTaken: 40,
       waitlist: 0,
       id: "67ac0ae08500d508d978ddaf",
     },
@@ -45,7 +45,7 @@ const dummyContext = {
 };
 
 export default function AlertNotify({ data = dummyData, context = dummyContext }) {
-  const { course, alert, freedSections } = data;
+  const { course, alert, alteredSections } = data;
   const { baseURL } = context;
 
   const editAlertLink = `${baseURL}/edit-alert/${alert.id}`;
@@ -54,13 +54,15 @@ export default function AlertNotify({ data = dummyData, context = dummyContext }
     <Email alert={alert}>
       <Text>Hey there!</Text>
       <Text>New seat alert notification for {alert.email}!</Text>
+
       <Section style={{ marginTop: 16, marginBottom: 16 }}>
         <Text style={{ padding: 0, margin: 0 }}>
-          The following section{freedSections?.length > 1 ? "s" : ""} has been freed in{" "}
+          The following section{alteredSections?.length > 1 ? "s" : ""} has been freed in{" "}
           {course.name} ({course.code}):
         </Text>
-        {freedSections?.map((section, i) => {
-          const seatsEmpty = section.seatsAvailable - section.seatsTaken;
+
+        {alteredSections?.map((section, i) => {
+          const seatsEmpty = section.seatsTotal - section.seatsTaken;
           return (
             <Text style={{ padding: 0, margin: 0 }} key={section.type + section.number}>
               {section.type} {section.number} now has {seatsEmpty} empty seat

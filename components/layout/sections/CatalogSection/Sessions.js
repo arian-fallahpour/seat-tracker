@@ -1,6 +1,6 @@
 import classes from "./CatalogSection.module.scss";
 import Session from "./Session";
-import alertsData from "@/data/alerts-data.js";
+import alertsData from "@/data/alerts-data";
 
 const Sessions = ({ name, sessions, selectedSessions, toggleSession }) => {
   return (
@@ -14,8 +14,9 @@ const Sessions = ({ name, sessions, selectedSessions, toggleSession }) => {
           <Session
             key={section.type + section.number}
             {...section}
+            id={section._id}
             toggleSession={toggleSession}
-            isSelected={selectedSessions?.includes(section.id)}
+            isSelected={selectedSessions?.includes(section._id)}
             isDisabled={
               selectedSessions?.length >= alertsData.maxSectionsPerAlert &&
               !selectedSessions?.includes(section.id)

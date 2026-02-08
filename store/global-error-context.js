@@ -1,4 +1,4 @@
-const { createContext, useState, useEffect, useRef } = require("react");
+import { createContext, useState, useEffect, useRef } from "react";
 
 const errorTimeout = 2000;
 

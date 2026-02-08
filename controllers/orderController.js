@@ -1,15 +1,14 @@
-const crudController = require("./crudController");
-const OrderModel = require("../models/OrderModel");
-const AlertModel = require("../models/AlertModel");
-const catchAsync = require("../utils/app/catchAsync");
-const AppError = require("../utils/app/AppError");
-const businessData = require("../data/business-data");
-const UoftCourseModel = require("../models/Course/UoftCourseModel");
-const alertsData = require("../data/alerts-data");
+import * as crudController from "./crudController";
+import OrderModel from "../models/OrderModel";
+import AlertModel from "../models/AlertModel";
+import CourseModel from "@/models/CourseModel";
+import catchAsync from "../utils/app/catchAsync";
+import AppError from "../utils/app/AppError";
+import alertsData from "../data/alerts-data";
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import Stripe from "stripe";
 
-exports.createCheckoutSession = catchAsync(async (req, res, next) => {
+export const createCheckoutSession = catchAsync(async (req, res, next) => {
   const { email, course: courseId, sections } = req.body;
 
   // Validate required input
@@ -17,7 +16,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   if (!courseId) return next(new AppError("Please provide a course for this alert.", 400));
 
   // Find course and make sure it is enrollable
-  const course = await UoftCourseModel.findById(courseId);
+  const course = await CourseModel.findById(courseId);
   if (!course) {
     return next(new AppError("Could not find specified course.", 404));
   } else if (!course.isEnrollable()) {
@@ -48,7 +47,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
   }
 
   // Otherwise, create a checkout session
-  return createCheckoutSession(req, res, course, alert);
+  return createCheckoutSessionStripe(req, res, course, alert);
 });
 
 async function createFreeAlert(res, next, alert) {
@@ -65,12 +64,12 @@ async function createFreeAlert(res, next, alert) {
     return next(
       new AppError(
         `You already created ${alertsData.alertCreationCooldownCount} alerts today. Please try again ${alertsData.alertCreationCooldownDays === 1 ? "tomorrow" : `in ${alertsData.alertCreationCooldownDays} days`}.`,
-        400
-      )
+        400,
+      ),
     );
 
   // Create verification code and send it to the user
-  await alert.createVerificationCode();
+  await alert.createVerification();
 
   // Return checkout page url
   return res.status(200).json({
@@ -82,7 +81,7 @@ async function createFreeAlert(res, next, alert) {
   });
 }
 
-async function createCheckoutSession(req, res, course, alert) {
+async function createCheckoutSessionStripe(req, res, course, alert) {
   // Find or created order for this alert
   let order = await OrderModel.findOne({ alert: alert.id });
   if (!order) {
@@ -102,6 +101,7 @@ async function createCheckoutSession(req, res, course, alert) {
   const cancelMessage = "Could not complete transaction.";
 
   // Create stripe checkout session
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -138,8 +138,8 @@ async function createCheckoutSession(req, res, course, alert) {
   });
 }
 
-exports.getOneOrder = crudController.getOne(OrderModel);
-exports.getAllOrders = crudController.getAll(OrderModel);
-exports.createOneOrder = crudController.createOne(OrderModel);
-exports.updateOneOrder = crudController.updateOne(OrderModel);
-exports.deleteOneOrder = crudController.deleteOne(OrderModel);
+export const getOneOrder = crudController.getOne(OrderModel);
+export const getAllOrders = crudController.getAll(OrderModel);
+export const createOneOrder = crudController.createOne(OrderModel);
+export const updateOneOrder = crudController.updateOne(OrderModel);
+export const deleteOneOrder = crudController.deleteOne(OrderModel);
